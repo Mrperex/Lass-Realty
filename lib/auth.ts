@@ -41,7 +41,7 @@ export function verifyJwt(token: string): AdminToken | null {
  *   1. Authorization Bearer token
  *   2. HTTP-only cookie
  */
-export function verifyAuth(req?: NextRequest): AdminToken | null {
+export function verifyAuth(req?: Request | NextRequest): AdminToken | null {
     // ✅ 1. Bearer token (mobile first-class)
     const authHeader = req?.headers.get('authorization')
     if (authHeader?.startsWith('Bearer ')) {
