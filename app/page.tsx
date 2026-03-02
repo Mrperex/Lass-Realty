@@ -124,7 +124,7 @@ export default async function Home() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 relative">
-                            <span className="text-5xl text-amber-200 absolute top-4 left-6">"</span>
+                            <span className="text-5xl text-amber-200 absolute top-4 left-6">&quot;</span>
                             <p className="text-slate-700 italic relative z-10 mb-6 mt-4">LASS Realty made our dream of owning a villa in Punta Cana a reality. Their team handled the entire legal and closing process seamlessly. Unmatched professionalism.</p>
                             <div className="flex items-center gap-4 border-t border-slate-100 pt-6">
                                 <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-500">MR</div>
@@ -136,7 +136,7 @@ export default async function Home() {
                         </div>
 
                         <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 relative">
-                            <span className="text-5xl text-amber-200 absolute top-4 left-6">"</span>
+                            <span className="text-5xl text-amber-200 absolute top-4 left-6">&quot;</span>
                             <p className="text-slate-700 italic relative z-10 mb-6 mt-4">We were nervous about buying property overseas, but the agent was incredibly transparent and held our hand through every step. Highly recommended!</p>
                             <div className="flex items-center gap-4 border-t border-slate-100 pt-6">
                                 <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-500">SJ</div>
@@ -148,8 +148,8 @@ export default async function Home() {
                         </div>
 
                         <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 relative md:hidden lg:block">
-                            <span className="text-5xl text-amber-200 absolute top-4 left-6">"</span>
-                            <p className="text-slate-700 italic relative z-10 mb-6 mt-4">The property management post-sale has been phenomenal. Our luxury condo in Bavaro is consistently rented out when we aren't using it.</p>
+                            <span className="text-5xl text-amber-200 absolute top-4 left-6">&quot;</span>
+                            <p className="text-slate-700 italic relative z-10 mb-6 mt-4">The property management post-sale has been phenomenal. Our luxury condo in Bavaro is consistently rented out when we aren&apos;t using it.</p>
                             <div className="flex items-center gap-4 border-t border-slate-100 pt-6">
                                 <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-500">DT</div>
                                 <div>
