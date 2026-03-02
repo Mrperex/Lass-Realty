@@ -2,6 +2,11 @@ import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/mongodb';
 import Lead from '@/models/Lead';
 import { checkRateLimit, leadsRatelimit } from '@/lib/ratelimit';
+import { Resend } from 'resend';
+import { LeadAutoReply } from '@/components/emails/LeadAutoReply';
+import { AdminNotification } from '@/components/emails/AdminNotification';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
     try {
@@ -35,6 +40,27 @@ export async function POST(req: Request) {
             message,
             propertySlug,
         });
+
+        // Fire instantaneous transactional emails (fire-and-forget for speed)
+        if (process.env.RESEND_API_KEY) {
+            const safePropertyTitle = propertySlug.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+
+            // 1. Send Auto-Reply to the Lead
+            resend.emails.send({
+                from: 'LASS Realty <onboarding@resend.dev>', // Using Resend testing domain
+                to: email, // Warning: If using Resend sandbox, won't deliver to unverified emails
+                subject: `We received your inquiry regarding ${safePropertyTitle}`,
+                react: LeadAutoReply({ name, propertyTitle: safePropertyTitle }),
+            }).catch((err) => console.error('Resend Lead Auto-Reply Error:', err));
+
+            // 2. Send Alert to the Admin (You)
+            resend.emails.send({
+                from: 'LASS Realty Lead Engine <onboarding@resend.dev>',
+                to: 'pablopok08@gmail.com', // Must be your verified Resend account email for testing
+                subject: `🚨 New Lead: ${name} for ${safePropertyTitle}`,
+                react: AdminNotification({ name, email, phone, message, propertyTitle: safePropertyTitle }),
+            }).catch((err) => console.error('Resend Admin Alert Error:', err));
+        }
 
         return NextResponse.json({ success: true, lead }, { status: 201 });
     } catch (error: any) {
