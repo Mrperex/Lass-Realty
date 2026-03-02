@@ -31,7 +31,7 @@ export default async function Home() {
             <section className="relative min-h-[85vh] flex flex-col items-center justify-center pt-24 pb-12">
                 <div className="absolute inset-0 bg-slate-900/50 z-10" />
                 <Image
-                    src="https://images.unsplash.com/photo-1613490908578-15c13b28b615?auto=format&fit=crop&q=80"
+                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80"
                     alt="Luxury Tropical Real Estate"
                     fill
                     sizes="100vw"

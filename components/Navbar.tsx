@@ -21,6 +21,7 @@ const Navbar = () => {
                         <Link href="/" className="text-slate-600 hover:text-amber-600 font-bold transition-colors">Home</Link>
                         <Link href="/properties" className="text-slate-600 hover:text-amber-600 font-bold transition-colors">Properties</Link>
                         <Link href="/#locations" className="text-slate-600 hover:text-amber-600 font-bold transition-colors">Locations</Link>
+                        <Link href="/about" className="text-slate-600 hover:text-amber-600 font-bold transition-colors">About</Link>
                         <Link href="/contact" className="text-slate-600 hover:text-amber-600 font-bold transition-colors">Contact</Link>
                     </nav>
                     {/* Mobile Menu Button */}
@@ -38,6 +39,7 @@ const Navbar = () => {
                     <Link href="/" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">Home</Link>
                     <Link href="/properties" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">Properties</Link>
                     <Link href="/#locations" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">Locations</Link>
+                    <Link href="/about" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">About</Link>
                     <Link href="/contact" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">Contact</Link>
                 </div>
             )}
