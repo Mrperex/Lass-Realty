@@ -49,13 +49,13 @@ export async function POST(req: Request) {
             try {
                 await Promise.all([
                     resend.emails.send({
-                        from: 'LASS Realty <info@lassrealty.com>',
+                        from: 'LASS Realty <info@lasspuntacana.com>',
                         to: email,
                         subject: `We received your inquiry regarding ${safePropertyTitle}`,
                         react: LeadAutoReply({ name, propertyTitle: safePropertyTitle }),
                     }),
                     resend.emails.send({
-                        from: 'LASS Realty Leads <info@lassrealty.com>',
+                        from: 'LASS Realty Leads <info@lasspuntacana.com>',
                         to: 'pablopok08@gmail.com',
                         subject: `🚨 New Lead: ${name} for ${safePropertyTitle}`,
                         react: AdminNotification({ name, email, phone, message, propertyTitle: safePropertyTitle }),
