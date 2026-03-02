@@ -1,0 +1,89 @@
+"use client";
+
+import { FormEvent, useState } from 'react';
+
+export default function ContactForm({ propertySlug }: { propertySlug: string }) {
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+
+        const form = e.currentTarget;
+        const data = new FormData(form);
+
+        try {
+            const res = await fetch('/api/leads', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(data)),
+            });
+
+            if (res.ok) {
+                setSuccess(true);
+                form.reset();
+            } else {
+                const result = await res.json();
+                setError(result.error || 'Failed to send message. Please try again.');
+            }
+        } catch (err: any) {
+            setError(err.message || 'An error occurred. Please try again later.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (success) {
+        return (
+            <div className="p-6 bg-green-50 text-green-800 rounded-xl border border-green-200">
+                <h4 className="text-lg font-bold mb-2">Message Sent!</h4>
+                <p className="text-sm">Thank you for your inquiry. We will get back to you shortly.</p>
+                <button
+                    onClick={() => setSuccess(false)}
+                    className="mt-4 text-sm font-medium text-green-900 underline underline-offset-2 hover:text-green-700"
+                >
+                    Send another message
+                </button>
+            </div>
+        );
+    }
+
+    return (
+        <form className="space-y-5" onSubmit={handleSubmit}>
+            <input type="hidden" name="propertySlug" value={propertySlug} />
+
+            {error && (
+                <div className="p-4 bg-red-50 text-red-800 rounded-xl border border-red-200 text-sm">
+                    {error}
+                </div>
+            )}
+
+            <div>
+                <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-1.5">Full Name</label>
+                <input type="text" id="name" name="name" required disabled={loading} className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow text-slate-900 disabled:opacity-50" placeholder="John Doe" />
+            </div>
+            <div>
+                <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-1.5">Email Address</label>
+                <input type="email" id="email" name="email" required disabled={loading} className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow text-slate-900 disabled:opacity-50" placeholder="john@example.com" />
+            </div>
+            <div>
+                <label htmlFor="phone" className="block text-sm font-semibold text-slate-700 mb-1.5">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required disabled={loading} className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow text-slate-900 disabled:opacity-50" placeholder="+1 (555) 000-0000" />
+            </div>
+            <div>
+                <label htmlFor="message" className="block text-sm font-semibold text-slate-700 mb-1.5">Message</label>
+                <textarea id="message" name="message" rows={4} required disabled={loading} className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow text-slate-900 resize-none disabled:opacity-50" placeholder="I am interested in learning more about this property..."></textarea>
+            </div>
+            <button type="submit" disabled={loading} className="w-full bg-slate-900 text-white font-bold text-lg py-4 rounded-xl hover:bg-amber-600 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:bg-slate-900 disabled:hover:shadow-none flex items-center justify-center">
+                {loading ? (
+                    <span className="inline-block h-6 w-6 border-2 border-white/20 border-t-white rounded-full animate-spin"></span>
+                ) : (
+                    'Send Inquiry'
+                )}
+            </button>
+        </form>
+    );
+}
