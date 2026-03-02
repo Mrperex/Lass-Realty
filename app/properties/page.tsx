@@ -41,7 +41,8 @@ async function getProperties(searchParams: { [key: string]: string | string[] | 
 
         const properties = await Property.find(query).sort({ createdAt: -1 }).lean();
         return JSON.parse(JSON.stringify(properties));
-    } catch (error) {
+    } catch (error: any) {
+        if (error && error.digest === 'DYNAMIC_SERVER_USAGE') throw error;
         console.warn('Failed to fetch properties:', error);
         return [];
     }

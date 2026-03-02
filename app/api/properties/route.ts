@@ -19,6 +19,7 @@ export async function GET(req: Request) {
 
         return NextResponse.json({ properties }, { status: 200 });
     } catch (error: any) {
+        if (error && error.digest === 'DYNAMIC_SERVER_USAGE') throw error;
         console.error('Properties fetch error:', error);
         return NextResponse.json(
             { error: 'Internal server error', details: error.message },
