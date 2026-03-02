@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { verifyAuth } from '@/lib/auth'
+import { checkAdminRateLimit } from '@/lib/adminRatelimit'
 import connectToDatabase from '@/lib/mongodb'
 import Property from '@/models/Property'
 import cloudinary from '@/lib/cloudinary'
@@ -16,6 +17,11 @@ export async function PUT(req: Request, { params }: Params) {
         const auth = verifyAuth(req)
         if (!auth) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        }
+
+        const rl = await checkAdminRateLimit(auth.sub)
+        if (!rl.success) {
+            return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
         }
 
         await connectToDatabase()
@@ -58,6 +64,11 @@ export async function DELETE(req: Request, { params }: Params) {
         const auth = verifyAuth(req)
         if (!auth) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        }
+
+        const rl = await checkAdminRateLimit(auth.sub)
+        if (!rl.success) {
+            return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
         }
 
         await connectToDatabase()

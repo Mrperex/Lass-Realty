@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import connectToDatabase from '@/lib/mongodb'
 import Lead from '@/models/Lead'
 import { verifyAuth } from '@/lib/auth'
+import { checkAdminRateLimit } from '@/lib/adminRatelimit'
 import mongoose from 'mongoose'
 
 export const dynamic = 'force-dynamic'
@@ -14,6 +15,11 @@ export async function PUT(
         const auth = verifyAuth(req)
         if (!auth) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        }
+
+        const rl = await checkAdminRateLimit(auth.sub)
+        if (!rl.success) {
+            return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
         }
 
         if (!mongoose.Types.ObjectId.isValid(params.id)) {

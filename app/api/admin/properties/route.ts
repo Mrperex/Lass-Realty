@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { verifyAuth } from '@/lib/auth'
+import { checkAdminRateLimit } from '@/lib/adminRatelimit'
 import connectToDatabase from '@/lib/mongodb'
 import Property from '@/models/Property'
 
@@ -8,6 +9,11 @@ export async function POST(req: Request) {
         const auth = verifyAuth(req)
         if (!auth) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        }
+
+        const rl = await checkAdminRateLimit(auth.sub)
+        if (!rl.success) {
+            return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
         }
 
         await connectToDatabase()
