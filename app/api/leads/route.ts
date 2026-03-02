@@ -3,6 +3,7 @@ import connectToDatabase from '@/lib/mongodb';
 import Lead from '@/models/Lead';
 import { checkRateLimit, leadsRatelimit } from '@/lib/ratelimit';
 import { Resend } from 'resend';
+import * as React from 'react';
 import { LeadAutoReply } from '@/components/emails/LeadAutoReply';
 import { AdminNotification } from '@/components/emails/AdminNotification';
 
@@ -46,24 +47,33 @@ export async function POST(req: Request) {
             const safePropertyTitle = propertySlug.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
 
             // Await the emails so Vercel Serverless doesn't kill the thread prematurely
+            let emailErrors: any = null;
             try {
-                await Promise.all([
+                const [buyerRes, adminRes] = await Promise.all([
                     resend.emails.send({
                         from: 'LASS Realty <info@lasspuntacana.com>',
                         to: email,
                         subject: `We received your inquiry regarding ${safePropertyTitle}`,
-                        react: LeadAutoReply({ name, propertyTitle: safePropertyTitle }),
+                        react: React.createElement(LeadAutoReply, { name, propertyTitle: safePropertyTitle }),
                     }),
                     resend.emails.send({
                         from: 'LASS Realty Leads <info@lasspuntacana.com>',
                         to: 'pablopok08@gmail.com',
                         subject: `🚨 New Lead: ${name} for ${safePropertyTitle}`,
-                        react: AdminNotification({ name, email, phone, message, propertyTitle: safePropertyTitle }),
+                        react: React.createElement(AdminNotification, { name, email, phone, message, propertyTitle: safePropertyTitle }),
                     })
                 ]);
-            } catch (err) {
+
+                if (buyerRes.error || adminRes.error) {
+                    emailErrors = { buyer: buyerRes.error, admin: adminRes.error };
+                    console.error('Explicit Resend Rejection:', emailErrors);
+                }
+            } catch (err: any) {
+                emailErrors = err.message;
                 console.error('Resend Delivery Error:', err);
             }
+
+            return NextResponse.json({ success: true, lead, emailErrors }, { status: 201 });
         }
 
         return NextResponse.json({ success: true, lead }, { status: 201 });
