@@ -8,6 +8,11 @@ const LeadSchema = new Schema<ILead>(
         phone: { type: String, required: true },
         message: { type: String, required: true },
         propertySlug: { type: String },
+        status: { type: String, enum: ['new', 'contacted', 'qualified', 'closed'], default: 'new' },
+        notes: [{
+            text: { type: String, required: true },
+            createdAt: { type: Date, default: Date.now }
+        }]
     },
     {
         timestamps: true,

@@ -10,11 +10,20 @@ const Navbar = () => {
                             LASS <span className="font-light">Realty</span>
                         </Link>
                     </div>
-                    <nav className="hidden md:flex space-x-8">
-                        <Link href="/properties" className="text-slate-600 hover:text-slate-900 font-medium transition-colors">
+                    <nav className="hidden md:flex space-x-8 items-center">
+                        <Link href="/" className="text-slate-600 hover:text-amber-600 font-bold transition-colors">
+                            Home
+                        </Link>
+                        <Link href="/properties" className="text-slate-600 hover:text-amber-600 font-bold transition-colors">
                             Properties
                         </Link>
-                        <Link href="/contact" className="text-slate-600 hover:text-slate-900 font-medium transition-colors">
+                        {/* Locations dropdown or link. We'll use a direct link to a locations overview or just /properties for now. Wait, there's no /locations page yet? 
+                            Let's link to the first priority location or a #locations anchor. The homepage has a "Browse by Location" section.
+                            Let's use an anchor link to #locations. */}
+                        <a href="/#locations" className="text-slate-600 hover:text-amber-600 font-bold transition-colors">
+                            Locations
+                        </a>
+                        <Link href="/contact" className="text-slate-600 hover:text-amber-600 font-bold transition-colors">
                             Contact
                         </Link>
                     </nav>

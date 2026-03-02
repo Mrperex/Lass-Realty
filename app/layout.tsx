@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -23,6 +24,7 @@ export default function RootLayout({
                 <Navbar />
                 <main className="flex-grow">{children}</main>
                 <Footer />
+                <WhatsAppButton />
                 {process.env.NEXT_PUBLIC_GA_ID && (
                     <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
                 )}

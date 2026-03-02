@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@next/third-parties": "^16.1.6",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.36.3",
     "algoliasearch": "^4.27.0",
     "cloudinary": "^2.9.0",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "framer-motion": "^12.34.3",
     "lucide-react": "^0.575.0",
     "mongoose": "^9.2.3",

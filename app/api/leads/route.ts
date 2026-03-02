@@ -1,11 +1,23 @@
 import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/mongodb';
 import Lead from '@/models/Lead';
+import { checkRateLimit, leadsRatelimit } from '@/lib/ratelimit';
 
 export async function POST(req: Request) {
     try {
+        const ip = req.headers.get('x-forwarded-for') ?? '127.0.0.1';
+        const isAllowed = await checkRateLimit(leadsRatelimit, ip);
+        if (!isAllowed) {
+            return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+        }
         const body = await req.json();
-        const { name, email, phone, message, propertySlug } = body;
+        const { name, email, phone, message, propertySlug, bot_field_website } = body;
+
+        // Honeypot spam trap
+        if (bot_field_website) {
+            // Fake success to fool bots
+            return NextResponse.json({ success: true, message: 'Message "sent" successfully.' }, { status: 201 });
+        }
 
         if (!name || !email || !phone || !message) {
             return NextResponse.json(

@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from 'react';
+import { sendGAEvent } from '@next/third-parties/google';
 
 export default function ContactForm({ propertySlug }: { propertySlug: string }) {
     const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ export default function ContactForm({ propertySlug }: { propertySlug: string }) 
 
             if (res.ok) {
                 setSuccess(true);
+                sendGAEvent({ event: 'lead_submit', property_slug: propertySlug });
                 form.reset();
             } else {
                 const result = await res.json();
@@ -54,6 +56,11 @@ export default function ContactForm({ propertySlug }: { propertySlug: string }) 
     return (
         <form className="space-y-5" onSubmit={handleSubmit}>
             <input type="hidden" name="propertySlug" value={propertySlug} />
+
+            {/* Honeypot Spam Protection */}
+            <div className="hidden" aria-hidden="true">
+                <input type="text" name="bot_field_website" tabIndex={-1} autoComplete="off" />
+            </div>
 
             {error && (
                 <div className="p-4 bg-red-50 text-red-800 rounded-xl border border-red-200 text-sm">

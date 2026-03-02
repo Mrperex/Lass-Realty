@@ -47,7 +47,7 @@ async function getPropertiesByCity(city: string): Promise<IProperty[]> {
 
         // Case-insensitive regex match for city
         const properties = await Property.find({
-            city: { $regex: new RegExp(`^${normalizedCity}$`, 'i') }
+            citySlug: city
         }).sort({ createdAt: -1 }).lean();
 
         return JSON.parse(JSON.stringify(properties));

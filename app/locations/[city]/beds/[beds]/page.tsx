@@ -74,7 +74,7 @@ async function getProperties(city: string, beds: string): Promise<IProperty[]> {
         if (isNaN(bedCount)) return [];
 
         const properties = await Property.find({
-            city: { $regex: new RegExp(`^${normalizedCity}$`, 'i') },
+            citySlug: city,
             bedrooms: bedCount
         }).sort({ createdAt: -1 }).lean();
 

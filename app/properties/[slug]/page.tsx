@@ -7,6 +7,7 @@ import Property from '@/models/Property';
 import { formatCurrency } from '@/lib/utils';
 import { Bed, Bath, MapPin, ArrowLeft } from 'lucide-react';
 import ContactForm from './ContactForm';
+import { TrackPropertyView } from '@/components/AnalyticsEvents';
 
 export const revalidate = 60;
 
@@ -45,18 +46,26 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
 
     return (
         <div className="bg-slate-50 min-h-screen pb-24">
+            <TrackPropertyView slug={property.slug} />
             {/* Gallery Section */}
-            <div className="w-full h-[50vh] md:h-[70vh] relative bg-slate-900 group">
+            <div className="w-full relative bg-slate-900">
                 {property.images && property.images.length > 0 ? (
-                    <Image
-                        src={property.images[0]}
-                        alt={property.title}
-                        fill
-                        className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
-                        priority
-                    />
+                    <div className={`grid gap-2 p-2 ${property.images.length >= 3 ? 'grid-cols-2 md:grid-cols-4 md:grid-rows-2 h-[60vh] md:h-[70vh]' : 'grid-cols-1 h-[50vh]'}`}>
+                        {property.images.slice(0, 5).map((img: string, idx: number) => (
+                            <div key={idx} className={`relative group overflow-hidden rounded-xl ${idx === 0 && property.images.length >= 3 ? 'col-span-2 row-span-2' : ''}`}>
+                                <Image
+                                    src={img}
+                                    alt={`${property.title} - Image ${idx + 1}`}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    priority={idx === 0}
+                                />
+                                <div className="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                            </div>
+                        ))}
+                    </div>
                 ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-slate-400 text-lg">
+                    <div className="w-full h-[50vh] flex items-center justify-center text-slate-400 text-lg bg-slate-800 rounded-b-3xl">
                         No Image Available
                     </div>
                 )}
