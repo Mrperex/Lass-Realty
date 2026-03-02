@@ -8,6 +8,7 @@ import { formatCurrency } from '@/lib/utils';
 import { Bed, Bath, MapPin, ArrowLeft } from 'lucide-react';
 import ContactForm from './ContactForm';
 import { TrackPropertyView } from '@/components/AnalyticsEvents';
+import PropertyGallery from '@/components/PropertyGallery';
 
 export const revalidate = 60;
 
@@ -49,26 +50,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
             <TrackPropertyView slug={property.slug} />
             {/* Gallery Section */}
             <div className="w-full relative bg-slate-900">
-                {property.images && property.images.length > 0 ? (
-                    <div className={`grid gap-2 p-2 ${property.images.length >= 3 ? 'grid-cols-2 md:grid-cols-4 md:grid-rows-2 h-[60vh] md:h-[70vh]' : 'grid-cols-1 h-[50vh]'}`}>
-                        {property.images.slice(0, 5).map((img: string, idx: number) => (
-                            <div key={idx} className={`relative group overflow-hidden rounded-xl ${idx === 0 && property.images.length >= 3 ? 'col-span-2 row-span-2' : ''}`}>
-                                <Image
-                                    src={img}
-                                    alt={`${property.title} - Image ${idx + 1}`}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                    priority={idx === 0}
-                                />
-                                <div className="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <div className="w-full h-[50vh] flex items-center justify-center text-slate-400 text-lg bg-slate-800 rounded-b-3xl">
-                        No Image Available
-                    </div>
-                )}
+                <PropertyGallery images={property.images} title={property.title} />
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-10 transition-all duration-500">
