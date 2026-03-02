@@ -22,7 +22,7 @@ const Footer = () => {
                         <h4 className="text-white text-md font-semibold mb-4">Contact Us</h4>
                         <ul className="space-y-2 text-sm">
                             <li>info@lassrealty.com</li>
-                            <li>+1 (555) 123-4567</li>
+                            <li>+1 (829) 523-0782</li>
                         </ul>
                     </div>
                 </div>
