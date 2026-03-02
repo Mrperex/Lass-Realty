@@ -1,36 +1,43 @@
-import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server'
+import { signAdminToken } from '@/lib/auth'
 
-export async function POST(request: Request) {
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin'
+const COOKIE_NAME = 'lass_admin_auth'
+
+export async function POST(req: Request) {
     try {
-        const body = await request.json();
-        const { password } = body;
+        const { password } = await req.json()
 
-        // Check against environment variable, fallback to 'admin' for local dev if not set
-        const correctPassword = process.env.ADMIN_PASSWORD || 'admin';
-
-        if (password === correctPassword) {
-            // Set secure HTTP-only cookie
-            const cookieStore = cookies();
-            cookieStore.set('lass_admin_auth', 'true', {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'strict',
-                maxAge: 60 * 60 * 24 * 7, // 1 week
-                path: '/',
-            });
-
-            return NextResponse.json({ success: true });
+        if (!password || password !== ADMIN_PASSWORD) {
+            return NextResponse.json(
+                { error: 'Invalid credentials' },
+                { status: 401 }
+            )
         }
 
+        const token = signAdminToken()
+
+        const res = NextResponse.json({
+            success: true,
+            token, // ⭐ mobile uses this
+        })
+
+        // ⭐ keep cookie for web dashboard
+        res.cookies.set({
+            name: COOKIE_NAME,
+            value: token,
+            httpOnly: true,
+            sameSite: 'strict',
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 60 * 60 * 24 * 7,
+            path: '/',
+        })
+
+        return res
+    } catch (err) {
         return NextResponse.json(
-            { error: 'Invalid password' },
-            { status: 401 }
-        );
-    } catch (error) {
-        return NextResponse.json(
-            { error: 'Authentication failed' },
+            { error: 'Login failed' },
             { status: 500 }
-        );
+        )
     }
 }
