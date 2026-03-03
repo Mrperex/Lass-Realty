@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "LASS Operator",
+    "slug": "lass-realty-operator",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0F172A"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.lassrealty.operator",
+      "infoPlist": {
+        "NSCameraUsageDescription": "LASS Operator needs camera access to photograph properties and scan documents.",
+        "NSPhotoLibraryUsageDescription": "LASS Operator needs photo library access to attach property images.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-secure-store"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "737c5060-ad17-4be2-8de2-6be606b149d6"
+      }
+    }
+  }
+}

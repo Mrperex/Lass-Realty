@@ -1,0 +1,243 @@
+{
+    "Contact": {
+        "title": "Contáctenos",
+        "description": "Ya sea que esté buscando comprar, vender o invertir, nuestros especialistas en bienes raíces de lujo están aquí para ayudarlo.",
+        "headquarters": "Sede Central de LASS Realty",
+        "addressLabel": "Dirección",
+        "addressValue": "Suite 42, Blue Mall<br />Punta Cana, República Dominicana",
+        "emailLabel": "Correo Electrónico",
+        "phoneLabel": "Teléfono",
+        "sendInquiry": "Enviar una Consulta"
+    },
+    "PropertyDetail": {
+        "bedrooms": "Habitaciones",
+        "bathrooms": "Baños",
+        "propertyDescription": "Descripción de la Propiedad",
+        "requestInformation": "Solicitar Información",
+        "propertiesIn": "Propiedades en {city}",
+        "interactiveFloorPlans": "Planos Interactivos",
+        "viewFullscreen": "Ver Pantalla Completa",
+        "requestShowing": "Solicitar Visita",
+        "locationSpotlight": "Puntos de Interés",
+        "metrics": {
+            "walkScore": "Puntuación Peatonal",
+            "walkScoreDesc": "Basado en la proximidad a restaurantes, servicios y parques recreativos en el área.",
+            "minDrive": "min en auto",
+            "carDependent": "Dependiente de Auto",
+            "somewhatWalkable": "Algo Caminable",
+            "veryWalkable": "Muy Caminable",
+            "walkersParadise": "Paraíso Peatonal"
+        },
+        "landmarks": {
+            "airport": "Aeropuerto Intl.",
+            "beach": "Playa Más Cercana",
+            "grocery": "Supermercado Premium",
+            "cafes": "Cafés y Gastronomía"
+        }
+    },
+    "PropertyContactForm": {
+        "messageSent": "¡Mensaje Enviado!",
+        "thankYou": "Gracias por su consulta. Nos pondremos en contacto con usted en breve.",
+        "sendAnother": "Enviar otro mensaje",
+        "failedToSend": "Error al enviar el mensaje. Por favor, inténtelo de nuevo.",
+        "errorOccurred": "Ocurrió un error. Por favor, inténtelo de nuevo más tarde.",
+        "fullName": "Nombre Completo",
+        "namePlaceholder": "Juan Pérez",
+        "emailAddress": "Correo Electrónico",
+        "emailPlaceholder": "juan@ejemplo.com",
+        "phoneNumber": "Número de Teléfono",
+        "phonePlaceholder": "+1 (555) 000-0000",
+        "messageField": "Mensaje",
+        "messagePlaceholder": "Estoy interesado en obtener más información sobre esta propiedad...",
+        "submitButton": "Enviar Consulta"
+    },
+    "PropertyCard": {
+        "noImage": "Sin Imagen",
+        "beds": "Habitaciones",
+        "baths": "Baños"
+    },
+    "PropertiesList": {
+        "title": "Propiedades",
+        "description": "Explore nuestra colección completa de exclusivos listados de lujo.",
+        "noProperties": "Ninguna propiedad coincide con sus filtros",
+        "noPropertiesDesc": "Intente ajustar su rango de precios, buscar en una ubicación diferente o reducir la cantidad de dormitorios.",
+        "resetFilters": "Restablecer Filtros"
+    },
+    "About": {
+        "title": "Su Socio de Confianza en el Paraíso",
+        "description": "No solo vendemos propiedades. Navegamos por las complejidades de los bienes raíces internacionales para que pueda adquirir su estilo de vida ideal con total tranquilidad.",
+        "authorityTitle": "Autoridad Local. Estándares Globales.",
+        "p1": "Fundada en los principios de absoluta transparencia y servicio de élite, LASS Realty se ha convertido en la boutique de bienes raíces de lujo más confiable de la República Dominicana.",
+        "p2": "Comprar una propiedad internacional requiere un profundo conocimiento local y una confianza inquebrantable. Nuestro equipo cuenta con más de 15 años de experiencia combinada exclusivamente en los mercados de Punta Cana, Cap Cana y Bávaro. Entendemos los marcos legales, los antecedentes de los desarrolladores y las microeconomías de los vecindarios.",
+        "p3": "Ya sea que esté buscando un condominio de inversión de alto rendimiento o una amplia finca frente al mar, nuestro compromiso sigue siendo el mismo: proteger su capital y brindar una experiencia de adquisición sin fricciones.",
+        "legalSecurity": "Seguridad Legal",
+        "legalSecurityDesc": "Nos asociamos con los mejores abogados locales para la validación de títulos.",
+        "marketInsight": "Conocimiento del Mercado",
+        "marketInsightDesc": "Acceso exclusivo a zonas de lujo fuera del mercado.",
+        "turnover": "Facturación",
+        "recognized": "Reconocida como una de las 10 mejores agencias inmobiliarias de lujo en la República Dominicana (2025).",
+        "whyTrustTitle": "Por qué los Compradores Confían en Nosotros",
+        "vettedTitle": "Inventario Verificado",
+        "vettedDesc": "Rechazamos el 40% de las propiedades que revisamos. Solo publicamos propiedades con un estado legal impecable.",
+        "endToEndTitle": "Servicio Integral",
+        "endToEndDesc": "Desde la visualización hasta el cierre y la administración de la propiedad, manejamos todo el ciclo.",
+        "expertsTitle": "Expertos en Compradores Extranjeros",
+        "expertsDesc": "Especializados en inversores de EE. UU., Canadá y Europa que compran en RD."
+    },
+    "BuyingGuide": {
+        "title": "Guía para Comprar en República Dominicana",
+        "subtitle": "Todo lo que necesita saber sobre la compra de bienes raíces de lujo en Punta Cana y más allá como extranjero.",
+        "stepsTitle": "El Proceso de Compra, Simplificado",
+        "step1Title": "1. Encuentre su Propiedad Ideal",
+        "step1Desc": "Explore nuestro portafolio cuidadosamente seleccionado de villas de lujo, condominios y fincas.",
+        "step2Title": "2. Presentar una Oferta",
+        "step2Desc": "Negociamos el mejor precio posible y los términos a su favor.",
+        "step3Title": "3. Debida Diligencia",
+        "step3Desc": "Nuestros abogados asociados se aseguran de que el título esté limpio y los impuestos estén pagados.",
+        "step4Title": "4. Promesa de Venta",
+        "step4Desc": "Firme el contrato y envíe un depósito del 10% a la cuenta de depósito en garantía.",
+        "step5Title": "5. Cierre Final",
+        "step5Desc": "Transfiera los fondos finales y reciba su título. ¡Felicidades!",
+        "faqTitle": "Preguntas Frecuentes",
+        "faq1Q": "¿Pueden los extranjeros ser dueños de propiedades en RD?",
+        "faq1A": "¡Sí! Los extranjeros disfrutan de los mismos derechos de propiedad que los ciudadanos dominicanos. No hay restricciones.",
+        "faq2Q": "¿Cuáles son los costos de cierre?",
+        "faq2A": "Los costos de cierre son generalmente alrededor del 3% del valor de la propiedad, que incluye un impuesto de transferencia del 3% y honorarios notariales menores.",
+        "faq3Q": "¿Qué es CONFOTUR?",
+        "faq3A": "CONFOTUR es una ley de incentivos fiscales que exime a los nuevos desarrollos que califican del impuesto de transferencia del 3% y otorga 15 años de exención de impuestos a la propiedad (IPI).",
+        "ctaTitle": "¿Listo para Empezar?",
+        "ctaDesc": "Comuníquese con nuestros agentes para una consulta personalizada.",
+        "ctaButton": "Contáctenos Ahora"
+    },
+    "GlobalUI": {
+        "whatsappMessage": "¡Hola! Estoy interesado en ver algunas propiedades en LASS Realty.",
+        "whatsappTooltip": "Chatear con un Agente",
+        "whatsappAria": "Chatear por WhatsApp"
+    },
+    "Index": {
+        "subtitle": "Bienes Raíces en República Dominicana",
+        "title": "Posee lo <highlight>Extraordinario</highlight>",
+        "description": "Exclusivas villas frente al mar, condominios de lujo y propiedades privadas en Punta Cana, Cap Cana y más allá.",
+        "explore": "Explorar Todas las Propiedades",
+        "trust": {
+            "turnover": "Volumen de Ventas",
+            "propertiesSold": "Propiedades Vendidas",
+            "yearsExperience": "Años de Experiencia",
+            "clientSatisfaction": "Satisfacción del Cliente"
+        },
+        "featured": {
+            "title": "Propiedades Destacadas",
+            "subtitle": "Casas de lujo seleccionadas a mano, disponibles ahora mismo.",
+            "viewAll": "Ver Todas",
+            "viewAllLong": "Ver Todas las Propiedades"
+        },
+        "testimonials": {
+            "title": "Lo que dicen nuestros clientes",
+            "subtitle": "No solo confíe en nuestra palabra, escuche a las familias e inversores que hemos ayudado.",
+            "t1": {
+                "quote": "LASS Realty hizo realidad nuestro sueño de ser dueños de una villa en Punta Cana. Su equipo manejó todo el proceso legal y de cierre a la perfección. Profesionalismo inigualable.",
+                "role": "Inversionista de Nueva York"
+            },
+            "t2": {
+                "quote": "Estábamos nerviosos por comprar propiedades en el extranjero, pero el agente fue increíblemente transparente y nos llevó de la mano en cada paso. ¡Muy recomendado!",
+                "role": "Reubicada a Cap Cana"
+            },
+            "t3": {
+                "quote": "La gestión de propiedades post-venta ha sido fenomenal. Nuestro condominio de lujo en Bávaro se alquila constantemente cuando no lo estamos usando.",
+                "role": "Residente de Invierno de Toronto"
+            }
+        },
+        "locations": {
+            "title": "Navegar por Ubicación",
+            "subtitle": "Descubra comunidades exclusivas y vecindarios premium en toda la República Dominicana.",
+            "viewProperties": "Ver Propiedades"
+        },
+        "whyLass": {
+            "title": "¿Por Qué Elegir LASS Realty?",
+            "subtitle": "Experiencia de mercado inigualable, discreción absoluta y una trayectoria comprobada en adquisiciones de lujo.",
+            "expertise": {
+                "title": "Experiencia en el Mercado Local",
+                "desc": "Con más de $100M+ en transacciones en Punta Cana, Cap Cana y Casa de Campo, tenemos acceso al inventario fuera de mercado más exclusivo."
+            },
+            "legal": {
+                "title": "Seguridad Legal Blindada",
+                "desc": "Nuestros socios legales aseguran que cada título esté impecable, garantizando una transferencia sin fricciones para los inversores extranjeros."
+            },
+            "management": {
+                "title": "Gestión Integral",
+                "desc": "Desde la adquisición hasta la gestión de alquileres vacacionales de alto rendimiento, su activo está protegido y optimizado todo el año."
+            },
+            "caseStudies": {
+                "title": "Casos de Éxito Recientes",
+                "cs1": {
+                    "title": "Villa Frente al Mar en Cap Cana",
+                    "roi": "14% ROI Anual",
+                    "desc": "Adquirida fuera del mercado para un inversor estadounidense. Remodelada e ingresada a nuestro programa de alquiler de lujo en 60 días."
+                },
+                "cs2": {
+                    "title": "Propiedad en Punta Cana Resort",
+                    "roi": "Vendida en 12 Días",
+                    "desc": "Aprovechamos nuestra red internacional de compradores para asegurar una oferta en efectivo por el precio total para el vendedor."
+                }
+            }
+        }
+    },
+    "SearchFilters": {
+        "location": "Ubicación",
+        "allLocations": "Todas las Ubicaciones",
+        "puntaCana": "Punta Cana",
+        "capCana": "Cap Cana",
+        "bavaro": "Bávaro",
+        "macao": "Macao",
+        "status": "Estado",
+        "buyAndRent": "Comprar y Alquilar",
+        "forSale": "En Venta",
+        "forRent": "En Alquiler",
+        "propertyType": "Tipo de Propiedad",
+        "anyType": "Cualquier Tipo",
+        "villa": "Villa",
+        "condo": "Condominio",
+        "penthouse": "Penthouse",
+        "land": "Terreno",
+        "filters": "Filtros",
+        "search": "Buscar",
+        "minPrice": "Precio Mín.",
+        "noMin": "Sin Mínimo",
+        "rentals": "Alquileres",
+        "maxPrice": "Precio Máx.",
+        "noMax": "Sin Máximo",
+        "bedrooms": "Dormitorios",
+        "any": "Cualquiera",
+        "bathrooms": "Baños",
+        "mustIncludeAmenities": "Debe Incluir Amenidades",
+        "privatePool": "Piscina Privada",
+        "oceanView": "Vista al Mar",
+        "golfView": "Vista al Golf",
+        "furnished": "Amueblado",
+        "petFriendly": "Mascotas Permitidas",
+        "clearFilters": "Limpiar Filtros"
+    },
+    "Navigation": {
+        "home": "Inicio",
+        "properties": "Propiedades",
+        "buyingGuide": "Guía de Compra",
+        "locations": "Ubicaciones",
+        "about": "Nosotros",
+        "contact": "Contacto",
+        "admin": "Admin"
+    },
+    "Footer": {
+        "title": "LASS Realty",
+        "description": "Su principal destino para bienes raíces de lujo y propiedades exclusivas.",
+        "quickLinks": "Enlaces Rápidos",
+        "aboutUs": "Sobre Nosotros",
+        "properties": "Propiedades",
+        "buyingGuide": "Guía de Compra",
+        "contact": "Contacto",
+        "legal": "Legal",
+        "privacy": "Privacidad",
+        "terms": "Términos de Servicio",
+        "contactUs": "Contáctenos",
+        "rights": "Todos los derechos reservados."
+    }
+}

@@ -1,9 +1,16 @@
 import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/mongodb';
 import Property from '@/models/Property';
+import { checkRateLimit, publicApiRatelimit } from '@/lib/ratelimit';
 
 export async function GET(req: Request) {
     try {
+        const ip = req.headers.get('x-forwarded-for') ?? '127.0.0.1';
+        const isAllowed = await checkRateLimit(publicApiRatelimit, ip);
+        if (!isAllowed) {
+            return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+        }
+
         const { searchParams } = new URL(req.url);
         const limit = parseInt(searchParams.get('limit') || '50');
         const featured = searchParams.get('featured') === 'true';

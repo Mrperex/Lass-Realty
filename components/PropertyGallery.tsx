@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
 
@@ -25,6 +25,23 @@ export default function PropertyGallery({ images, title }: { images: string[]; t
         if (e) e.stopPropagation();
         setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
     };
+
+    useEffect(() => {
+        if (!isFullScreen) return;
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowRight') {
+                setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+            } else if (e.key === 'ArrowLeft') {
+                setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+            } else if (e.key === 'Escape') {
+                setIsFullScreen(false);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isFullScreen, images.length]);
 
     return (
         <>

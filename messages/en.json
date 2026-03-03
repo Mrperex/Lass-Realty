@@ -1,0 +1,243 @@
+{
+    "Contact": {
+        "title": "Contact Us",
+        "description": "Whether you are looking to buy, sell, or invest, our luxury real estate specialists are here to assist you.",
+        "headquarters": "LASS Realty Headquarters",
+        "addressLabel": "Address",
+        "addressValue": "Suite 42, Blue Mall<br />Punta Cana, Dominican Republic",
+        "emailLabel": "Email",
+        "phoneLabel": "Phone",
+        "sendInquiry": "Send an Inquiry"
+    },
+    "PropertyDetail": {
+        "bedrooms": "Bedrooms",
+        "bathrooms": "Bathrooms",
+        "propertyDescription": "Property Description",
+        "requestInformation": "Request Information",
+        "propertiesIn": "Properties in {city}",
+        "interactiveFloorPlans": "Interactive Floor Plans",
+        "viewFullscreen": "View Fullscreen",
+        "requestShowing": "Request Showing",
+        "locationSpotlight": "Location Spotlight",
+        "metrics": {
+            "walkScore": "Walk Score",
+            "walkScoreDesc": "Based on proximity to dining, errands, and recreational parks in the area.",
+            "minDrive": "min drive",
+            "carDependent": "Car-Dependent",
+            "somewhatWalkable": "Somewhat Walkable",
+            "veryWalkable": "Very Walkable",
+            "walkersParadise": "Walker's Paradise"
+        },
+        "landmarks": {
+            "airport": "Intl. Airport",
+            "beach": "Nearest Beach",
+            "grocery": "Premium Grocery",
+            "cafes": "Cafés & Dining"
+        }
+    },
+    "PropertyContactForm": {
+        "messageSent": "Message Sent!",
+        "thankYou": "Thank you for your inquiry. We will get back to you shortly.",
+        "sendAnother": "Send another message",
+        "failedToSend": "Failed to send message. Please try again.",
+        "errorOccurred": "An error occurred. Please try again later.",
+        "fullName": "Full Name",
+        "namePlaceholder": "John Doe",
+        "emailAddress": "Email Address",
+        "emailPlaceholder": "john@example.com",
+        "phoneNumber": "Phone Number",
+        "phonePlaceholder": "+1 (555) 000-0000",
+        "messageField": "Message",
+        "messagePlaceholder": "I am interested in learning more about this property...",
+        "submitButton": "Send Inquiry"
+    },
+    "PropertyCard": {
+        "noImage": "No Image",
+        "beds": "Beds",
+        "baths": "Baths"
+    },
+    "PropertiesList": {
+        "title": "Properties",
+        "description": "Browse our entire collection of exclusive luxury listings.",
+        "noProperties": "No properties match your filters",
+        "noPropertiesDesc": "Try adjusting your price range, searching in a different location, or reducing the number of bedrooms.",
+        "resetFilters": "Reset Filters"
+    },
+    "About": {
+        "title": "Your Trusted Partner in Paradise",
+        "description": "We don't just sell properties. We navigate the complexities of international real estate so you can acquire your dream lifestyle with total peace of mind.",
+        "authorityTitle": "Local Authority. Global Standards.",
+        "p1": "Founded on the principles of absolute transparency and elite service, LASS Realty has grown into the Dominican Republic's most reliable luxury real estate boutique.",
+        "p2": "Buying international property requires deep local knowledge and unshakeable trust. Our team holds over 15 years of combined experience exclusively in the Punta Cana, Cap Cana, and Bavaro markets. We understand the legal frameworks, the developer histories, and the neighborhood micro-economies.",
+        "p3": "Whether you are searching for a high-yield investment condo or a sweeping oceanfront estate, our commitment remains the same: protecting your capital and delivering a frictionless acquisition experience.",
+        "legalSecurity": "Legal Security",
+        "legalSecurityDesc": "We partner with top local attorneys for Title validation.",
+        "marketInsight": "Market Insight",
+        "marketInsightDesc": "Exclusive access to off-market luxury pockets.",
+        "turnover": "Turnover",
+        "recognized": "Recognized as a Top 10 Luxury Brokerage in the Dominican Republic (2025).",
+        "whyTrustTitle": "Why Buyers Trust Us",
+        "vettedTitle": "Vetted Inventory",
+        "vettedDesc": "We reject 40% of the properties we review. We only list homes with pristine legal standing.",
+        "endToEndTitle": "End-to-End Service",
+        "endToEndDesc": "From viewing to closing to property management, we handle the entire lifecycle.",
+        "expertsTitle": "Foreign Buyer Experts",
+        "expertsDesc": "Specializing in US, Canadian, and European investors buying in the DR."
+    },
+    "BuyingGuide": {
+        "title": "A Guide to Buying in the Dominican Republic",
+        "subtitle": "Everything you need to know about purchasing luxury real estate in Punta Cana and beyond as a foreigner.",
+        "stepsTitle": "The Buying Process, Simplified",
+        "step1Title": "1. Find Your Dream Property",
+        "step1Desc": "Browse our handpicked portfolio of luxury villas, condos, and estates.",
+        "step2Title": "2. Submit an Offer",
+        "step2Desc": "We negotiate the best possible price and terms on your behalf.",
+        "step3Title": "3. Due Diligence",
+        "step3Desc": "Our partner attorneys ensure the title is clean and taxes are paid.",
+        "step4Title": "4. Promise of Sale",
+        "step4Desc": "Sign the contract and submit a 10% deposit into escrow.",
+        "step5Title": "5. Final Closing",
+        "step5Desc": "Transfer the final funds and receive your title. Congratulations!",
+        "faqTitle": "Frequently Asked Questions",
+        "faq1Q": "Can foreigners own property in the Dominican Republic?",
+        "faq1A": "Yes! Foreigners enjoy the exact same property rights as Dominican citizens. There are no restrictions.",
+        "faq2Q": "What are the closing costs?",
+        "faq2A": "Closing costs are generally around 3% of the property value, which includes a 3% transfer tax and minor notary fees.",
+        "faq3Q": "What is CONFOTUR?",
+        "faq3A": "CONFOTUR is a tax incentive law that exempts qualifying new developments from the 3% transfer tax and gives 15 years of property tax (IPI) exemption.",
+        "ctaTitle": "Ready to Start?",
+        "ctaDesc": "Reach out to our agents for a personalized consultation.",
+        "ctaButton": "Contact Us Now"
+    },
+    "GlobalUI": {
+        "whatsappMessage": "Hello! I'm interested in viewing some properties on LASS Realty.",
+        "whatsappTooltip": "Chat with an Agent",
+        "whatsappAria": "Chat on WhatsApp"
+    },
+    "Index": {
+        "subtitle": "Dominican Republic Real Estate",
+        "title": "Own The <highlight>Extraordinary</highlight>",
+        "description": "Exclusive oceanfront villas, luxury condos, and private estates in Punta Cana, Cap Cana, and beyond.",
+        "explore": "Explore All Properties",
+        "trust": {
+            "turnover": "Turnover",
+            "propertiesSold": "Properties Sold",
+            "yearsExperience": "Years Experience",
+            "clientSatisfaction": "Client Satisfaction"
+        },
+        "featured": {
+            "title": "Featured Properties",
+            "subtitle": "Handpicked luxury homes available right now.",
+            "viewAll": "View All",
+            "viewAllLong": "View All Properties"
+        },
+        "testimonials": {
+            "title": "What Our Clients Say",
+            "subtitle": "Don't just take our word for it—listen to the families and investors we've helped.",
+            "t1": {
+                "quote": "LASS Realty made our dream of owning a villa in Punta Cana a reality. Their team handled the entire legal and closing process seamlessly. Unmatched professionalism.",
+                "role": "Investor from New York"
+            },
+            "t2": {
+                "quote": "We were nervous about buying property overseas, but the agent was incredibly transparent and held our hand through every step. Highly recommended!",
+                "role": "Relocated to Cap Cana"
+            },
+            "t3": {
+                "quote": "The property management post-sale has been phenomenal. Our luxury condo in Bavaro is consistently rented out when we aren't using it.",
+                "role": "Snowbird from Toronto"
+            }
+        },
+        "locations": {
+            "title": "Browse by Location",
+            "subtitle": "Discover exclusive communities and premium neighborhoods across the Dominican Republic.",
+            "viewProperties": "View Properties"
+        },
+        "whyLass": {
+            "title": "Why Choose LASS Realty?",
+            "subtitle": "Unmatched market expertise, absolute discretion, and a proven track record in luxury acquisitions.",
+            "expertise": {
+                "title": "Local Market Expertise",
+                "desc": "With over $100M+ in transactions across Punta Cana, Cap Cana, and Casa de Campo, we hold the keys to the most exclusive off-market inventory."
+            },
+            "legal": {
+                "title": "Ironclad Legal Security",
+                "desc": "Our in-house legal partners ensure every title is pristine, guaranteeing a frictionless transfer for foreign investors."
+            },
+            "management": {
+                "title": "Turnkey Management",
+                "desc": "From acquisition to high-yield vacation rental management, your asset is protected and optimized year-round."
+            },
+            "caseStudies": {
+                "title": "Recent Success Stories",
+                "cs1": {
+                    "title": "Cap Cana Oceanfront Villa",
+                    "roi": "14% Annual ROI",
+                    "desc": "Acquired off-market for a US investor. Fully renovated and placed in our luxury rental program within 60 days."
+                },
+                "cs2": {
+                    "title": "Punta Cana Resort Estate",
+                    "roi": "Sold in 12 Days",
+                    "desc": "Leveraged our proprietary international buyer network to secure a full-price cash offer for the seller."
+                }
+            }
+        }
+    },
+    "SearchFilters": {
+        "location": "Location",
+        "allLocations": "All Locations",
+        "puntaCana": "Punta Cana",
+        "capCana": "Cap Cana",
+        "bavaro": "Bavaro",
+        "macao": "Macao",
+        "status": "Status",
+        "buyAndRent": "Buy & Rent",
+        "forSale": "For Sale",
+        "forRent": "For Rent",
+        "propertyType": "Property Type",
+        "anyType": "Any Type",
+        "villa": "Villa",
+        "condo": "Condo",
+        "penthouse": "Penthouse",
+        "land": "Land",
+        "filters": "Filters",
+        "search": "Search",
+        "minPrice": "Min Price",
+        "noMin": "No Min",
+        "rentals": "Rentals",
+        "maxPrice": "Max Price",
+        "noMax": "No Max",
+        "bedrooms": "Bedrooms",
+        "any": "Any",
+        "bathrooms": "Bathrooms",
+        "mustIncludeAmenities": "Must Include Amenities",
+        "privatePool": "Private Pool",
+        "oceanView": "Ocean View",
+        "golfView": "Golf View",
+        "furnished": "Furnished",
+        "petFriendly": "Pet Friendly",
+        "clearFilters": "Clear Filters"
+    },
+    "Navigation": {
+        "home": "Home",
+        "properties": "Properties",
+        "buyingGuide": "Buying Guide",
+        "locations": "Locations",
+        "about": "About",
+        "contact": "Contact",
+        "admin": "Admin"
+    },
+    "Footer": {
+        "title": "LASS Realty",
+        "description": "Your premier destination for luxury real estate and exclusive properties.",
+        "quickLinks": "Quick Links",
+        "aboutUs": "About Us",
+        "properties": "Properties",
+        "buyingGuide": "Buying Guide",
+        "contact": "Contact",
+        "legal": "Legal",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "contactUs": "Contact Us",
+        "rights": "All rights reserved."
+    }
+}

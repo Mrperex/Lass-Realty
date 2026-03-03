@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /admin
+Disallow: /api/admin
+
+# Host
+Host: https://lasspuntacana.com
+
+# Sitemaps
+Sitemap: https://lasspuntacana.com/sitemap.xml

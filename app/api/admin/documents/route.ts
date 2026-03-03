@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
         await connectToDatabase()
 
-        const formData = await req.formData()
+        const formData = (await req.formData()) as any
 
         const file = formData.get('file') as File | null
         const type = (formData.get('type') as string) || 'other'

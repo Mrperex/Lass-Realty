@@ -1,17 +1,21 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import createIntlMiddleware from 'next-intl/middleware';
 
 const COOKIE_NAME = 'lass_admin_auth'
+
+// Next-Intl Router Configuration
+const handleI18nRouting = createIntlMiddleware({
+    locales: ['en', 'es'],
+    defaultLocale: 'en',
+    // We force locale prefixes (e.g. /en) to bypass a Next.js rewrite hydration bug on multiple root layouts.
+    localePrefix: 'always'
+});
 
 /**
  * Lightweight JWT verification for Edge Runtime (middleware).
  * We parse the JWT payload without full crypto verification here,
  * then rely on the full jsonwebtoken verify in the actual API routes.
- * 
- * This is safe because:
- * 1. Middleware is a gateway, not the final authority
- * 2. Actual API routes do full verification via lib/auth.ts
- * 3. We still check token structure and expiry
  */
 function isValidJwtStructure(token: string): boolean {
     try {
@@ -36,6 +40,22 @@ function isValidJwtStructure(token: string): boolean {
 export function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl
 
+    const isAdminRoute = pathname.startsWith('/admin')
+    const isApiAdminRoute = pathname.startsWith('/api/admin')
+    const isApiRoute = pathname.startsWith('/api')
+
+    // 🌐 1. Public App Routes -> Route through Next-Intl
+    if (!isAdminRoute && !isApiRoute) {
+        return handleI18nRouting(req)
+    }
+
+    // ⚙️ 2. Public API Routes -> Pass through
+    if (isApiRoute && !isApiAdminRoute) {
+        return NextResponse.next()
+    }
+
+    // 🛡️ 3. Admin Authentication Flow below...
+
     // Skip login page (but redirect to dashboard if already authed)
     if (pathname === '/admin/login') {
         const cookieToken = req.cookies.get(COOKIE_NAME)?.value
@@ -45,14 +65,7 @@ export function middleware(req: NextRequest) {
         return NextResponse.next()
     }
 
-    const isAdminRoute = pathname.startsWith('/admin')
-    const isApiAdminRoute = pathname.startsWith('/api/admin')
-
-    if (!isAdminRoute && !isApiAdminRoute) {
-        return NextResponse.next()
-    }
-
-    // ✅ 1. Check Bearer token (mobile first-class)
+    // ✅ Check Bearer token (mobile first-class)
     const authHeader = req.headers.get('authorization')
     if (authHeader?.startsWith('Bearer ')) {
         const token = authHeader.substring(7)
@@ -61,7 +74,7 @@ export function middleware(req: NextRequest) {
         }
     }
 
-    // ✅ 2. Check cookie (web dashboard)
+    // ✅ Check cookie (web dashboard)
     const cookieToken = req.cookies.get(COOKIE_NAME)?.value
     if (cookieToken && isValidJwtStructure(cookieToken)) {
         return NextResponse.next()
@@ -81,5 +94,9 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/admin/:path*', '/api/admin/:path*'],
+    // Match all pathnames except for
+    // - _next/static (static files)
+    // - _next/image (image optimization files)
+    // - favicon.ico (favicon file)
+    matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 }

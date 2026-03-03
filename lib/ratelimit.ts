@@ -25,6 +25,13 @@ export const cloudinarySignRatelimit = redisClient ? new Ratelimit({
     analytics: true,
 }) : null;
 
+// Global public API rate limiter (protects database from aggressive scraping/DDoS)
+export const publicApiRatelimit = redisClient ? new Ratelimit({
+    redis: redisClient as any,
+    limiter: Ratelimit.slidingWindow(100, "1 m"),
+    analytics: true,
+}) : null;
+
 // Helper to check limit, returns true if allowed or if redis is not configured (fails open)
 export async function checkRateLimit(limiter: Ratelimit | null, ip: string): Promise<boolean> {
     if (!limiter) return true;
