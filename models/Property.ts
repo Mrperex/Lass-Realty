@@ -25,7 +25,14 @@ const PropertySchema = new Schema<IProperty>(
         petFriendly: { type: Boolean, default: false },
         type: { type: String, enum: ['villa', 'condo', 'penthouse', 'land'] },
         virtualTourUrl: { type: String },
+        videoTourUrl: { type: String },
         floorPlans: { type: [String], default: [] },
+        priceHistory: [{
+            date: { type: Date, required: true },
+            price: { type: Number, required: true },
+            event: { type: String, enum: ['listed', 'reduced', 'increased'], default: 'listed' },
+        }],
+        photosVerifiedAt: { type: Date },
         coordinates: {
             lat: { type: Number },
             lng: { type: Number },

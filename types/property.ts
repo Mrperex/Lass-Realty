@@ -22,7 +22,14 @@ export interface IProperty {
     petFriendly?: boolean;
     type?: 'villa' | 'condo' | 'penthouse' | 'land';
     virtualTourUrl?: string;
+    videoTourUrl?: string;
     floorPlans?: string[];
+    priceHistory?: {
+        date: string | Date;
+        price: number;
+        event: 'listed' | 'reduced' | 'increased';
+    }[];
+    photosVerifiedAt?: string | Date;
     coordinates?: {
         lat: number;
         lng: number;

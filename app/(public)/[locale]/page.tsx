@@ -44,6 +44,7 @@ export default async function Home() {
                     loop
                     muted
                     playsInline
+                    preload="none"
                     className="absolute inset-0 w-full h-full object-cover z-0"
                     poster="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80"
                 >

@@ -3,7 +3,16 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Playfair_Display, Outfit } from 'next/font/google';
-import { LayoutDashboard, Home, Users, Settings, LogOut } from 'lucide-react';
+import {
+    LayoutDashboard, Building2,
+    Users,
+    Settings,
+    LogOut,
+    Menu,
+    X,
+    FileText,
+    Map
+} from 'lucide-react';
 import '../../globals.css';
 
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
@@ -30,10 +39,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         router.refresh();
     };
 
-    const navItems = [
+    const navigation = [
         { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
-        { name: 'Properties', href: '/admin/properties', icon: Home },
-        { name: 'Leads', href: '/admin/leads', icon: Users },
+        { name: 'Properties', href: '/admin/properties', icon: Building2 },
+        { name: 'Leads CRM', href: '/admin/leads', icon: Users },
+        { name: 'Blog Posts', href: '/admin/blog', icon: FileText },
+        { name: 'Neighborhoods', href: '/admin/neighborhoods', icon: Map },
+        { name: 'Settings', href: '/admin/settings', icon: Settings },
     ];
 
     return (
@@ -50,7 +62,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         </div>
 
                         <nav className="flex-1 px-4 space-y-2 mt-4">
-                            {navItems.map((item) => {
+                            {navigation.map((item) => {
                                 const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href));
                                 const Icon = item.icon;
 

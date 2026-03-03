@@ -4,22 +4,23 @@ import { notFound } from 'next/navigation';
 import mongoose from 'mongoose';
 import connectToDatabase from '@/lib/mongodb';
 import Property from '@/models/Property';
-import { formatCurrency } from '@/lib/utils';
-import { Bed, Bath, MapPin, ArrowLeft } from 'lucide-react';
+import {
+    MapPin, Bed, Bath, ArrowLeft,
+    Calendar, TrendingDown, TrendingUp, ShieldCheck, Play
+} from 'lucide-react';
 import DynamicPrice from '@/components/DynamicPrice';
-import MortgageCalculator from '@/components/MortgageCalculator';
-import SimilarPropertiesCarousel from '@/components/SimilarPropertiesCarousel';
-import Breadcrumbs from '@/components/Breadcrumbs';
-import CompareButton from '@/components/CompareButton';
 import VirtualTourEmbed from '@/components/VirtualTourEmbed';
 import FloorPlanViewer from '@/components/FloorPlanViewer';
 import LocationSpotlight from '@/components/LocationSpotlight';
+import CompareButton from '@/components/CompareButton';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { getTranslations } from 'next-intl/server';
 import ContactForm from './ContactForm';
 import { TrackPropertyView } from '@/components/AnalyticsEvents';
 import PropertyGallery from '@/components/PropertyGallery';
 
 export const revalidate = 60;
+
 
 async function getProperty(slug: string) {
     try {
@@ -139,15 +140,51 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                 </div>
                             </div>
 
+                            {/* Days on Market + Photo Verification Badges */}
+                            <div className="flex flex-wrap items-center gap-3 mt-2">
+                                {property.createdAt && (() => {
+                                    const daysOnMarket = Math.floor((Date.now() - new Date(property.createdAt).getTime()) / (1000 * 60 * 60 * 24));
+                                    return (
+                                        <span className="inline-flex items-center bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full font-outfit">
+                                            <Calendar className="w-3.5 h-3.5 mr-1.5 text-slate-500" />
+                                            {daysOnMarket} {params.locale === 'es' ? 'días en el mercado' : 'days on market'}
+                                        </span>
+                                    );
+                                })()}
+                                {property.photosVerifiedAt && (
+                                    <span className="inline-flex items-center bg-green-50 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full font-outfit border border-green-200">
+                                        <ShieldCheck className="w-3.5 h-3.5 mr-1.5" />
+                                        {params.locale === 'es' ? 'Fotos Verificadas' : 'Photos Verified'}
+                                        <span className="ml-1 text-green-500 font-normal">
+                                            {new Date(property.photosVerifiedAt).toLocaleDateString(params.locale === 'es' ? 'es-DO' : 'en-US', { month: 'short', year: 'numeric' })}
+                                        </span>
+                                    </span>
+                                )}
+                            </div>
+
                             {property.virtualTourUrl && (
                                 <VirtualTourEmbed url={property.virtualTourUrl} />
                             )}
 
-                            {property.floorPlans && property.floorPlans.length > 0 && (
-                                <FloorPlanViewer floorPlans={property.floorPlans} />
+                            {/* Video Tour Embed (YouTube / Vimeo) */}
+                            {property.videoTourUrl && (
+                                <div className="space-y-4">
+                                    <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                                        <Play className="w-5 h-5 text-champagne-500" />
+                                        {params.locale === 'es' ? 'Recorrido en Video' : 'Video Tour'}
+                                    </h2>
+                                    <div className="relative aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-lg">
+                                        <iframe
+                                            src={property.videoTourUrl.replace('watch?v=', 'embed/').replace('youtu.be/', 'youtube.com/embed/').replace('vimeo.com/', 'player.vimeo.com/video/')}
+                                            className="absolute inset-0 w-full h-full"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                            loading="lazy"
+                                            title="Property Video Tour"
+                                        />
+                                    </div>
+                                </div>
                             )}
-
-                            {/* Investment Calculator Integration */}
                             <div className="flex items-center gap-8 py-8 border-y border-slate-100">
                                 <div className="flex items-center gap-4">
                                     <div className="p-4 bg-slate-50 rounded-2xl text-slate-600 shadow-inner"><Bed className="w-7 h-7" /></div>
@@ -174,6 +211,48 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
 
                             {/* Proximity / Walkability Spotlight */}
                             <LocationSpotlight city={property.city} />
+
+                            {/* Price History Timeline */}
+                            {property.priceHistory && property.priceHistory.length > 0 && (
+                                <div className="space-y-4 pt-4">
+                                    <h2 className="text-xl font-bold text-slate-900">
+                                        {params.locale === 'es' ? 'Historial de Precios' : 'Price History'}
+                                    </h2>
+                                    <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                                        <div className="space-y-4">
+                                            {property.priceHistory.map((entry: any, idx: number) => (
+                                                <div key={idx} className="flex items-center justify-between">
+                                                    <div className="flex items-center gap-3">
+                                                        {entry.event === 'reduced' ? (
+                                                            <TrendingDown className="w-5 h-5 text-green-500" />
+                                                        ) : entry.event === 'increased' ? (
+                                                            <TrendingUp className="w-5 h-5 text-red-500" />
+                                                        ) : (
+                                                            <Calendar className="w-5 h-5 text-slate-400" />
+                                                        )}
+                                                        <div>
+                                                            <p className="text-sm font-semibold text-slate-900 capitalize">
+                                                                {params.locale === 'es'
+                                                                    ? entry.event === 'listed' ? 'Listado' : entry.event === 'reduced' ? 'Reducido' : 'Aumentado'
+                                                                    : entry.event === 'listed' ? 'Listed' : entry.event === 'reduced' ? 'Price Reduced' : 'Price Increased'}
+                                                            </p>
+                                                            <p className="text-xs text-slate-500">
+                                                                {new Date(entry.date).toLocaleDateString(params.locale === 'es' ? 'es-DO' : 'en-US', {
+                                                                    year: 'numeric', month: 'short', day: 'numeric'
+                                                                })}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <span className={`font-semibold font-outfit ${entry.event === 'reduced' ? 'text-green-600' : entry.event === 'increased' ? 'text-red-600' : 'text-slate-900'
+                                                        }`}>
+                                                        ${entry.price.toLocaleString()}
+                                                    </span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
                         {/* Sidebar / Contact */}
