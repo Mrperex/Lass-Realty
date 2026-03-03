@@ -59,6 +59,9 @@ export const metadata: Metadata = {
             'max-snippet': -1,
         },
     },
+    verification: {
+        google: 'UV_If9IeT1_f1wGw3TcD2xw3JcMxVNUseVf2q2mdNE8',
+    },
     manifest: '/manifest.json',
 };
 
