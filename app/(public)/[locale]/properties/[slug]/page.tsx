@@ -18,6 +18,7 @@ import { getTranslations } from 'next-intl/server';
 import ContactForm from './ContactForm';
 import { TrackPropertyView } from '@/components/AnalyticsEvents';
 import PropertyGallery from '@/components/PropertyGallery';
+import ShareButton from '@/components/ShareButton';
 
 export const revalidate = 60;
 
@@ -130,6 +131,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                                 {t('requestShowing', { fallback: 'Request Showing' })}
                                             </a>
                                             <CompareButton property={property} />
+                                            <ShareButton title={title} slug={property.slug} />
                                         </div>
                                     </div>
                                 </div>

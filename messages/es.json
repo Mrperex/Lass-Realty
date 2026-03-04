@@ -33,7 +33,10 @@
             "beach": "Playa Más Cercana",
             "grocery": "Supermercado Premium",
             "cafes": "Cafés y Gastronomía"
-        }
+        },
+        "share": "Compartir",
+        "copyLink": "Copiar Enlace",
+        "linkCopied": "¡Enlace Copiado!"
     },
     "PropertyContactForm": {
         "messageSent": "¡Mensaje Enviado!",
@@ -233,6 +236,7 @@
         "locations": "Ubicaciones",
         "about": "Nosotros",
         "contact": "Contacto",
+        "more": "Más",
         "admin": "Admin"
     },
     "Footer": {

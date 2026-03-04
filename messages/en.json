@@ -33,7 +33,10 @@
             "beach": "Nearest Beach",
             "grocery": "Premium Grocery",
             "cafes": "Cafés & Dining"
-        }
+        },
+        "share": "Share",
+        "copyLink": "Copy Link",
+        "linkCopied": "Link Copied!"
     },
     "PropertyContactForm": {
         "messageSent": "Message Sent!",
@@ -233,6 +236,7 @@
         "locations": "Locations",
         "about": "About",
         "contact": "Contact",
+        "more": "More",
         "admin": "Admin"
     },
     "Footer": {
