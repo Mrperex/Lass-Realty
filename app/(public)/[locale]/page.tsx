@@ -146,7 +146,9 @@ export default async function Home() {
                             <span className="text-5xl text-amber-200 absolute top-4 left-6">&quot;</span>
                             <p className="text-slate-700 italic relative z-10 mb-6 mt-4">{t('testimonials.t1.quote')}</p>
                             <div className="flex items-center gap-4 border-t border-slate-100 pt-6">
-                                <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-500">MR</div>
+                                <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-slate-200">
+                                    <Image src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256&h=256" alt="Michael R." fill className="object-cover" sizes="48px" />
+                                </div>
                                 <div>
                                     <h4 className="font-bold text-slate-900">Michael R.</h4>
                                     <p className="text-sm text-slate-500">{t('testimonials.t1.role')}</p>
@@ -158,7 +160,9 @@ export default async function Home() {
                             <span className="text-5xl text-amber-200 absolute top-4 left-6">&quot;</span>
                             <p className="text-slate-700 italic relative z-10 mb-6 mt-4">{t('testimonials.t2.quote')}</p>
                             <div className="flex items-center gap-4 border-t border-slate-100 pt-6">
-                                <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-500">SJ</div>
+                                <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-slate-200">
+                                    <Image src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256&h=256" alt="Sarah Jenks" fill className="object-cover" sizes="48px" />
+                                </div>
                                 <div>
                                     <h4 className="font-bold text-slate-900">Sarah Jenks</h4>
                                     <p className="text-sm text-slate-500">{t('testimonials.t2.role')}</p>
@@ -170,7 +174,9 @@ export default async function Home() {
                             <span className="text-5xl text-amber-200 absolute top-4 left-6">&quot;</span>
                             <p className="text-slate-700 italic relative z-10 mb-6 mt-4">{t('testimonials.t3.quote')}</p>
                             <div className="flex items-center gap-4 border-t border-slate-100 pt-6">
-                                <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-500">DT</div>
+                                <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-slate-200">
+                                    <Image src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=256&h=256" alt="David T." fill className="object-cover" sizes="48px" />
+                                </div>
                                 <div>
                                     <h4 className="font-bold text-slate-900">David T.</h4>
                                     <p className="text-sm text-slate-500">{t('testimonials.t3.role')}</p>
@@ -215,7 +221,7 @@ export default async function Home() {
                                 <div className="text-champagne-500 font-bold uppercase tracking-widest text-sm mb-2">{t('locations.mapSubtitle', { fallback: 'Explore the Map' })}</div>
                                 <h3 className="text-3xl font-playfair font-bold text-white">{t('locations.mapTitle', { fallback: 'Dominican Republic Real Estate' })}</h3>
                             </div>
-                            <Link href="/properties" className="text-champagne-400 font-bold hover:text-white transition-colors flex items-center gap-2">
+                            <Link href="/map" className="text-champagne-400 font-bold hover:text-white transition-colors flex items-center gap-2">
                                 {t('locations.viewFullMap', { fallback: 'View Full Map' })} <ArrowRight className="w-4 h-4" />
                             </Link>
                         </div>

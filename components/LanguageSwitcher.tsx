@@ -20,16 +20,29 @@ export default function LanguageSwitcher() {
     };
 
     return (
-        <button
-            onClick={switchLocale}
-            disabled={isPending}
-            className="flex items-center gap-1.5 p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-champagne-500 transition-colors disabled:opacity-50"
-            aria-label="Switch Language"
-        >
-            <Globe className="w-5 h-5" />
-            <span className="font-outfit font-bold text-xs uppercase tracking-wider hidden sm:inline-block pt-0.5">
-                {locale === 'en' ? 'EN' : 'ES'}
-            </span>
-        </button>
+        <div className="flex items-center bg-slate-100 p-1 rounded-xl shadow-inner border border-slate-200/60">
+            <button
+                onClick={() => locale !== 'en' && switchLocale()}
+                disabled={isPending || locale === 'en'}
+                className={`px-3 py-1.5 rounded-lg font-outfit font-bold text-xs tracking-wider transition-all duration-300 ${locale === 'en'
+                    ? 'bg-white text-navy-900 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-700'
+                    }`}
+                aria-label="Switch to English"
+            >
+                EN
+            </button>
+            <button
+                onClick={() => locale !== 'es' && switchLocale()}
+                disabled={isPending || locale === 'es'}
+                className={`px-3 py-1.5 rounded-lg font-outfit font-bold text-xs tracking-wider transition-all duration-300 ${locale === 'es'
+                    ? 'bg-white text-navy-900 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-700'
+                    }`}
+                aria-label="Switch to Spanish"
+            >
+                ES
+            </button>
+        </div>
     );
 }

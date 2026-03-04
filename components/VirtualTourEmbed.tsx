@@ -1,6 +1,8 @@
 import { Maximize, PlayCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export default function VirtualTourEmbed({ url }: { url: string }) {
+    const t = useTranslations('PropertyDetail');
     if (!url) return null;
 
     return (
@@ -8,7 +10,7 @@ export default function VirtualTourEmbed({ url }: { url: string }) {
             <div className="flex items-center justify-between mb-6">
                 <h2 className="font-playfair text-2xl md:text-3xl font-medium text-navy-900 flex items-center gap-3">
                     <PlayCircle className="w-8 h-8 text-champagne-500" />
-                    3D Virtual Tour
+                    {t('virtualTour', { fallback: '3D Virtual Tour' })}
                 </h2>
                 <a
                     href={url}
@@ -17,7 +19,7 @@ export default function VirtualTourEmbed({ url }: { url: string }) {
                     className="hidden sm:flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-champagne-600 hover:text-champagne-500 transition-colors bg-champagne-500/10 px-4 py-2 rounded-lg"
                 >
                     <Maximize className="w-4 h-4" />
-                    Full Screen
+                    {t('fullScreen', { fallback: 'Full Screen' })}
                 </a>
             </div>
 
@@ -43,7 +45,7 @@ export default function VirtualTourEmbed({ url }: { url: string }) {
                 className="sm:hidden mt-4 w-full flex items-center justify-center gap-2 text-sm font-bold tracking-widest uppercase text-champagne-600 hover:text-champagne-500 transition-colors bg-champagne-500/10 px-4 py-3 rounded-xl"
             >
                 <Maximize className="w-4 h-4" />
-                Open Full Screen
+                {t('openFullScreen', { fallback: 'Open Full Screen' })}
             </a>
         </div>
     );

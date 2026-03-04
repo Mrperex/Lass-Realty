@@ -1,5 +1,6 @@
 import mongoose, { Schema, model, models } from 'mongoose';
 import { IProperty } from '@/types/property';
+import './Agent'; // Ensure Agent model is registered
 
 const PropertySchema = new Schema<IProperty>(
     {
@@ -37,6 +38,7 @@ const PropertySchema = new Schema<IProperty>(
             lat: { type: Number },
             lng: { type: Number },
         },
+        agentId: { type: Schema.Types.ObjectId, ref: 'Agent' }
     },
     {
         timestamps: true,

@@ -36,7 +36,10 @@
         },
         "share": "Compartir",
         "copyLink": "Copiar Enlace",
-        "linkCopied": "¡Enlace Copiado!"
+        "linkCopied": "¡Enlace Copiado!",
+        "virtualTour": "Recorrido Virtual 3D",
+        "fullScreen": "Pantalla Completa",
+        "openFullScreen": "Abrir en Pantalla Completa"
     },
     "PropertyContactForm": {
         "messageSent": "¡Mensaje Enviado!",

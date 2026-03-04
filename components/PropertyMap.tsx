@@ -25,7 +25,7 @@ const luxuryIcon = new L.DivIcon({
     `,
 });
 
-export default function PropertyMap({ properties }: { properties: IProperty[] }) {
+export default function PropertyMap({ properties, className }: { properties: IProperty[], className?: string }) {
     // Default center to Dominican Republic / Punta Cana if no properties have coordinates
     let center: [number, number] = [18.582, -68.4054];
     if (properties.length > 0) {
@@ -36,7 +36,7 @@ export default function PropertyMap({ properties }: { properties: IProperty[] })
     }
 
     return (
-        <div className="h-[600px] w-full rounded-3xl overflow-hidden border border-slate-200 shadow-sm z-0 relative font-outfit">
+        <div className={`w-full rounded-3xl overflow-hidden border border-slate-200 shadow-sm z-0 relative font-outfit ${className || 'h-[600px]'}`}>
             <MapContainer
                 center={center}
                 zoom={11}

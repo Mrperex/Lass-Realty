@@ -36,4 +36,5 @@ export interface IProperty {
     };
     createdAt?: string | Date;
     updatedAt?: string | Date;
+    agentId?: string | any; // Type as appropriate, e.g. Schema.Types.ObjectId or IAgent
 }

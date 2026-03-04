@@ -19,6 +19,7 @@ import ContactForm from './ContactForm';
 import { TrackPropertyView } from '@/components/AnalyticsEvents';
 import PropertyGallery from '@/components/PropertyGallery';
 import ShareButton from '@/components/ShareButton';
+import AgentProfileCard from '@/components/AgentProfileCard';
 
 export const revalidate = 60;
 
@@ -27,7 +28,7 @@ async function getProperty(slug: string) {
     try {
         await connectToDatabase();
         if (!mongoose.connection.readyState) return null;
-        const property = await Property.findOne({ slug }).lean();
+        const property = await Property.findOne({ slug }).populate('agentId').lean();
         if (!property) return null;
         return JSON.parse(JSON.stringify(property));
     } catch (error) {
@@ -212,6 +213,10 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                             </div>
 
                             {/* Proximity / Walkability Spotlight */}
+                            {property.agentId && (
+                                <AgentProfileCard agent={property.agentId} />
+                            )}
+
                             <LocationSpotlight city={property.city} />
 
                             {/* Price History Timeline */}
