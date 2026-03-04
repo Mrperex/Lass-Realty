@@ -109,12 +109,11 @@ export default async function NeighborhoodDetailPage({
                         <h2 className="text-2xl font-playfair font-medium text-navy-900 mb-6">
                             {locale === 'es' ? 'Sobre esta Comunidad' : 'About this Community'}
                         </h2>
-                        <div
-                            className="prose prose-lg prose-slate max-w-none font-outfit
-                                prose-headings:font-playfair prose-headings:text-navy-900
-                                prose-a:text-gold-500 prose-a:underline-offset-4"
-                            dangerouslySetInnerHTML={{ __html: description }}
-                        />
+                        <div className="space-y-4 font-outfit text-gray-700 leading-relaxed text-lg">
+                            {description?.split('\n\n').map((paragraph: string, index: number) => (
+                                <p key={index}>{paragraph}</p>
+                            ))}
+                        </div>
                     </div>
 
                     {/* Highlights Sidebar */}

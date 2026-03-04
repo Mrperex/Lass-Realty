@@ -3,11 +3,41 @@ import connectToDatabase from '@/lib/mongodb';
 import Post from '@/models/Post';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, User, ArrowLeft, Share2 } from 'lucide-react';
+import { Calendar, User, ArrowLeft } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
 export const revalidate = 60;
+
+// Simple markdown-to-HTML converter for blog content
+function markdownToHtml(text: string): string {
+    if (!text) return '';
+    return text
+        // Convert **bold** to <strong>
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        // Convert *italic* to <em>
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        // Convert markdown headers
+        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+        .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+        // Convert markdown bullet lists
+        .replace(/^- (.+)$/gm, '<li>$1</li>')
+        // Wrap consecutive <li> items in <ul>
+        .replace(/(<li>.*<\/li>\n?)+/g, (match) => `<ul>${match}</ul>`)
+        // Convert double newlines into paragraph breaks
+        .split('\n\n')
+        .map(block => {
+            const trimmed = block.trim();
+            if (!trimmed) return '';
+            // Don't wrap if it's already an HTML element
+            if (trimmed.startsWith('<h') || trimmed.startsWith('<ul') || trimmed.startsWith('<ol')) {
+                return trimmed;
+            }
+            return `<p>${trimmed.replace(/\n/g, '<br />')}</p>`;
+        })
+        .join('\n');
+}
 
 // Dynamic SEO metadata
 export async function generateMetadata({
@@ -45,8 +75,6 @@ export default async function BlogPostPage({
 }: {
     params: { locale: string; slug: string }
 }) {
-
-
     await connectToDatabase();
     const rawPost = await Post.findOne({ slug }).lean();
     if (!rawPost) notFound();
@@ -55,8 +83,8 @@ export default async function BlogPostPage({
 
     // Bilingual getters
     const title = (locale === 'es' && post.title_es) ? post.title_es : post.title;
-    const content = (locale === 'es' && post.content_es) ? post.content_es : post.content;
-    const excerpt = (locale === 'es' && post.excerpt_es) ? post.excerpt_es : post.excerpt;
+    const rawContent = (locale === 'es' && post.content_es) ? post.content_es : post.content;
+    const htmlContent = markdownToHtml(rawContent);
 
     // Related posts (same category, excluding current)
     const rawRelated = await Post.find({ category: post.category, slug: { $ne: slug } })
@@ -127,16 +155,19 @@ export default async function BlogPostPage({
                     </div>
                 )}
 
-                {/* Content */}
+                {/* Content — rendered as HTML from markdown */}
                 <div
                     className="prose prose-lg prose-slate max-w-none font-outfit
                         prose-headings:font-playfair prose-headings:text-navy-900
+                        prose-p:text-gray-700 prose-p:leading-relaxed
+                        prose-strong:text-navy-900
+                        prose-li:text-gray-700
                         prose-a:text-gold-500 prose-a:underline-offset-4
                         prose-img:rounded-sm prose-img:shadow-md"
-                    dangerouslySetInnerHTML={{ __html: content }}
+                    dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />
 
-                {/* Share + Back */}
+                {/* Back to blog */}
                 <div className="flex items-center justify-between mt-16 pt-8 border-t border-gray-200">
                     <Link
                         href={`/${locale}/blog`}
@@ -145,13 +176,6 @@ export default async function BlogPostPage({
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         {locale === 'es' ? 'Volver al Blog' : 'Back to Blog'}
                     </Link>
-                    <button
-                        className="flex items-center text-gray-500 hover:text-navy-900 transition-colors font-outfit text-sm"
-                        onClick={() => { }}
-                    >
-                        <Share2 className="w-4 h-4 mr-2" />
-                        {locale === 'es' ? 'Compartir' : 'Share'}
-                    </button>
                 </div>
             </article>
 
