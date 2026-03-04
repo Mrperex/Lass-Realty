@@ -87,7 +87,7 @@ const Navbar = () => {
 
             {/* Mobile Dropdown Menu */}
             {isOpen && (
-                <div className="lg:hidden absolute top-20 left-0 w-full bg-white shadow-xl border-t border-slate-100 py-6 flex flex-col px-8 gap-6 z-50">
+                <div className="lg:hidden absolute top-20 left-0 w-full bg-white shadow-xl border-t border-slate-100 py-6 flex flex-col px-8 gap-6 z-50 max-h-[calc(100vh-5rem)] overflow-y-auto">
                     <Link href="/" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('home')}</Link>
                     <Link href="/properties" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('properties')}</Link>
                     <Link href="/blog" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('blog')}</Link>
