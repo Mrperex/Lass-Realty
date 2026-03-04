@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { getNeighborhoodsAdmin, deleteNeighborhood } from './actions';
-import { PlusCircle, Pencil, Trash2 } from 'lucide-react';
+import { PlusCircle, Pencil } from 'lucide-react';
 import { revalidatePath } from 'next/cache';
+import DeleteButton from '../components/DeleteButton';
 
 export default async function AdminNeighborhoodsPage() {
     const neighborhoods = await getNeighborhoodsAdmin();
@@ -81,21 +82,7 @@ export default async function AdminNeighborhoodsPage() {
                                             >
                                                 <Pencil className="w-5 h-5" />
                                             </Link>
-                                            <form action={handleDelete}>
-                                                <input type="hidden" name="id" value={n._id} />
-                                                <button
-                                                    type="submit"
-                                                    className="text-gray-400 hover:text-red-500 transition-colors"
-                                                    title="Delete Guide"
-                                                    onClick={(e) => {
-                                                        if (!confirm('Are you sure you want to delete this neighborhood guide?')) {
-                                                            e.preventDefault();
-                                                        }
-                                                    }}
-                                                >
-                                                    <Trash2 className="w-5 h-5" />
-                                                </button>
-                                            </form>
+                                            <DeleteButton id={n._id} action={handleDelete} label="Delete Guide" />
                                         </div>
                                     </td>
                                 </tr>

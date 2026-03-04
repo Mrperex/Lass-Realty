@@ -4,6 +4,8 @@ import connectToDatabase from '@/lib/mongodb'
 import Property from '@/models/Property'
 import Lead from '@/models/Lead'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(req: NextRequest) {
     try {
         const auth = verifyAuth(req)

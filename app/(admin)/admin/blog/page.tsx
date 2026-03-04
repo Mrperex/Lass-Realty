@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { getPostsAdmin, deletePost } from './actions';
-import { PlusCircle, Pencil, Trash2 } from 'lucide-react';
+import { PlusCircle, Pencil } from 'lucide-react';
 import { revalidatePath } from 'next/cache';
+import DeleteButton from '../components/DeleteButton';
 
 export default async function AdminBlogPage() {
     const posts = await getPostsAdmin();
@@ -84,21 +85,7 @@ export default async function AdminBlogPage() {
                                             >
                                                 <Pencil className="w-5 h-5" />
                                             </Link>
-                                            <form action={handleDelete}>
-                                                <input type="hidden" name="id" value={post._id} />
-                                                <button
-                                                    type="submit"
-                                                    className="text-gray-400 hover:text-red-500 transition-colors"
-                                                    title="Delete Post"
-                                                    onClick={(e) => {
-                                                        if (!confirm('Are you sure you want to delete this post?')) {
-                                                            e.preventDefault();
-                                                        }
-                                                    }}
-                                                >
-                                                    <Trash2 className="w-5 h-5" />
-                                                </button>
-                                            </form>
+                                            <DeleteButton id={post._id} action={handleDelete} label="Delete Post" />
                                         </div>
                                     </td>
                                 </tr>
