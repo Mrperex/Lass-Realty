@@ -54,7 +54,10 @@
     "PropertyCard": {
         "noImage": "Sin Imagen",
         "beds": "Habitaciones",
-        "baths": "Baños"
+        "baths": "Baños",
+        "hotProperty": "Propiedad Popular",
+        "viewingRightNow": "{count} viendo ahora",
+        "rareFind": "Hallazgo Único"
     },
     "PropertiesList": {
         "title": "Propiedades",
@@ -150,7 +153,10 @@
         "locations": {
             "title": "Navegar por Ubicación",
             "subtitle": "Descubra comunidades exclusivas y vecindarios premium en toda la República Dominicana.",
-            "viewProperties": "Ver Propiedades"
+            "viewProperties": "Ver Propiedades",
+            "mapSubtitle": "Explore el Mapa",
+            "mapTitle": "Bienes Raíces en República Dominicana",
+            "viewFullMap": "Ver Mapa Completo"
         },
         "whyLass": {
             "title": "¿Por Qué Elegir LASS Realty?",

@@ -15,6 +15,7 @@ import MobileBottomNav from '@/components/MobileBottomNav';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import MicrosoftClarity from '@/components/MicrosoftClarity';
 import MetaPixel from '@/components/MetaPixel';
+import PlausibleAnalytics from '@/components/PlausibleAnalytics';
 
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
@@ -98,6 +99,7 @@ export default async function LocaleLayout({
                     )}
                     <MicrosoftClarity />
                     <MetaPixel />
+                    <PlausibleAnalytics />
                 </NextIntlClientProvider>
             </body>
         </html>

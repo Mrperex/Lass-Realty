@@ -54,7 +54,10 @@
     "PropertyCard": {
         "noImage": "No Image",
         "beds": "Beds",
-        "baths": "Baths"
+        "baths": "Baths",
+        "hotProperty": "Hot Property",
+        "viewingRightNow": "{count} viewing now",
+        "rareFind": "Rare Find"
     },
     "PropertiesList": {
         "title": "Properties",
@@ -150,7 +153,10 @@
         "locations": {
             "title": "Browse by Location",
             "subtitle": "Discover exclusive communities and premium neighborhoods across the Dominican Republic.",
-            "viewProperties": "View Properties"
+            "viewProperties": "View Properties",
+            "mapSubtitle": "Explore the Map",
+            "mapTitle": "Dominican Republic Real Estate",
+            "viewFullMap": "View Full Map"
         },
         "whyLass": {
             "title": "Why Choose LASS Realty?",
