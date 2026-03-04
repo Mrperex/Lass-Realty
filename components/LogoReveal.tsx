@@ -38,7 +38,7 @@ export default function LogoReveal() {
                 }`}
         >
             <div className="flex items-center gap-3 animate-in slide-in-from-bottom-8 fade-in duration-1000 ease-out">
-                <div className="text-5xl md:text-7xl font-playfair font-bold text-champagne-400 tracking-tighter drop-shadow-2xl">
+                <div className="text-5xl md:text-7xl font-cormorant font-bold text-champagne-400 tracking-tighter drop-shadow-2xl">
                     LASS
                 </div>
                 <div className="text-xl md:text-3xl font-outfit font-light text-offwhite uppercase tracking-[0.3em] mt-3">

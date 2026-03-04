@@ -74,7 +74,7 @@ export default function TrustCounters() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
                     <span className="text-champagne-400 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Proven Track Record</span>
-                    <h2 className="text-4xl md:text-5xl font-playfair font-medium text-offwhite mb-6">Numbers That Speak Volumes</h2>
+                    <h2 className="text-4xl md:text-5xl font-cormorant font-medium text-offwhite mb-6">Numbers That Speak Volumes</h2>
                     <p className="text-slate-300 max-w-2xl mx-auto font-light text-lg">
                         LASS Realty represents the pinnacle of luxury real estate representation in the Caribbean. Our results reflect our dedication to closing extraordinary deals.
                     </p>
@@ -93,7 +93,7 @@ export default function TrustCounters() {
                                 <stat.icon className="w-8 h-8 text-champagne-400" />
                             </div>
                             <div className="flex items-baseline mb-2">
-                                <span className="text-4xl md:text-5xl font-playfair font-bold text-offwhite">
+                                <span className="text-4xl md:text-5xl font-cormorant font-bold text-offwhite">
                                     {stat.prefix}
                                     {/* Simplistic counter effect could go here, for now static looks extremely premium */}
                                     {stat.value}

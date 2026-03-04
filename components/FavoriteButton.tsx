@@ -36,16 +36,16 @@ export default function FavoriteButton({ property }: { property: IProperty }) {
     return (
         <button
             onClick={toggleFavorite}
-            className={`p-2 rounded-full backdrop-blur-md shadow-[0_4px_10px_rgba(0,0,0,0.1)] border transition-all duration-300 ${isFav
-                    ? 'bg-rose-50 border-rose-200 hover:bg-rose-100 bg-opacity-90'
-                    : 'bg-white/80 border-white/40 hover:bg-white'
+            className={`p-3 md:p-2 rounded-full backdrop-blur-md shadow-[0_4px_10px_rgba(0,0,0,0.1)] border flex items-center justify-center min-w-[44px] min-h-[44px] md:min-w-0 md:min-h-0 transition-all duration-300 ${isFav
+                ? 'bg-rose-50 border-rose-200 hover:bg-rose-100 bg-opacity-90'
+                : 'bg-white/80 border-white/40 hover:bg-white'
                 }`}
             aria-label={isFav ? "Remove from favorites" : "Add to favorites"}
         >
             <Heart
                 className={`w-5 h-5 transition-colors ${isFav
-                        ? 'fill-rose-500 text-rose-500'
-                        : 'text-slate-600 hover:text-rose-500 stroke-[2.5]'
+                    ? 'fill-rose-500 text-rose-500'
+                    : 'text-slate-600 hover:text-rose-500 stroke-[2.5]'
                     }`}
             />
         </button>

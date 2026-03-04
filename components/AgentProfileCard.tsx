@@ -14,7 +14,7 @@ export default function AgentProfileCard({ agent }: AgentProfileCardProps) {
 
     return (
         <div className="mt-12 pt-12 border-t border-slate-100 font-outfit">
-            <h2 className="font-playfair text-2xl md:text-3xl font-medium text-navy-900 mb-8">
+            <h2 className="font-cormorant text-2xl md:text-3xl font-medium text-navy-900 mb-8">
                 {t('listedBy', { fallback: 'Listed By' })}
             </h2>
 

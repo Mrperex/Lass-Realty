@@ -36,7 +36,7 @@ export default async function BuyingGuidePage({ params: { locale } }: { params: 
                 <div className="absolute inset-0 bg-gradient-to-r from-navy-900 to-transparent z-10" />
                 <div className="absolute inset-0 opacity-20 bg-[url('https://res.cloudinary.com/drl5nvyto/image/upload/v1731610484/lass-realty/n7o6zck75q0t53euzcsm.jpg')] bg-cover bg-center" />
                 <div className="max-w-4xl mx-auto relative z-20 text-center">
-                    <h1 className="text-4xl md:text-6xl font-bold font-playfair text-champagne-400 mb-6 drop-shadow-lg">
+                    <h1 className="text-4xl md:text-6xl font-bold font-cormorant text-champagne-400 mb-6 drop-shadow-lg">
                         {t('title')}
                     </h1>
                     <p className="text-xl md:text-2xl text-slate-300 font-light drop-shadow-md">
@@ -86,7 +86,7 @@ export default async function BuyingGuidePage({ params: { locale } }: { params: 
             {/* CTA */}
             <section className="py-24 bg-champagne-500 text-navy-900 text-center px-4">
                 <div className="max-w-3xl mx-auto">
-                    <h2 className="text-4xl md:text-5xl font-bold font-playfair mb-6">{t('ctaTitle')}</h2>
+                    <h2 className="text-4xl md:text-5xl font-bold font-cormorant mb-6">{t('ctaTitle')}</h2>
                     <p className="text-xl md:text-2xl opacity-90 mb-10">{t('ctaDesc')}</p>
                     <Link
                         href={`/${locale}/contact`}

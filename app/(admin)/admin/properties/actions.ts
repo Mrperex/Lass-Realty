@@ -22,11 +22,8 @@ export async function createProperty(prevState: any, formData: FormData) {
         const squareMeters = Number(formData.get('squareMeters'));
         const status = formData.get('status') as string;
         const featured = formData.get('featured') === 'on';
-        const pool = formData.get('pool') === 'on';
-        const oceanView = formData.get('oceanView') === 'on';
-        const golfView = formData.get('golfView') === 'on';
-        const furnished = formData.get('furnished') === 'on';
-        const petFriendly = formData.get('petFriendly') === 'on';
+        const amenitiesEntries = formData.getAll('amenities[]');
+        const amenities = amenitiesEntries.filter(entry => typeof entry === 'string' && entry.trim() !== '') as string[];
         const virtualTourUrl = formData.get('virtualTourUrl') as string | null;
 
         // Auto-generate slug from title
@@ -70,11 +67,7 @@ export async function createProperty(prevState: any, formData: FormData) {
             squareMeters,
             status,
             featured,
-            pool,
-            oceanView,
-            golfView,
-            furnished,
-            petFriendly,
+            amenities,
             virtualTourUrl: virtualTourUrl || undefined,
             images,
             floorPlans
@@ -106,11 +99,8 @@ export async function updateProperty(id: string, prevState: any, formData: FormD
         const squareMeters = Number(formData.get('squareMeters'));
         const status = formData.get('status') as string;
         const featured = formData.get('featured') === 'on';
-        const pool = formData.get('pool') === 'on';
-        const oceanView = formData.get('oceanView') === 'on';
-        const golfView = formData.get('golfView') === 'on';
-        const furnished = formData.get('furnished') === 'on';
-        const petFriendly = formData.get('petFriendly') === 'on';
+        const amenitiesEntries = formData.getAll('amenities[]');
+        const amenities = amenitiesEntries.filter(entry => typeof entry === 'string' && entry.trim() !== '') as string[];
         const virtualTourUrl = formData.get('virtualTourUrl') as string | null;
         const citySlug = city.toLowerCase().replace(/\s+/g, '-');
 
@@ -137,11 +127,7 @@ export async function updateProperty(id: string, prevState: any, formData: FormD
             squareMeters,
             status,
             featured,
-            pool,
-            oceanView,
-            golfView,
-            furnished,
-            petFriendly,
+            amenities,
             virtualTourUrl,
             images,
             floorPlans

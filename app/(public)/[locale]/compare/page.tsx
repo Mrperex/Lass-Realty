@@ -30,7 +30,7 @@ export default function ComparePage() {
                 <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-sm mb-6">
                     <Building2 className="w-10 h-10 text-slate-300" />
                 </div>
-                <h1 className="text-3xl font-playfair font-bold text-navy-900 mb-4">{t('emptyTitle', { fallback: 'No Properties to Compare' })}</h1>
+                <h1 className="text-3xl font-cormorant font-bold text-navy-900 mb-4">{t('emptyTitle', { fallback: 'No Properties to Compare' })}</h1>
                 <p className="text-slate-500 max-w-md mx-auto mb-8 text-lg hover:text-slate-600 transition-colors">
                     {t('emptyDesc', { fallback: 'Browse our luxurious portfolio and select up to 3 properties to see them side-by-side.' })}
                 </p>
@@ -67,7 +67,7 @@ export default function ComparePage() {
                         <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
                         {t('backToSearch', { fallback: 'Back to Properties' })}
                     </Link>
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-medium tracking-tight mb-4">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-cormorant font-medium tracking-tight mb-4">
                         {t('title', { fallback: 'Compare Properties' })}
                     </h1>
                     <p className="text-lg text-slate-300 max-w-2xl mx-auto font-light">
@@ -105,7 +105,7 @@ export default function ComparePage() {
                                                 />
                                             </div>
 
-                                            <h3 className="font-playfair text-xl font-bold text-navy-900 mb-1 leading-tight line-clamp-2">
+                                            <h3 className="font-cormorant text-xl font-bold text-navy-900 mb-1 leading-tight line-clamp-2">
                                                 {property.title}
                                             </h3>
                                             <div className="flex items-center text-slate-500 text-sm mb-4">

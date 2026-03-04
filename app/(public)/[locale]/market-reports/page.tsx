@@ -66,7 +66,7 @@ export default async function MarketReportsPage({
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 {/* Header */}
                 <div className="max-w-3xl mb-16">
-                    <h1 className="text-4xl md:text-5xl font-playfair font-medium text-[#0a1128] mb-6">
+                    <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-[#0a1128] mb-6">
                         {isEs ? 'Informes del Mercado' : 'Market Reports'}
                     </h1>
                     <p className="text-lg text-gray-600 font-outfit">

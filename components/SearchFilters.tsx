@@ -23,12 +23,11 @@ export default function SearchFilters() {
     const [minPrice, setMinPrice] = useState(searchParams.get('minPrice') || '');
     const [maxPrice, setMaxPrice] = useState(searchParams.get('maxPrice') || '');
 
-    // Amenities
-    const [pool, setPool] = useState(searchParams.get('pool') === 'true');
-    const [oceanView, setOceanView] = useState(searchParams.get('oceanView') === 'true');
-    const [golfView, setGolfView] = useState(searchParams.get('golfView') === 'true');
-    const [furnished, setFurnished] = useState(searchParams.get('furnished') === 'true');
-    const [petFriendly, setPetFriendly] = useState(searchParams.get('petFriendly') === 'true');
+    // Amenities Array
+    const [selectedAmenities, setSelectedAmenities] = useState<string[]>(() => {
+        const amenitiesParam = searchParams.get('amenities');
+        return amenitiesParam ? amenitiesParam.split(',') : [];
+    });
 
     // UI State
     const [showAdvanced, setShowAdvanced] = useState(false);
@@ -46,11 +45,9 @@ export default function SearchFilters() {
         if (maxPrice) params.set('maxPrice', maxPrice);
         if (sort && sort !== 'newest') params.set('sort', sort);
 
-        if (pool) params.set('pool', 'true');
-        if (oceanView) params.set('oceanView', 'true');
-        if (golfView) params.set('golfView', 'true');
-        if (furnished) params.set('furnished', 'true');
-        if (petFriendly) params.set('petFriendly', 'true');
+        if (selectedAmenities.length > 0) {
+            params.set('amenities', selectedAmenities.join(','));
+        }
 
         router.push(`/properties?${params.toString()}`);
     };
@@ -64,11 +61,7 @@ export default function SearchFilters() {
         setMinPrice('');
         setMaxPrice('');
         setSort('newest');
-        setPool(false);
-        setOceanView(false);
-        setGolfView(false);
-        setFurnished(false);
-        setPetFriendly(false);
+        setSelectedAmenities([]);
         router.push('/properties');
     };
 
@@ -186,20 +179,29 @@ export default function SearchFilters() {
 
                             {/* Amenity Checkboxes */}
                             <div className="lg:col-span-5 pt-4 border-t border-white/5">
-                                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">{t('mustIncludeAmenities')}</label>
+                                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">{t('mustIncludeAmenities', { fallback: 'Must Include Amenities' })}</label>
                                 <div className="flex flex-wrap gap-3">
                                     {[
-                                        { id: 'pool', label: t('privatePool'), state: pool, setter: setPool },
-                                        { id: 'oceanView', label: t('oceanView'), state: oceanView, setter: setOceanView },
-                                        { id: 'golfView', label: t('golfView'), state: golfView, setter: setGolfView },
-                                        { id: 'furnished', label: t('furnished'), state: furnished, setter: setFurnished },
-                                        { id: 'petFriendly', label: t('petFriendly'), state: petFriendly, setter: setPetFriendly },
+                                        { id: 'Ocean View', label: t('oceanView', { fallback: 'Ocean View' }) },
+                                        { id: 'Private Pool', label: t('privatePool', { fallback: 'Private Pool' }) },
+                                        { id: 'Fully Furnished', label: t('furnished', { fallback: 'Fully Furnished' }) },
+                                        { id: 'Backup Generator', label: 'Backup Generator' },
+                                        { id: '24/7 Security', label: '24/7 Security' },
+                                        { id: 'Gated Community', label: 'Gated Community' },
+                                        { id: 'Pet Friendly', label: t('petFriendly', { fallback: 'Pet Friendly' }) },
+                                        { id: 'Golf View', label: t('golfView', { fallback: 'Golf View' }) }
                                     ].map(amenity => (
                                         <button
                                             key={amenity.id}
                                             type="button"
-                                            onClick={() => amenity.setter(!amenity.state)}
-                                            className={`px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all border ${amenity.state
+                                            onClick={() => {
+                                                setSelectedAmenities(prev =>
+                                                    prev.includes(amenity.id)
+                                                        ? prev.filter(a => a !== amenity.id)
+                                                        : [...prev, amenity.id]
+                                                );
+                                            }}
+                                            className={`px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all border ${selectedAmenities.includes(amenity.id)
                                                 ? 'bg-champagne-500/20 border-champagne-500 text-champagne-400 shadow-[0_0_15px_rgba(212,175,55,0.15)]'
                                                 : 'bg-navy-800 border-white/10 text-slate-400 hover:border-white/30'
                                                 }`}

@@ -6,7 +6,7 @@ const COOKIE_NAME = 'lass_admin_auth'
 
 // Next-Intl Router Configuration
 const handleI18nRouting = createIntlMiddleware({
-    locales: ['en', 'es'],
+    locales: ['en', 'es', 'fr', 'it', 'ru', 'de', 'ht'],
     defaultLocale: 'en',
     // We force locale prefixes (e.g. /en) to bypass a Next.js rewrite hydration bug on multiple root layouts.
     localePrefix: 'always'

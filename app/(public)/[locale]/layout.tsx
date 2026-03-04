@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Playfair_Display, Outfit } from 'next/font/google';
+import { Cormorant_Garamond, Outfit } from 'next/font/google';
 import '../../globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
@@ -11,13 +11,18 @@ import ExitIntentPopup from '@/components/ExitIntentPopup';
 import LogoReveal from '@/components/LogoReveal';
 import CookieConsent from '@/components/CookieConsent';
 import CompareDock from '@/components/CompareDock';
+import CustomCursor from '@/components/CustomCursor';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import MicrosoftClarity from '@/components/MicrosoftClarity';
 import MetaPixel from '@/components/MetaPixel';
 import PlausibleAnalytics from '@/components/PlausibleAnalytics';
 
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
+const cormorant = Cormorant_Garamond({
+    subsets: ['latin'],
+    weight: ['300', '400', '500', '600', '700'],
+    variable: '--font-cormorant'
+});
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 
 export const metadata: Metadata = {
@@ -76,12 +81,13 @@ export default async function LocaleLayout({
     const messages = await getMessages();
 
     return (
-        <html lang={locale} className={`${playfair.variable} ${outfit.variable}`}>
-            <body className={`font-outfit flex flex-col min-h-screen bg-navy-900 text-offwhite antialiased relative`}>
+        <html lang={locale} className={`${cormorant.variable} ${outfit.variable}`}>
+            <body className={`font-outfit flex flex-col min-h-screen bg-navy-900 text-offwhite relative`}>
                 <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-champagne-500 text-navy-900 z-[9999] px-4 py-2 rounded-xl font-bold">
                     Skip to content
                 </a>
                 <NextIntlClientProvider locale={locale} messages={messages}>
+                    <CustomCursor />
                     <LogoReveal />
                     <Navbar />
                     <main id="main-content" className="flex-grow">

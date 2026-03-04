@@ -85,7 +85,7 @@ export default async function NeighborhoodDetailPage({
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         {locale === 'es' ? 'Todos los Vecindarios' : 'All Neighborhoods'}
                     </Link>
-                    <h1 className="text-4xl md:text-6xl font-playfair font-medium text-white leading-tight mt-2">
+                    <h1 className="text-4xl md:text-6xl font-cormorant font-medium text-white leading-tight mt-2">
                         {name}
                     </h1>
                     {n.averagePrice > 0 && (
@@ -106,7 +106,7 @@ export default async function NeighborhoodDetailPage({
 
                     {/* Main Description */}
                     <div className="lg:col-span-2">
-                        <h2 className="text-2xl font-playfair font-medium text-navy-900 mb-6">
+                        <h2 className="text-2xl font-cormorant font-medium text-navy-900 mb-6">
                             {locale === 'es' ? 'Sobre esta Comunidad' : 'About this Community'}
                         </h2>
                         <div className="space-y-4 font-outfit text-gray-700 leading-relaxed text-lg">
@@ -120,7 +120,7 @@ export default async function NeighborhoodDetailPage({
                     <div>
                         {highlights?.length > 0 && (
                             <div className="bg-slate-50 border border-gray-100 p-8 sticky top-32">
-                                <h3 className="text-lg font-playfair font-medium text-navy-900 mb-6 pb-4 border-b border-gray-200">
+                                <h3 className="text-lg font-cormorant font-medium text-navy-900 mb-6 pb-4 border-b border-gray-200">
                                     {locale === 'es' ? 'Aspectos Destacados' : 'Key Highlights'}
                                 </h3>
                                 <ul className="space-y-4">
@@ -143,7 +143,7 @@ export default async function NeighborhoodDetailPage({
                     <div className="max-w-7xl mx-auto px-6 lg:px-8">
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
                             <div>
-                                <h2 className="text-2xl md:text-3xl font-playfair font-medium text-navy-900 mb-2">
+                                <h2 className="text-2xl md:text-3xl font-cormorant font-medium text-navy-900 mb-2">
                                     {locale === 'es'
                                         ? `Propiedades en ${name}`
                                         : `Properties in ${name}`}
@@ -190,7 +190,7 @@ export default async function NeighborhoodDetailPage({
                                             </div>
                                         </div>
                                         <div className="p-5">
-                                            <h3 className="text-lg font-playfair font-medium text-navy-900 mb-1 group-hover:text-gold-500 transition-colors line-clamp-1">
+                                            <h3 className="text-lg font-cormorant font-medium text-navy-900 mb-1 group-hover:text-gold-500 transition-colors line-clamp-1">
                                                 {pTitle}
                                             </h3>
                                             <p className="text-sm text-gray-500 font-outfit flex items-center">

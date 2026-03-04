@@ -24,7 +24,7 @@ export default function TermsOfServicePage({
     return (
         <main className="min-h-screen bg-white pt-32 pb-24">
             <div className="max-w-3xl mx-auto px-6 lg:px-0">
-                <h1 className="text-4xl md:text-5xl font-playfair font-medium text-[#0a1128] mb-4">
+                <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-[#0a1128] mb-4">
                     {isEs ? 'Términos de Servicio' : 'Terms of Service'}
                 </h1>
                 <p className="text-sm text-gray-400 font-outfit mb-12">
@@ -35,7 +35,7 @@ export default function TermsOfServicePage({
 
                     {/* Section 1 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '1. Aceptación de Términos' : '1. Acceptance of Terms'}
                         </h2>
                         <p>{isEs
@@ -45,7 +45,7 @@ export default function TermsOfServicePage({
 
                     {/* Section 2 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '2. Servicios' : '2. Services'}
                         </h2>
                         <p>{isEs
@@ -62,7 +62,7 @@ export default function TermsOfServicePage({
 
                     {/* Section 3 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '3. Información de Propiedades' : '3. Property Information'}
                         </h2>
                         <p>{isEs
@@ -78,7 +78,7 @@ export default function TermsOfServicePage({
 
                     {/* Section 4 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '4. Uso del Sitio Web' : '4. Website Usage'}
                         </h2>
                         <p>{isEs ? 'Al utilizar nuestro sitio web, usted se compromete a:' : 'By using our website, you agree to:'}</p>
@@ -92,7 +92,7 @@ export default function TermsOfServicePage({
 
                     {/* Section 5 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '5. Propiedad Intelectual' : '5. Intellectual Property'}
                         </h2>
                         <p>{isEs
@@ -102,7 +102,7 @@ export default function TermsOfServicePage({
 
                     {/* Section 6 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '6. Limitación de Responsabilidad' : '6. Limitation of Liability'}
                         </h2>
                         <p>{isEs
@@ -118,7 +118,7 @@ export default function TermsOfServicePage({
 
                     {/* Section 7 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '7. Ley Aplicable' : '7. Governing Law'}
                         </h2>
                         <p>{isEs
@@ -128,7 +128,7 @@ export default function TermsOfServicePage({
 
                     {/* Section 8 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '8. Cambios a estos Términos' : '8. Changes to These Terms'}
                         </h2>
                         <p>{isEs
@@ -138,7 +138,7 @@ export default function TermsOfServicePage({
 
                     {/* Section 9 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '9. Contacto' : '9. Contact'}
                         </h2>
                         <p>{isEs

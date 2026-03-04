@@ -37,7 +37,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
                             className="w-full px-6 py-5 flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne-500 rounded-2xl text-left"
                             aria-expanded={isOpen}
                         >
-                            <span className={`font-playfair text-lg md:text-xl font-bold pr-8 transition-colors ${isOpen ? 'text-navy-900' : 'text-slate-700'}`}>
+                            <span className={`font-cormorant text-lg md:text-xl font-bold pr-8 transition-colors ${isOpen ? 'text-navy-900' : 'text-slate-700'}`}>
                                 {item.question}
                             </span>
                             <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isOpen ? 'bg-champagne-500 text-navy-900' : 'bg-slate-200 text-slate-500'}`}>

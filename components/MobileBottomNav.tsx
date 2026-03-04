@@ -26,7 +26,7 @@ export default function MobileBottomNav() {
 
     return (
         <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-100 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] z-40 px-2 pb-safe pt-2">
-            <div className="flex items-center justify-around h-14">
+            <div className="flex items-center justify-around h-16">
                 <Link
                     href="/"
                     className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${pathname === '/' || pathname === '/es' ? 'text-champagne-500' : 'text-slate-400 hover:text-slate-600'

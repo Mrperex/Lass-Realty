@@ -150,7 +150,7 @@ export default function PropertyGallery({ images, title }: { images: string[]; t
                             {/* Overlay for "Remaining Images" */}
                             {isLast && (
                                 <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px] flex flex-col items-center justify-center transition-colors hover:bg-black/40">
-                                    <span className="text-white font-playfair font-medium tracking-tight text-3xl">+{images.length - 5}</span>
+                                    <span className="text-white font-cormorant font-medium tracking-tight text-3xl">+{images.length - 5}</span>
                                     <span className="text-white/80 font-bold uppercase tracking-widest text-xs mt-1">Photos</span>
                                 </div>
                             )}

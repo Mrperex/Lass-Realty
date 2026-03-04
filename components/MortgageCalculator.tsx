@@ -64,7 +64,7 @@ export default function MortgageCalculator({ propertyPriceUsd }: MortgageCalcula
                     <Calculator className="w-6 h-6" />
                 </div>
                 <div>
-                    <h3 className="font-playfair text-2xl font-medium text-navy-900">Investment Calculator</h3>
+                    <h3 className="font-cormorant text-2xl font-medium text-navy-900">Investment Calculator</h3>
                     <p className="text-slate-500 text-sm">Estimate mortgage costs and ROI</p>
                 </div>
             </div>
@@ -143,7 +143,7 @@ export default function MortgageCalculator({ propertyPriceUsd }: MortgageCalcula
                     <div className="relative z-10 mb-8">
                         <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">Estimated Payment</div>
                         <div className="flex items-end gap-2 text-champagne-400">
-                            <span className="text-4xl md:text-5xl font-playfair font-medium tracking-tight">
+                            <span className="text-4xl md:text-5xl font-cormorant font-medium tracking-tight">
                                 {formatShortCurrency(monthlyPayment)}
                             </span>
                             <span className="text-slate-400 font-outfit font-medium mb-1.5">/mo</span>

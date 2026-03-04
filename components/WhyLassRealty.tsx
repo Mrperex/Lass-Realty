@@ -1,27 +1,59 @@
 import { useTranslations } from 'next-intl';
 import { Award, ShieldCheck, Key, TrendingUp, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
+import { motion, Variants } from 'framer-motion';
 
 export default function WhyLassRealty() {
     const t = useTranslations('Index.whyLass');
+
+    const fadeUpVariants: Variants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, ease: "easeOut" }
+        }
+    };
+
+    const staggerContainer: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
 
     return (
         <section className="py-24 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header Section */}
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <h2 className="text-3xl md:text-5xl font-playfair font-bold text-navy-900 mb-6 leading-tight">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={fadeUpVariants}
+                    className="text-center max-w-3xl mx-auto mb-16"
+                >
+                    <h2 className="text-3xl md:text-5xl font-cormorant font-bold text-navy-900 mb-6 leading-tight">
                         {t('title', { fallback: 'Why Choose LASS Realty?' })}
                     </h2>
                     <p className="text-lg md:text-xl text-slate-600 font-light leading-relaxed">
                         {t('subtitle', { fallback: 'Unmatched market expertise, absolute discretion, and a proven track record in luxury acquisitions.' })}
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Expertise Pillars */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    variants={staggerContainer}
+                    className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24"
+                >
                     {/* Pillar 1 */}
-                    <div className="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-xl hover:border-champagne-200 transition-all duration-300 group">
+                    <motion.div variants={fadeUpVariants} className="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-xl hover:border-champagne-200 transition-all duration-300 group">
                         <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-champagne-50 transition-all duration-300">
                             <Award className="w-7 h-7 text-champagne-600" />
                         </div>
@@ -29,10 +61,10 @@ export default function WhyLassRealty() {
                         <p className="text-slate-600 leading-relaxed">
                             {t('expertise.desc')}
                         </p>
-                    </div>
+                    </motion.div>
 
                     {/* Pillar 2 */}
-                    <div className="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-xl hover:border-champagne-200 transition-all duration-300 group">
+                    <motion.div variants={fadeUpVariants} className="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-xl hover:border-champagne-200 transition-all duration-300 group">
                         <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-champagne-50 transition-all duration-300">
                             <ShieldCheck className="w-7 h-7 text-champagne-600" />
                         </div>
@@ -40,10 +72,10 @@ export default function WhyLassRealty() {
                         <p className="text-slate-600 leading-relaxed">
                             {t('legal.desc')}
                         </p>
-                    </div>
+                    </motion.div>
 
                     {/* Pillar 3 */}
-                    <div className="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-xl hover:border-champagne-200 transition-all duration-300 group">
+                    <motion.div variants={fadeUpVariants} className="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-xl hover:border-champagne-200 transition-all duration-300 group">
                         <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-champagne-50 transition-all duration-300">
                             <Key className="w-7 h-7 text-champagne-600" />
                         </div>
@@ -51,11 +83,17 @@ export default function WhyLassRealty() {
                         <p className="text-slate-600 leading-relaxed">
                             {t('management.desc')}
                         </p>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
 
                 {/* Case Studies */}
-                <div className="bg-navy-900 rounded-[2.5rem] p-8 md:p-12 lg:p-16 relative overflow-hidden shadow-2xl">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={fadeUpVariants}
+                    className="bg-navy-900 rounded-[2.5rem] p-8 md:p-12 lg:p-16 relative overflow-hidden shadow-2xl"
+                >
                     <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-champagne-500/10 to-transparent pointer-events-none" />
                     <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-champagne-500/20 blur-[100px] pointer-events-none rounded-full" />
 
@@ -64,7 +102,7 @@ export default function WhyLassRealty() {
                             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-champagne-400 font-bold text-sm tracking-widest uppercase mb-6 backdrop-blur-md border border-white/5">
                                 <TrendingUp className="w-4 h-4" /> Case Studies
                             </div>
-                            <h3 className="text-4xl text-white font-playfair font-bold mb-6 leading-tight">
+                            <h3 className="text-4xl text-white font-cormorant font-bold mb-6 leading-tight">
                                 {t('caseStudies.title')}
                             </h3>
                             <div className="space-y-4 text-slate-300">
@@ -106,7 +144,7 @@ export default function WhyLassRealty() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

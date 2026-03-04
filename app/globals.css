@@ -2,7 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+html {
+  cursor: none;
+  font-size: clamp(16px, 1.2vw, 18px);
+}
+
+a,
+button,
+[role="button"],
+input,
+select,
+textarea {
+  cursor: none;
+}
+
 body {
   overflow-x: hidden;
   max-width: 100vw;

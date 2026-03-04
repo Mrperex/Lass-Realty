@@ -41,7 +41,7 @@ export default async function SimilarPropertiesCarousel({ currentProperty }: Sim
         <div className="w-full mt-24 pt-16 border-t border-slate-200">
             <div className="flex justify-between items-end mb-10">
                 <div>
-                    <h3 className="font-playfair text-3xl font-medium text-navy-900 mb-2">Similar Properties</h3>
+                    <h3 className="font-cormorant text-3xl font-medium text-navy-900 mb-2">Similar Properties</h3>
                     <p className="font-outfit text-slate-500">Other luxury estates you might be interested in.</p>
                 </div>
             </div>

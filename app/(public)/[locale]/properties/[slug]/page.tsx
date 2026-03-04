@@ -18,6 +18,7 @@ import { getTranslations } from 'next-intl/server';
 import ContactForm from './ContactForm';
 import { TrackPropertyView } from '@/components/AnalyticsEvents';
 import PropertyGallery from '@/components/PropertyGallery';
+import PropertyAmenities from '@/components/PropertyAmenities';
 import ShareButton from '@/components/ShareButton';
 import AgentProfileCard from '@/components/AgentProfileCard';
 
@@ -116,7 +117,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                             <div>
                                 <div className="flex flex-col lg:flex-row items-start justify-between gap-6 mb-4">
                                     <div className="flex-1 w-full">
-                                        <h1 className="font-playfair text-3xl md:text-5xl font-medium text-navy-900 tracking-tight leading-tight">
+                                        <h1 className="font-cormorant text-3xl md:text-5xl font-medium text-navy-900 tracking-tight leading-tight">
                                             {title}
                                         </h1>
                                     </div>
@@ -211,6 +212,8 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                     {description}
                                 </div>
                             </div>
+
+                            <PropertyAmenities amenities={property.amenities || []} />
 
                             {/* Proximity / Walkability Spotlight */}
                             {property.agentId && (

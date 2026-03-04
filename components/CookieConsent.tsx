@@ -59,7 +59,7 @@ export default function CookieConsent() {
 
                     <div className="flex flex-col gap-5">
                         <div className="flex items-start justify-between">
-                            <h3 className="font-playfair text-xl font-bold text-white tracking-wide">
+                            <h3 className="font-cormorant text-xl font-bold text-white tracking-wide">
                                 Your Privacy
                             </h3>
                         </div>

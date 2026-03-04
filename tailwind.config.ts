@@ -12,19 +12,19 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         navy: {
-          900: '#0a1128',
-          800: '#121e3f',
-          700: '#1c2e5b',
+          900: '#111111', // Deep Charcoal (Replacing old 0A1128)
+          800: '#1a1a1a', // Rich off-black
+          700: '#262626', // Lighter grey
         },
         champagne: {
-          500: '#d4af37',
-          400: '#e5c158',
-          300: '#f1d570',
+          500: '#D4AF37', // True Antique Gold
+          400: '#E6C762', // Lighter gold hover
+          300: '#F3E19C', // Faint gold 
         },
-        offwhite: '#f9f9f9',
+        offwhite: '#FAFAFA',
       },
       fontFamily: {
-        playfair: ['var(--font-playfair)', 'serif'],
+        playfair: ['var(--font-cormorant)', 'serif'], // Swapped Playfair for Cormorant Garamond for higher-end editorial feel
         outfit: ['var(--font-outfit)', 'sans-serif'],
       },
     },

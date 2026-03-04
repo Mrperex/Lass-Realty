@@ -40,6 +40,13 @@ async function getProperties(searchParams: { [key: string]: string | string[] | 
             }
         }
 
+        if (searchParams.amenities && typeof searchParams.amenities === 'string') {
+            const amenitiesList = searchParams.amenities.split(',').filter(Boolean);
+            if (amenitiesList.length > 0) {
+                query.amenities = { $all: amenitiesList };
+            }
+        }
+
         let sortQuery: any = { createdAt: -1 };
 
         if (searchParams.sort && typeof searchParams.sort === 'string') {

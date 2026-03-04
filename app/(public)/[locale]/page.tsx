@@ -9,6 +9,7 @@ import { LOCATIONS } from '@/lib/locations';
 import SearchFilters from '@/components/SearchFilters';
 import { getTranslations } from 'next-intl/server';
 import WhyLassRealty from '@/components/WhyLassRealty';
+import Hero from '@/components/Hero';
 
 export const revalidate = 3600;
 
@@ -31,49 +32,7 @@ export default async function Home() {
     return (
         <div className="flex flex-col min-h-screen">
             {/* Hero Section */}
-            <section className="relative min-h-[85vh] flex flex-col items-center justify-center pt-24 pb-12">
-                <div className="absolute inset-0 bg-slate-900/60 z-10" />
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="none"
-                    className="absolute inset-0 w-full h-full object-cover z-0"
-                    poster="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80"
-                >
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-beautiful-mansion-with-a-pool-2253-large.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-                <div className="relative z-20 text-center px-4 max-w-5xl mx-auto flex flex-col items-center flex-1 justify-center w-full">
-                    <span className="text-amber-400 font-bold tracking-widest uppercase text-sm mb-4 drop-shadow-md">{t('subtitle')}</span>
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight drop-shadow-xl leading-tight">
-                        {t.rich('title', {
-                            highlight: (chunks) => <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">{chunks}</span>
-                        })}
-                    </h1>
-                    <p className="text-xl md:text-2xl text-slate-100 mb-12 max-w-3xl mx-auto font-light drop-shadow-lg">
-                        {t('description')}
-                    </p>
-
-                    {/* Integrated Search Box - Hidden on very small screens to save space, but visible starting 'sm' */}
-                    <div className="w-full max-w-4xl mx-auto mt-4 hidden sm:block">
-                        <div className="bg-white/10 backdrop-blur-xl p-2 rounded-3xl border border-white/20 shadow-2xl">
-                            <SearchFilters />
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col sm:hidden w-full gap-4 justify-center mt-6">
-                        <Link
-                            href="/properties"
-                            className="inline-flex items-center justify-center bg-amber-600 text-white w-full py-4 rounded-xl font-bold hover:bg-amber-500 transition shadow-xl"
-                        >
-                            {t('explore')}
-                            <ArrowRight className="ml-2 w-5 h-5" />
-                        </Link>
-                    </div>
-                </div>
-            </section>
+            <Hero />
 
             {/* Trust / Credibility Strip */}
             <section className="bg-slate-900 py-8 border-b border-slate-800">

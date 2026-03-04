@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import '../../globals.css';
 
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-cormorant' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

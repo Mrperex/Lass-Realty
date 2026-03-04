@@ -27,7 +27,7 @@ export default async function BlogIndexPage({
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 {/* Header */}
                 <div className="max-w-3xl mb-16">
-                    <h1 className="text-4xl md:text-5xl font-playfair font-medium text-navy-900 mb-6">
+                    <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-navy-900 mb-6">
                         {locale === 'es' ? 'Noticias y Mercado' : 'Market Insights & News'}
                     </h1>
                     <p className="text-lg text-gray-600 font-outfit">
@@ -97,7 +97,7 @@ export default async function BlogIndexPage({
                                             </div>
                                         </div>
 
-                                        <h3 className="text-xl font-playfair font-medium text-navy-900 mb-3 group-hover:text-gold-500 transition-colors line-clamp-2">
+                                        <h3 className="text-xl font-cormorant font-medium text-navy-900 mb-3 group-hover:text-gold-500 transition-colors line-clamp-2">
                                             {title}
                                         </h3>
 

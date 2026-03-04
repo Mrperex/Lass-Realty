@@ -242,21 +242,6 @@
         "more": "More",
         "admin": "Admin"
     },
-    "ComparePage": {
-        "title": "Compare Properties",
-        "subtitle": "Evaluate features, locations, and pricing side-by-side to find your perfect home in paradise.",
-        "backToSearch": "Back to Properties",
-        "emptyTitle": "No Properties to Compare",
-        "emptyDesc": "Browse our luxurious portfolio and select up to 3 properties to see them side-by-side.",
-        "browseProperties": "Browse Properties",
-        "viewDetails": "View Details"
-    },
-    "CompareDock": {
-        "compareNow": "Compare Now",
-        "addMore": "Add more to compare",
-        "limitReached": "Max 3 properties",
-        "clearAll": "Clear All"
-    },
     "Footer": {
         "title": "LASS Realty",
         "description": "Your premier destination for luxury real estate and exclusive properties.",

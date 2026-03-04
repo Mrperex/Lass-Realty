@@ -20,6 +20,7 @@ export interface IProperty {
     golfView?: boolean;
     furnished?: boolean;
     petFriendly?: boolean;
+    amenities?: string[];
     type?: 'villa' | 'condo' | 'penthouse' | 'land';
     virtualTourUrl?: string;
     videoTourUrl?: string;

@@ -24,7 +24,7 @@ export default function PrivacyPolicyPage({
     return (
         <main className="min-h-screen bg-white pt-32 pb-24">
             <div className="max-w-3xl mx-auto px-6 lg:px-0">
-                <h1 className="text-4xl md:text-5xl font-playfair font-medium text-[#0a1128] mb-4">
+                <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-[#0a1128] mb-4">
                     {isEs ? 'Política de Privacidad' : 'Privacy Policy'}
                 </h1>
                 <p className="text-sm text-gray-400 font-outfit mb-12">
@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage({
 
                     {/* Section 1 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '1. Información que Recopilamos' : '1. Information We Collect'}
                         </h2>
                         <p>{isEs
@@ -51,7 +51,7 @@ export default function PrivacyPolicyPage({
 
                     {/* Section 2 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '2. Cómo Usamos su Información' : '2. How We Use Your Information'}
                         </h2>
                         <p>{isEs ? 'Utilizamos la información recopilada para:' : 'We use collected information to:'}</p>
@@ -66,7 +66,7 @@ export default function PrivacyPolicyPage({
 
                     {/* Section 3 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '3. Protección de Datos' : '3. Data Protection'}
                         </h2>
                         <p>{isEs
@@ -76,7 +76,7 @@ export default function PrivacyPolicyPage({
 
                     {/* Section 4 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '4. Cookies y Tecnologías de Seguimiento' : '4. Cookies & Tracking Technologies'}
                         </h2>
                         <p>{isEs
@@ -94,7 +94,7 @@ export default function PrivacyPolicyPage({
 
                     {/* Section 5 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '5. Servicios de Terceros' : '5. Third-Party Services'}
                         </h2>
                         <p>{isEs
@@ -110,7 +110,7 @@ export default function PrivacyPolicyPage({
 
                     {/* Section 6 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '6. Sus Derechos' : '6. Your Rights'}
                         </h2>
                         <p>{isEs
@@ -126,7 +126,7 @@ export default function PrivacyPolicyPage({
 
                     {/* Section 7 */}
                     <section>
-                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
                             {isEs ? '7. Contacto' : '7. Contact'}
                         </h2>
                         <p>{isEs

@@ -92,7 +92,7 @@ export default function ExitIntentPopup() {
                     <div className="absolute inset-0 bg-gradient-to-b from-champagne-500/80 to-champagne-600/90"></div>
 
                     <Map className="w-16 h-16 text-navy-900 mb-6 relative z-10 opacity-90" />
-                    <h3 className="font-playfair font-bold text-navy-900 text-3xl mb-4 relative z-10 leading-tight">Wait! Before You Go...</h3>
+                    <h3 className="font-cormorant font-bold text-navy-900 text-3xl mb-4 relative z-10 leading-tight">Wait! Before You Go...</h3>
                     <p className="text-navy-900/80 text-sm font-medium relative z-10">
                         Don't buy in the Dominican Republic without reading this first.
                     </p>
@@ -105,7 +105,7 @@ export default function ExitIntentPopup() {
                             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2">
                                 <DownloadCloud className="w-8 h-8 text-green-600" />
                             </div>
-                            <h4 className="font-playfair font-bold text-navy-900 text-2xl">Guide Sent!</h4>
+                            <h4 className="font-cormorant font-bold text-navy-900 text-2xl">Guide Sent!</h4>
                             <p className="text-slate-600 text-sm">
                                 Check your email inbox. The exclusive Punta Cana Buyer's Guide is on its way.
                             </p>
@@ -118,7 +118,7 @@ export default function ExitIntentPopup() {
                         </div>
                     ) : (
                         <>
-                            <h4 className="font-playfair font-bold text-navy-900 text-2xl mb-3">Download the Free Punta Cana Buyer's Guide</h4>
+                            <h4 className="font-cormorant font-bold text-navy-900 text-2xl mb-3">Download the Free Punta Cana Buyer's Guide</h4>
                             <p className="text-slate-500 text-sm mb-6 leading-relaxed">
                                 Get exclusive insights, legal requirements for foreigners, and ROI breakdowns before investing in Caribbean real estate.
                             </p>

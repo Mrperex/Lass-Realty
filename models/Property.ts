@@ -24,6 +24,7 @@ const PropertySchema = new Schema<IProperty>(
         golfView: { type: Boolean, default: false },
         furnished: { type: Boolean, default: false },
         petFriendly: { type: Boolean, default: false },
+        amenities: { type: [String], default: [] },
         type: { type: String, enum: ['villa', 'condo', 'penthouse', 'land'] },
         virtualTourUrl: { type: String },
         videoTourUrl: { type: String },

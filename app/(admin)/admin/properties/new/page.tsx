@@ -374,22 +374,103 @@ export default function NewPropertyPage() {
                         </div>
 
                         <div className="pt-6 border-t border-slate-100">
-                            <h4 className="text-sm font-bold text-slate-900 mb-4 uppercase tracking-wider">Premium Amenities</h4>
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-y-4 gap-x-6">
-                                {[
-                                    { id: 'pool', label: 'Private Pool' },
-                                    { id: 'oceanView', label: 'Ocean View' },
-                                    { id: 'golfView', label: 'Golf Course View' },
-                                    { id: 'furnished', label: 'Fully Furnished' },
-                                    { id: 'petFriendly', label: 'Pet Friendly' },
-                                ].map((amenity) => (
-                                    <div key={amenity.id} className="flex items-center">
-                                        <div className="flex items-center h-5">
-                                            <input id={amenity.id} name={amenity.id} type="checkbox" className="w-5 h-5 text-amber-600 border-slate-300 rounded focus:ring-amber-500" />
-                                        </div>
-                                        <label htmlFor={amenity.id} className="ml-3 text-sm font-medium text-slate-700">{amenity.label}</label>
+                            <h4 className="text-sm font-bold text-slate-900 mb-6 uppercase tracking-wider">Property Amenities</h4>
+
+                            <div className="space-y-8">
+                                {/* Infrastructure */}
+                                <div>
+                                    <h5 className="text-xs font-bold text-amber-600 mb-3 tracking-widest uppercase">Infrastructure</h5>
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6">
+                                        {['Backup Generator', 'Water System / Cistern', 'Water Heater', 'Fiber Optic Internet', 'Underground Cabling'].map((amenity) => (
+                                            <div key={amenity} className="flex items-center">
+                                                <input
+                                                    id={`amenity-${amenity}`}
+                                                    name="amenities[]"
+                                                    value={amenity}
+                                                    type="checkbox"
+                                                    className="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500"
+                                                />
+                                                <label htmlFor={`amenity-${amenity}`} className="ml-3 text-sm font-medium text-slate-700">{amenity}</label>
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
+                                </div>
+
+                                {/* Security */}
+                                <div>
+                                    <h5 className="text-xs font-bold text-amber-600 mb-3 tracking-widest uppercase">Security</h5>
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6">
+                                        {['24/7 Security', 'Gated Community', 'Surveillance Cameras', 'Controlled Access', 'Smart Lock'].map((amenity) => (
+                                            <div key={amenity} className="flex items-center">
+                                                <input
+                                                    id={`amenity-${amenity}`}
+                                                    name="amenities[]"
+                                                    value={amenity}
+                                                    type="checkbox"
+                                                    className="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500"
+                                                />
+                                                <label htmlFor={`amenity-${amenity}`} className="ml-3 text-sm font-medium text-slate-700">{amenity}</label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Outdoor / Leisure */}
+                                <div>
+                                    <h5 className="text-xs font-bold text-amber-600 mb-3 tracking-widest uppercase">Outdoor & Leisure</h5>
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6">
+                                        {['Private Pool', 'Infinity Pool', 'Artificial Beach', 'Jacuzzi', 'BBQ Area', 'Gazebo', 'Wrap Around Balcony', 'Ocean Front', 'Ocean View', 'Golf View'].map((amenity) => (
+                                            <div key={amenity} className="flex items-center">
+                                                <input
+                                                    id={`amenity-${amenity}`}
+                                                    name="amenities[]"
+                                                    value={amenity}
+                                                    type="checkbox"
+                                                    className="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500"
+                                                />
+                                                <label htmlFor={`amenity-${amenity}`} className="ml-3 text-sm font-medium text-slate-700">{amenity}</label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Community / Shared */}
+                                <div>
+                                    <h5 className="text-xs font-bold text-amber-600 mb-3 tracking-widest uppercase">Community & Shared</h5>
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6">
+                                        {['Club House', 'Basketball Court', 'Tennis / Padel Court', 'Kids Playground', 'Gym', 'Co-working Space'].map((amenity) => (
+                                            <div key={amenity} className="flex items-center">
+                                                <input
+                                                    id={`amenity-${amenity}`}
+                                                    name="amenities[]"
+                                                    value={amenity}
+                                                    type="checkbox"
+                                                    className="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500"
+                                                />
+                                                <label htmlFor={`amenity-${amenity}`} className="ml-3 text-sm font-medium text-slate-700">{amenity}</label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Interior / Luxury */}
+                                <div>
+                                    <h5 className="text-xs font-bold text-amber-600 mb-3 tracking-widest uppercase">Interior & Luxury</h5>
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6">
+                                        {['Wine Cellar', 'Smart Home Integration', "Maid's Quarters", 'Central AC', 'Elevator', 'Fully Furnished', 'Pet Friendly'].map((amenity) => (
+                                            <div key={amenity} className="flex items-center">
+                                                <input
+                                                    id={`amenity-${amenity}`}
+                                                    name="amenities[]"
+                                                    value={amenity}
+                                                    type="checkbox"
+                                                    className="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500"
+                                                />
+                                                <label htmlFor={`amenity-${amenity}`} className="ml-3 text-sm font-medium text-slate-700">{amenity}</label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

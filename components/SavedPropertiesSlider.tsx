@@ -56,7 +56,7 @@ export default function SavedPropertiesSlider() {
             {/* Slide-over Panel */}
             <div className={`fixed inset-y-0 right-0 w-full md:w-[450px] bg-white shadow-2xl z-50 transform transition-transform duration-500 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'} flex flex-col border-l border-slate-100`}>
                 <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-slate-50/50">
-                    <h2 className="font-playfair text-2xl font-bold text-navy-900 flex items-center gap-3">
+                    <h2 className="font-cormorant text-2xl font-bold text-navy-900 flex items-center gap-3">
                         <Heart className="w-6 h-6 fill-rose-500 text-rose-500" />
                         Saved Properties
                     </h2>
@@ -104,7 +104,7 @@ export default function SavedPropertiesSlider() {
 
                                 <div className="flex-1 flex flex-col justify-between py-1 pr-8">
                                     <Link href={`/properties/${property.slug}`} onClick={() => setIsOpen(false)}>
-                                        <h4 className="font-playfair text-base font-bold text-navy-900 line-clamp-2 leading-tight group-hover:text-champagne-600 transition-colors mb-1">
+                                        <h4 className="font-cormorant text-base font-bold text-navy-900 line-clamp-2 leading-tight group-hover:text-champagne-600 transition-colors mb-1">
                                             {property.title}
                                         </h4>
                                         <div className="text-sm font-bold text-champagne-500">

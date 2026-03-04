@@ -8,7 +8,7 @@ export default function VirtualTourEmbed({ url }: { url: string }) {
     return (
         <div className="mt-12 pt-12 border-t border-slate-100">
             <div className="flex items-center justify-between mb-6">
-                <h2 className="font-playfair text-2xl md:text-3xl font-medium text-navy-900 flex items-center gap-3">
+                <h2 className="font-cormorant text-2xl md:text-3xl font-medium text-navy-900 flex items-center gap-3">
                     <PlayCircle className="w-8 h-8 text-champagne-500" />
                     {t('virtualTour', { fallback: '3D Virtual Tour' })}
                 </h2>

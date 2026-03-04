@@ -23,7 +23,7 @@ export default async function NeighborhoodsIndexPage({
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 {/* Header */}
                 <div className="max-w-3xl mb-16">
-                    <h1 className="text-4xl md:text-5xl font-playfair font-medium text-navy-900 mb-6">
+                    <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-navy-900 mb-6">
                         {locale === 'es' ? 'Guías de Vecindarios' : 'Neighborhood Guides'}
                     </h1>
                     <p className="text-lg text-gray-600 font-outfit">
@@ -69,7 +69,7 @@ export default async function NeighborhoodsIndexPage({
                                         )}
                                         {/* Overlay name */}
                                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                                            <h3 className="text-2xl font-playfair font-medium text-white">
+                                            <h3 className="text-2xl font-cormorant font-medium text-white">
                                                 {name}
                                             </h3>
                                         </div>

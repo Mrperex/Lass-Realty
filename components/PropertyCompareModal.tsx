@@ -55,7 +55,7 @@ export default function PropertyCompareModal() {
                                 </div>
                             </div>
 
-                            <h3 className="text-xl font-playfair font-bold text-white mb-1 truncate">{property.title}</h3>
+                            <h3 className="text-xl font-cormorant font-bold text-white mb-1 truncate">{property.title}</h3>
                             <p className="text-sm font-bold tracking-widest text-champagne-500 uppercase mb-4">{property.city}</p>
 
                             {/* Stats */}

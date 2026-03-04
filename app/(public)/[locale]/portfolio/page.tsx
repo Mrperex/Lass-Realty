@@ -44,7 +44,7 @@ export default async function PortfolioPage({
                         <Trophy className="w-4 h-4 mr-2" />
                         {locale === 'es' ? 'Resultados Comprobados' : 'Proven Results'}
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-playfair font-medium text-navy-900 mb-6">
+                    <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-navy-900 mb-6">
                         {locale === 'es' ? 'Nuestro Portafolio' : 'Our Portfolio'}
                     </h1>
                     <p className="text-lg text-gray-600 font-outfit">
@@ -58,15 +58,15 @@ export default async function PortfolioPage({
                 {totalSold > 0 && (
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-16 max-w-2xl mx-auto">
                         <div className="text-center p-6 bg-slate-50 border border-gray-100">
-                            <p className="text-3xl md:text-4xl font-playfair font-bold text-navy-900">{totalSold}</p>
+                            <p className="text-3xl md:text-4xl font-cormorant font-bold text-navy-900">{totalSold}</p>
                             <p className="text-sm text-gray-500 font-outfit mt-1">{locale === 'es' ? 'Propiedades Vendidas' : 'Properties Sold'}</p>
                         </div>
                         <div className="text-center p-6 bg-slate-50 border border-gray-100">
-                            <p className="text-3xl md:text-4xl font-playfair font-bold text-navy-900">${(totalValue / 1000000).toFixed(1)}M</p>
+                            <p className="text-3xl md:text-4xl font-cormorant font-bold text-navy-900">${(totalValue / 1000000).toFixed(1)}M</p>
                             <p className="text-sm text-gray-500 font-outfit mt-1">{locale === 'es' ? 'Valor Total Transado' : 'Total Value Transacted'}</p>
                         </div>
                         <div className="text-center p-6 bg-slate-50 border border-gray-100 col-span-2 md:col-span-1">
-                            <p className="text-3xl md:text-4xl font-playfair font-bold text-gold-500">100%</p>
+                            <p className="text-3xl md:text-4xl font-cormorant font-bold text-gold-500">100%</p>
                             <p className="text-sm text-gray-500 font-outfit mt-1">{locale === 'es' ? 'Satisfacción del Cliente' : 'Client Satisfaction'}</p>
                         </div>
                     </div>
@@ -122,7 +122,7 @@ export default async function PortfolioPage({
 
                                     {/* Content */}
                                     <div className="p-5">
-                                        <h3 className="text-lg font-playfair font-medium text-navy-900 line-clamp-1 mb-1">
+                                        <h3 className="text-lg font-cormorant font-medium text-navy-900 line-clamp-1 mb-1">
                                             {title}
                                         </h3>
                                         <p className="text-sm text-gray-500 font-outfit flex items-center mb-3">
@@ -143,7 +143,7 @@ export default async function PortfolioPage({
 
                 {/* CTA */}
                 <div className="text-center mt-16 pt-12 border-t border-gray-100">
-                    <h2 className="text-2xl font-playfair font-medium text-navy-900 mb-4">
+                    <h2 className="text-2xl font-cormorant font-medium text-navy-900 mb-4">
                         {locale === 'es' ? '¿Listo para vender su propiedad?' : 'Ready to sell your property?'}
                     </h2>
                     <p className="text-gray-600 font-outfit mb-6 max-w-md mx-auto">

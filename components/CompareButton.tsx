@@ -26,7 +26,7 @@ export default function CompareButton({ property }: { property: IProperty }) {
     return (
         <button
             onClick={toggleCompare}
-            className={`p-2 rounded-full transition-all duration-300 shadow-md backdrop-blur-md border ${isComparing
+            className={`p-3 md:p-2 rounded-full transition-all duration-300 shadow-md backdrop-blur-md border flex items-center justify-center min-w-[44px] min-h-[44px] md:min-w-0 md:min-h-0 ${isComparing
                 ? 'bg-champagne-500 text-navy-900 border-champagne-400'
                 : 'bg-navy-900/40 text-white border-white/20 hover:bg-navy-900/60'
                 }`}
