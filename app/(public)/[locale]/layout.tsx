@@ -10,7 +10,7 @@ import ScrollToTopButton from '@/components/ScrollToTopButton';
 import ExitIntentPopup from '@/components/ExitIntentPopup';
 import LogoReveal from '@/components/LogoReveal';
 import CookieConsent from '@/components/CookieConsent';
-import PropertyCompareModal from '@/components/PropertyCompareModal';
+import CompareDock from '@/components/CompareDock';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import MicrosoftClarity from '@/components/MicrosoftClarity';
@@ -92,7 +92,7 @@ export default async function LocaleLayout({
                     <ScrollToTopButton />
                     <ExitIntentPopup />
                     <CookieConsent />
-                    <PropertyCompareModal />
+                    <CompareDock />
                     <MobileBottomNav />
                     {process.env.NEXT_PUBLIC_GA_ID && (
                         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
