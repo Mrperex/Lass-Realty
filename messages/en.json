@@ -220,6 +220,8 @@
     "Navigation": {
         "home": "Home",
         "properties": "Properties",
+        "blog": "Blog",
+        "neighborhoods": "Neighborhoods",
         "buyingGuide": "Buying Guide",
         "locations": "Locations",
         "about": "About",

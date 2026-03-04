@@ -26,8 +26,9 @@ const Navbar = () => {
                     <nav className="hidden md:flex space-x-8 items-center">
                         <Link href="/" className="text-slate-600 hover:text-champagne-500 font-bold uppercase tracking-widest text-xs transition-colors">{t('home')}</Link>
                         <Link href="/properties" className="text-slate-600 hover:text-champagne-500 font-bold uppercase tracking-widest text-xs transition-colors">{t('properties')}</Link>
+                        <Link href="/blog" className="text-slate-600 hover:text-champagne-500 font-bold uppercase tracking-widest text-xs transition-colors">{t('blog')}</Link>
+                        <Link href="/neighborhoods" className="text-slate-600 hover:text-champagne-500 font-bold uppercase tracking-widest text-xs transition-colors">{t('neighborhoods')}</Link>
                         <Link href="/buying-guide" className="text-slate-600 hover:text-champagne-500 font-bold uppercase tracking-widest text-xs transition-colors">{t('buyingGuide')}</Link>
-                        <Link href="/#locations" className="text-slate-600 hover:text-champagne-500 font-bold uppercase tracking-widest text-xs transition-colors">{t('locations')}</Link>
                         <Link href="/about" className="text-slate-600 hover:text-champagne-500 font-bold uppercase tracking-widest text-xs transition-colors">{t('about')}</Link>
                         <Link href="/contact" className="text-slate-600 hover:text-champagne-500 font-bold uppercase tracking-widest text-xs transition-colors">{t('contact')}</Link>
                     </nav>
@@ -54,8 +55,9 @@ const Navbar = () => {
                 <div className="md:hidden absolute top-20 left-0 w-full bg-white shadow-xl border-t border-slate-100 py-6 flex flex-col px-8 gap-6 z-50">
                     <Link href="/" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('home')}</Link>
                     <Link href="/properties" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('properties')}</Link>
+                    <Link href="/blog" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('blog')}</Link>
+                    <Link href="/neighborhoods" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('neighborhoods')}</Link>
                     <Link href="/buying-guide" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('buyingGuide')}</Link>
-                    <Link href="/#locations" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('locations')}</Link>
                     <Link href="/about" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('about')}</Link>
                     <Link href="/contact" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('contact')}</Link>
                 </div>

@@ -220,6 +220,8 @@
     "Navigation": {
         "home": "Inicio",
         "properties": "Propiedades",
+        "blog": "Blog",
+        "neighborhoods": "Vecindarios",
         "buyingGuide": "Guía de Compra",
         "locations": "Ubicaciones",
         "about": "Nosotros",
