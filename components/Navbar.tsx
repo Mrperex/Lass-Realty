@@ -71,12 +71,14 @@ const Navbar = () => {
                     <div className="flex items-center gap-2 lg:gap-4">
                         {/* Global Settings & Toggles */}
                         <LanguageSwitcher />
-                        <CurrencySelector />
-                        <RecentlyViewedSlider />
-                        <SavedPropertiesSlider />
+                        <div className="hidden sm:flex items-center gap-2 lg:gap-4">
+                            <CurrencySelector />
+                            <RecentlyViewedSlider />
+                            <SavedPropertiesSlider />
+                        </div>
 
                         {/* Mobile Menu Button */}
-                        <div className="lg:hidden flex items-center">
+                        <div className="lg:hidden flex items-center pl-2">
                             <button onClick={() => setIsOpen(!isOpen)} className="text-navy-900 hover:text-champagne-500 focus:outline-none p-2 transition-colors" aria-label="Toggle menu">
                                 {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
                             </button>
@@ -96,6 +98,15 @@ const Navbar = () => {
                     <Link href="/market-reports" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('marketReports')}</Link>
                     <Link href="/about" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('about')}</Link>
                     <Link href="/contact" onClick={() => setIsOpen(false)} className="text-xl text-slate-800 font-bold hover:text-amber-600">{t('contact')}</Link>
+
+                    {/* Mobile Settings Row */}
+                    <div className="sm:hidden mt-2 pt-6 border-t border-slate-100 flex items-center justify-between pb-4">
+                        <CurrencySelector />
+                        <div className="flex items-center gap-4">
+                            <RecentlyViewedSlider />
+                            <SavedPropertiesSlider />
+                        </div>
+                    </div>
                 </div>
             )}
         </header>
