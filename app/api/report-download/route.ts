@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/mongodb';
 import Lead from '@/models/Lead';
+import { syncLeadToHubspot } from '@/lib/hubspot';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,6 +30,14 @@ export async function POST(req: NextRequest) {
                 text: `Lead captured via Market Reports page — report: ${reportId}`,
                 createdAt: new Date(),
             }],
+        });
+
+        // Sync to HubSpot
+        await syncLeadToHubspot({
+            name,
+            email,
+            message: `Requested Market Report: ${reportId}`,
+            source: 'Market Report Download'
         });
 
         return NextResponse.json({ success: true });

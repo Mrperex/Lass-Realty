@@ -3,6 +3,7 @@ import connectToDatabase from '@/lib/mongodb';
 import Lead from '@/models/Lead';
 import { checkRateLimit, leadsRatelimit } from '@/lib/ratelimit';
 import { Resend } from 'resend';
+import { syncLeadToHubspot } from '@/lib/hubspot';
 import * as React from 'react';
 import { LeadAutoReply } from '@/components/emails/LeadAutoReply';
 import { AdminNotification } from '@/components/emails/AdminNotification';
@@ -61,6 +62,14 @@ export async function POST(req: Request) {
                         to: 'pablopok08@gmail.com',
                         subject: `🚨 New Lead: ${name} for ${safePropertyTitle}`,
                         react: React.createElement(AdminNotification, { name, email, phone, message, propertyTitle: safePropertyTitle }),
+                    }),
+                    syncLeadToHubspot({
+                        name,
+                        email,
+                        phone,
+                        message,
+                        propertySlug,
+                        source: 'API/Leads'
                     })
                 ]);
 
@@ -75,6 +84,16 @@ export async function POST(req: Request) {
 
             return NextResponse.json({ success: true, lead, emailErrors }, { status: 201 });
         }
+
+        // If no RESEND_API_KEY, still sync to HubSpot
+        await syncLeadToHubspot({
+            name,
+            email,
+            phone,
+            message,
+            propertySlug,
+            source: 'API/Leads'
+        });
 
         return NextResponse.json({ success: true, lead }, { status: 201 });
     } catch (error: any) {
