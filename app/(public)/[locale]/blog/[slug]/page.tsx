@@ -157,13 +157,15 @@ export default async function BlogPostPage({
 
                 {/* Content — rendered as HTML from markdown */}
                 <div
-                    className="prose prose-lg prose-slate max-w-none font-outfit
-                        prose-headings:font-playfair prose-headings:text-navy-900
-                        prose-p:text-gray-700 prose-p:leading-relaxed
-                        prose-strong:text-navy-900
-                        prose-li:text-gray-700
-                        prose-a:text-gold-500 prose-a:underline-offset-4
-                        prose-img:rounded-sm prose-img:shadow-md"
+                    className="max-w-none font-outfit text-gray-700 text-lg leading-relaxed
+                        [&_h1]:font-playfair [&_h1]:text-[#0a1128] [&_h1]:text-3xl [&_h1]:font-medium [&_h1]:mt-8 [&_h1]:mb-4
+                        [&_h2]:font-playfair [&_h2]:text-[#0a1128] [&_h2]:text-2xl [&_h2]:font-medium [&_h2]:mt-8 [&_h2]:mb-4
+                        [&_h3]:font-playfair [&_h3]:text-[#0a1128] [&_h3]:text-xl [&_h3]:font-medium [&_h3]:mt-6 [&_h3]:mb-3
+                        [&_p]:mb-4 [&_p]:text-gray-700
+                        [&_strong]:text-[#0a1128] [&_strong]:font-semibold
+                        [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ul]:space-y-2
+                        [&_li]:text-gray-700
+                        [&_a]:text-blue-600 [&_a]:underline"
                     dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />
 
