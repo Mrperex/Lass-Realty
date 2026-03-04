@@ -8,13 +8,7 @@ import Property from '@/models/Property';
 import { LOCATIONS } from '@/lib/locations';
 import SearchFilters from '@/components/SearchFilters';
 import { getTranslations } from 'next-intl/server';
-import dynamic from 'next/dynamic';
 import WhyLassRealty from '@/components/WhyLassRealty';
-
-const PropertyMap = dynamic(() => import('@/components/PropertyMap'), {
-    ssr: false,
-    loading: () => <div className="h-[600px] w-full bg-slate-100 animate-pulse rounded-3xl border border-slate-200" />
-});
 
 export const revalidate = 3600;
 
@@ -209,26 +203,6 @@ export default async function Home() {
                                 <div className="text-slate-500 text-sm">{t('locations.viewProperties')}</div>
                             </Link>
                         ))}
-                    </div>
-
-                    {/* Interactive Luxury Map */}
-                    <div className="mt-16 bg-navy-900 rounded-[2.5rem] p-4 sm:p-6 lg:p-10 shadow-2xl relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-champagne-500/10 to-transparent pointer-events-none" />
-                        <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-champagne-500/20 blur-[100px] pointer-events-none rounded-full" />
-
-                        <div className="relative z-10 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                            <div>
-                                <div className="text-champagne-500 font-bold uppercase tracking-widest text-sm mb-2">{t('locations.mapSubtitle', { fallback: 'Explore the Map' })}</div>
-                                <h3 className="text-3xl font-playfair font-bold text-white">{t('locations.mapTitle', { fallback: 'Dominican Republic Real Estate' })}</h3>
-                            </div>
-                            <Link href="/map" className="text-champagne-400 font-bold hover:text-white transition-colors flex items-center gap-2">
-                                {t('locations.viewFullMap', { fallback: 'View Full Map' })} <ArrowRight className="w-4 h-4" />
-                            </Link>
-                        </div>
-
-                        <div className="relative z-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                            <PropertyMap properties={featuredProperties} />
-                        </div>
                     </div>
                 </div>
             </section>
