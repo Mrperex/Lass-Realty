@@ -30,7 +30,7 @@ export default function WhatsAppButton() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-6 md:bottom-24 right-6 z-[60] bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20bd5a] hover:scale-110 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center group"
+            className="fixed bottom-24 right-5 z-[60] bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20bd5a] hover:scale-110 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center group"
             aria-label={t('whatsappAria')}
         >
             <MessageCircle className="w-8 h-8" />
