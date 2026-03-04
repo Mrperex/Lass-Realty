@@ -1,3 +1,5 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
 import { Award, ShieldCheck, Key, TrendingUp, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';

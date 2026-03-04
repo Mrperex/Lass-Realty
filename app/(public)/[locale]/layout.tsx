@@ -11,7 +11,6 @@ import ExitIntentPopup from '@/components/ExitIntentPopup';
 import LogoReveal from '@/components/LogoReveal';
 import CookieConsent from '@/components/CookieConsent';
 import CompareDock from '@/components/CompareDock';
-import CustomCursor from '@/components/CustomCursor';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import MicrosoftClarity from '@/components/MicrosoftClarity';
@@ -87,7 +86,6 @@ export default async function LocaleLayout({
                     Skip to content
                 </a>
                 <NextIntlClientProvider locale={locale} messages={messages}>
-                    <CustomCursor />
                     <LogoReveal />
                     <Navbar />
                     <main id="main-content" className="flex-grow">

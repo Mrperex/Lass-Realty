@@ -3,17 +3,7 @@
 @tailwind utilities;
 
 html {
-  cursor: none;
   font-size: clamp(16px, 1.2vw, 18px);
-}
-
-a,
-button,
-[role="button"],
-input,
-select,
-textarea {
-  cursor: none;
 }
 
 body {
