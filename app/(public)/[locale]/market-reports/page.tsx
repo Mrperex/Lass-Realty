@@ -7,14 +7,10 @@ export async function generateMetadata({
 }: {
     params: { locale: string }
 }): Promise<Metadata> {
-    const isEs = locale === 'es';
+    const t = await getTranslations({ locale, namespace: 'MarketReports' });
     return {
-        title: isEs
-            ? 'Informes del Mercado | LASS Realty'
-            : 'Market Reports | LASS Realty',
-        description: isEs
-            ? 'Descargue informes gratuitos sobre el mercado inmobiliario de Punta Cana. Tendencias, rendimientos de alquiler y guías para compradores extranjeros.'
-            : 'Download free Punta Cana real estate market reports. Trends, rental yields, and guides for foreign buyers.',
+        title: `${t('title')} | LASS Realty`,
+        description: t('description'),
     };
 }
 
@@ -59,7 +55,7 @@ export default async function MarketReportsPage({
 }: {
     params: { locale: string }
 }) {
-    const isEs = locale === 'es';
+    const t = await getTranslations('MarketReports');
 
     return (
         <main className="min-h-screen bg-slate-50 pt-32 pb-24">
@@ -67,12 +63,10 @@ export default async function MarketReportsPage({
                 {/* Header */}
                 <div className="max-w-3xl mb-16">
                     <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-[#0a1128] mb-6">
-                        {isEs ? 'Informes del Mercado' : 'Market Reports'}
+                        {t('title')}
                     </h1>
                     <p className="text-lg text-gray-600 font-outfit">
-                        {isEs
-                            ? 'Descargue informes gratuitos con datos exclusivos sobre el mercado inmobiliario de Punta Cana. Ingrese su correo electrónico para acceder a nuestros análisis detallados.'
-                            : 'Download free reports with exclusive data on the Punta Cana real estate market. Enter your email to access our detailed analyses.'}
+                        {t('description')}
                     </p>
                 </div>
 
@@ -90,9 +84,7 @@ export default async function MarketReportsPage({
                 {/* Trust Badges */}
                 <div className="mt-16 text-center">
                     <p className="text-sm text-gray-400 font-outfit">
-                        {isEs
-                            ? '📊 Datos actualizados trimestralmente • 🔒 Su información está segura • ✉️ Sin spam, lo prometemos'
-                            : '📊 Data updated quarterly • 🔒 Your information is secure • ✉️ No spam, we promise'}
+                        {t('trustBadges')}
                     </p>
                 </div>
             </div>

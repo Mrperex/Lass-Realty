@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { Download } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 type ReportProps = {
     report: {
@@ -21,6 +22,7 @@ type ReportProps = {
 
 export default function ReportCard({ report, locale }: ReportProps) {
     const isEs = locale === 'es';
+    const t = useTranslations('MarketReports');
     const [isHovered, setIsHovered] = useState(false);
 
     const title = isEs ? report.title_es : report.title;
@@ -59,11 +61,11 @@ export default function ReportCard({ report, locale }: ReportProps) {
 
                 <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 font-outfit">
                     <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest">
-                        {report.pages} {isEs ? 'Páginas' : 'Pages'}
+                        {report.pages} {t('pages')}
                     </span>
 
                     <button className="flex items-center gap-2 text-sm font-bold text-champagne-600 hover:text-champagne-500 transition-colors uppercase tracking-widest">
-                        {isEs ? 'Descargar' : 'Download'}
+                        {t('download')}
                         <Download className="w-4 h-4 transition-transform group-hover:translate-y-1" />
                     </button>
                 </div>

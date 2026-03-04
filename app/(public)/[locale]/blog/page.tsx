@@ -13,7 +13,7 @@ export default async function BlogIndexPage({
 }: {
     params: { locale: string }
 }) {
-    // locale obtained from params directly
+    const t = await getTranslations('Blog');
 
     await connectToDatabase();
     // Fetch all posts, sort by newest
@@ -28,12 +28,10 @@ export default async function BlogIndexPage({
                 {/* Header */}
                 <div className="max-w-3xl mb-16">
                     <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-navy-900 mb-6">
-                        {locale === 'es' ? 'Noticias y Mercado' : 'Market Insights & News'}
+                        {t('title')}
                     </h1>
                     <p className="text-lg text-gray-600 font-outfit">
-                        {locale === 'es'
-                            ? 'Descubra las últimas tendencias del mercado inmobiliario, guías de compra de lujo y actualizaciones exclusivas de República Dominicana.'
-                            : 'Discover the latest real estate market trends, luxury buying guides, and exclusive updates from the Dominican Republic.'}
+                        {t('description')}
                     </p>
                 </div>
 
@@ -41,7 +39,7 @@ export default async function BlogIndexPage({
                 {posts.length === 0 ? (
                     <div className="text-center py-20 bg-white shadow-sm border border-gray-100">
                         <p className="text-gray-500 font-outfit">
-                            {locale === 'es' ? 'No hay artículos publicados todavía.' : 'No articles published yet.'}
+                            {t('noArticles')}
                         </p>
                     </div>
                 ) : (
@@ -106,7 +104,7 @@ export default async function BlogIndexPage({
                                         </p>
 
                                         <div className="flex items-center text-sm font-semibold text-gold-500 font-outfit tracking-wide uppercase mt-auto group-hover:text-gold-600 transition-colors">
-                                            {locale === 'es' ? 'Leer Más' : 'Read Article'}
+                                            {t('readArticle')}
                                             <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
                                         </div>
                                     </div>

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { MapPin, Trophy, DollarSign, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
 export const revalidate = 60;
 
@@ -12,11 +13,10 @@ export async function generateMetadata({
 }: {
     params: { locale: string }
 }): Promise<Metadata> {
+    const t = await getTranslations({ locale, namespace: 'Portfolio' });
     return {
-        title: locale === 'es' ? 'Nuestro Portafolio | LASS Realty' : 'Our Portfolio | LASS Realty',
-        description: locale === 'es'
-            ? 'Explore nuestras propiedades vendidas y los precios logrados. Resultados comprobados en bienes raíces de lujo en República Dominicana.'
-            : 'Explore our sold properties and achieved prices. Proven results in luxury Dominican Republic real estate.',
+        title: t('pageTitle'),
+        description: t('description'),
     };
 }
 
@@ -25,6 +25,7 @@ export default async function PortfolioPage({
 }: {
     params: { locale: string }
 }) {
+    const t = await getTranslations('Portfolio');
     await connectToDatabase();
 
     // Fetch all sold properties
@@ -42,15 +43,13 @@ export default async function PortfolioPage({
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <div className="inline-flex items-center bg-gold-500/10 text-gold-600 px-4 py-2 rounded-full mb-6 font-outfit font-semibold text-sm tracking-wider uppercase">
                         <Trophy className="w-4 h-4 mr-2" />
-                        {locale === 'es' ? 'Resultados Comprobados' : 'Proven Results'}
+                        {t('provenResults')}
                     </div>
                     <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-navy-900 mb-6">
-                        {locale === 'es' ? 'Nuestro Portafolio' : 'Our Portfolio'}
+                        {t('title')}
                     </h1>
                     <p className="text-lg text-gray-600 font-outfit">
-                        {locale === 'es'
-                            ? 'Cada transacción representa la confianza de nuestros clientes y los resultados excepcionales que ofrecemos en el mercado inmobiliario de lujo.'
-                            : 'Every transaction represents our clients\' trust and the exceptional results we deliver in the luxury real estate market.'}
+                        {t('description')}
                     </p>
                 </div>
 
@@ -59,11 +58,11 @@ export default async function PortfolioPage({
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-16 max-w-2xl mx-auto">
                         <div className="text-center p-6 bg-slate-50 border border-gray-100">
                             <p className="text-3xl md:text-4xl font-cormorant font-bold text-navy-900">{totalSold}</p>
-                            <p className="text-sm text-gray-500 font-outfit mt-1">{locale === 'es' ? 'Propiedades Vendidas' : 'Properties Sold'}</p>
+                            <p className="text-sm text-gray-500 font-outfit mt-1">{t('propertiesSold')}</p>
                         </div>
                         <div className="text-center p-6 bg-slate-50 border border-gray-100">
                             <p className="text-3xl md:text-4xl font-cormorant font-bold text-navy-900">${(totalValue / 1000000).toFixed(1)}M</p>
-                            <p className="text-sm text-gray-500 font-outfit mt-1">{locale === 'es' ? 'Valor Total Transado' : 'Total Value Transacted'}</p>
+                            <p className="text-sm text-gray-500 font-outfit mt-1">{t('totalValue')}</p>
                         </div>
                         <div className="text-center p-6 bg-slate-50 border border-gray-100 col-span-2 md:col-span-1">
                             <p className="text-3xl md:text-4xl font-cormorant font-bold text-gold-500">100%</p>

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Calendar, User, ArrowLeft } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
 export const revalidate = 60;
 
@@ -75,6 +76,7 @@ export default async function BlogPostPage({
 }: {
     params: { locale: string; slug: string }
 }) {
+    const t = await getTranslations('Blog');
     await connectToDatabase();
     const rawPost = await Post.findOne({ slug }).lean();
     if (!rawPost) notFound();
@@ -176,7 +178,7 @@ export default async function BlogPostPage({
                         className="flex items-center text-navy-900 hover:text-gold-500 transition-colors font-outfit text-sm font-semibold uppercase tracking-wider"
                     >
                         <ArrowLeft className="w-4 h-4 mr-2" />
-                        {locale === 'es' ? 'Volver al Blog' : 'Back to Blog'}
+                        {t('backToBlog')}
                     </Link>
                 </div>
             </article>
@@ -185,7 +187,7 @@ export default async function BlogPostPage({
             {relatedPosts.length > 0 && (
                 <section className="max-w-7xl mx-auto px-6 lg:px-8 mt-24">
                     <h2 className="text-2xl md:text-3xl font-cormorant font-medium text-navy-900 mb-8">
-                        {locale === 'es' ? 'Artículos Relacionados' : 'Related Articles'}
+                        {t('relatedArticles')}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {relatedPosts.map((related: any) => {

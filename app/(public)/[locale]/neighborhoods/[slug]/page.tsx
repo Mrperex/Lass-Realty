@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { MapPin, DollarSign, ArrowLeft, CheckCircle2, Home } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
 export const revalidate = 60;
 
@@ -24,6 +25,7 @@ export async function generateMetadata({
     const name = (locale === 'es' && n.name_es) ? n.name_es : n.name;
     const description = (locale === 'es' && n.description_es) ? n.description_es : n.description;
 
+    // We can't await inside generateMetadata safely right now without breaking the signature, so just fallback for SEO title
     return {
         title: `${name} — ${locale === 'es' ? 'Guía del Vecindario' : 'Neighborhood Guide'} | LASS Realty`,
         description: description?.substring(0, 160),
@@ -40,7 +42,7 @@ export default async function NeighborhoodDetailPage({
 }: {
     params: { locale: string; slug: string }
 }) {
-
+    const t = await getTranslations('Neighborhoods');
 
     await connectToDatabase();
     const rawNeighborhood = await Neighborhood.findOne({ slug }).lean();
@@ -83,7 +85,7 @@ export default async function NeighborhoodDetailPage({
                         className="text-white/70 hover:text-white text-sm font-outfit mb-4 inline-flex items-center transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4 mr-2" />
-                        {locale === 'es' ? 'Todos los Vecindarios' : 'All Neighborhoods'}
+                        {t('allNeighborhoods')}
                     </Link>
                     <h1 className="text-4xl md:text-6xl font-cormorant font-medium text-white leading-tight mt-2">
                         {name}
@@ -91,7 +93,7 @@ export default async function NeighborhoodDetailPage({
                     {n.averagePrice > 0 && (
                         <div className="flex items-center mt-4 text-white/80 font-outfit text-lg">
                             <DollarSign className="w-5 h-5 mr-2 text-gold-500" />
-                            {locale === 'es' ? 'Precio promedio: ' : 'Average price: '}
+                            {t('avgPrice')}
                             <span className="font-semibold text-gold-500 ml-1">
                                 ${n.averagePrice.toLocaleString()}
                             </span>
@@ -107,7 +109,7 @@ export default async function NeighborhoodDetailPage({
                     {/* Main Description */}
                     <div className="lg:col-span-2">
                         <h2 className="text-2xl font-cormorant font-medium text-navy-900 mb-6">
-                            {locale === 'es' ? 'Sobre esta Comunidad' : 'About this Community'}
+                            {t('aboutCommunity')}
                         </h2>
                         <div className="space-y-4 font-outfit text-gray-700 leading-relaxed text-lg">
                             {description?.split('\n\n').map((paragraph: string, index: number) => (
@@ -121,7 +123,7 @@ export default async function NeighborhoodDetailPage({
                         {highlights?.length > 0 && (
                             <div className="bg-slate-50 border border-gray-100 p-8 sticky top-32">
                                 <h3 className="text-lg font-cormorant font-medium text-navy-900 mb-6 pb-4 border-b border-gray-200">
-                                    {locale === 'es' ? 'Aspectos Destacados' : 'Key Highlights'}
+                                    {t('keyHighlights')}
                                 </h3>
                                 <ul className="space-y-4">
                                     {highlights.map((highlight: string, index: number) => (
@@ -158,7 +160,7 @@ export default async function NeighborhoodDetailPage({
                                 href={`/${locale}/properties?location=${slug}`}
                                 className="mt-4 md:mt-0 bg-navy-900 hover:bg-navy-800 text-white px-6 py-3 text-sm font-outfit uppercase tracking-wider transition-colors"
                             >
-                                {locale === 'es' ? 'Ver Todas las Propiedades' : 'View All Properties'}
+                                {t('viewAllProperties')}
                             </Link>
                         </div>
 
@@ -198,8 +200,8 @@ export default async function NeighborhoodDetailPage({
                                                 {(locale === 'es' && property.city_es) ? property.city_es : property.city}
                                             </p>
                                             <div className="flex items-center gap-4 mt-3 text-xs text-gray-500 font-outfit">
-                                                <span>{property.bedrooms} {locale === 'es' ? 'Hab' : 'Beds'}</span>
-                                                <span>{property.bathrooms} {locale === 'es' ? 'Baños' : 'Baths'}</span>
+                                                <span>{property.bedrooms} {t('beds')}</span>
+                                                <span>{property.bathrooms} {t('baths')}</span>
                                                 <span>{property.squareMeters} m²</span>
                                             </div>
                                         </div>

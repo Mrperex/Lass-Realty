@@ -4,6 +4,7 @@ import Neighborhood from '@/models/Neighborhood';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MapPin, DollarSign, ArrowRight } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 
 export const revalidate = 60;
 
@@ -12,6 +13,7 @@ export default async function NeighborhoodsIndexPage({
 }: {
     params: { locale: string }
 }) {
+    const t = await getTranslations('Neighborhoods');
 
 
     await connectToDatabase();
@@ -24,12 +26,10 @@ export default async function NeighborhoodsIndexPage({
                 {/* Header */}
                 <div className="max-w-3xl mb-16">
                     <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-navy-900 mb-6">
-                        {locale === 'es' ? 'Guías de Vecindarios' : 'Neighborhood Guides'}
+                        {t('title')}
                     </h1>
                     <p className="text-lg text-gray-600 font-outfit">
-                        {locale === 'es'
-                            ? 'Explore las comunidades de lujo más exclusivas de la República Dominicana. Cada guía incluye precios promedio, highlights y listados activos de propiedades.'
-                            : 'Explore the most exclusive luxury communities in the Dominican Republic. Each guide includes average prices, key highlights, and active property listings.'}
+                        {t('description')}
                     </p>
                 </div>
 
@@ -37,7 +37,7 @@ export default async function NeighborhoodsIndexPage({
                 {neighborhoods.length === 0 ? (
                     <div className="text-center py-20 bg-white shadow-sm border border-gray-100">
                         <p className="text-gray-500 font-outfit">
-                            {locale === 'es' ? 'No hay guías publicadas todavía.' : 'No neighborhood guides published yet.'}
+                            {t('noGuides')}
                         </p>
                     </div>
                 ) : (
@@ -81,7 +81,7 @@ export default async function NeighborhoodsIndexPage({
                                         {n.averagePrice > 0 && (
                                             <div className="flex items-center text-sm text-gray-500 font-outfit mb-3">
                                                 <DollarSign className="w-4 h-4 mr-1 text-gold-500" />
-                                                {locale === 'es' ? 'Precio promedio: ' : 'Avg. price: '}
+                                                {t('avgPrice')}
                                                 <span className="font-semibold text-navy-900 ml-1">
                                                     ${n.averagePrice.toLocaleString()}
                                                 </span>
@@ -104,7 +104,7 @@ export default async function NeighborhoodsIndexPage({
                                         )}
 
                                         <div className="flex items-center text-sm font-semibold text-gold-500 font-outfit tracking-wide uppercase mt-auto group-hover:text-gold-600 transition-colors">
-                                            {locale === 'es' ? 'Explorar Guía' : 'Explore Guide'}
+                                            {t('exploreGuide')}
                                             <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
                                         </div>
                                     </div>
