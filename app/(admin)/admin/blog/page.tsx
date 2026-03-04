@@ -22,9 +22,9 @@ export default async function AdminBlogPage() {
                 </div>
                 <Link
                     href="/admin/blog/new"
-                    className="mt-4 sm:mt-0 flex items-center bg-gold-500 hover:bg-gold-600 text-white px-4 py-2 text-sm uppercase tracking-wider rounded-none transition-colors"
+                    className="mt-4 sm:mt-0 flex items-center bg-navy-900 hover:bg-navy-800 text-white px-5 py-3 text-sm font-bold uppercase tracking-wider transition-colors shadow-md"
                 >
-                    <PlusCircle className="w-4 h-4 mr-2" />
+                    <PlusCircle className="w-5 h-5 mr-2" />
                     Write New Post
                 </Link>
             </div>
