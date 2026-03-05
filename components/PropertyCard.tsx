@@ -47,7 +47,7 @@ export default function PropertyCard({ property }: { property: IProperty }) {
                 </div>
 
                 <div className="pt-8 px-4 sm:px-8 bg-gradient-to-t from-white via-white to-transparent">
-                    <h3 className="font-cormorant text-2xl md:text-3xl font-bold text-navy-900 mb-4 truncate group-hover:text-champagne-500 transition-colors duration-500 min-h-[48px] flex items-center">
+                    <h3 className="font-cormorant text-2xl md:text-3xl font-bold text-navy-900 mb-4 line-clamp-2 leading-snug group-hover:text-champagne-500 transition-colors duration-500 min-h-[64px] flex items-center">
                         {title}
                     </h3>
                     <div className="flex items-center text-slate-500 text-sm mb-5 font-outfit uppercase tracking-wider text-xs font-semibold">
