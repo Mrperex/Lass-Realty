@@ -72,7 +72,7 @@ export default function SearchFilters() {
                 <div className="flex flex-col md:flex-row gap-5 items-end w-full">
                     <div className="w-full md:w-1/4">
                         <label className="block text-xs font-bold text-champagne-400 uppercase tracking-widest mb-2">{t('location')}</label>
-                        <select value={city} onChange={e => setCity(e.target.value)} className="w-full px-5 py-3.5 border border-white/10 rounded-xl bg-navy-900/60 text-white focus:ring-2 focus:ring-champagne-500 outline-none transition-all placeholder:text-slate-400">
+                        <select aria-label="Select city" value={city} onChange={e => setCity(e.target.value)} className="w-full px-5 py-3.5 border border-white/10 rounded-xl bg-navy-900/60 text-white focus:ring-2 focus:ring-champagne-500 outline-none transition-all placeholder:text-slate-400">
                             <option value="" className="bg-navy-900">{t('allLocations')}</option>
                             <option value="punta-cana" className="bg-navy-900">{t('puntaCana')}</option>
                             <option value="cap-cana" className="bg-navy-900">{t('capCana')}</option>
@@ -83,7 +83,7 @@ export default function SearchFilters() {
 
                     <div className="w-full md:w-1/4">
                         <label className="block text-xs font-bold text-champagne-400 uppercase tracking-widest mb-2">{t('status')}</label>
-                        <select value={status} onChange={e => setStatus(e.target.value)} className="w-full px-5 py-3.5 border border-white/10 rounded-xl bg-navy-900/60 text-white focus:ring-2 focus:ring-champagne-500 outline-none transition-all">
+                        <select aria-label="Select status" value={status} onChange={e => setStatus(e.target.value)} className="w-full px-5 py-3.5 border border-white/10 rounded-xl bg-navy-900/60 text-white focus:ring-2 focus:ring-champagne-500 outline-none transition-all">
                             <option value="" className="bg-navy-900">{t('buyAndRent')}</option>
                             <option value="for-sale" className="bg-navy-900">{t('forSale')}</option>
                             <option value="for-rent" className="bg-navy-900">{t('forRent')}</option>
@@ -92,7 +92,7 @@ export default function SearchFilters() {
 
                     <div className="w-full md:w-1/4">
                         <label className="block text-xs font-bold text-champagne-400 uppercase tracking-widest mb-2">{t('propertyType')}</label>
-                        <select value={propertyType} onChange={e => setPropertyType(e.target.value)} className="w-full px-5 py-3.5 border border-white/10 rounded-xl bg-navy-900/60 text-white focus:ring-2 focus:ring-champagne-500 outline-none transition-all">
+                        <select aria-label="Select property type" value={propertyType} onChange={e => setPropertyType(e.target.value)} className="w-full px-5 py-3.5 border border-white/10 rounded-xl bg-navy-900/60 text-white focus:ring-2 focus:ring-champagne-500 outline-none transition-all">
                             <option value="" className="bg-navy-900">{t('anyType')}</option>
                             <option value="villa" className="bg-navy-900">{t('villa')}</option>
                             <option value="condo" className="bg-navy-900">{t('condo')}</option>
@@ -127,7 +127,7 @@ export default function SearchFilters() {
                             {/* Sliders / Selects */}
                             <div>
                                 <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">{t('sortBy', { fallback: 'Sort By' })}</label>
-                                <select value={sort} onChange={e => setSort(e.target.value)} className="w-full px-4 py-2.5 text-sm border border-white/10 rounded-lg bg-navy-900/40 text-white focus:ring-2 focus:ring-champagne-500 outline-none">
+                                <select aria-label="Sort by" value={sort} onChange={e => setSort(e.target.value)} className="w-full px-4 py-2.5 text-sm border border-white/10 rounded-lg bg-navy-900/40 text-white focus:ring-2 focus:ring-champagne-500 outline-none">
                                     <option value="newest" className="bg-navy-900">{t('newest', { fallback: 'Newest First' })}</option>
                                     <option value="price-asc" className="bg-navy-900">{t('priceAsc', { fallback: 'Price (Low to High)' })}</option>
                                     <option value="price-desc" className="bg-navy-900">{t('priceDesc', { fallback: 'Price (High to Low)' })}</option>
@@ -136,7 +136,7 @@ export default function SearchFilters() {
                             </div>
                             <div>
                                 <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">{t('minPrice')}</label>
-                                <select value={minPrice} onChange={e => setMinPrice(e.target.value)} className="w-full px-4 py-2.5 text-sm border border-white/10 rounded-lg bg-navy-900/40 text-white focus:ring-2 focus:ring-champagne-500 outline-none">
+                                <select aria-label="Minimum price" value={minPrice} onChange={e => setMinPrice(e.target.value)} className="w-full px-4 py-2.5 text-sm border border-white/10 rounded-lg bg-navy-900/40 text-white focus:ring-2 focus:ring-champagne-500 outline-none">
                                     <option value="" className="bg-navy-900">{t('noMin')}</option>
                                     <option value="2000" className="bg-navy-900">$2,000 ({t('rentals')})</option>
                                     <option value="5000" className="bg-navy-900">$5,000 ({t('rentals')})</option>
@@ -147,7 +147,7 @@ export default function SearchFilters() {
                             </div>
                             <div>
                                 <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">{t('maxPrice')}</label>
-                                <select value={maxPrice} onChange={e => setMaxPrice(e.target.value)} className="w-full px-4 py-2.5 text-sm border border-white/10 rounded-lg bg-navy-900/40 text-white focus:ring-2 focus:ring-champagne-500 outline-none">
+                                <select aria-label="Maximum price" value={maxPrice} onChange={e => setMaxPrice(e.target.value)} className="w-full px-4 py-2.5 text-sm border border-white/10 rounded-lg bg-navy-900/40 text-white focus:ring-2 focus:ring-champagne-500 outline-none">
                                     <option value="" className="bg-navy-900">{t('noMax')}</option>
                                     <option value="5000" className="bg-navy-900">$5,000 ({t('rentals')})</option>
                                     <option value="10000" className="bg-navy-900">$10,000 ({t('rentals')})</option>
@@ -158,7 +158,7 @@ export default function SearchFilters() {
                             </div>
                             <div>
                                 <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">{t('bedrooms')}</label>
-                                <select value={beds} onChange={e => setBeds(e.target.value)} className="w-full px-4 py-2.5 text-sm border border-white/10 rounded-lg bg-navy-900/40 text-white focus:ring-2 focus:ring-champagne-500 outline-none">
+                                <select aria-label="Minimum bedrooms" value={beds} onChange={e => setBeds(e.target.value)} className="w-full px-4 py-2.5 text-sm border border-white/10 rounded-lg bg-navy-900/40 text-white focus:ring-2 focus:ring-champagne-500 outline-none">
                                     <option value="" className="bg-navy-900">{t('any')}</option>
                                     <option value="1" className="bg-navy-900">1+</option>
                                     <option value="2" className="bg-navy-900">2+</option>
@@ -168,7 +168,7 @@ export default function SearchFilters() {
                             </div>
                             <div>
                                 <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">{t('bathrooms')}</label>
-                                <select value={baths} onChange={e => setBaths(e.target.value)} className="w-full px-4 py-2.5 text-sm border border-white/10 rounded-lg bg-navy-900/40 text-white focus:ring-2 focus:ring-champagne-500 outline-none">
+                                <select aria-label="Minimum bathrooms" value={baths} onChange={e => setBaths(e.target.value)} className="w-full px-4 py-2.5 text-sm border border-white/10 rounded-lg bg-navy-900/40 text-white focus:ring-2 focus:ring-champagne-500 outline-none">
                                     <option value="" className="bg-navy-900">{t('any')}</option>
                                     <option value="1" className="bg-navy-900">1+</option>
                                     <option value="2" className="bg-navy-900">2+</option>

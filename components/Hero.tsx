@@ -57,7 +57,8 @@ export default function Hero() {
                     muted
                     playsInline
                     className="w-full h-full object-cover scale-105"
-                    poster="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80"
+                    poster="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=1920"
+                    aria-hidden="true"
                 >
                     <source src={VIDEO_URL} type="video/mp4" />
                 </video>

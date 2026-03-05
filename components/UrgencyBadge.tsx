@@ -52,7 +52,7 @@ export default function UrgencyBadge({ slug }: { slug: string }) {
 
     if (urgencyData.type === 'rare') {
         return (
-            <div className="absolute top-4 left-4 z-20 bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-lg backdrop-blur-md border border-white/20 animate-in fade-in duration-500 font-outfit">
+            <div className="absolute top-4 left-4 z-20 bg-emerald-700 text-white px-3 py-1.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-lg backdrop-blur-md border border-white/20 animate-in fade-in duration-500 font-outfit">
                 <Clock className="w-3.5 h-3.5" />
                 {t('rareFind', { fallback: 'Rare Find' })}
             </div>

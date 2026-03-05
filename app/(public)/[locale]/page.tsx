@@ -103,7 +103,7 @@ export default async function Home() {
                                     <Image src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256&h=256" alt="Michael R." fill className="object-cover" sizes="48px" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-slate-900">Michael R.</h4>
+                                    <h3 className="font-bold text-slate-900">Michael R.</h3>
                                     <p className="text-sm text-slate-500">{t('testimonials.t1.role')}</p>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@ export default async function Home() {
                                     <Image src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256&h=256" alt="Sarah Jenks" fill className="object-cover" sizes="48px" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-slate-900">Sarah Jenks</h4>
+                                    <h3 className="font-bold text-slate-900">Sarah Jenks</h3>
                                     <p className="text-sm text-slate-500">{t('testimonials.t2.role')}</p>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@ export default async function Home() {
                                     <Image src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=256&h=256" alt="David T." fill className="object-cover" sizes="48px" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-slate-900">David T.</h4>
+                                    <h3 className="font-bold text-slate-900">David T.</h3>
                                     <p className="text-sm text-slate-500">{t('testimonials.t3.role')}</p>
                                 </div>
                             </div>

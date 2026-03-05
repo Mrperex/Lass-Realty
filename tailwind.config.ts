@@ -17,6 +17,8 @@ const config: Config = {
           700: '#262626', // Lighter grey
         },
         champagne: {
+          700: '#A88523', // Dark gold for high contrast text
+          600: '#C5A02E', // Darker gold hover
           500: '#D4AF37', // True Antique Gold
           400: '#E6C762', // Lighter gold hover
           300: '#F3E19C', // Faint gold 

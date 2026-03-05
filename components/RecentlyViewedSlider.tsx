@@ -51,6 +51,7 @@ export default function RecentlyViewedSlider() {
                     <button
                         onClick={() => setIsOpen(false)}
                         className="p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-500 hover:text-slate-900"
+                        aria-label="Close recently viewed"
                     >
                         <X className="w-6 h-6" />
                     </button>
