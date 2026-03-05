@@ -5,6 +5,7 @@ import { useRouter } from '@/navigation';
 import { useState } from 'react';
 import { Search, SlidersHorizontal, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { LOCATIONS } from '@/lib/locations';
 
 export default function SearchFilters() {
     const router = useRouter();
@@ -74,10 +75,11 @@ export default function SearchFilters() {
                         <label className="block text-xs font-bold text-champagne-400 uppercase tracking-widest mb-2">{t('location')}</label>
                         <select aria-label="Select city" value={city} onChange={e => setCity(e.target.value)} className="w-full px-5 py-3.5 border border-white/10 rounded-xl bg-navy-900/60 text-white focus:ring-2 focus:ring-champagne-500 outline-none transition-all placeholder:text-slate-400">
                             <option value="" className="bg-navy-900">{t('allLocations')}</option>
-                            <option value="punta-cana" className="bg-navy-900">{t('puntaCana')}</option>
-                            <option value="cap-cana" className="bg-navy-900">{t('capCana')}</option>
-                            <option value="bavaro" className="bg-navy-900">{t('bavaro')}</option>
-                            <option value="macao" className="bg-navy-900">{t('macao')}</option>
+                            {LOCATIONS.sort((a, b) => b.priority ? 1 : a.name.localeCompare(b.name)).map(loc => (
+                                <option key={loc.slug} value={loc.slug} className="bg-navy-900">
+                                    {loc.name}
+                                </option>
+                            ))}
                         </select>
                     </div>
 

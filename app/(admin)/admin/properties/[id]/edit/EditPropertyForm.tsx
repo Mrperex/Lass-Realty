@@ -5,6 +5,7 @@ import { updateProperty } from '../../actions';
 import { useFormState, useFormStatus } from 'react-dom';
 import Link from 'next/link';
 import { ArrowLeft, Save, UploadCloud, X } from 'lucide-react';
+import { LOCATIONS } from '@/lib/locations';
 
 const initialState = {
     error: '',
@@ -262,7 +263,12 @@ export default function EditPropertyForm({ property }: { property: any }) {
 
                             <div>
                                 <label htmlFor="city" className="block text-sm font-medium text-slate-700 mb-1">Location City (English)</label>
-                                <input type="text" id="city" name="city" defaultValue={property.city} required className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow" />
+                                <select id="city" name="city" defaultValue={property.city} required className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow bg-white">
+                                    <option value="">Select a City</option>
+                                    {LOCATIONS.map((loc: { slug: string, name: string }) => (
+                                        <option key={loc.slug} value={loc.name}>{loc.name}</option>
+                                    ))}
+                                </select>
                             </div>
 
                             <div>

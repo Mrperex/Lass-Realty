@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
+import { pipeline } from 'stream/promises';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 
@@ -58,6 +60,47 @@ const LAND_IMAGES = [
     'https://images.unsplash.com/photo-1557008075-7f2c5efa4cb7?q=80&w=2670&auto=format&fit=crop',
     'https://images.unsplash.com/photo-1586500036706-41963de24d8b?q=80&w=2670&auto=format&fit=crop'
 ];
+
+async function downloadImage(url: string, prefix: string, index: number): Promise<string> {
+    const dir = path.resolve(process.cwd(), 'public/images/properties');
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+
+    const filename = `${prefix}-${index}.jpg`;
+    const localPath = path.join(dir, filename);
+    const relativeUrl = `/images/properties/${filename}`;
+
+    if (fs.existsSync(localPath)) return relativeUrl;
+
+    console.log(`Downloading ${filename}...`);
+    try {
+        const res = await fetch(url);
+        if (!res.ok) {
+            console.warn(`Warning: Failed to fetch ${url}: ${res.statusText}`);
+            return '';
+        }
+
+        // Convert to readable web stream then write to file
+        const fileStream = fs.createWriteStream(localPath);
+        // @ts-ignore: Next stream types
+        await pipeline(res.body as any, fileStream);
+        return relativeUrl;
+    } catch (e) {
+        console.warn(`Error downloading ${url}:`, e);
+        return '';
+    }
+}
+
+// Pre-download all images into local maps
+async function initLocalImages() {
+    const condoRes = await Promise.all(CONDO_IMAGES.map((url, i) => downloadImage(url, 'condo', i)));
+    const villaRes = await Promise.all(VILLA_IMAGES.map((url, i) => downloadImage(url, 'villa', i)));
+    const landRes = await Promise.all(LAND_IMAGES.map((url, i) => downloadImage(url, 'land', i)));
+    return {
+        condoLocal: condoRes.filter(Boolean),
+        villaLocal: villaRes.filter(Boolean),
+        landLocal: landRes.filter(Boolean),
+    };
+}
 
 function getRandomImages(pool: string[], count: number) {
     return [...pool].sort(() => 0.5 - Math.random()).slice(0, count);
@@ -386,19 +429,18 @@ const propertiesData = [
     }
 ];
 
-function getRandomProperties() {
+function getRandomProperties(pools: { condoLocal: string[], villaLocal: string[], landLocal: string[] }) {
     return propertiesData.map(p => {
-        // Create highly unique slug to avoid collisions
         const uniqueId = Math.random().toString(36).substring(2, 6);
         const slug = `${p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${uniqueId}`;
 
         let images = [];
         if (p.type === 'condo' || p.type === 'penthouse') {
-            images = getRandomImages(CONDO_IMAGES, 5);
+            images = getRandomImages(pools.condoLocal, 5);
         } else if (p.type === 'villa') {
-            images = getRandomImages(VILLA_IMAGES, 5);
+            images = getRandomImages(pools.villaLocal, 5);
         } else {
-            images = getRandomImages(LAND_IMAGES, 4);
+            images = getRandomImages(pools.landLocal, 4);
         }
 
         return {
@@ -419,11 +461,14 @@ async function run() {
     console.log('Clearing existing mock properties...');
     await Property.deleteMany({});
 
+    console.log('Downloading all images locally...');
+    const localPools = await initLocalImages();
+
     console.log('Generating 20 highly realistic Punta Cana mock properties...');
-    const properties = getRandomProperties();
+    const properties = getRandomProperties(localPools);
 
     await Property.insertMany(properties);
-    console.log('Successfully seeded 20 realistic properties.');
+    console.log('Successfully seeded 20 realistic properties with local images.');
 
     process.exit(0);
 }
