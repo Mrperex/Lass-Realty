@@ -114,7 +114,7 @@ export default function ComparePage() {
                                             </div>
 
                                             <div className="text-2xl font-bold text-champagne-600 mb-6">
-                                                <DynamicPrice price={property.price} />
+                                                <DynamicPrice price={property.price} period={property.rentPeriod} />
                                             </div>
 
                                             <Link
@@ -143,7 +143,7 @@ export default function ComparePage() {
                                     <td className="p-6 md:p-8 font-semibold text-slate-700">Asking Price</td>
                                     {compareList.map((property) => (
                                         <td key={`price-${property._id}`} className={`p-6 md:p-8 border-l border-slate-100 font-bold text-lg ${property.price === minPrice ? 'bg-green-50/50 text-green-700' : 'text-navy-900'}`}>
-                                            <DynamicPrice price={property.price} />
+                                            <DynamicPrice price={property.price} period={property.rentPeriod} />
                                         </td>
                                     ))}
                                     {Array.from({ length: 3 - compareList.length }).map((_, i) => <td key={`empty-price-${i}`} className="p-6 md:p-8 border-l border-slate-100 bg-slate-50/50"></td>)}

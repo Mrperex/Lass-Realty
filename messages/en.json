@@ -227,7 +227,12 @@
         "golfView": "Golf View",
         "furnished": "Furnished",
         "petFriendly": "Pet Friendly",
-        "clearFilters": "Clear Filters"
+        "clearFilters": "Clear Filters",
+        "sortBy": "Sort By",
+        "newest": "Newest First",
+        "priceAsc": "Price (Low to High)",
+        "priceDesc": "Price (High to Low)",
+        "popular": "Most Popular"
     },
     "Navigation": {
         "home": "Home",
@@ -269,7 +274,10 @@
         "privacy": "Privacy Policy",
         "terms": "Terms of Service",
         "contactUs": "Contact Us",
-        "rights": "All rights reserved."
+        "rights": "All rights reserved.",
+        "regulatory": "LASS Realty is a registered real estate brokerage in the Dominican Republic (Registration No. R-789-V2). Member of the National Association of Real Estate Professionals (License No. 442-991A).",
+        "disclaimer": "All information provided is deemed reliable but is not guaranteed and should be independently verified. Properties are subject to prior sale, change, or withdrawal. Neither listing broker(s) nor LASS Realty shall be responsible for any typographical errors, misinformation, or misprints.",
+        "developedBy": "Website engineered by"
     },
     "Blog": {
         "title": "Market Insights & News",
@@ -299,7 +307,10 @@
         "r3Desc": "Detailed comparison of net rental yields across 5 key neighborhoods: Bávaro (9-11%), Cap Cana (7-9%), Cana Bay (8-10%), Downtown (6-8%), and Vista Cana (6-7%).",
         "r3Cat": "Investment Analysis",
         "pages": "Pages",
-        "download": "Download"
+        "download": "Download",
+        "trustBadges": "Trusted Data",
+        "title": "Market Reports",
+        "description": "Download free Punta Cana real estate market reports. Trends, rental yields, and guides for foreign buyers."
     },
     "Legal": {
         "privacyTitle": "Privacy Policy",
@@ -393,5 +404,38 @@
         "s7_p": "For questions about this privacy policy or to exercise your data rights, contact us:",
         "phone": "Phone: +1 (809) 555-0100",
         "dr": "Dominican Republic"
+    },
+    "Amenities": {
+        "pool": "Private Pool",
+        "oceanView": "Ocean View",
+        "golfView": "Golf Course View",
+        "furnished": "Fully Furnished",
+        "petFriendly": "Pet Friendly",
+        "gym": "Fitness Center / Gym",
+        "spa": "Spa & Wellness",
+        "tennisCourt": "Tennis Court",
+        "security24h": "24/7 Security",
+        "gatedCommunity": "Gated Community",
+        "beachAccess": "Private Beach Access",
+        "balcony": "Balcony",
+        "terrace": "Terrace",
+        "garden": "Private Garden",
+        "parking": "Covered Parking",
+        "elevator": "Elevator",
+        "airConditioning": "Air Conditioning",
+        "smartHome": "Smart Home System",
+        "maidQuarters": "Maid Quarters",
+        "wineCellar": "Wine Cellar",
+        "homeTheater": "Home Theater",
+        "helipad": "Helipad",
+        "privateDock": "Private Marina Dock",
+        "clubhouse": "Clubhouse Access",
+        "kidsPlayground": "Kids Playground",
+        "bbqArea": "BBQ Area",
+        "solarPanels": "Solar Panels",
+        "backupGenerator": "Backup Generator",
+        "waterCistern": "Water Cistern",
+        "concierge": "Concierge Service",
+        "coworking": "Co-working Space"
     }
 }

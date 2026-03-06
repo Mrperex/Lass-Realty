@@ -21,6 +21,7 @@ import PropertyGallery from '@/components/PropertyGallery';
 import PropertyAmenities from '@/components/PropertyAmenities';
 import ShareButton from '@/components/ShareButton';
 import AgentProfileCard from '@/components/AgentProfileCard';
+import DownloadBrochureButton from '@/components/DownloadBrochureButton';
 
 export const revalidate = 60;
 
@@ -42,8 +43,10 @@ export async function generateMetadata({ params }: { params: { slug: string, loc
     const property = await getProperty(params.slug);
     if (!property) return { title: 'Not Found' };
 
-    const title = params.locale === 'es' && property.title_es ? property.title_es : property.title;
-    const description = params.locale === 'es' && property.description_es ? property.description_es : property.description;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const propContext: any = property;
+    const title = propContext[`title_${params.locale}`] || property.title;
+    const description = propContext[`description_${params.locale}`] || property.description;
 
     return {
         title: `${title} | LASS Realty`,
@@ -63,9 +66,11 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
 
     const t = await getTranslations({ locale: params.locale, namespace: 'PropertyDetail' });
 
-    const title = params.locale === 'es' && property.title_es ? property.title_es : property.title;
-    const description = params.locale === 'es' && property.description_es ? property.description_es : property.description;
-    const city = params.locale === 'es' && property.city_es ? property.city_es : property.city;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const propContext: any = property;
+    const title = propContext[`title_${params.locale}`] || property.title;
+    const description = propContext[`description_${params.locale}`] || property.description;
+    const city = propContext[`city_${params.locale}`] || property.city;
 
     const jsonLd = {
         '@context': 'https://schema.org',
@@ -123,7 +128,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                     </div>
                                     <div className="flex flex-col items-start lg:items-end gap-3 shrink-0 w-full lg:w-auto">
                                         <div className="font-outfit text-3xl font-semibold text-champagne-500 bg-navy-900/5 px-5 py-2 rounded-2xl border border-navy-900/10 w-full lg:w-auto text-center lg:text-right">
-                                            <DynamicPrice price={property.price} />
+                                            <DynamicPrice price={property.price} period={property.rentPeriod} />
                                         </div>
                                         <div className="flex flex-wrap items-stretch lg:items-center gap-2 lg:gap-3 mt-2 w-full lg:w-auto">
                                             <a
@@ -132,6 +137,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                             >
                                                 {t('requestShowing', { fallback: 'Request Showing' })}
                                             </a>
+                                            <DownloadBrochureButton property={property} t={t} label={t('downloadBrochure', { fallback: 'Brochure' })} />
                                             <CompareButton property={property} />
                                             <ShareButton title={title} slug={property.slug} />
                                         </div>
@@ -168,6 +174,11 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
 
                             {property.virtualTourUrl && (
                                 <VirtualTourEmbed url={property.virtualTourUrl} />
+                            )}
+
+                            {/* Floor Plans Viewer */}
+                            {property.floorPlans && property.floorPlans.length > 0 && (
+                                <FloorPlanViewer floorPlans={property.floorPlans} />
                             )}
 
                             {/* Video Tour Embed (YouTube / Vimeo) */}

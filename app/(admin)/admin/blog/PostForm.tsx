@@ -13,18 +13,15 @@ interface PostFormProps {
 export default function PostForm({ initialData }: PostFormProps) {
     const router = useRouter();
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [activeLanguage, setActiveLanguage] = useState<'en' | 'es'>('en');
+    const [activeLanguage, setActiveLanguage] = useState<'en' | 'es' | 'fr' | 'it' | 'de' | 'ru' | 'ht'>('en');
 
     // Default empty state
     const [formData, setFormData] = useState<Partial<IPost>>(
         initialData || {
-            title: '',
-            title_es: '',
+            title: '', title_es: '', title_fr: '', title_it: '', title_de: '', title_ru: '', title_ht: '',
             slug: '',
-            content: '',
-            content_es: '',
-            excerpt: '',
-            excerpt_es: '',
+            content: '', content_es: '', content_fr: '', content_it: '', content_de: '', content_ru: '', content_ht: '',
+            excerpt: '', excerpt_es: '', excerpt_fr: '', excerpt_it: '', excerpt_de: '', excerpt_ru: '', excerpt_ht: '',
             coverImage: '',
             author: 'LASS Realty Team',
             category: 'buying-guide',
@@ -144,21 +141,26 @@ export default function PostForm({ initialData }: PostFormProps) {
                 <div className="lg:col-span-2 space-y-6">
 
                     {/* Language Tabs */}
-                    <div className="bg-white p-1 rounded-none shadow-sm inline-flex mb-2 border border-gray-200">
-                        <button
-                            type="button"
-                            className={`px-6 py-2 text-sm uppercase tracking-wide transition-colors ${activeLanguage === 'en' ? 'bg-navy-900 text-white' : 'text-gray-500 hover:bg-gray-50'}`}
-                            onClick={() => setActiveLanguage('en')}
-                        >
-                            General English (EN)
-                        </button>
-                        <button
-                            type="button"
-                            className={`px-6 py-2 text-sm uppercase tracking-wide transition-colors ${activeLanguage === 'es' ? 'bg-navy-900 text-white' : 'text-gray-500 hover:bg-gray-50'}`}
-                            onClick={() => setActiveLanguage('es')}
-                        >
-                            Spanish Translation (ES)
-                        </button>
+                    <div className="bg-white p-1 rounded-none shadow-sm flex flex-wrap gap-1 mb-2 border border-gray-200">
+                        {[
+                            { code: 'en', label: 'English (EN)' },
+                            { code: 'es', label: 'Spanish (ES)' },
+                            { code: 'fr', label: 'French (FR)' },
+                            { code: 'it', label: 'Italian (IT)' },
+                            { code: 'de', label: 'German (DE)' },
+                            { code: 'ru', label: 'Russian (RU)' },
+                            { code: 'ht', label: 'Creole (HT)' }
+                        ].map(({ code, label }) => (
+                            <button
+                                key={code}
+                                type="button"
+                                className={`px-4 py-2 text-xs uppercase tracking-wide transition-colors ${activeLanguage === code ? 'bg-navy-900 text-white' : 'text-gray-500 hover:bg-gray-50'}`}
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                onClick={() => setActiveLanguage(code as any)}
+                            >
+                                {label}
+                            </button>
+                        ))}
                     </div>
 
                     <div className="bg-white p-6 shadow-sm border border-gray-100 space-y-6">
@@ -171,12 +173,13 @@ export default function PostForm({ initialData }: PostFormProps) {
                                 type="text"
                                 required={activeLanguage === 'en'} // Only EN is strict required
                                 className="w-full border border-gray-300 px-4 py-3 text-lg focus:ring-1 focus:ring-gold-500 focus:border-gold-500 outline-none"
-                                value={activeLanguage === 'en' ? formData.title : formData.title_es}
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                value={activeLanguage === 'en' ? formData.title : ((formData as any)[`title_${activeLanguage}`] || '')}
                                 onChange={(e) => {
                                     if (activeLanguage === 'en') {
                                         handleTitleChange(e.target.value);
                                     } else {
-                                        setFormData((prev) => ({ ...prev, title_es: e.target.value }));
+                                        setFormData((prev) => ({ ...prev, [`title_${activeLanguage}`]: e.target.value }));
                                     }
                                 }}
                                 placeholder="e.g. 5 Reasons to Invest in Cap Cana..."
@@ -192,11 +195,11 @@ export default function PostForm({ initialData }: PostFormProps) {
                                 required={activeLanguage === 'en'}
                                 rows={2}
                                 className="w-full border border-gray-300 px-4 py-3 focus:ring-1 focus:ring-gold-500 focus:border-gold-500 outline-none resize-none"
-                                value={activeLanguage === 'en' ? formData.excerpt : formData.excerpt_es}
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                value={activeLanguage === 'en' ? formData.excerpt : ((formData as any)[`excerpt_${activeLanguage}`] || '')}
                                 onChange={(e) => {
-                                    activeLanguage === 'en'
-                                        ? setFormData((prev) => ({ ...prev, excerpt: e.target.value }))
-                                        : setFormData((prev) => ({ ...prev, excerpt_es: e.target.value }));
+                                    const key = activeLanguage === 'en' ? 'excerpt' : `excerpt_${activeLanguage}`;
+                                    setFormData((prev) => ({ ...prev, [key]: e.target.value }));
                                 }}
                                 placeholder="A brief one-sentence summary for the blog directory preview cards."
                             />
@@ -211,11 +214,11 @@ export default function PostForm({ initialData }: PostFormProps) {
                                 required={activeLanguage === 'en'}
                                 rows={15}
                                 className="w-full border border-gray-300 px-4 py-3 focus:ring-1 focus:ring-gold-500 focus:border-gold-500 outline-none font-mono text-sm"
-                                value={activeLanguage === 'en' ? formData.content : formData.content_es}
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                value={activeLanguage === 'en' ? formData.content : ((formData as any)[`content_${activeLanguage}`] || '')}
                                 onChange={(e) => {
-                                    activeLanguage === 'en'
-                                        ? setFormData((prev) => ({ ...prev, content: e.target.value }))
-                                        : setFormData((prev) => ({ ...prev, content_es: e.target.value }));
+                                    const key = activeLanguage === 'en' ? 'content' : `content_${activeLanguage}`;
+                                    setFormData((prev) => ({ ...prev, [key]: e.target.value }));
                                 }}
                                 placeholder="Write the main article content here. You can use standard HTML like <h2> or <p> for formatting."
                                 style={{ whiteSpace: 'pre-wrap' }}

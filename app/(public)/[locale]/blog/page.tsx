@@ -46,8 +46,10 @@ export default async function BlogIndexPage({
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {posts.map((post: any) => {
                             // Bilingual getters
-                            const title = (locale === 'es' && post.title_es) ? post.title_es : post.title;
-                            const excerpt = (locale === 'es' && post.excerpt_es) ? post.excerpt_es : post.excerpt;
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            const postContext: any = post;
+                            const title = postContext[`title_${locale}`] || post.title;
+                            const excerpt = postContext[`excerpt_${locale}`] || post.excerpt;
 
                             return (
                                 <Link

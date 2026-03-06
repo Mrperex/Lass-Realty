@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { MapPin, DollarSign, ArrowRight } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
+import { LOCATIONS } from '@/lib/locations';
 
 export const revalidate = 60;
 
@@ -18,7 +19,19 @@ export default async function NeighborhoodsIndexPage({
 
     await connectToDatabase();
     const rawNeighborhoods = await Neighborhood.find().sort({ name: 1 }).lean();
-    const neighborhoods = JSON.parse(JSON.stringify(rawNeighborhoods));
+    let neighborhoods = JSON.parse(JSON.stringify(rawNeighborhoods));
+
+    // Fallback if the database collection is empty so the page still loads core locations
+    if (neighborhoods.length === 0) {
+        neighborhoods = LOCATIONS.filter(l => l.priority).map(loc => ({
+            _id: loc.slug,
+            slug: loc.slug,
+            name: loc.name,
+            description: `Experience the finest luxury real estate in ${loc.name}, offering exclusive amenities and uncompromised lifestyle.`,
+            averagePrice: 0,
+            highlights: ['Luxury', loc.region]
+        }));
+    }
 
     return (
         <main className="min-h-screen bg-slate-50 pt-32 pb-24">
@@ -43,8 +56,10 @@ export default async function NeighborhoodsIndexPage({
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {neighborhoods.map((n: any) => {
-                            const name = (locale === 'es' && n.name_es) ? n.name_es : n.name;
-                            const description = (locale === 'es' && n.description_es) ? n.description_es : n.description;
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            const nContext: any = n;
+                            const name = nContext[`name_${locale}`] || n.name;
+                            const description = nContext[`description_${locale}`] || n.description;
 
                             return (
                                 <Link

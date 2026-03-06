@@ -81,8 +81,10 @@ export default async function PortfolioPage({
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {soldProperties.map((property: any) => {
-                            const title = (locale === 'es' && property.title_es) ? property.title_es : property.title;
-                            const city = (locale === 'es' && property.city_es) ? property.city_es : property.city;
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            const propContext: any = property;
+                            const title = propContext[`title_${locale}`] || property.title;
+                            const city = propContext[`city_${locale}`] || property.city;
 
                             return (
                                 <div

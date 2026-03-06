@@ -1,4 +1,5 @@
-import { Settings, Globe, Bell, Shield } from 'lucide-react';
+import { Settings as SettingsIcon, Globe, Bell } from 'lucide-react';
+import SecuritySettings from '@/components/admin/SecuritySettings';
 
 export default function AdminSettingsPage() {
     return (
@@ -13,7 +14,7 @@ export default function AdminSettingsPage() {
                 <div className="bg-white shadow-sm p-8 border border-gray-100">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="p-3 bg-slate-100 rounded-xl">
-                            <Settings className="w-5 h-5 text-slate-600" />
+                            <SettingsIcon className="w-5 h-5 text-slate-600" />
                         </div>
                         <h2 className="text-lg font-semibold text-navy-900">General</h2>
                     </div>
@@ -88,35 +89,10 @@ export default function AdminSettingsPage() {
                         </div>
                     </div>
                 </div>
-
-                {/* Security */}
-                <div className="bg-white shadow-sm p-8 border border-gray-100">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="p-3 bg-slate-100 rounded-xl">
-                            <Shield className="w-5 h-5 text-slate-600" />
-                        </div>
-                        <h2 className="text-lg font-semibold text-navy-900">Security</h2>
-                    </div>
-                    <div className="space-y-4 text-sm text-gray-600">
-                        <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                            <span>Authentication</span>
-                            <span className="font-medium text-navy-900">JWT Token</span>
-                        </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                            <span>Rate Limiting</span>
-                            <span className="inline-flex items-center px-2 py-0.5 bg-green-50 text-green-700 text-xs font-semibold rounded-full">Active</span>
-                        </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                            <span>CSRF Protection</span>
-                            <span className="inline-flex items-center px-2 py-0.5 bg-green-50 text-green-700 text-xs font-semibold rounded-full">Active</span>
-                        </div>
-                        <div className="flex justify-between items-center py-3">
-                            <span>SSL/HSTS</span>
-                            <span className="inline-flex items-center px-2 py-0.5 bg-green-50 text-green-700 text-xs font-semibold rounded-full">Enforced</span>
-                        </div>
-                    </div>
-                </div>
             </div>
+
+            {/* Security Component */}
+            <SecuritySettings />
         </div>
     );
 }

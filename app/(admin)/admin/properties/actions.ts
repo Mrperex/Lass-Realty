@@ -12,11 +12,27 @@ export async function createProperty(prevState: any, formData: FormData) {
 
         const title = formData.get('title') as string;
         const title_es = formData.get('title_es') as string | null;
+        const title_fr = formData.get('title_fr') as string | null;
+        const title_it = formData.get('title_it') as string | null;
+        const title_de = formData.get('title_de') as string | null;
+        const title_ru = formData.get('title_ru') as string | null;
+        const title_ht = formData.get('title_ht') as string | null;
+
         const description = formData.get('description') as string;
         const description_es = formData.get('description_es') as string | null;
+        const description_fr = formData.get('description_fr') as string | null;
+        const description_it = formData.get('description_it') as string | null;
+        const description_de = formData.get('description_de') as string | null;
+        const description_ru = formData.get('description_ru') as string | null;
+        const description_ht = formData.get('description_ht') as string | null;
         const price = Number(formData.get('price'));
         const city = formData.get('city') as string;
         const city_es = formData.get('city_es') as string | null;
+        const city_fr = formData.get('city_fr') as string | null;
+        const city_it = formData.get('city_it') as string | null;
+        const city_de = formData.get('city_de') as string | null;
+        const city_ru = formData.get('city_ru') as string | null;
+        const city_ht = formData.get('city_ht') as string | null;
         const bedrooms = Number(formData.get('bedrooms'));
         const bathrooms = Number(formData.get('bathrooms'));
         const squareMeters = Number(formData.get('squareMeters'));
@@ -25,6 +41,10 @@ export async function createProperty(prevState: any, formData: FormData) {
         const amenitiesEntries = formData.getAll('amenities[]');
         const amenities = amenitiesEntries.filter(entry => typeof entry === 'string' && entry.trim() !== '') as string[];
         const virtualTourUrl = formData.get('virtualTourUrl') as string | null;
+
+        const deposit = formData.get('deposit') ? Number(formData.get('deposit')) : undefined;
+        const maintenanceFee = formData.get('maintenanceFee') ? Number(formData.get('maintenanceFee')) : undefined;
+        const rentPeriod = formData.get('rentPeriod') as string | undefined;
 
         // Auto-generate slug from title
         const slug = title
@@ -55,12 +75,27 @@ export async function createProperty(prevState: any, formData: FormData) {
         await Property.create({
             title,
             title_es: title_es || undefined,
+            title_fr: title_fr || undefined,
+            title_it: title_it || undefined,
+            title_de: title_de || undefined,
+            title_ru: title_ru || undefined,
+            title_ht: title_ht || undefined,
             slug,
             description,
             description_es: description_es || undefined,
+            description_fr: description_fr || undefined,
+            description_it: description_it || undefined,
+            description_de: description_de || undefined,
+            description_ru: description_ru || undefined,
+            description_ht: description_ht || undefined,
             price,
             city,
             city_es: city_es || undefined,
+            city_fr: city_fr || undefined,
+            city_it: city_it || undefined,
+            city_de: city_de || undefined,
+            city_ru: city_ru || undefined,
+            city_ht: city_ht || undefined,
             citySlug,
             bedrooms,
             bathrooms,
@@ -69,6 +104,9 @@ export async function createProperty(prevState: any, formData: FormData) {
             featured,
             amenities,
             virtualTourUrl: virtualTourUrl || undefined,
+            deposit,
+            maintenanceFee,
+            rentPeriod,
             images,
             floorPlans
         });
@@ -89,11 +127,27 @@ export async function updateProperty(id: string, prevState: any, formData: FormD
 
         const title = formData.get('title') as string;
         const title_es = formData.get('title_es') as string | null;
+        const title_fr = formData.get('title_fr') as string | null;
+        const title_it = formData.get('title_it') as string | null;
+        const title_de = formData.get('title_de') as string | null;
+        const title_ru = formData.get('title_ru') as string | null;
+        const title_ht = formData.get('title_ht') as string | null;
+
         const description = formData.get('description') as string;
         const description_es = formData.get('description_es') as string | null;
+        const description_fr = formData.get('description_fr') as string | null;
+        const description_it = formData.get('description_it') as string | null;
+        const description_de = formData.get('description_de') as string | null;
+        const description_ru = formData.get('description_ru') as string | null;
+        const description_ht = formData.get('description_ht') as string | null;
         const price = Number(formData.get('price'));
         const city = formData.get('city') as string;
         const city_es = formData.get('city_es') as string | null;
+        const city_fr = formData.get('city_fr') as string | null;
+        const city_it = formData.get('city_it') as string | null;
+        const city_de = formData.get('city_de') as string | null;
+        const city_ru = formData.get('city_ru') as string | null;
+        const city_ht = formData.get('city_ht') as string | null;
         const bedrooms = Number(formData.get('bedrooms'));
         const bathrooms = Number(formData.get('bathrooms'));
         const squareMeters = Number(formData.get('squareMeters'));
@@ -102,6 +156,10 @@ export async function updateProperty(id: string, prevState: any, formData: FormD
         const amenitiesEntries = formData.getAll('amenities[]');
         const amenities = amenitiesEntries.filter(entry => typeof entry === 'string' && entry.trim() !== '') as string[];
         const virtualTourUrl = formData.get('virtualTourUrl') as string | null;
+
+        const deposit = formData.get('deposit') ? Number(formData.get('deposit')) : undefined;
+        const maintenanceFee = formData.get('maintenanceFee') ? Number(formData.get('maintenanceFee')) : undefined;
+        const rentPeriod = formData.get('rentPeriod') as string | undefined;
         const citySlug = city.toLowerCase().replace(/\s+/g, '-');
 
         if (!title || !description || !price || !city || isNaN(bedrooms) || isNaN(bathrooms) || isNaN(squareMeters)) {
@@ -117,11 +175,26 @@ export async function updateProperty(id: string, prevState: any, formData: FormD
         await Property.findByIdAndUpdate(id, {
             title,
             title_es: title_es || undefined,
+            title_fr: title_fr || undefined,
+            title_it: title_it || undefined,
+            title_de: title_de || undefined,
+            title_ru: title_ru || undefined,
+            title_ht: title_ht || undefined,
             description,
             description_es: description_es || undefined,
+            description_fr: description_fr || undefined,
+            description_it: description_it || undefined,
+            description_de: description_de || undefined,
+            description_ru: description_ru || undefined,
+            description_ht: description_ht || undefined,
             price,
             city,
             city_es: city_es || undefined,
+            city_fr: city_fr || undefined,
+            city_it: city_it || undefined,
+            city_de: city_de || undefined,
+            city_ru: city_ru || undefined,
+            city_ht: city_ht || undefined,
             bedrooms,
             bathrooms,
             squareMeters,
@@ -129,6 +202,9 @@ export async function updateProperty(id: string, prevState: any, formData: FormD
             featured,
             amenities,
             virtualTourUrl,
+            deposit,
+            maintenanceFee,
+            rentPeriod: (rentPeriod && rentPeriod !== '') ? rentPeriod : undefined,
             images,
             floorPlans
         });

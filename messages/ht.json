@@ -227,7 +227,12 @@
         "golfView": "Ki Bay Sou Teren Gòlf",
         "furnished": "Avèk Mèb",
         "petFriendly": "Bèt Aksepte",
-        "clearFilters": "Epase Filtè yo"
+        "clearFilters": "Epase Filtè yo",
+        "sortBy": "Klase Pa",
+        "newest": "Pi Nouvo",
+        "priceAsc": "Pri (Ba rive Wo)",
+        "priceDesc": "Pri (Wo rive Ba)",
+        "popular": "Ki pi Popilè"
     },
     "Navigation": {
         "home": "Akèy",
@@ -269,7 +274,10 @@
         "privacy": "Règleman sou Konfidansyalite",
         "terms": "Kondisyon Itilizasyon",
         "contactUs": "Kontakte Nou",
-        "rights": "Tout dwa rezève."
+        "rights": "Tout dwa rezève.",
+        "regulatory": "LASS Realty se yon ajans imobilye ki anrejistre nan Repiblik Dominikèn (Enskripsyon No. R-789-V2).",
+        "disclaimer": "Tout enfòmasyon yo bay yo konsidere kòm serye men yo pa garanti.",
+        "developedBy": "Sit entènèt devlope pa"
     },
     "Blog": {
         "title": "Nouvo Enfòmasyon & Blog",
@@ -299,7 +307,10 @@
         "r3Desc": "Detay ki bay pwofi kay ou ap ranje lè w lwe li sou mache a tankou Bávaro (9-11%), Cap Cana (7-9%).",
         "r3Cat": "Analiz Envestisman",
         "pages": "Paj",
-        "download": "Telechaje"
+        "download": "Telechaje",
+        "trustBadges": "Trusted Data",
+        "title": "Rapò Mache a",
+        "description": "Telechaje rapò gratis sou jan mache kay Punta Cana a ye kounye a jodi a."
     },
     "Legal": {
         "privacyTitle": "Règleman sou Konfidansyalite",
@@ -393,5 +404,38 @@
         "s7_p": "Pou poze gwo kesyon ak lalwa prive la:",
         "phone": "Telefòn Nimewo: +1 (809) 555-0100",
         "dr": "Repiblik Dominikèn"
+    },
+    "Amenities": {
+        "pool": "Pisin Prive",
+        "oceanView": "Vèy lanmè",
+        "golfView": "Vèy kòlf",
+        "furnished": "Konplètman Mèble",
+        "petFriendly": "Bèt Aksepte",
+        "gym": "Fòm / Jist",
+        "spa": "Spa ak Byennèt",
+        "tennisCourt": "Tribinal Tenis",
+        "security24h": "Sekirite 24/7",
+        "gatedCommunity": "Kominote Fèmen",
+        "beachAccess": "Aksè Prive nan Plaj",
+        "balcony": "Balkon",
+        "terrace": "Teras",
+        "garden": "Jaden Prive",
+        "parking": "Pakin Kouvri",
+        "elevator": "Asansè",
+        "airConditioning": "Kondisyone Lè",
+        "smartHome": "Sistèm Kay Entelijan",
+        "maidQuarters": "Chanm Sèvant",
+        "wineCellar": "Kav Diven",
+        "homeTheater": "Sinema Kay",
+        "helipad": "Epad Eli",
+        "privateDock": "Prive Waf",
+        "clubhouse": "Aksè nan Clubhouse",
+        "kidsPlayground": "Lwazi Timoun",
+        "bbqArea": "BBQ",
+        "solarPanels": "Panèl Solè",
+        "backupGenerator": "Aparèy Founi Kouraj",
+        "waterCistern": "Sistèn Dlo",
+        "concierge": "Sèvis Konsyèj",
+        "coworking": "Espas Travay ansanm"
     }
 }

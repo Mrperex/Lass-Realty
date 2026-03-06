@@ -227,7 +227,12 @@
         "golfView": "Piscine/Golf",
         "furnished": "Meublé",
         "petFriendly": "Animaux Acceptés",
-        "clearFilters": "Effacer les Filtres"
+        "clearFilters": "Effacer les Filtres",
+        "sortBy": "Trier Par",
+        "newest": "Plus Récents",
+        "priceAsc": "Prix (Croissant)",
+        "priceDesc": "Prix (Décroissant)",
+        "popular": "Plus Populaires"
     },
     "Navigation": {
         "home": "Accueil",
@@ -269,7 +274,10 @@
         "privacy": "Politique de Confidentialité",
         "terms": "Conditions d'Utilisation",
         "contactUs": "Nous Contacter",
-        "rights": "Tous droits réservés."
+        "rights": "Tous droits réservés.",
+        "regulatory": "LASS Realty est une agence immobilière enregistrée en République Dominicaine (N° d'enregistrement R-789-V2).",
+        "disclaimer": "Les informations fournies sont jugées fiables mais ne sont pas garanties.",
+        "developedBy": "Site web développé par"
     },
     "Blog": {
         "title": "Actualités et Analyses du Marché",
@@ -299,7 +307,10 @@
         "r3Desc": "Comparaison détaillée des rendements locatifs nets : Bávaro (9-11%), Cap Cana (7-9%), Cana Bay (8-10%), Centre-ville (6-8%) et Vista Cana (6-7%).",
         "r3Cat": "Analyse d'Investissement",
         "pages": "Pages",
-        "download": "Télécharger"
+        "download": "Télécharger",
+        "trustBadges": "Trusted Data",
+        "title": "Rapports de Marché",
+        "description": "Téléchargez des rapports gratuits sur le marché immobilier de Punta Cana. Tendances, rendements locatifs et guides pour acheteurs étrangers."
     },
     "Legal": {
         "privacyTitle": "Politique de Confidentialité",
@@ -393,5 +404,38 @@
         "s7_p": "Faites remonter vos appels directifs au service en charge, en écrivant les informations inhérentes relatives et ou vos objections légales via info@lasspuntacana.com ou plus précisément via :",
         "phone": "Ligne téléphonique corporative : +1 (809) 555-0100",
         "dr": "Siège physique : Punta Cana, province d'Altagracia, République Dominicaine"
+    },
+    "Amenities": {
+        "pool": "Piscine Privée",
+        "oceanView": "Vue sur l'Océan",
+        "golfView": "Vue sur le Golf",
+        "furnished": "Entièrement Meublé",
+        "petFriendly": "Animaux Acceptés",
+        "gym": "Centre de Fitness",
+        "spa": "Spa & Bien-être",
+        "tennisCourt": "Court de Tennis",
+        "security24h": "Sécurité 24/7",
+        "gatedCommunity": "Communauté Fermée",
+        "beachAccess": "Accès Privé à la Plage",
+        "balcony": "Balcon",
+        "terrace": "Terrasse",
+        "garden": "Jardin Privé",
+        "parking": "Parking Couvert",
+        "elevator": "Ascenseur",
+        "airConditioning": "Climatisation",
+        "smartHome": "Maison Intelligente",
+        "maidQuarters": "Chambre de Bonne",
+        "wineCellar": "Cave à Vin",
+        "homeTheater": "Cinéma Maison",
+        "helipad": "Héliport",
+        "privateDock": "Quai Privé",
+        "clubhouse": "Accès au Club-house",
+        "kidsPlayground": "Aire de Jeux",
+        "bbqArea": "Espace Barbecue",
+        "solarPanels": "Panneaux Solaires",
+        "backupGenerator": "Générateur de Secours",
+        "waterCistern": "Citerne d'Eau",
+        "concierge": "Service de Conciergerie",
+        "coworking": "Espace de Co-working"
     }
 }

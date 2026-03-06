@@ -227,7 +227,12 @@
         "golfView": "Golf View",
         "furnished": "Möbliert",
         "petFriendly": "Haustierfreundlich",
-        "clearFilters": "Filter Löschen"
+        "clearFilters": "Filter Löschen",
+        "sortBy": "Sortieren Nach",
+        "newest": "Neueste Zuerst",
+        "priceAsc": "Preis (aufsteigend)",
+        "priceDesc": "Preis (absteigend)",
+        "popular": "Beliebteste"
     },
     "Navigation": {
         "home": "Startseite",
@@ -269,7 +274,10 @@
         "privacy": "Datenschutzrichtlinie",
         "terms": "Nutzungsbedingungen",
         "contactUs": "Kontaktieren Sie Uns",
-        "rights": "Alle Rechte vorbehalten."
+        "rights": "Alle Rechte vorbehalten.",
+        "regulatory": "LASS Realty ist eine in der Dominikanischen Republik registrierte Immobilienmakleragentur (Registrierungsnr. R-789-V2).",
+        "disclaimer": "Alle angegebenen Informationen gelten als zuverlässig, sind jedoch nicht garantiert und sollten unabhängig überprüft werden.",
+        "developedBy": "Website entwickelt von"
     },
     "Blog": {
         "title": "Markteinblicke & Nachrichten",
@@ -299,7 +307,10 @@
         "r3Desc": "Netto-Rendite für Mietimmobilien: Bávaro, Cap Cana Bereich, Cana Bay Sektor (8-9 % real), Innenstadt Bereich (6-8 % real) und das luxuriöse Resort Vista Cana (Garantierter Mindest ROI von 6 %).",
         "r3Cat": "Miet Investitionsanalysen",
         "pages": "Gesicherte PDFs",
-        "download": "Kostenfreier PDF Download"
+        "download": "Kostenfreier PDF Download",
+        "trustBadges": "Trusted Data",
+        "title": "Exklusive Marktberichte",
+        "description": "Kostenlose Luxus-Immobilien Marktberichte aus Punta Cana. Detaillierte Trends, Auswertungen zu Mietrenditen und Ratgeber für ausländische Käufer."
     },
     "Legal": {
         "privacyTitle": "Datenschutzbestimmungen",
@@ -393,5 +404,38 @@
         "s7_p": "Ihr Kommunikationsstrang zum LASS Privacy Admin und Firmengeneral Administration auf direktem Weg zu Einwänden gesetzlicher Richtlinien, Beschwerde und Entziehung von Identitäten und Erlassurteilen bezüglich des Caches per E-Mail an info@lasspuntacana.com oder durch Einwahl über Supportlinien bei:",
         "phone": "Internationale Broker & LASS Support Investorenzentrale Hauptquartier (Lokale sowie Globale Administration im Amtssitz):  +1 (809) 555-0100",
         "dr": "Eingesessene Firmenörtlichkeit: Provinz Ost-Strände La Altagracia in Zone Punta Cana/Cap Cana Bávaro Bereich - Region Dominikanische Republik LASS (Zentralstelle Corporate Law L.L.C. und Database)."
+    },
+    "Amenities": {
+        "pool": "Privater Pool",
+        "oceanView": "Meerblick",
+        "golfView": "Golfplatzblick",
+        "furnished": "Voll Möbliert",
+        "petFriendly": "Haustiere Erlaubt",
+        "gym": "Fitnesscenter",
+        "spa": "Spa & Wellness",
+        "tennisCourt": "Tennisplatz",
+        "security24h": "24/7 Sicherheit",
+        "gatedCommunity": "Gated Community",
+        "beachAccess": "Privater Strandzugang",
+        "balcony": "Balkon",
+        "terrace": "Terrasse",
+        "garden": "Privater Garten",
+        "parking": "Überdachter Parkplatz",
+        "elevator": "Aufzug",
+        "airConditioning": "Klimaanlage",
+        "smartHome": "Smart Home System",
+        "maidQuarters": "Dienstmädchenzimmer",
+        "wineCellar": "Weinkeller",
+        "homeTheater": "Heimkino",
+        "helipad": "Hubschrauberlandeplatz",
+        "privateDock": "Privater Anlegesteg",
+        "clubhouse": "Clubhaus-Zugang",
+        "kidsPlayground": "Kinderspielplatz",
+        "bbqArea": "BBQ-Bereich",
+        "solarPanels": "Solarmodule",
+        "backupGenerator": "Notstromaggregat",
+        "waterCistern": "Wasserzisterne",
+        "concierge": "Concierge-Service",
+        "coworking": "Co-Working Space"
     }
 }

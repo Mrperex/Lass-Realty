@@ -41,18 +41,36 @@ const Footer = () => {
 
                 {/* Regulatory & Licensing */}
                 <div className="mt-12 pt-8 border-t border-slate-800 text-xs text-slate-400/80 flex flex-col items-center text-center space-y-2 max-w-4xl mx-auto">
-                    <p>
-                        LASS Realty is a registered real estate brokerage in the Dominican Republic (Registration No. R-789-V2).
-                        Member of the National Association of Real Estate Professionals (License No. 442-991A).
-                    </p>
-                    <p>
-                        All information provided is deemed reliable but is not guaranteed and should be independently verified.
-                        Properties are subject to prior sale, change, or withdrawal. Neither listing broker(s) nor LASS Realty shall be responsible for any typographical errors, misinformation, or misprints.
-                    </p>
+                    <p>{t('regulatory')}</p>
+                    <p>{t('disclaimer')}</p>
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-slate-800/50 text-sm text-center text-slate-400">
-                    &copy; {new Date().getFullYear()} {t('title')}. {t('rights')}
+                <div className="mt-8 pt-6 border-t border-slate-800/50 flex flex-col sm:flex-row items-center justify-between text-sm text-center text-slate-400 space-y-4 sm:space-y-0">
+                    <div className="flex flex-wrap items-center justify-center sm:justify-between w-full gap-2">
+                        <span>&copy; {new Date().getFullYear()} Lass Realty. All Rights Reserved -</span>
+                        <div className="flex items-center gap-1 opacity-90 hover:opacity-100 transition-opacity flex-wrap justify-center">
+                            <a
+                                href="https://wa.me/18295230782?text=Hi%20Pablo%20I%20saw%20the%20Lass%20Punta%20Cana%20website%20and%20I%20want%20something%20similar"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group text-amber-500 hover:text-amber-400 font-semibold transition-all inline-flex items-center"
+                            >
+                                <span>Website by Pablo Pérez</span>
+                                <span className="max-w-0 opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-1.5 transition-all duration-300 ease-out whitespace-nowrap overflow-hidden">
+                                    → Build yours
+                                </span>
+                            </a>
+                            <span className="text-slate-500 mx-1">|</span>
+                            <a
+                                href="https://wa.me/18295230782?text=Hi%20Pablo%20I%20saw%20the%20Lass%20Punta%20Cana%20website%20and%20I%20want%20something%20similar"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-amber-500 hover:text-amber-400 transition-colors font-medium"
+                            >
+                                Hire me (The WhatsApp trick that boosts conversions)
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>

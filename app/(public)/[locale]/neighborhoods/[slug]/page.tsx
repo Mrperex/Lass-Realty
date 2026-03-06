@@ -22,8 +22,10 @@ export async function generateMetadata({
     if (!neighborhood) return {};
 
     const n = JSON.parse(JSON.stringify(neighborhood));
-    const name = (locale === 'es' && n.name_es) ? n.name_es : n.name;
-    const description = (locale === 'es' && n.description_es) ? n.description_es : n.description;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const nContext: any = n;
+    const name = nContext[`name_${locale}`] || n.name;
+    const description = nContext[`description_${locale}`] || n.description;
 
     // We can't await inside generateMetadata safely right now without breaking the signature, so just fallback for SEO title
     return {
@@ -51,9 +53,12 @@ export default async function NeighborhoodDetailPage({
     const n = JSON.parse(JSON.stringify(rawNeighborhood));
 
     // Bilingual getters
-    const name = (locale === 'es' && n.name_es) ? n.name_es : n.name;
-    const description = (locale === 'es' && n.description_es) ? n.description_es : n.description;
-    const highlights = (locale === 'es' && n.highlights_es?.length > 0) ? n.highlights_es : n.highlights;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const nContext: any = n;
+    const name = nContext[`name_${locale}`] || n.name;
+    const description = nContext[`description_${locale}`] || n.description;
+    const highlightsKey = `highlights_${locale}`;
+    const highlights = (nContext[highlightsKey] && nContext[highlightsKey].length > 0) ? nContext[highlightsKey] : n.highlights;
 
     // Fetch matching properties by citySlug
     const rawProperties = await Property.find({ citySlug: slug, status: 'for-sale' })
@@ -166,7 +171,9 @@ export default async function NeighborhoodDetailPage({
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {properties.map((property: any) => {
-                                const pTitle = (locale === 'es' && property.title_es) ? property.title_es : property.title;
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                const propContext: any = property;
+                                const pTitle = propContext[`title_${locale}`] || property.title;
                                 return (
                                     <Link
                                         key={property._id}
@@ -197,7 +204,7 @@ export default async function NeighborhoodDetailPage({
                                             </h3>
                                             <p className="text-sm text-gray-500 font-outfit flex items-center">
                                                 <MapPin className="w-3.5 h-3.5 mr-1" />
-                                                {(locale === 'es' && property.city_es) ? property.city_es : property.city}
+                                                {propContext[`city_${locale}`] || property.city}
                                             </p>
                                             <div className="flex items-center gap-4 mt-3 text-xs text-gray-500 font-outfit">
                                                 <span>{property.bedrooms} {t('beds')}</span>

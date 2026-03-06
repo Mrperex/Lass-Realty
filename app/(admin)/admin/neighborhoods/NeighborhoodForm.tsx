@@ -13,20 +13,17 @@ interface NeighborhoodFormProps {
 export default function NeighborhoodForm({ initialData }: NeighborhoodFormProps) {
     const router = useRouter();
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [activeLanguage, setActiveLanguage] = useState<'en' | 'es'>('en');
+    const [activeLanguage, setActiveLanguage] = useState<'en' | 'es' | 'fr' | 'it' | 'de' | 'ru' | 'ht'>('en');
 
     // Default empty state
     const [formData, setFormData] = useState<Partial<INeighborhood>>(
         initialData || {
-            name: '',
-            name_es: '',
+            name: '', name_es: '', name_fr: '', name_it: '', name_de: '', name_ru: '', name_ht: '',
             slug: '',
-            description: '',
-            description_es: '',
+            description: '', description_es: '', description_fr: '', description_it: '', description_de: '', description_ru: '', description_ht: '',
             heroImage: '',
             gallery: [],
-            highlights: [],
-            highlights_es: [],
+            highlights: [], highlights_es: [], highlights_fr: [], highlights_it: [], highlights_de: [], highlights_ru: [], highlights_ht: [],
             mapCoordinates: { lat: 0, lng: 0 },
             averagePrice: 0,
         }
@@ -109,37 +106,35 @@ export default function NeighborhoodForm({ initialData }: NeighborhoodFormProps)
     };
 
     // --- Highlights Management ---
-    const [newHighlightEn, setNewHighlightEn] = useState('');
-    const [newHighlightEs, setNewHighlightEs] = useState('');
+    const [newHighlight, setNewHighlight] = useState('');
 
     const addHighlight = () => {
-        if (activeLanguage === 'en' && newHighlightEn.trim()) {
-            setFormData(prev => ({
+        if (!newHighlight.trim()) return;
+
+        const highlightKey = activeLanguage === 'en' ? 'highlights' : `highlights_${activeLanguage}`;
+
+        setFormData(prev => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const currentArray = (prev as any)[highlightKey] || [];
+            return {
                 ...prev,
-                highlights: [...(prev.highlights || []), newHighlightEn.trim()]
-            }));
-            setNewHighlightEn('');
-        } else if (activeLanguage === 'es' && newHighlightEs.trim()) {
-            setFormData(prev => ({
-                ...prev,
-                highlights_es: [...(prev.highlights_es || []), newHighlightEs.trim()]
-            }));
-            setNewHighlightEs('');
-        }
+                [highlightKey]: [...currentArray, newHighlight.trim()]
+            };
+        });
+        setNewHighlight('');
     };
 
     const removeHighlight = (index: number) => {
-        if (activeLanguage === 'en') {
-            setFormData(prev => ({
+        const highlightKey = activeLanguage === 'en' ? 'highlights' : `highlights_${activeLanguage}`;
+        setFormData(prev => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const currentArray = (prev as any)[highlightKey] || [];
+            return {
                 ...prev,
-                highlights: prev.highlights?.filter((_, i) => i !== index)
-            }));
-        } else {
-            setFormData(prev => ({
-                ...prev,
-                highlights_es: prev.highlights_es?.filter((_, i) => i !== index)
-            }));
-        }
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                [highlightKey]: currentArray.filter((_: any, i: number) => i !== index)
+            };
+        });
     };
 
     return (
@@ -177,21 +172,26 @@ export default function NeighborhoodForm({ initialData }: NeighborhoodFormProps)
                 <div className="lg:col-span-2 space-y-6">
 
                     {/* Language Tabs */}
-                    <div className="bg-white p-1 rounded-none shadow-sm inline-flex mb-2 border border-gray-200">
-                        <button
-                            type="button"
-                            className={`px-6 py-2 text-sm uppercase tracking-wide transition-colors ${activeLanguage === 'en' ? 'bg-navy-900 text-white' : 'text-gray-500 hover:bg-gray-50'}`}
-                            onClick={() => setActiveLanguage('en')}
-                        >
-                            General English (EN)
-                        </button>
-                        <button
-                            type="button"
-                            className={`px-6 py-2 text-sm uppercase tracking-wide transition-colors ${activeLanguage === 'es' ? 'bg-navy-900 text-white' : 'text-gray-500 hover:bg-gray-50'}`}
-                            onClick={() => setActiveLanguage('es')}
-                        >
-                            Spanish Translation (ES)
-                        </button>
+                    <div className="bg-white p-1 rounded-none shadow-sm flex flex-wrap gap-1 mb-2 border border-gray-200">
+                        {[
+                            { code: 'en', label: 'English (EN)' },
+                            { code: 'es', label: 'Spanish (ES)' },
+                            { code: 'fr', label: 'French (FR)' },
+                            { code: 'it', label: 'Italian (IT)' },
+                            { code: 'de', label: 'German (DE)' },
+                            { code: 'ru', label: 'Russian (RU)' },
+                            { code: 'ht', label: 'Creole (HT)' }
+                        ].map(({ code, label }) => (
+                            <button
+                                key={code}
+                                type="button"
+                                className={`px-4 py-2 text-xs uppercase tracking-wide transition-colors ${activeLanguage === code ? 'bg-navy-900 text-white' : 'text-gray-500 hover:bg-gray-50'}`}
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                onClick={() => setActiveLanguage(code as any)}
+                            >
+                                {label}
+                            </button>
+                        ))}
                     </div>
 
                     <div className="bg-white p-6 shadow-sm border border-gray-100 space-y-6">
@@ -204,12 +204,13 @@ export default function NeighborhoodForm({ initialData }: NeighborhoodFormProps)
                                 type="text"
                                 required={activeLanguage === 'en'}
                                 className="w-full border border-gray-300 px-4 py-3 text-lg focus:ring-1 focus:ring-gold-500 focus:border-gold-500 outline-none"
-                                value={activeLanguage === 'en' ? formData.name : formData.name_es}
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                value={activeLanguage === 'en' ? formData.name : ((formData as any)[`name_${activeLanguage}`] || '')}
                                 onChange={(e) => {
                                     if (activeLanguage === 'en') {
                                         handleNameChange(e.target.value);
                                     } else {
-                                        setFormData((prev) => ({ ...prev, name_es: e.target.value }));
+                                        setFormData((prev) => ({ ...prev, [`name_${activeLanguage}`]: e.target.value }));
                                     }
                                 }}
                                 placeholder="e.g. Cap Cana"
@@ -225,11 +226,11 @@ export default function NeighborhoodForm({ initialData }: NeighborhoodFormProps)
                                 required={activeLanguage === 'en'}
                                 rows={8}
                                 className="w-full border border-gray-300 px-4 py-3 focus:ring-1 focus:ring-gold-500 focus:border-gold-500 outline-none resize-none font-mono text-sm"
-                                value={activeLanguage === 'en' ? formData.description : formData.description_es}
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                value={activeLanguage === 'en' ? formData.description : ((formData as any)[`description_${activeLanguage}`] || '')}
                                 onChange={(e) => {
-                                    activeLanguage === 'en'
-                                        ? setFormData((prev) => ({ ...prev, description: e.target.value }))
-                                        : setFormData((prev) => ({ ...prev, description_es: e.target.value }));
+                                    const key = activeLanguage === 'en' ? 'description' : `description_${activeLanguage}`;
+                                    setFormData((prev) => ({ ...prev, [key]: e.target.value }));
                                 }}
                                 placeholder="Write the main neighborhood guide description here. HTML <p> tags are supported."
                                 style={{ whiteSpace: 'pre-wrap' }}
@@ -246,8 +247,8 @@ export default function NeighborhoodForm({ initialData }: NeighborhoodFormProps)
                                     type="text"
                                     className="flex-1 border border-gray-300 px-4 py-2 text-sm focus:ring-1 focus:ring-gold-500 focus:border-gold-500 outline-none"
                                     placeholder="e.g. Jack Nicklaus Signature Golf Course"
-                                    value={activeLanguage === 'en' ? newHighlightEn : newHighlightEs}
-                                    onChange={(e) => activeLanguage === 'en' ? setNewHighlightEn(e.target.value) : setNewHighlightEs(e.target.value)}
+                                    value={newHighlight}
+                                    onChange={(e) => setNewHighlight(e.target.value)}
                                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addHighlight())}
                                 />
                                 <button
@@ -259,7 +260,8 @@ export default function NeighborhoodForm({ initialData }: NeighborhoodFormProps)
                                 </button>
                             </div>
                             <ul className="space-y-2">
-                                {(activeLanguage === 'en' ? formData.highlights : formData.highlights_es)?.map((highlight, index) => (
+                                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                {(((formData as any)[activeLanguage === 'en' ? 'highlights' : `highlights_${activeLanguage}`]) || []).map((highlight: string, index: number) => (
                                     <li key={index} className="flex justify-between items-center bg-gray-50 px-4 py-2 rounded-sm border border-gray-100">
                                         <span className="text-sm text-gray-700">{highlight}</span>
                                         <button
@@ -271,7 +273,8 @@ export default function NeighborhoodForm({ initialData }: NeighborhoodFormProps)
                                         </button>
                                     </li>
                                 ))}
-                                {((activeLanguage === 'en' ? formData.highlights?.length : formData.highlights_es?.length) || 0) === 0 && (
+                                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                {(((formData as any)[activeLanguage === 'en' ? 'highlights' : `highlights_${activeLanguage}`]) || []).length === 0 && (
                                     <li className="text-sm text-gray-400 italic">No highlights added yet.</li>
                                 )}
                             </ul>

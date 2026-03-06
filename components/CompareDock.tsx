@@ -54,7 +54,7 @@ export default function CompareDock() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                                 <div className="absolute bottom-2 left-2 right-2 flex flex-col">
                                     <span className="text-[10px] md:text-xs text-white font-semibold truncate leading-tight shadow-sm">{property.title}</span>
-                                    <span className="text-[9px] md:text-[10px] text-champagne-400 font-bold truncate"><DynamicPrice price={property.price} /></span>
+                                    <span className="text-[9px] md:text-[10px] text-champagne-400 font-bold truncate"><DynamicPrice price={property.price} period={property.rentPeriod} /></span>
                                 </div>
                                 <button
                                     onClick={(e) => {
@@ -84,8 +84,8 @@ export default function CompareDock() {
                             href="/compare"
                             onClick={closeDock} // Close it so it's not in the way on the compare page
                             className={`px-8 py-4 rounded-xl font-bold text-center transition-all duration-300 ${compareList.length >= 2
-                                    ? 'bg-champagne-500 text-navy-900 hover:bg-champagne-400 hover:shadow-lg hover:-translate-y-1'
-                                    : 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200'
+                                ? 'bg-champagne-500 text-navy-900 hover:bg-champagne-400 hover:shadow-lg hover:-translate-y-1'
+                                : 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200'
                                 }`}
                             aria-disabled={compareList.length < 2}
                         >

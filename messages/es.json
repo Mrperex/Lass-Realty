@@ -227,7 +227,12 @@
         "golfView": "Piscina/Golf",
         "furnished": "Amueblado Equipado",
         "petFriendly": "Mascotas Aceptadas",
-        "clearFilters": "Limpiar Filtros"
+        "clearFilters": "Limpiar Filtros",
+        "sortBy": "Ordenar Por",
+        "newest": "Más Recientes",
+        "priceAsc": "Precio (Menor a Mayor)",
+        "priceDesc": "Precio (Mayor a Menor)",
+        "popular": "Más Populares"
     },
     "Navigation": {
         "home": "Inicio",
@@ -259,17 +264,20 @@
     },
     "Footer": {
         "title": "LASS Realty",
-        "description": "Nuestro compromiso y su destino número uno para residir y vacacionar rodeado del lujo insuperable dominicano.",
-        "quickLinks": "Links Rápidos y Eficientes",
-        "aboutUs": "Acerca de Nosotros / Biografía",
-        "properties": "Listado de Propiedades y Activos Inmobiliarios Globales de Nuestro Liderazgo Gerencial Interno Inmobiliario.",
-        "buyingGuide": "Manual para Compradores.",
-        "contact": "Comunícate a Nuesta Área de Operaciones",
+        "description": "Su destino principal para bienes raíces de lujo y propiedades exclusivas.",
+        "quickLinks": "Enlaces Rápidos",
+        "aboutUs": "Sobre Nosotros",
+        "properties": "Propiedades",
+        "buyingGuide": "Guía de Compra",
+        "contact": "Contacto",
         "legal": "Garantías y Limitaciones Jurídicas",
-        "privacy": "Directriz de Privacidad Personal de Datos Recopilados Tecnológicos de Criterios de Plataforma",
-        "terms": "Términos, Cláusulas y Condiciones del Servicio en Línea Legal y Contractual",
-        "contactUs": "Contactar con Profesionales Internos Certificados para Operaciones Multilaterales",
-        "rights": "Derechos y Criterios Intelectuales Protegidos."
+        "privacy": "Privacidad",
+        "terms": "Términos",
+        "contactUs": "Contáctenos",
+        "rights": "Derechos y Criterios Intelectuales Protegidos.",
+        "regulatory": "LASS Realty es una agencia inmobiliaria registrada en la República Dominicana (Registro No. R-789-V2). Miembro de la Asociación Nacional de Profesionales Inmobiliarios (Licencia No. 442-991A).",
+        "disclaimer": "Toda la información proporcionada se considera confiable, pero no está garantizada y debe verificarse de manera independiente. Las propiedades están sujetas a venta previa, cambio o retiro. Ni los corredores ni LASS Realty serán responsables de errores tipográficos u omisiones.",
+        "developedBy": "Sitio web desarrollado por"
     },
     "Blog": {
         "title": "Noticias y Tendencias del Mercado Inmobiliario",
@@ -299,7 +307,10 @@
         "r3Desc": "El estatus evaluado detallado para el retorno realizado del alquiler temporal estacional para regiones dominicanas tales y que competen al espacio fronterizo virtual: Punta Cana en rango estipulado neto: [Bávaro Zona Centro = 9 hasta 11%, Complejo Turístico Privado de Alto Valor Cap Cana Limitado = 7 a su tope de 9% con retención operativa estricta, Cana Bay (Ubicado Frontal Litoral Playa Arena Gorda / Complejo Bahia) = Evaluación del Rango Medio-Alto 8 a tope de 10% Inter-Anual Mensualizado Sostenido, Downtown Comercial Turístico No Perimetral Costero (Litoral Aislado Mediano y Sector Corporativo y Vida Urbana Moderna Local del Veraneo Continuado en Locales Adyacentes No Cerrados = Promediado entre 6 a 8% con Fluctuaciones Inmediatas Según Inclinación Comercial en Transcurso Trimestral Local Comercial Operacional Público Privado Globalista Inversor Directo Corporativo Gubernamental Inter-Institucional) y Vista Cana Urbanístico Cerrado (Ubicado Adyacentemente Conexo al Rango Circunvalación Local Regional Privado De Alto Target Medio Superior Comercial Y Uso Familiar Interno Dominicano-Extranjero Conjunto) = Calculado su valor de retorno fijo operativo a un índice porcentil estipulado en valores nominales que comprenden o limitan con barreras 6% Base y hasta límite del 7% Nominal Calculado en base total en dólares de reserva imperial de la tesorería USA general evaluada a su equivalente anual contable.]",
         "r3Cat": "Desempeños Financieros Rentables Anuales en Escala Perimetral Evaluable con Valores Activos Globalistas de Propiedades Locales Operacionales de Alquiler y Subarrendos Vacacionales Generales",
         "pages": "Folios Reversibles (Págs.)",
-        "download": "Iniciar Archivo Descargable Inmediato Digitalizado PDF Informático"
+        "download": "Iniciar Archivo Descargable Inmediato Digitalizado PDF Informático",
+        "trustBadges": "Trusted Data",
+        "title": "Catálogo Financiero Operacional para Proyecciones Inmuebles Globalísticas y Regionales de Nuestra Estructura LASS e Internacional",
+        "description": "Suministro directo PDF y formato físico general evaluado a detalle con reportes especializados sin recargo en Punta Cana que exigen una revisión pormenorizante para foráneos inter-nacionales interesados a un alto rango estipulado al adquirir propiedades exóticas en dominios ajenos territoriales de procedencias externas a Norte y Sur América y EuroAsia Central, África Libre Global u Oceanía (Resto del Mundo Abierto de Inversores Acomodados)."
     },
     "Legal": {
         "privacyTitle": "Políticas Internas Directrices Confidenciales en Base a Explotación Adyacente Informacional Legal Corporativa LASS Punta Cana",
@@ -393,5 +404,38 @@
         "s7_p": "Aborde con su iniciativa en cuestionamiento directos interrogante en pre formulaciones concernientes con la logística estipulante directiva e interna presentes corporativizadas y sobre privacidad fiduciaria legal informativa de estamentos normados privacidad, o exija el cumplimiento a validaciones o reclamos procedimental pre establecido en directivas sobre manejo lógicas informativas procedimentales operativas a su derecho estipularnos al abordarnos a estamento corporativo:",
         "phone": "Red de Telefonía Inmobiliaria Central y Recepcionadores Lógicos Requerimiento Data Centro de Ayuda Asistida de Manejos LASS Informático y Requerimientos Procedimientos Normativas Generales LASS Internacional:  +1 (809) 555-0100 (Uso Oficial Administrativo Punta Cana/Bávaro)",
         "dr": "Jurisdicción y Sede Corporativa Base en Punta Cana, Provincias del Este Caribeño Litoral Macao/Bávaro - La Altagracia Operativa Nacional LASS, República Dominicana, Sede Originaria Archivos."
+    },
+    "Amenities": {
+        "pool": "Piscina Privada",
+        "oceanView": "Vista al Mar",
+        "golfView": "Vista al Campo de Golf",
+        "furnished": "Completamente Amueblado",
+        "petFriendly": "Mascotas Permitidas",
+        "gym": "Gimnasio",
+        "spa": "Spa y Bienestar",
+        "tennisCourt": "Cancha de Tenis",
+        "security24h": "Seguridad 24/7",
+        "gatedCommunity": "Comunidad Cerrada",
+        "beachAccess": "Acceso Privado a la Playa",
+        "balcony": "Balcón",
+        "terrace": "Terraza",
+        "garden": "Jardín Privado",
+        "parking": "Estacionamiento Techado",
+        "elevator": "Ascensor",
+        "airConditioning": "Aire Acondicionado",
+        "smartHome": "Sistema de Casa Inteligente",
+        "maidQuarters": "Cuarto de Servicio",
+        "wineCellar": "Cava de Vinos",
+        "homeTheater": "Cine en Casa",
+        "helipad": "Helipuerto",
+        "privateDock": "Muelle Privado",
+        "clubhouse": "Acceso a Casa Club",
+        "kidsPlayground": "Área de Juegos Infantiles",
+        "bbqArea": "Área de BBQ",
+        "solarPanels": "Paneles Solares",
+        "backupGenerator": "Generador de Emergencia",
+        "waterCistern": "Cisterna de Agua",
+        "concierge": "Servicio de Conserjería",
+        "coworking": "Espacio de Co-working"
     }
 }

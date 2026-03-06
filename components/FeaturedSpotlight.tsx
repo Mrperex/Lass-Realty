@@ -69,7 +69,7 @@ export default function FeaturedSpotlight({ property }: { property: IProperty | 
                         </h2>
 
                         <div className="font-outfit text-3xl font-semibold text-champagne-600 mb-8">
-                            <DynamicPrice price={property.price} />
+                            <DynamicPrice price={property.price} period={property.rentPeriod} />
                         </div>
 
                         <p className="text-lg text-slate-600 font-light leading-relaxed mb-10 border-l-2 border-champagne-300 pl-6">

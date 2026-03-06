@@ -51,8 +51,10 @@ export async function generateMetadata({
     if (!post) return {};
 
     const p = JSON.parse(JSON.stringify(post));
-    const title = (locale === 'es' && p.title_es) ? p.title_es : p.title;
-    const description = (locale === 'es' && p.excerpt_es) ? p.excerpt_es : p.excerpt;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const pContext: any = p;
+    const title = pContext[`title_${locale}`] || p.title;
+    const description = pContext[`excerpt_${locale}`] || p.excerpt;
 
     return {
         title: `${title} | LASS Realty`,
@@ -84,8 +86,10 @@ export default async function BlogPostPage({
     const post = JSON.parse(JSON.stringify(rawPost));
 
     // Bilingual getters
-    const title = (locale === 'es' && post.title_es) ? post.title_es : post.title;
-    const rawContent = (locale === 'es' && post.content_es) ? post.content_es : post.content;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const postContext: any = post;
+    const title = postContext[`title_${locale}`] || post.title;
+    const rawContent = postContext[`content_${locale}`] || post.content;
     const htmlContent = markdownToHtml(rawContent);
 
     // Related posts (same category, excluding current)
@@ -191,7 +195,9 @@ export default async function BlogPostPage({
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {relatedPosts.map((related: any) => {
-                            const rTitle = (locale === 'es' && related.title_es) ? related.title_es : related.title;
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            const rContext: any = related;
+                            const rTitle = rContext[`title_${locale}`] || related.title;
                             return (
                                 <Link
                                     key={related._id}

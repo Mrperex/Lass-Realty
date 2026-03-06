@@ -64,13 +64,13 @@ export default function Hero() {
                 </video>
             </motion.div>
 
-            {/* Hero Foreground Content */}
+            {/* Hero Text Content (Fades out) */}
             <motion.div
                 style={{ opacity: opacityHeroText, scale: scaleHeroText }}
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="relative z-20 text-center px-4 max-w-6xl mx-auto flex flex-col items-center flex-1 justify-center w-full mt-10"
+                className="relative z-20 text-center px-4 max-w-6xl mx-auto flex flex-col items-center justify-end flex-grow w-full pt-20"
             >
                 {/* Micro-heading */}
                 <motion.div variants={itemVariants} className="overflow-hidden mb-6">
@@ -85,10 +85,18 @@ export default function Hero() {
                 </motion.h1>
 
                 {/* Body Description */}
-                <motion.p variants={itemVariants} className="text-xl md:text-2xl text-slate-200 mb-16 max-w-2xl mx-auto font-light drop-shadow-lg leading-relaxed mix-blend-screen">
+                <motion.p variants={itemVariants} className="text-xl md:text-2xl text-slate-200 mb-8 max-w-2xl mx-auto font-light drop-shadow-lg leading-relaxed mix-blend-screen">
                     {t('description', { fallback: 'Exclusive oceanfront villas, luxury condos, and private estates in Punta Cana, Cap Cana, and beyond.' })}
                 </motion.p>
+            </motion.div>
 
+            {/* Search Engine Content (No fade on scroll) */}
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="relative z-30 text-center px-4 max-w-6xl mx-auto flex flex-col items-center justify-start flex-grow w-full mt-4"
+            >
                 {/* Desktop Search Engine Integration */}
                 <motion.div variants={itemVariants} className="w-full max-w-5xl mx-auto hidden sm:block">
                     <div className="bg-white/10 backdrop-blur-2xl p-3 rounded-[2rem] border border-white/20 shadow-2xl relative">
@@ -108,7 +116,6 @@ export default function Hero() {
                         <ArrowRight className="ml-2 w-5 h-5" />
                     </Link>
                 </motion.div>
-
             </motion.div>
         </section>
     );

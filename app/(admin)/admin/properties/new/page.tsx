@@ -6,6 +6,7 @@ import { useFormState, useFormStatus } from 'react-dom';
 import Link from 'next/link';
 import { ArrowLeft, Save, UploadCloud, X } from 'lucide-react';
 import { LOCATIONS } from '@/lib/locations';
+import AmenitiesMultiSelect from '@/components/admin/AmenitiesMultiSelect';
 
 const initialState = {
     error: '',
@@ -30,8 +31,20 @@ function SubmitButton() {
     );
 }
 
+const LOCALES = [
+    { code: 'en', label: 'English' },
+    { code: 'es', label: 'Spanish' },
+    { code: 'fr', label: 'French' },
+    { code: 'it', label: 'Italian' },
+    { code: 'de', label: 'German' },
+    { code: 'ru', label: 'Russian' },
+    { code: 'ht', label: 'Creole' }
+];
+
 export default function NewPropertyPage() {
     const [state, formAction] = useFormState(createProperty, initialState);
+    const [status, setStatus] = useState('for-sale');
+    const [activeTab, setActiveTab] = useState('en');
     const [imageUrls, setImageUrls] = useState<string[]>([]);
     const [uploadingImages, setUploadingImages] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -174,25 +187,94 @@ export default function NewPropertyPage() {
                     <div className="space-y-6">
                         <h3 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2">Basic Information</h3>
 
+                        <div className="mb-6 border-b border-slate-200">
+                            <div className="flex gap-4 overflow-x-auto pb-px">
+                                {LOCALES.map((l) => (
+                                    <button
+                                        key={l.code}
+                                        type="button"
+                                        onClick={() => setActiveTab(l.code)}
+                                        className={`whitespace-nowrap py-3 mx-1 font-medium text-sm transition-colors border-b-2 ${activeTab === l.code ? 'border-amber-500 text-amber-600' : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'}`}
+                                    >
+                                        {l.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="md:col-span-2">
-                                <label htmlFor="title" className="block text-sm font-medium text-slate-700 mb-1">Property Title (English)</label>
-                                <input type="text" id="title" name="title" required className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow" placeholder="e.g. Modern Beachfront Villa in Cap Cana" />
-                                <p className="text-xs text-slate-500 mt-1.5">Slug will be auto-generated from this title.</p>
+                            {LOCALES.map((l) => (
+                                <div key={`tab-${l.code}`} className={activeTab === l.code ? 'contents' : 'hidden'}>
+                                    <div className="md:col-span-2">
+                                        <label htmlFor={l.code === 'en' ? 'title' : `title_${l.code}`} className="block text-sm font-medium text-slate-700 mb-1">
+                                            Property Title ({l.label}) {l.code === 'en' && <span className="text-red-500">*</span>}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id={l.code === 'en' ? 'title' : `title_${l.code}`}
+                                            name={l.code === 'en' ? 'title' : `title_${l.code}`}
+                                            required={l.code === 'en'}
+                                            className={`w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow ${l.code !== 'en' ? 'bg-amber-50/10' : ''}`}
+                                            placeholder={l.code === 'en' ? 'e.g. Modern Beachfront Villa in Cap Cana' : `Title in ${l.label}...`}
+                                        />
+                                        {l.code === 'en' && <p className="text-xs text-slate-500 mt-1.5">Slug will be auto-generated from this title.</p>}
+                                    </div>
+
+                                    <div className="md:col-span-2">
+                                        <label htmlFor={l.code === 'en' ? 'description' : `description_${l.code}`} className="block text-sm font-medium text-slate-700 mb-1">
+                                            Description ({l.label}) {l.code === 'en' && <span className="text-red-500">*</span>}
+                                        </label>
+                                        <textarea
+                                            id={l.code === 'en' ? 'description' : `description_${l.code}`}
+                                            name={l.code === 'en' ? 'description' : `description_${l.code}`}
+                                            rows={5}
+                                            required={l.code === 'en'}
+                                            className={`w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow ${l.code !== 'en' ? 'bg-amber-50/10' : ''}`}
+                                            placeholder={`Describe the property in ${l.label}...`}
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor={l.code === 'en' ? 'city' : `city_${l.code}`} className="block text-sm font-medium text-slate-700 mb-1">
+                                            Location City ({l.label}) {l.code === 'en' && <span className="text-red-500">*</span>}
+                                        </label>
+                                        {l.code === 'en' ? (
+                                            <select
+                                                id="city"
+                                                name="city"
+                                                required
+                                                className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow bg-white"
+                                            >
+                                                <option value="">Select a City</option>
+                                                {LOCATIONS.map((loc) => (
+                                                    <option key={loc.slug} value={loc.name}>{loc.name}</option>
+                                                ))}
+                                            </select>
+                                        ) : (
+                                            <input
+                                                type="text"
+                                                id={`city_${l.code}`}
+                                                name={`city_${l.code}`}
+                                                className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow bg-amber-50/10"
+                                                placeholder={`City in ${l.label}...`}
+                                            />
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+
+                            <div>
+                                <label htmlFor="price" className="block text-sm font-medium text-slate-700 mb-1">Price (USD)</label>
+                                <input type="number" id="price" name="price" required min="0" className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow bg-white" placeholder="e.g. 1500000" />
                             </div>
 
-                            <div className="md:col-span-2">
-                                <label htmlFor="title_es" className="block text-sm font-medium text-slate-700 mb-1">Property Title (Spanish) — Optional</label>
-                                <input type="text" id="title_es" name="title_es" className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow bg-amber-50/10" placeholder="e.g. Moderna Villa Frente al Mar en Cap Cana" />
-                            </div>
-
-                            <div className="md:col-span-2">
+                            <div className="md:col-span-2 border-t border-slate-100 pt-6 mt-2">
                                 <label className="block text-sm font-bold text-navy-800 tracking-wider mb-2">Matterport / 3D Virtual Tour URL (Optional)</label>
                                 <input
                                     type="url"
                                     name="virtualTourUrl"
                                     placeholder="https://my.matterport.com/show/?m=..."
-                                    className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-2 focus:ring-champagne-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400 font-outfit"
+                                    className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-2 focus:ring-champagne-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400 font-outfit bg-white"
                                 />
                             </div>
 
@@ -243,36 +325,6 @@ export default function NewPropertyPage() {
                                         </div>
                                     )}
                                 </div>
-                            </div>
-
-                            <div className="md:col-span-2">
-                                <label htmlFor="description" className="block text-sm font-medium text-slate-700 mb-1">Description (English)</label>
-                                <textarea id="description" name="description" rows={5} required className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow" placeholder="Describe the property..." />
-                            </div>
-
-                            <div className="md:col-span-2">
-                                <label htmlFor="description_es" className="block text-sm font-medium text-slate-700 mb-1">Description (Spanish) — Optional</label>
-                                <textarea id="description_es" name="description_es" rows={5} className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow bg-amber-50/10" placeholder="Resumen detallado de la propiedad en español..." />
-                            </div>
-
-                            <div>
-                                <label htmlFor="price" className="block text-sm font-medium text-slate-700 mb-1">Price (USD)</label>
-                                <input type="number" id="price" name="price" required min="0" className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow" placeholder="e.g. 1500000" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="city" className="block text-sm font-medium text-slate-700 mb-1">Location City (English)</label>
-                                <select id="city" name="city" required className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow bg-white">
-                                    <option value="">Select a City</option>
-                                    {LOCATIONS.map(loc => (
-                                        <option key={loc.slug} value={loc.name}>{loc.name}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            <div>
-                                <label htmlFor="city_es" className="block text-sm font-medium text-slate-700 mb-1">Location City (Spanish)</label>
-                                <input type="text" id="city_es" name="city_es" className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow bg-amber-50/10" placeholder="e.g. Punta Cana" />
                             </div>
                         </div>
                     </div>
@@ -359,7 +411,7 @@ export default function NewPropertyPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label htmlFor="status" className="block text-sm font-medium text-slate-700 mb-1">Status</label>
-                                <select id="status" name="status" className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow bg-white">
+                                <select id="status" name="status" value={status} onChange={(e) => setStatus(e.target.value)} className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow bg-white">
                                     <option value="for-sale">For Sale</option>
                                     <option value="for-rent">For Rent</option>
                                     <option value="reserved">Reserved / Pending</option>
@@ -379,105 +431,33 @@ export default function NewPropertyPage() {
                             </div>
                         </div>
 
-                        <div className="pt-6 border-t border-slate-100">
-                            <h4 className="text-sm font-bold text-slate-900 mb-6 uppercase tracking-wider">Property Amenities</h4>
-
-                            <div className="space-y-8">
-                                {/* Infrastructure */}
-                                <div>
-                                    <h5 className="text-xs font-bold text-amber-600 mb-3 tracking-widest uppercase">Infrastructure</h5>
-                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6">
-                                        {['Backup Generator', 'Water System / Cistern', 'Water Heater', 'Fiber Optic Internet', 'Underground Cabling'].map((amenity) => (
-                                            <div key={amenity} className="flex items-center">
-                                                <input
-                                                    id={`amenity-${amenity}`}
-                                                    name="amenities[]"
-                                                    value={amenity}
-                                                    type="checkbox"
-                                                    className="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500"
-                                                />
-                                                <label htmlFor={`amenity-${amenity}`} className="ml-3 text-sm font-medium text-slate-700">{amenity}</label>
-                                            </div>
-                                        ))}
+                        {status === 'for-rent' && (
+                            <div className="pt-6 border-t border-slate-100">
+                                <h4 className="text-sm font-bold text-slate-900 mb-6 uppercase tracking-wider">Rental Specifics</h4>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div>
+                                        <label htmlFor="rentPeriod" className="block text-sm font-medium text-slate-700 mb-1">Rent Period</label>
+                                        <select id="rentPeriod" name="rentPeriod" className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow bg-white">
+                                            <option value="">Select Period</option>
+                                            <option value="monthly">Monthly (/mo)</option>
+                                            <option value="nightly">Nightly (/night)</option>
+                                        </select>
                                     </div>
-                                </div>
-
-                                {/* Security */}
-                                <div>
-                                    <h5 className="text-xs font-bold text-amber-600 mb-3 tracking-widest uppercase">Security</h5>
-                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6">
-                                        {['24/7 Security', 'Gated Community', 'Surveillance Cameras', 'Controlled Access', 'Smart Lock'].map((amenity) => (
-                                            <div key={amenity} className="flex items-center">
-                                                <input
-                                                    id={`amenity-${amenity}`}
-                                                    name="amenities[]"
-                                                    value={amenity}
-                                                    type="checkbox"
-                                                    className="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500"
-                                                />
-                                                <label htmlFor={`amenity-${amenity}`} className="ml-3 text-sm font-medium text-slate-700">{amenity}</label>
-                                            </div>
-                                        ))}
+                                    <div>
+                                        <label htmlFor="deposit" className="block text-sm font-medium text-slate-700 mb-1">Security Deposit (USD)</label>
+                                        <input type="number" id="deposit" name="deposit" min="0" className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow" placeholder="e.g. 2000" />
                                     </div>
-                                </div>
-
-                                {/* Outdoor / Leisure */}
-                                <div>
-                                    <h5 className="text-xs font-bold text-amber-600 mb-3 tracking-widest uppercase">Outdoor & Leisure</h5>
-                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6">
-                                        {['Private Pool', 'Infinity Pool', 'Artificial Beach', 'Jacuzzi', 'BBQ Area', 'Gazebo', 'Wrap Around Balcony', 'Ocean Front', 'Ocean View', 'Golf View'].map((amenity) => (
-                                            <div key={amenity} className="flex items-center">
-                                                <input
-                                                    id={`amenity-${amenity}`}
-                                                    name="amenities[]"
-                                                    value={amenity}
-                                                    type="checkbox"
-                                                    className="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500"
-                                                />
-                                                <label htmlFor={`amenity-${amenity}`} className="ml-3 text-sm font-medium text-slate-700">{amenity}</label>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Community / Shared */}
-                                <div>
-                                    <h5 className="text-xs font-bold text-amber-600 mb-3 tracking-widest uppercase">Community & Shared</h5>
-                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6">
-                                        {['Club House', 'Basketball Court', 'Tennis / Padel Court', 'Kids Playground', 'Gym', 'Co-working Space'].map((amenity) => (
-                                            <div key={amenity} className="flex items-center">
-                                                <input
-                                                    id={`amenity-${amenity}`}
-                                                    name="amenities[]"
-                                                    value={amenity}
-                                                    type="checkbox"
-                                                    className="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500"
-                                                />
-                                                <label htmlFor={`amenity-${amenity}`} className="ml-3 text-sm font-medium text-slate-700">{amenity}</label>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Interior / Luxury */}
-                                <div>
-                                    <h5 className="text-xs font-bold text-amber-600 mb-3 tracking-widest uppercase">Interior & Luxury</h5>
-                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6">
-                                        {['Wine Cellar', 'Smart Home Integration', "Maid's Quarters", 'Central AC', 'Elevator', 'Fully Furnished', 'Pet Friendly'].map((amenity) => (
-                                            <div key={amenity} className="flex items-center">
-                                                <input
-                                                    id={`amenity-${amenity}`}
-                                                    name="amenities[]"
-                                                    value={amenity}
-                                                    type="checkbox"
-                                                    className="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500"
-                                                />
-                                                <label htmlFor={`amenity-${amenity}`} className="ml-3 text-sm font-medium text-slate-700">{amenity}</label>
-                                            </div>
-                                        ))}
+                                    <div>
+                                        <label htmlFor="maintenanceFee" className="block text-sm font-medium text-slate-700 mb-1">Maintenance Fee (USD)</label>
+                                        <input type="number" id="maintenanceFee" name="maintenanceFee" min="0" className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow" placeholder="e.g. 150" />
                                     </div>
                                 </div>
                             </div>
+                        )}
+
+                        <div className="pt-6 border-t border-slate-100">
+                            <h4 className="text-sm font-bold text-slate-900 mb-6 uppercase tracking-wider">Property Amenities</h4>
+                            <AmenitiesMultiSelect />
                         </div>
                     </div>
 

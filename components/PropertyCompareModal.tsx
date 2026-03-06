@@ -51,7 +51,7 @@ export default function PropertyCompareModal() {
                                     className="object-cover"
                                 />
                                 <div className="absolute bottom-2 left-2 bg-navy-900/80 backdrop-blur-sm px-3 py-1 rounded-lg text-champagne-400 font-bold text-sm">
-                                    <DynamicPrice price={property.price} />
+                                    <DynamicPrice price={property.price} period={property.rentPeriod} />
                                 </div>
                             </div>
 

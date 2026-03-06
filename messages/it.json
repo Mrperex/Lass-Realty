@@ -227,7 +227,12 @@
         "golfView": "Vista sul Golf",
         "furnished": "Arredato",
         "petFriendly": "Animali Ammessi",
-        "clearFilters": "Cancella Filtri"
+        "clearFilters": "Cancella Filtri",
+        "sortBy": "Ordina Per",
+        "newest": "Più Recenti",
+        "priceAsc": "Prezzo (Crescente)",
+        "priceDesc": "Prezzo (Decrescente)",
+        "popular": "I Più Popolari"
     },
     "Navigation": {
         "home": "Home",
@@ -269,7 +274,10 @@
         "privacy": "Informativa sulla Privacy",
         "terms": "Termini di Servizio",
         "contactUs": "Contattaci",
-        "rights": "Tutti i diritti riservati."
+        "rights": "Tutti i diritti riservati.",
+        "regulatory": "LASS Realty è un'agenzia immobiliare registrata nella Repubblica Dominicana (Registrazione N. R-789-V2).",
+        "disclaimer": "Tutte le informazioni fornite sono ritenute affidabili ma non sono garantite e devono essere verificate indipendentemente.",
+        "developedBy": "Sito web sviluppato da"
     },
     "Blog": {
         "title": "Approfondimenti e Notizie di Mercato",
@@ -299,7 +307,10 @@
         "r3Desc": "Comparazione dettagliata del profitto netto derivato dal turismo vacazionale globale analizzando Cap Cana, Bávaro, Vista Cana o l'entourage metropolitano per investitori attuali valutando costi reali.",
         "r3Cat": "Investimenti Finanziari Ristretti, Analisi Ritorno Immobiliare in Capitale Nominale",
         "pages": "Pagine Informative",
-        "download": "Avvia il Download del Formato Informativo PDF a Consumo Diretto"
+        "download": "Avvia il Download del Formato Informativo PDF a Consumo Diretto",
+        "trustBadges": "Trusted Data",
+        "title": "Rapporti Esclusivi e Statistiche del Mercato",
+        "description": "Scarica gratuitamente i report statistici di Punta Cana. Tendenze estrapolate, stime dei rendimenti degli affitti e guide per gli investitori."
     },
     "Legal": {
         "privacyTitle": "Procedura Privacy Inter-Legale di Sicurezza e Rispetto Dati Virtuale ed Acquisizione Aziendale LASS Realty e Conformità Dominicana Corporativa Civile",
@@ -393,5 +404,38 @@
         "s7_p": "Assestatisi ad inquirsizion d'incogniti sulli procedimentis ed istatutali corporato-legiferatis ad inter privacy ovver s'accorga del bisogne d'agere a proi diriti telematic perimetro le s'addizion al referenzia via elettronci su canal: info@lasspuntacana.com , over s'ausili de l'apparato operazional fonici od infrastrutto fisico in uffici:",
         "phone": "Telecomunicazioni Centralistici Globale a Support de Direzioni Investizioni Foranee ed Lussuose Alloggiative: +1 (809) 555-0100",
         "dr": "Locali Edificanti E Dominio Domicile Fiscal Perimetri in Bavaro Punta Cana Este, Provincia La Altagrecia, Statos Nazioni De Republica Dominicana. (Sedi Originariamente Esecutivis Al Tratato Ciber Privacy LASS)"
+    },
+    "Amenities": {
+        "pool": "Piscina Privata",
+        "oceanView": "Vista Oceano",
+        "golfView": "Vista Campo da Golf",
+        "furnished": "Completamente Arredato",
+        "petFriendly": "Animali Ammessi",
+        "gym": "Centro Fitness / Palestra",
+        "spa": "Spa & Benessere",
+        "tennisCourt": "Campo da Tennis",
+        "security24h": "Sicurezza 24/7",
+        "gatedCommunity": "Comunità Recintata",
+        "beachAccess": "Accesso Privato alla Spiaggia",
+        "balcony": "Balcone",
+        "terrace": "Terrazza",
+        "garden": "Giardino Privato",
+        "parking": "Parcheggio Coperto",
+        "elevator": "Ascensore",
+        "airConditioning": "Aria Condizionata",
+        "smartHome": "Sistema Smart Home",
+        "maidQuarters": "Alloggio per il Personale",
+        "wineCellar": "Cantina",
+        "homeTheater": "Home Theater",
+        "helipad": "Eliporto",
+        "privateDock": "Molo Privato",
+        "clubhouse": "Accesso Clubhouse",
+        "kidsPlayground": "Parco Giochi",
+        "bbqArea": "Area BBQ",
+        "solarPanels": "Pannelli Solari",
+        "backupGenerator": "Generatore di Emergenza",
+        "waterCistern": "Cisterna d'Acqua",
+        "concierge": "Servizio Concierge",
+        "coworking": "Spazio Co-working"
     }
 }

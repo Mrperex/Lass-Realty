@@ -1,5 +1,7 @@
 "use client";
 
+import React from 'react';
+
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Playfair_Display, Outfit } from 'next/font/google';
@@ -21,6 +23,7 @@ const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const router = useRouter();
+    const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
     // Don't show sidebar on login page
     if (pathname === '/admin/login') {
@@ -52,8 +55,50 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <html lang="en" className={`${playfair.variable} ${outfit.variable}`}>
             <body className="font-outfit antialiased">
                 <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row">
-                    {/* Sidebar */}
-                    <div className="w-full md:w-64 bg-slate-900 text-slate-300 flex-shrink-0 border-r border-slate-800">
+                    {/* Mobile Top App Bar */}
+                    <div className="md:hidden bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
+                        <div className="flex items-center justify-between px-4 py-4">
+                            <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold text-white tracking-tight flex flex-col">
+                                LASS Realty
+                                <span className="text-[10px] font-normal text-amber-500 tracking-widest uppercase mt-0.5">Admin Portal</span>
+                            </Link>
+                            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-white p-2 focus:outline-none">
+                                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                            </button>
+                        </div>
+
+                        {/* Mobile Dropdown Menu */}
+                        {mobileMenuOpen && (
+                            <nav className="bg-slate-900 border-t border-slate-800 px-4 py-4 space-y-2 max-h-[80vh] overflow-y-auto">
+                                {navigation.map((item) => {
+                                    const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href));
+                                    const Icon = item.icon;
+                                    return (
+                                        <Link
+                                            key={item.name}
+                                            href={item.href}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-colors ${isActive ? 'bg-amber-600 text-white shadow-md' : 'text-slate-300 hover:bg-slate-800'}`}
+                                        >
+                                            <Icon className="w-5 h-5" />
+                                            <span className="font-medium">{item.name}</span>
+                                        </Link>
+                                    );
+                                })}
+                                <div className="border-t border-slate-800 my-2 pt-2"></div>
+                                <button
+                                    onClick={() => { setMobileMenuOpen(false); handleLogout(); }}
+                                    className="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-red-400 transition-colors"
+                                >
+                                    <LogOut className="w-5 h-5" />
+                                    <span className="font-medium">Sign Out</span>
+                                </button>
+                            </nav>
+                        )}
+                    </div>
+
+                    {/* Desktop Sidebar */}
+                    <div className="hidden md:flex w-64 bg-slate-900 text-slate-300 flex-shrink-0 border-r border-slate-800 flex-col">
                         <div className="p-6">
                             <Link href="/" className="text-xl font-bold text-white tracking-tight hover:text-amber-500 transition-colors">
                                 LASS Realty

@@ -9,25 +9,18 @@ type ReportProps = {
     report: {
         id: string;
         title: string;
-        title_es: string;
         description: string;
-        description_es: string;
         coverImage: string;
         pages: number;
         category: string;
-        category_es: string;
     };
-    locale: string;
 };
 
-export default function ReportCard({ report, locale }: ReportProps) {
-    const isEs = locale === 'es';
+export default function ReportCard({ report }: ReportProps) {
     const t = useTranslations('MarketReports');
     const [isHovered, setIsHovered] = useState(false);
 
-    const title = isEs ? report.title_es : report.title;
-    const description = isEs ? report.description_es : report.description;
-    const category = isEs ? report.category_es : report.category;
+    const { title, description, category } = report;
 
     return (
         <div
