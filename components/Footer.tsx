@@ -45,31 +45,29 @@ const Footer = () => {
                     <p>{t('disclaimer')}</p>
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-slate-800/50 flex flex-col sm:flex-row items-center justify-between text-sm text-center text-slate-400 space-y-4 sm:space-y-0">
-                    <div className="flex flex-wrap items-center justify-center sm:justify-between w-full gap-2">
+                <div className="mt-8 pt-6 border-t border-slate-800/50 flex items-center justify-center text-sm text-center text-slate-400">
+                    <div className="flex items-center flex-wrap justify-center gap-1">
                         <span>&copy; {new Date().getFullYear()} Lass Realty. All Rights Reserved -</span>
-                        <div className="flex items-center gap-1 opacity-90 hover:opacity-100 transition-opacity flex-wrap justify-center">
-                            <a
-                                href="https://wa.me/18295230782?text=Hi%20Pablo%20I%20saw%20the%20Lass%20Punta%20Cana%20website%20and%20I%20want%20something%20similar"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group text-amber-500 hover:text-amber-400 font-semibold transition-all inline-flex items-center"
-                            >
-                                <span>Website by Pablo Pérez</span>
-                                <span className="max-w-0 opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-1.5 transition-all duration-300 ease-out whitespace-nowrap overflow-hidden">
-                                    → Build yours
-                                </span>
-                            </a>
-                            <span className="text-slate-500 mx-1">|</span>
-                            <a
-                                href="https://wa.me/18295230782?text=Hi%20Pablo%20I%20saw%20the%20Lass%20Punta%20Cana%20website%20and%20I%20want%20something%20similar"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-amber-500 hover:text-amber-400 transition-colors font-medium"
-                            >
-                                Hire me (The WhatsApp trick that boosts conversions)
-                            </a>
-                        </div>
+                        <a
+                            href="https://wa.me/18295230782?text=Hi%20Pablo%20I%20saw%20the%20Lass%20Punta%20Cana%20website%20and%20I%20want%20something%20similar"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group inline-flex items-center hover:text-slate-300 transition-colors"
+                        >
+                            <span>Website by Pablo Pérez</span>
+                            <span className="max-w-0 opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-1.5 transition-all duration-300 ease-out whitespace-nowrap overflow-hidden">
+                                → Build yours
+                            </span>
+                        </a>
+                        <span className="mx-1">|</span>
+                        <a
+                            href="https://wa.me/18295230782?text=Hi%20Pablo%20I%20saw%20the%20Lass%20Punta%20Cana%20website%20and%20I%20want%20something%20similar"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-slate-300 transition-colors"
+                        >
+                            Hire me
+                        </a>
                     </div>
                 </div>
             </div>
