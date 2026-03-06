@@ -290,10 +290,16 @@
     },
     "Neighborhoods": {
         "title": "Neighborhood Guides",
-        "subtitle": "Explore the most exclusive luxury communities in the Dominican Republic. Each guide includes average prices, key highlights, and active property listings.",
+        "description": "Explore the most exclusive luxury communities in the Dominican Republic.",
         "noGuides": "No neighborhood guides published yet.",
         "avgPrice": "Avg. price: ",
-        "exploreGuide": "Explore Guide"
+        "exploreGuide": "Explore Guide",
+        "allNeighborhoods": "All Neighborhoods",
+        "aboutCommunity": "About This Community",
+        "keyHighlights": "Key Highlights",
+        "viewAllProperties": "View All Properties",
+        "beds": "Beds",
+        "baths": "Baths"
     },
     "MarketReports": {
         "pageTitle": "Market Reports",

@@ -51,9 +51,18 @@ export const PropertyBrochure = ({ property }: { property: any }) => {
                     <Text style={styles.website}>www.lasspuntacana.com</Text>
                 </View>
 
-                {property.images && property.images.length > 0 && (
-                    <Image style={styles.heroImage} src={property.images[0]} />
-                )}
+                {property.images && property.images.length > 0 && (() => {
+                    let imgSrc = property.images[0];
+                    // @react-pdf/renderer needs absolute URLs — local paths like /images/... won't work
+                    if (imgSrc.startsWith('/')) {
+                        imgSrc = 'https://lasspuntacana.com' + imgSrc;
+                    }
+                    try {
+                        return <Image style={styles.heroImage} src={imgSrc} />;
+                    } catch {
+                        return null;
+                    }
+                })()}
 
                 <View style={styles.titleBlock}>
                     <Text style={styles.title}>{property.title}</Text>

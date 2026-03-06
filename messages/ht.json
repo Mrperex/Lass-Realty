@@ -289,11 +289,17 @@
         "relatedArticles": "Atik Relasyon"
     },
     "Neighborhoods": {
-        "title": "Gid Katye Yo",
-        "subtitle": "Dekouvri kominote ak katye ki pi bèl yo nan Repiblik Dominikèn. Ou ka wè pri mwayèn yo ak gwo pwopriyete ki disponib.",
-        "noGuides": "Nou poko pibliye gid sou lòt zòn.",
-        "avgPrice": "Pri Mwayèn: ",
-        "exploreGuide": "Dekouvri Gid La"
+        "title": "Gid Katye",
+        "description": "Eksplore kominote ki pi eksklizif nan Repiblik Dominikèn.",
+        "noGuides": "Pa gen gid katye pibliye.",
+        "avgPrice": "Pri mwayèn: ",
+        "exploreGuide": "Eksplore Gid",
+        "allNeighborhoods": "Tout Katye",
+        "aboutCommunity": "Sou Kominote sa a",
+        "keyHighlights": "Pwen Enpòtan",
+        "viewAllProperties": "Wè tout Pwopriyete",
+        "beds": "Chanm",
+        "baths": "Twalèt"
     },
     "MarketReports": {
         "pageTitle": "Rapò Mache a",

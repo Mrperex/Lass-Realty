@@ -289,11 +289,17 @@
         "relatedArticles": "Ähnliche Veröffentlichungen"
     },
     "Neighborhoods": {
-        "title": "Stadtteile & Viertel Guideline",
-        "subtitle": "Erkunden Sie die exklusivsten Luxusgemeinden in Punta Cana und der Dominikanischen Republik. Jeder Leitfaden enthält Durchschnittspreise, wesentliche Highlights und exklusive aktive Immobilien.",
-        "noGuides": "Dieser Bereich über Gemeinschaftsviertel wird demnächst ausgebaut.",
-        "avgPrice": "Durchschnittlicher Schätzwert: ",
-        "exploreGuide": "Unseren Ratgeber Lesen"
+        "title": "Nachbarschaftsführer",
+        "description": "Entdecken Sie die exklusivsten Gemeinschaften in der Dominikanischen Republik.",
+        "noGuides": "Keine Nachbarschaftsführer veröffentlicht.",
+        "avgPrice": "Durchschnittspreis: ",
+        "exploreGuide": "Leitfaden erkunden",
+        "allNeighborhoods": "Alle Nachbarschaften",
+        "aboutCommunity": "Über diese Gemeinschaft",
+        "keyHighlights": "Wichtige Highlights",
+        "viewAllProperties": "Alle Immobilien ansehen",
+        "beds": "Schlafz.",
+        "baths": "Bäder"
     },
     "MarketReports": {
         "pageTitle": "Exklusive Marktberichte",

@@ -289,11 +289,17 @@
         "relatedArticles": "Articoli Correlati"
     },
     "Neighborhoods": {
-        "title": "Quartieri Locali e Comunità",
-        "subtitle": "Esplora le comunità di lusso più esclusive della Repubblica Dominicana. Ogni guida include i prezzi medi, i punti salienti e gli elenchi delle proprietà attive.",
-        "noGuides": "Non sono ancora stati esplorati vecindarios attivi, rimani in attesa.",
-        "avgPrice": "Prezzo medio stimato: ",
-        "exploreGuide": "Esplora la Guida Locale"
+        "title": "Guida ai Quartieri",
+        "description": "Esplora le comunità più esclusive della Repubblica Dominicana.",
+        "noGuides": "Nessuna guida di quartiere pubblicata.",
+        "avgPrice": "Prezzo medio: ",
+        "exploreGuide": "Esplora la Guida",
+        "allNeighborhoods": "Tutti i Quartieri",
+        "aboutCommunity": "Informazioni sulla Comunità",
+        "keyHighlights": "Punti Salienti",
+        "viewAllProperties": "Vedi tutte le Proprietà",
+        "beds": "Cam.",
+        "baths": "Bagni"
     },
     "MarketReports": {
         "pageTitle": "Rapporti Esclusivi e Statistiche del Mercato",
