@@ -8,6 +8,7 @@ import { MapPin, DollarSign, ArrowLeft, CheckCircle2, Home } from 'lucide-react'
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { LOCATIONS } from '@/lib/locations';
 
 export const revalidate = 60;
 
@@ -47,8 +48,24 @@ export default async function NeighborhoodDetailPage({
     const t = await getTranslations('Neighborhoods');
 
     await connectToDatabase();
-    const rawNeighborhood = await Neighborhood.findOne({ slug }).lean();
-    if (!rawNeighborhood) notFound();
+    let rawNeighborhood = await Neighborhood.findOne({ slug }).lean();
+
+    if (!rawNeighborhood) {
+        // Fallback to priority LOCATIONS if not explicitly created in the database
+        const fallbackLocation = LOCATIONS.find(l => l.slug === slug && l.priority);
+        if (fallbackLocation) {
+            rawNeighborhood = {
+                _id: fallbackLocation.slug,
+                slug: fallbackLocation.slug,
+                name: fallbackLocation.name,
+                description: `Experience the finest luxury real estate in ${fallbackLocation.name}, offering exclusive amenities and uncompromised lifestyle.`,
+                averagePrice: 0,
+                highlights: ['Luxury', fallbackLocation.region]
+            } as any;
+        } else {
+            notFound();
+        }
+    }
 
     const n = JSON.parse(JSON.stringify(rawNeighborhood));
 
