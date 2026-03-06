@@ -59,9 +59,9 @@
         "submitButton": "Voye Demann"
     },
     "PropertyCard": {
-        "noImage": "Pa gen Imaj",
-        "beds": "Ch",
-        "baths": "Tw",
+        "noImage": "Pa gen Foto",
+        "beds": "Chanm",
+        "baths": "Twalèt",
         "hotProperty": "Pwopriyete Mande Anpil",
         "viewingRightNow": "{count} moun ap gade kounye a",
         "rareFind": "Ra pou Jwenn"
@@ -242,9 +242,9 @@
         "neighborhoods": "Katye",
         "buyingGuide": "Gid pou Achte",
         "marketReports": "Rapò",
-        "locations": "Zòn",
-        "about": "A Pwopo Nou",
-        "contact": "Kontak",
+        "locations": "Anplasman",
+        "about": "Sou Nou",
+        "contact": "Kontakte",
         "more": "Plis",
         "admin": "Admin"
     },
@@ -281,12 +281,12 @@
         "developedBy": "Sit entènèt devlope pa"
     },
     "Blog": {
-        "title": "Nouvo Enfòmasyon & Blog",
-        "description": "Dekouvri sa k ap pase sou mache imobilye a, gid pou w achte kay liks, ak kèk nouvèl eksklizif ki soti nan Repiblik Dominikèn.",
-        "noArticles": "Pa gen atik ki pibliye la a pou kounye a.",
-        "readArticle": "Li Atik",
+        "title": "Nouvèl Mache a",
+        "description": "Dekouvri dènye tendans mache imobilye a, gid acha liks ak nouvèl eksklizif soti nan Repiblik Dominikèn.",
+        "noArticles": "Pa gen atik pibliye.",
+        "readArticle": "Li Atik la",
         "backToBlog": "Retounen nan Blog",
-        "relatedArticles": "Atik Relasyon"
+        "relatedArticles": "Atik ki gen Rapò"
     },
     "Neighborhoods": {
         "title": "Gid Katye",
@@ -302,22 +302,23 @@
         "baths": "Twalèt"
     },
     "MarketReports": {
-        "pageTitle": "Rapò Mache a",
-        "pageSubtitle": "Telechaje rapò gratis sou jan mache kay Punta Cana a ye kounye a jodi a.",
-        "r1Title": "Gid Punta Cana pou Mache a",
-        "r1Desc": "Youn nan pi gwo gid w ka li pou konprann jan prè kay ap moute avèk nivo jenerasyon moun (8.4%).",
+        "pageTitle": "Rapò Mache",
+        "pageSubtitle": "Telechaje rapò gratis sou mache imobilye Punta Cana. Tandans, ranman lwaye ak gid pou achtè etranje.",
+        "r1Title": "Apèsi Mache Punta Cana 2026",
+        "r1Desc": "Analiz konplè valè pwopriyete, to apresyasyon (8.4% pa ane), kwasans touris (12M+ vizitè) ak zòn envestisman.",
         "r1Cat": "Analiz Mache",
-        "r2Title": "Gid Achte Imobilye pou Etranje nan Dominikani",
-        "r2Desc": "Men lwa sou jan pou gwo lajan ak taks fonksyone nan peyi isit. CONFOTUR taks ede 4.5% rabè.",
-        "r2Cat": "Gid Achte",
-        "r3Title": "Pwofi Ou Fè pou Zòn Ou Chwazi (Lwe Rapò)",
-        "r3Desc": "Detay ki bay pwofi kay ou ap ranje lè w lwe li sou mache a tankou Bávaro (9-11%), Cap Cana (7-9%).",
+        "r2Title": "Gid pou Achtè Etranje nan RD",
+        "r2Desc": "Tout sa ou bezwen konnen: Lwa 16-95, avantaj fiskal CONFOTUR, opsyon finansman, frè fèmti (4.5-7%) ak pwosesis acha.",
+        "r2Cat": "Gid Acha",
+        "r3Title": "ROI pa Katye: Rapò Ranman",
+        "r3Desc": "Konparezon detaye ranman nèt lwaye: Bávaro (9-11%), Cap Cana (7-9%), Cana Bay (8-10%), Downtown (6-8%) ak Vista Cana (6-7%).",
         "r3Cat": "Analiz Envestisman",
         "pages": "Paj",
         "download": "Telechaje",
         "trustBadges": "Trusted Data",
         "title": "Rapò Mache a",
-        "description": "Telechaje rapò gratis sou jan mache kay Punta Cana a ye kounye a jodi a."
+        "description": "Telechaje rapò gratis sou jan mache kay Punta Cana a ye kounye a jodi a.",
+        "downloadReport": "Telechaje Rapò"
     },
     "Legal": {
         "privacyTitle": "Règleman sou Konfidansyalite",

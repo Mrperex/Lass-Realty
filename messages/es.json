@@ -60,7 +60,7 @@
     },
     "PropertyCard": {
         "noImage": "Sin Imagen",
-        "beds": "Hab",
+        "beds": "Hab.",
         "baths": "Baños",
         "hotProperty": "Propiedad Destacada",
         "viewingRightNow": "{count} personas viéndolo",
@@ -239,14 +239,14 @@
     "Navigation": {
         "home": "Inicio",
         "properties": "Propiedades",
-        "blog": "Blog y Noticias",
+        "blog": "Blog",
         "neighborhoods": "Vecindarios",
         "buyingGuide": "Guía de Adquirientes",
-        "marketReports": "Informes de Mercado",
-        "locations": "Destinos",
-        "about": "Acerca de Nosotros",
-        "contact": "Contactar",
-        "more": "Más Servicios",
+        "marketReports": "Reportes",
+        "locations": "Ubicaciones",
+        "about": "Nosotros",
+        "contact": "Contacto",
+        "more": "Más",
         "admin": "Plataforma Interna"
     },
     "ComparePage": {
@@ -283,12 +283,12 @@
         "allRightsReserved": "© 2026 Lass Realty. Todos los Derechos Reservados"
     },
     "Blog": {
-        "title": "Noticias y Tendencias del Mercado Inmobiliario",
-        "description": "Investigue mediante datos las exclusivas guías contemporáneas de bienes raíces en mercado actual en Punta Cana y más allá sobre normativas dominicanas en inversiones y finanzas estructurales del activo habitacional.",
-        "noArticles": "Nuestros canales aún no disponen del informe general que busca en tiempo actual real.",
-        "readArticle": "Continuar Leyendo Artículo Desempolvado de Nuestro Catálogo Privado Informativo",
-        "backToBlog": "Regresar En Vistas Previas al Módulo Informacional (Directorio Relacionado a la Búsqueda Múltiple Generalizada de Novedades Periodísticas Privadas Empresariales de Nuestras Entidades Corporativas Asignadas).",
-        "relatedArticles": "Postulaciones Previas Relevantes de Nuestro Acervo Cultural Analítico de Mercados LASS (Artículos Similares Correlativos)"
+        "title": "Noticias del Mercado",
+        "description": "Descubre las últimas tendencias del mercado inmobiliario, guías de compra de lujo y novedades exclusivas de la República Dominicana.",
+        "noArticles": "No hay artículos publicados.",
+        "readArticle": "Leer Artículo",
+        "backToBlog": "Volver al Blog",
+        "relatedArticles": "Artículos Relacionados"
     },
     "Neighborhoods": {
         "title": "Guía de Vecindarios",
@@ -309,14 +309,14 @@
         "r1Title": "Panorama del Mercado de Punta Cana 2026",
         "r1Desc": "Análisis completo de valores de propiedades, tasas de apreciación (8.4% anual), crecimiento turístico (12M+ visitantes) y zonas de inversión en el corredor de Punta Cana.",
         "r1Cat": "Análisis de Mercado",
-        "r2Title": "Guía del Comprador Extranjero en República Dominicana",
-        "r2Desc": "Todo lo que necesitas saber: Ley 16-95 sobre derechos de propiedad, incentivos fiscales CONFOTUR, opciones de financiamiento, costos de cierre (4.5-7%) y proceso de compra paso a paso.",
+        "r2Title": "Guía del Comprador Extranjero en RD",
+        "r2Desc": "Todo lo que necesitas saber: Ley 16-95, incentivos CONFOTUR, opciones de financiamiento, costos de cierre (4.5-7%) y proceso de compra paso a paso.",
         "r2Cat": "Guía de Compra",
         "r3Title": "ROI por Vecindario: Reporte de Rendimiento",
-        "r3Desc": "Comparación detallada de rendimientos netos de alquiler en 5 vecindarios clave: Bávaro (9-11%), Cap Cana (7-9%), Cana Bay (8-10%), Downtown (6-8%) y Vista Cana (6-7%).",
+        "r3Desc": "Comparación detallada de rendimientos netos de alquiler: Bávaro (9-11%), Cap Cana (7-9%), Cana Bay (8-10%), Downtown (6-8%) y Vista Cana (6-7%).",
         "r3Cat": "Análisis de Inversión",
         "pages": "Páginas",
-        "download": "Iniciar Archivo Descargable Inmediato Digitalizado PDF Informático",
+        "download": "Descargar",
         "downloadReport": "Descargar Reporte"
     },
     "Legal": {

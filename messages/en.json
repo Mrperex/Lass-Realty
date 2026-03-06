@@ -241,7 +241,7 @@
         "blog": "Blog",
         "neighborhoods": "Neighborhoods",
         "buyingGuide": "Buying Guide",
-        "marketReports": "Reports",
+        "marketReports": "Market Reports",
         "locations": "Locations",
         "about": "About",
         "contact": "Contact",
@@ -317,7 +317,8 @@
         "download": "Download",
         "trustBadges": "Trusted Data",
         "title": "Market Reports",
-        "description": "Download free Punta Cana real estate market reports. Trends, rental yields, and guides for foreign buyers."
+        "description": "Download free Punta Cana real estate market reports. Trends, rental yields, and guides for foreign buyers.",
+        "downloadReport": "Download Report"
     },
     "Legal": {
         "privacyTitle": "Privacy Policy",

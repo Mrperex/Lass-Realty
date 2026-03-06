@@ -15,6 +15,7 @@ import LocationSpotlight from '@/components/LocationSpotlight';
 import CompareButton from '@/components/CompareButton';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { getTranslations } from 'next-intl/server';
+import { getDateLocale } from '@/lib/dateLocale';
 import ContactForm from './ContactForm';
 import { TrackPropertyView } from '@/components/AnalyticsEvents';
 import PropertyGallery from '@/components/PropertyGallery';
@@ -166,7 +167,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                         <ShieldCheck className="w-3.5 h-3.5 mr-1.5" />
                                         {params.locale === 'es' ? 'Fotos Verificadas' : 'Photos Verified'}
                                         <span className="ml-1 text-green-500 font-normal">
-                                            {new Date(property.photosVerifiedAt).toLocaleDateString(params.locale === 'es' ? 'es-DO' : 'en-US', { month: 'short', year: 'numeric' })}
+                                            {new Date(property.photosVerifiedAt).toLocaleDateString(getDateLocale(params.locale), { month: 'short', year: 'numeric' })}
                                         </span>
                                     </span>
                                 )}
@@ -258,7 +259,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                                                     : entry.event === 'listed' ? 'Listed' : entry.event === 'reduced' ? 'Price Reduced' : 'Price Increased'}
                                                             </p>
                                                             <p className="text-xs text-slate-500">
-                                                                {new Date(entry.date).toLocaleDateString(params.locale === 'es' ? 'es-DO' : 'en-US', {
+                                                                {new Date(entry.date).toLocaleDateString(getDateLocale(params.locale), {
                                                                     year: 'numeric', month: 'short', day: 'numeric'
                                                                 })}
                                                             </p>

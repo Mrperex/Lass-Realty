@@ -4,6 +4,7 @@ import Post from '@/models/Post';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, User, ArrowRight } from 'lucide-react';
+import { getDateLocale } from '@/lib/dateLocale';
 import { notFound } from 'next/navigation';
 
 export const revalidate = 60; // Revalidate cache every 60 seconds
@@ -85,7 +86,7 @@ export default async function BlogIndexPage({
                                         <div className="flex items-center space-x-4 text-xs text-gray-500 font-outfit mb-4">
                                             <div className="flex items-center">
                                                 <Calendar className="w-3 h-3 mr-1" />
-                                                {new Date(post.publishedAt).toLocaleDateString(locale === 'es' ? 'es-DO' : 'en-US', {
+                                                {new Date(post.publishedAt).toLocaleDateString(getDateLocale(locale), {
                                                     year: 'numeric',
                                                     month: 'short',
                                                     day: 'numeric'

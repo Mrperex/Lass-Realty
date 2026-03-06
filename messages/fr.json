@@ -59,8 +59,8 @@
         "submitButton": "Envoyer la Demande"
     },
     "PropertyCard": {
-        "noImage": "Aucune Image",
-        "beds": "Ch",
+        "noImage": "Pas d'Image",
+        "beds": "Ch.",
         "baths": "SdB",
         "hotProperty": "Propriété Très Demandée",
         "viewingRightNow": "{count} personnes la consultent",
@@ -238,12 +238,12 @@
     "Navigation": {
         "home": "Accueil",
         "properties": "Propriétés",
-        "blog": "Actualités & Blog",
+        "blog": "Blog",
         "neighborhoods": "Quartiers",
         "buyingGuide": "Guide d'Achat",
         "marketReports": "Rapports",
-        "locations": "Destinations",
-        "about": "À Propos",
+        "locations": "Emplacements",
+        "about": "À propos",
         "contact": "Contact",
         "more": "Plus",
         "admin": "Admin"
@@ -281,12 +281,12 @@
         "developedBy": "Site web développé par"
     },
     "Blog": {
-        "title": "Actualités et Analyses du Marché",
-        "description": "Découvrez les dernières tendances du marché immobilier, nos guides d'achat de luxe et des mises à jour exclusives concernant la République Dominicaine.",
-        "noArticles": "Aucun article publié pour le moment.",
+        "title": "Actualités du Marché",
+        "description": "Découvrez les dernières tendances du marché immobilier, des guides d'achat de luxe et des mises à jour exclusives de la République Dominicaine.",
+        "noArticles": "Aucun article publié.",
         "readArticle": "Lire l'Article",
         "backToBlog": "Retour au Blog",
-        "relatedArticles": "Articles Similaires"
+        "relatedArticles": "Articles Connexes"
     },
     "Neighborhoods": {
         "title": "Guide des Quartiers",
@@ -302,22 +302,23 @@
         "baths": "SdB"
     },
     "MarketReports": {
-        "pageTitle": "Rapports de Marché",
+        "pageTitle": "Rapports du Marché",
         "pageSubtitle": "Téléchargez des rapports gratuits sur le marché immobilier de Punta Cana. Tendances, rendements locatifs et guides pour acheteurs étrangers.",
         "r1Title": "Aperçu du Marché de Punta Cana 2026",
-        "r1Desc": "Analyse complète des valeurs immobilières, des taux d'appréciation (8,4 % de TCAC), de la croissance du tourisme et des points chauds d'investissement dans la région de Punta Cana.",
-        "r1Cat": "Analyse de Marché",
-        "r2Title": "Guide d'Achat Immobilier en République Dominicaine pour Étrangers",
-        "r2Desc": "Tout ce que vous devez savoir : la loi 16-95 sur les droits de propriété, les incitations fiscales CONFOTUR, le financement, les frais de clôture (4,5 à 7 %) et le processus d'achat.",
+        "r1Desc": "Analyse complète des valeurs immobilières, taux d'appréciation (8,4% par an), croissance touristique (12M+ visiteurs) et zones d'investissement.",
+        "r1Cat": "Analyse du Marché",
+        "r2Title": "Guide de l'Acheteur Étranger en RD",
+        "r2Desc": "Tout ce que vous devez savoir : Loi 16-95, avantages fiscaux CONFOTUR, options de financement, frais de clôture (4,5-7%) et processus d'achat.",
         "r2Cat": "Guide d'Achat",
-        "r3Title": "ROI par Quartier : Rapport sur les Rendements Locatifs",
-        "r3Desc": "Comparaison détaillée des rendements locatifs nets : Bávaro (9-11%), Cap Cana (7-9%), Cana Bay (8-10%), Centre-ville (6-8%) et Vista Cana (6-7%).",
+        "r3Title": "ROI par Quartier : Rapport de Rendement",
+        "r3Desc": "Comparaison détaillée des rendements locatifs nets : Bávaro (9-11%), Cap Cana (7-9%), Cana Bay (8-10%), Downtown (6-8%) et Vista Cana (6-7%).",
         "r3Cat": "Analyse d'Investissement",
         "pages": "Pages",
         "download": "Télécharger",
         "trustBadges": "Trusted Data",
         "title": "Rapports de Marché",
-        "description": "Téléchargez des rapports gratuits sur le marché immobilier de Punta Cana. Tendances, rendements locatifs et guides pour acheteurs étrangers."
+        "description": "Téléchargez des rapports gratuits sur le marché immobilier de Punta Cana. Tendances, rendements locatifs et guides pour acheteurs étrangers.",
+        "downloadReport": "Télécharger le Rapport"
     },
     "Legal": {
         "privacyTitle": "Politique de Confidentialité",

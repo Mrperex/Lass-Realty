@@ -4,6 +4,7 @@ import Post from '@/models/Post';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, User, ArrowLeft } from 'lucide-react';
+import { getDateLocale } from '@/lib/dateLocale';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
@@ -123,7 +124,7 @@ export default async function BlogPostPage({
                         <div className="flex items-center space-x-6 text-white/80 text-sm font-outfit">
                             <div className="flex items-center">
                                 <Calendar className="w-4 h-4 mr-2" />
-                                {new Date(post.publishedAt).toLocaleDateString(locale === 'es' ? 'es-DO' : 'en-US', {
+                                {new Date(post.publishedAt).toLocaleDateString(getDateLocale(locale), {
                                     year: 'numeric', month: 'long', day: 'numeric'
                                 })}
                             </div>
@@ -149,7 +150,7 @@ export default async function BlogPostPage({
                         <div className="flex items-center space-x-6 text-gray-500 text-sm font-outfit">
                             <div className="flex items-center">
                                 <Calendar className="w-4 h-4 mr-2" />
-                                {new Date(post.publishedAt).toLocaleDateString(locale === 'es' ? 'es-DO' : 'en-US', {
+                                {new Date(post.publishedAt).toLocaleDateString(getDateLocale(locale), {
                                     year: 'numeric', month: 'long', day: 'numeric'
                                 })}
                             </div>
@@ -220,7 +221,7 @@ export default async function BlogPostPage({
                                             {rTitle}
                                         </h3>
                                         <p className="text-xs text-gray-500 font-outfit mt-2">
-                                            {new Date(related.publishedAt).toLocaleDateString(locale === 'es' ? 'es-DO' : 'en-US', {
+                                            {new Date(related.publishedAt).toLocaleDateString(getDateLocale(locale), {
                                                 year: 'numeric', month: 'short', day: 'numeric'
                                             })}
                                         </p>

@@ -60,7 +60,7 @@
     },
     "PropertyCard": {
         "noImage": "Nessuna Immagine",
-        "beds": "Camere",
+        "beds": "Cam.",
         "baths": "Bagni",
         "hotProperty": "Proprietà Molto Richiesta",
         "viewingRightNow": "{count} persone la stanno guardando",
@@ -238,13 +238,13 @@
     "Navigation": {
         "home": "Home",
         "properties": "Proprietà",
-        "blog": "Notizie & Blog",
+        "blog": "Blog",
         "neighborhoods": "Quartieri",
         "buyingGuide": "Guida per l'Acquisto",
-        "marketReports": "Rapporti di Mercato",
-        "locations": "Destinazioni",
-        "about": "Chi Siamo",
-        "contact": "Contattaci",
+        "marketReports": "Report",
+        "locations": "Posizioni",
+        "about": "Chi siamo",
+        "contact": "Contatto",
         "more": "Altro",
         "admin": "Area Privata"
     },
@@ -281,9 +281,9 @@
         "developedBy": "Sito web sviluppato da"
     },
     "Blog": {
-        "title": "Approfondimenti e Notizie di Mercato",
-        "description": "Scopri le ultime tendenze del mercato immobiliare, le guide all'acquisto di lusso e gli aggiornamenti esclusivi dalla Repubblica Dominicana.",
-        "noArticles": "Nessun articolo per ora.",
+        "title": "Notizie di Mercato",
+        "description": "Scopri le ultime tendenze del mercato immobiliare, guide all'acquisto di lusso e aggiornamenti esclusivi dalla Repubblica Dominicana.",
+        "noArticles": "Nessun articolo pubblicato.",
         "readArticle": "Leggi l'Articolo",
         "backToBlog": "Torna al Blog",
         "relatedArticles": "Articoli Correlati"
@@ -302,22 +302,23 @@
         "baths": "Bagni"
     },
     "MarketReports": {
-        "pageTitle": "Rapporti Esclusivi e Statistiche del Mercato",
-        "pageSubtitle": "Scarica gratuitamente i report statistici di Punta Cana. Tendenze estrapolate, stime dei rendimenti degli affitti e guide per gli investitori.",
-        "r1Title": "Panoramica del Mercato Immobiliare Punta Cana 2026",
-        "r1Desc": "Un'analisi completa dei valori immobiliari e della loro crescita turistica nei successivi anni in macro scala analitica d'aumento turistico dominicano.",
-        "r1Cat": "Analisi di Mercato Immobiliare Spaziale e Reale",
-        "r2Title": "Guida del Compratore Straniero: Repubblica Dominicana Real Estate",
-        "r2Desc": "Istruzioni complete sull'andamento notarile in terra dominicana e le logiche delle proprietà. Finanziamenti e tempistiche per le costituzioni ufficiali di immobili lussuosi.",
-        "r2Cat": "Guida all'Acquisto Privato Corporativo Straniero",
-        "r3Title": "ROI suddiviso per quartiere: Resoconto sulle Rendite da Affitto (Yield Report)",
-        "r3Desc": "Comparazione dettagliata del profitto netto derivato dal turismo vacazionale globale analizzando Cap Cana, Bávaro, Vista Cana o l'entourage metropolitano per investitori attuali valutando costi reali.",
-        "r3Cat": "Investimenti Finanziari Ristretti, Analisi Ritorno Immobiliare in Capitale Nominale",
-        "pages": "Pagine Informative",
-        "download": "Avvia il Download del Formato Informativo PDF a Consumo Diretto",
+        "pageTitle": "Report di Mercato",
+        "pageSubtitle": "Scarica report gratuiti sul mercato immobiliare di Punta Cana. Tendenze, rendimenti locativi e guide per acquirenti stranieri.",
+        "r1Title": "Panoramica del Mercato di Punta Cana 2026",
+        "r1Desc": "Analisi completa dei valori immobiliari, tassi di apprezzamento (8,4% annuo), crescita turistica (12M+ visitatori) e zone di investimento.",
+        "r1Cat": "Analisi di Mercato",
+        "r2Title": "Guida all'Acquisto per Stranieri nella RD",
+        "r2Desc": "Tutto ciò che devi sapere: Legge 16-95, incentivi CONFOTUR, opzioni di finanziamento, costi di chiusura (4,5-7%) e processo d'acquisto.",
+        "r2Cat": "Guida all'Acquisto",
+        "r3Title": "ROI per Quartiere: Report sui Rendimenti",
+        "r3Desc": "Confronto dettagliato dei rendimenti netti di locazione: Bávaro (9-11%), Cap Cana (7-9%), Cana Bay (8-10%), Downtown (6-8%) e Vista Cana (6-7%).",
+        "r3Cat": "Analisi degli Investimenti",
+        "pages": "Pagine",
+        "download": "Scarica",
         "trustBadges": "Trusted Data",
         "title": "Rapporti Esclusivi e Statistiche del Mercato",
-        "description": "Scarica gratuitamente i report statistici di Punta Cana. Tendenze estrapolate, stime dei rendimenti degli affitti e guide per gli investitori."
+        "description": "Scarica gratuitamente i report statistici di Punta Cana. Tendenze estrapolate, stime dei rendimenti degli affitti e guide per gli investitori.",
+        "downloadReport": "Scarica il Report"
     },
     "Legal": {
         "privacyTitle": "Procedura Privacy Inter-Legale di Sicurezza e Rispetto Dati Virtuale ed Acquisizione Aziendale LASS Realty e Conformità Dominicana Corporativa Civile",

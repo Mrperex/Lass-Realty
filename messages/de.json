@@ -60,8 +60,8 @@
     },
     "PropertyCard": {
         "noImage": "Kein Bild",
-        "beds": "Bett",
-        "baths": "Bad",
+        "beds": "Schlafz.",
+        "baths": "Bäder",
         "hotProperty": "Sehr Begehrt",
         "viewingRightNow": "{count} Personen sehen dies gerade",
         "rareFind": "Selten zu finden"
@@ -238,12 +238,12 @@
     "Navigation": {
         "home": "Startseite",
         "properties": "Immobilien",
-        "blog": "Neuigkeiten & Blog",
-        "neighborhoods": "Stadtviertel",
+        "blog": "Blog",
+        "neighborhoods": "Viertel",
         "buyingGuide": "Kaufleitfaden",
-        "marketReports": "Marktberichte",
+        "marketReports": "Berichte",
         "locations": "Standorte",
-        "about": "Über Uns",
+        "about": "Über uns",
         "contact": "Kontakt",
         "more": "Mehr",
         "admin": "Admin"
@@ -281,12 +281,12 @@
         "developedBy": "Website entwickelt von"
     },
     "Blog": {
-        "title": "Markteinblicke & Nachrichten",
-        "description": "Entdecken Sie die neuesten Trends auf dem Immobilienmarkt, unsere Luxuskaufleitfäden und exklusive Updates aus der Dominikanischen Republik.",
-        "noArticles": "Bisher wurden noch keine Artikel in diesen Sprachen veröffentlicht.",
-        "readArticle": "Artikel Lesen",
-        "backToBlog": "Zurück zum News-Blog",
-        "relatedArticles": "Ähnliche Veröffentlichungen"
+        "title": "Markteinblicke & Neuigkeiten",
+        "description": "Entdecken Sie die neuesten Immobilienmarkt-Trends, Luxus-Kaufratgeber und exklusive Updates aus der Dominikanischen Republik.",
+        "noArticles": "Keine Artikel veröffentlicht.",
+        "readArticle": "Artikel lesen",
+        "backToBlog": "Zurück zum Blog",
+        "relatedArticles": "Verwandte Artikel"
     },
     "Neighborhoods": {
         "title": "Nachbarschaftsführer",
@@ -302,22 +302,23 @@
         "baths": "Bäder"
     },
     "MarketReports": {
-        "pageTitle": "Exklusive Marktberichte",
-        "pageSubtitle": "Kostenlose Luxus-Immobilien Marktberichte aus Punta Cana. Detaillierte Trends, Auswertungen zu Mietrenditen und Ratgeber für ausländische Käufer.",
-        "r1Title": "Punta Cana Marktübersicht 2026",
-        "r1Desc": "Eine umfassende quantitative und reale Analyse über den Stand von Immobilienwerten, und den allgemeinen statistischen Wachstum des Tourismus über den Punta Cana Korridor.",
-        "r1Cat": "Genaue Marktanalyse",
-        "r2Title": "Immobilienführer dominikanische Republik für Ausländer",
-        "r2Desc": "Alles, was Sie konkret für Investitionen wissen müssen: Recht auf unbeschränktes Eigentum 16-95, CONFOTUR-Incentives für Steuern, Auswertung der 5 Prozent Abschlussgebühren, und der rechtliche Gesamtablauf.",
-        "r2Cat": "Kauf Ratgeber Dominikanische Republik",
-        "r3Title": "Gewinnmarge ROI pro Viertel: Aktuelle Auswertungsberichte",
-        "r3Desc": "Netto-Rendite für Mietimmobilien: Bávaro, Cap Cana Bereich, Cana Bay Sektor (8-9 % real), Innenstadt Bereich (6-8 % real) und das luxuriöse Resort Vista Cana (Garantierter Mindest ROI von 6 %).",
-        "r3Cat": "Miet Investitionsanalysen",
-        "pages": "Gesicherte PDFs",
-        "download": "Kostenfreier PDF Download",
+        "pageTitle": "Marktberichte",
+        "pageSubtitle": "Laden Sie kostenlose Immobilienmarktberichte für Punta Cana herunter. Trends, Mietrenditen und Leitfäden für ausländische Käufer.",
+        "r1Title": "Marktübersicht Punta Cana 2026",
+        "r1Desc": "Umfassende Analyse der Immobilienwerte, Wertsteigerungsraten (8,4% p.a.), Tourismuswachstum (12M+ Besucher) und Investment-Hotspots.",
+        "r1Cat": "Marktanalyse",
+        "r2Title": "Leitfaden für ausländische Käufer in der DR",
+        "r2Desc": "Alles Wissenswerte: Gesetz 16-95, CONFOTUR-Steuervorteile, Finanzierungsoptionen, Abschlusskosten (4,5-7%) und Kaufprozess.",
+        "r2Cat": "Kaufratgeber",
+        "r3Title": "ROI nach Viertel: Rendite-Bericht",
+        "r3Desc": "Detaillierter Vergleich der Nettomietrenditen: Bávaro (9-11%), Cap Cana (7-9%), Cana Bay (8-10%), Downtown (6-8%) und Vista Cana (6-7%).",
+        "r3Cat": "Investmentanalyse",
+        "pages": "Seiten",
+        "download": "Herunterladen",
         "trustBadges": "Trusted Data",
         "title": "Exklusive Marktberichte",
-        "description": "Kostenlose Luxus-Immobilien Marktberichte aus Punta Cana. Detaillierte Trends, Auswertungen zu Mietrenditen und Ratgeber für ausländische Käufer."
+        "description": "Kostenlose Luxus-Immobilien Marktberichte aus Punta Cana. Detaillierte Trends, Auswertungen zu Mietrenditen und Ratgeber für ausländische Käufer.",
+        "downloadReport": "Bericht herunterladen"
     },
     "Legal": {
         "privacyTitle": "Datenschutzbestimmungen",
