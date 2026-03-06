@@ -137,7 +137,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                             >
                                                 {t('requestShowing', { fallback: 'Request Showing' })}
                                             </a>
-                                            <DownloadBrochureButton property={property} t={t} label={t('downloadBrochure', { fallback: 'Brochure' })} />
+                                            <DownloadBrochureButton property={property} />
                                             <CompareButton property={property} />
                                             <ShareButton title={title} slug={property.slug} />
                                         </div>

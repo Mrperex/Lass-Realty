@@ -39,7 +39,8 @@
         "linkCopied": "Ссылка Скопирована!",
         "virtualTour": "Виртуальный 3D Тур",
         "fullScreen": "Во Весь Экран",
-        "openFullScreen": "Открыть во Весь Экран"
+        "openFullScreen": "Открыть во Весь Экран",
+        "downloadBrochure": "Брошюра"
     },
     "PropertyContactForm": {
         "messageSent": "Сообщение Отправлено!",

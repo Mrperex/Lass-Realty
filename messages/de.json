@@ -39,7 +39,8 @@
         "linkCopied": "Link Kopiert!",
         "virtualTour": "Virtueller 3D-Rundgang",
         "fullScreen": "Vollbild",
-        "openFullScreen": "In Vollbild Öffnen"
+        "openFullScreen": "In Vollbild Öffnen",
+        "downloadBrochure": "Broschüre"
     },
     "PropertyContactForm": {
         "messageSent": "Nachricht Gesendet!",

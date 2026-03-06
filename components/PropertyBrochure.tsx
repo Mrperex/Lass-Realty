@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     footerText: { fontSize: 9, color: '#64748b' },
 });
 
-export const PropertyBrochure = ({ property, t }: { property: any, t: any }) => {
+export const PropertyBrochure = ({ property }: { property: any }) => {
     // Determine the price display
     let priceDisplay = '';
     if (property.status === 'for-sale') {
@@ -95,10 +95,9 @@ export const PropertyBrochure = ({ property, t }: { property: any, t: any }) => 
                         <Text style={styles.descriptionTitle}>Amenities & Features</Text>
                         <View style={styles.featuresBlock}>
                             {property.amenities.map((amenity: string, idx: number) => {
-                                const amenityLabel = t("Amenities." + amenity, { fallback: amenity });
                                 return (
                                     <Text key={idx} style={styles.featureItem}>
-                                        {typeof amenityLabel === 'string' ? amenityLabel : amenity}
+                                        {amenity.replace(/([A-Z])/g, ' $1').trim()}
                                     </Text>
                                 );
                             })}

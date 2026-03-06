@@ -8,12 +8,14 @@ import { useTranslations } from 'next-intl';
 
 interface DownloadBrochureButtonProps {
     property: any;
-    t: any; // Next Intl T function
     label?: string;
 }
 
-export default function DownloadBrochureButton({ property, t, label = "Download Brochure" }: DownloadBrochureButtonProps) {
+export default function DownloadBrochureButton({ property, label }: DownloadBrochureButtonProps) {
     const [isClient, setIsClient] = useState(false);
+    const t = useTranslations('PropertyDetail');
+
+    const buttonLabel = label || t('downloadBrochure', { defaultValue: 'Brochure' });
 
     // Only render the PDFDownloadLink on the client side to avoid hydration errors
     useEffect(() => {
@@ -24,12 +26,12 @@ export default function DownloadBrochureButton({ property, t, label = "Download 
         return (
             <button disabled className="flex items-center gap-2 justify-center py-3 px-6 bg-amber-500 text-white rounded-xl font-bold hover:bg-amber-600 transition-colors shadow-sm opacity-50">
                 <Download className="w-5 h-5" />
-                {label}
+                {buttonLabel}
             </button>
         );
     }
 
-    const docToRender: any = <PropertyBrochure property={property} t={t} />;
+    const docToRender: any = <PropertyBrochure property={property} />;
 
     return (
         <PDFDownloadLink
@@ -46,10 +48,11 @@ export default function DownloadBrochureButton({ property, t, label = "Download 
                 ) : (
                     <>
                         <Download className="w-5 h-5" />
-                        {label}
+                        {buttonLabel}
                     </>
                 )
             }
         </PDFDownloadLink>
     );
 }
+
