@@ -59,16 +59,7 @@ export default function PropertyCard({ property }: { property: IProperty }) {
                     </div>
                     <div className="flex items-center gap-6 border-t border-slate-100 pt-6 mt-6 font-outfit text-sm overflow-x-auto no-scrollbar whitespace-nowrap">
                         {property.type === 'land' ? (
-                            <>
-                                <AreaDisplay squareMeters={property.squareMeters} />
-                                {property.squareMeters > 0 && (
-                                    <div className="flex items-center gap-2 lg:gap-3">
-                                        <span className="font-medium text-slate-500">
-                                            <span className="text-navy-900 font-bold">${Math.round(property.price / property.squareMeters).toLocaleString()}</span> / m²
-                                        </span>
-                                    </div>
-                                )}
-                            </>
+                            <AreaDisplay squareMeters={property.squareMeters} price={property.price} />
                         ) : (
                             <>
                                 <div className="flex items-center gap-2 lg:gap-3">

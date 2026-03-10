@@ -42,6 +42,8 @@ export async function createProperty(prevState: any, formData: FormData) {
         const amenities = amenitiesEntries.filter(entry => typeof entry === 'string' && entry.trim() !== '') as string[];
         const virtualTourUrl = formData.get('virtualTourUrl') as string | null;
 
+        const type = formData.get('type') as string | undefined;
+
         const deposit = formData.get('deposit') ? Number(formData.get('deposit')) : undefined;
         const maintenanceFee = formData.get('maintenanceFee') ? Number(formData.get('maintenanceFee')) : undefined;
         const rentPeriod = formData.get('rentPeriod') as string | undefined;
@@ -103,6 +105,7 @@ export async function createProperty(prevState: any, formData: FormData) {
             status,
             featured,
             amenities,
+            type,
             virtualTourUrl: virtualTourUrl || undefined,
             deposit,
             maintenanceFee,
@@ -157,6 +160,8 @@ export async function updateProperty(id: string, prevState: any, formData: FormD
         const amenities = amenitiesEntries.filter(entry => typeof entry === 'string' && entry.trim() !== '') as string[];
         const virtualTourUrl = formData.get('virtualTourUrl') as string | null;
 
+        const type = formData.get('type') as string | undefined;
+
         const deposit = formData.get('deposit') ? Number(formData.get('deposit')) : undefined;
         const maintenanceFee = formData.get('maintenanceFee') ? Number(formData.get('maintenanceFee')) : undefined;
         const rentPeriod = formData.get('rentPeriod') as string | undefined;
@@ -201,6 +206,7 @@ export async function updateProperty(id: string, prevState: any, formData: FormD
             status,
             featured,
             amenities,
+            type,
             virtualTourUrl,
             deposit,
             maintenanceFee,

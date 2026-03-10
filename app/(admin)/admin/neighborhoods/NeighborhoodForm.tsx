@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createNeighborhood, updateNeighborhood } from './actions';
 import { INeighborhood } from '@/types/neighborhood';
-import { Save, Loader2, ImagePlus, Trash2, Plus, X } from 'lucide-react';
+import { Save, Loader2, ImagePlus, Trash2, Plus, X, Sparkles } from 'lucide-react';
 
 interface NeighborhoodFormProps {
     initialData?: INeighborhood;
@@ -43,6 +43,90 @@ export default function NeighborhoodForm({ initialData }: NeighborhoodFormProps)
             }
             return updates;
         });
+    };
+
+    const [isTranslating, setIsTranslating] = useState(false);
+
+    const handleAutoTranslate = async () => {
+        const nameEn = formData.name;
+        const descriptionEn = formData.description;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const highlightsEn = (formData as any).highlights || [];
+
+        if (!nameEn && !descriptionEn && highlightsEn.length === 0) {
+            alert('Please enter English Name, Description, and/or Highlights first.');
+            return;
+        }
+
+        setIsTranslating(true);
+
+        try {
+            const targetLocales = ['es', 'fr', 'it', 'de', 'ru', 'ht'];
+
+            for (const locale of targetLocales) {
+                // Translate Name
+                if (nameEn) {
+                    try {
+                        const res = await fetch('/api/admin/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: nameEn, targetLang: locale })
+                        });
+                        const data = await res.json();
+                        if (data.success && data.translatedText) {
+                            setFormData(prev => ({ ...prev, [`name_${locale}`]: data.translatedText }));
+                        }
+                    } catch (e) {
+                        console.error(`Failed to translate name to ${locale}:`, e);
+                    }
+                }
+
+                // Translate Description
+                if (descriptionEn) {
+                    try {
+                        const res = await fetch('/api/admin/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: descriptionEn, targetLang: locale })
+                        });
+                        const data = await res.json();
+                        if (data.success && data.translatedText) {
+                            setFormData(prev => ({ ...prev, [`description_${locale}`]: data.translatedText }));
+                        }
+                    } catch (e) {
+                        console.error(`Failed to translate description to ${locale}:`, e);
+                    }
+                }
+
+                // Translate Highlights
+                if (highlightsEn.length > 0) {
+                    try {
+                        // Join highlights with a special delimiter, translate, then split back
+                        // This saves API calls vs translating each highlight individually
+                        const combinedHighlights = highlightsEn.join(' ||| ');
+                        const res = await fetch('/api/admin/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: combinedHighlights, targetLang: locale })
+                        });
+                        const data = await res.json();
+                        if (data.success && data.translatedText) {
+                            const translatedHighlights = data.translatedText.split(' ||| ').map((s: string) => s.trim()).filter(Boolean);
+                            setFormData(prev => ({ ...prev, [`highlights_${locale}`]: translatedHighlights }));
+                        }
+                    } catch (e) {
+                        console.error(`Failed to translate highlights to ${locale}:`, e);
+                    }
+                }
+            }
+
+            alert('Auto-translation complete!');
+        } catch (error) {
+            console.error('Translation error:', error);
+            alert('An error occurred during translation.');
+        } finally {
+            setIsTranslating(false);
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -192,6 +276,27 @@ export default function NeighborhoodForm({ initialData }: NeighborhoodFormProps)
                                 {label}
                             </button>
                         ))}
+                    </div>
+
+                    <div className="flex justify-end mb-4">
+                        <button
+                            type="button"
+                            onClick={handleAutoTranslate}
+                            disabled={isTranslating}
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 rounded-lg text-sm font-semibold transition-colors disabled:opacity-50"
+                        >
+                            {isTranslating ? (
+                                <>
+                                    <span className="inline-block h-4 w-4 border-2 border-indigo-700/20 border-t-indigo-700 rounded-full animate-spin"></span>
+                                    Translating...
+                                </>
+                            ) : (
+                                <>
+                                    <Sparkles className="w-4 h-4" />
+                                    Auto-Translate
+                                </>
+                            )}
+                        </button>
                     </div>
 
                     <div className="bg-white p-6 shadow-sm border border-gray-100 space-y-6">

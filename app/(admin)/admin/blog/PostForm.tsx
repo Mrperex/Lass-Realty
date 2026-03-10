@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createPost, updatePost } from './actions';
 import { IPost } from '@/types/post';
-import { Save, Loader2, ImagePlus, Trash2 } from 'lucide-react';
+import { Save, Loader2, ImagePlus, Trash2, Sparkles } from 'lucide-react';
 
 interface PostFormProps {
     initialData?: IPost;
@@ -44,6 +44,85 @@ export default function PostForm({ initialData }: PostFormProps) {
             }
             return updates;
         });
+    };
+
+    const [isTranslating, setIsTranslating] = useState(false);
+
+    const handleAutoTranslate = async () => {
+        const titleEn = formData.title;
+        const excerptEn = formData.excerpt;
+        const contentEn = formData.content;
+
+        if (!titleEn && !excerptEn && !contentEn) {
+            alert('Please enter English Title, Excerpt, and/or Content first.');
+            return;
+        }
+
+        setIsTranslating(true);
+
+        try {
+            const targetLocales = ['es', 'fr', 'it', 'de', 'ru', 'ht'];
+
+            for (const locale of targetLocales) {
+                // Translate Title
+                if (titleEn) {
+                    try {
+                        const res = await fetch('/api/admin/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: titleEn, targetLang: locale })
+                        });
+                        const data = await res.json();
+                        if (data.success && data.translatedText) {
+                            setFormData(prev => ({ ...prev, [`title_${locale}`]: data.translatedText }));
+                        }
+                    } catch (e) {
+                        console.error(`Failed to translate title to ${locale}:`, e);
+                    }
+                }
+
+                // Translate Excerpt
+                if (excerptEn) {
+                    try {
+                        const res = await fetch('/api/admin/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: excerptEn, targetLang: locale })
+                        });
+                        const data = await res.json();
+                        if (data.success && data.translatedText) {
+                            setFormData(prev => ({ ...prev, [`excerpt_${locale}`]: data.translatedText }));
+                        }
+                    } catch (e) {
+                        console.error(`Failed to translate excerpt to ${locale}:`, e);
+                    }
+                }
+
+                // Translate Content
+                if (contentEn) {
+                    try {
+                        const res = await fetch('/api/admin/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: contentEn, targetLang: locale })
+                        });
+                        const data = await res.json();
+                        if (data.success && data.translatedText) {
+                            setFormData(prev => ({ ...prev, [`content_${locale}`]: data.translatedText }));
+                        }
+                    } catch (e) {
+                        console.error(`Failed to translate content to ${locale}:`, e);
+                    }
+                }
+            }
+
+            alert('Auto-translation complete!');
+        } catch (error) {
+            console.error('Translation error:', error);
+            alert('An error occurred during translation.');
+        } finally {
+            setIsTranslating(false);
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -161,6 +240,27 @@ export default function PostForm({ initialData }: PostFormProps) {
                                 {label}
                             </button>
                         ))}
+                    </div>
+
+                    <div className="flex justify-end mb-4">
+                        <button
+                            type="button"
+                            onClick={handleAutoTranslate}
+                            disabled={isTranslating}
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 rounded-lg text-sm font-semibold transition-colors disabled:opacity-50"
+                        >
+                            {isTranslating ? (
+                                <>
+                                    <span className="inline-block h-4 w-4 border-2 border-indigo-700/20 border-t-indigo-700 rounded-full animate-spin"></span>
+                                    Translating...
+                                </>
+                            ) : (
+                                <>
+                                    <Sparkles className="w-4 h-4" />
+                                    Auto-Translate
+                                </>
+                            )}
+                        </button>
                     </div>
 
                     <div className="bg-white p-6 shadow-sm border border-gray-100 space-y-6">

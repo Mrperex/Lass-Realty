@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { updateProperty } from '../../actions';
 import { useFormState, useFormStatus } from 'react-dom';
 import Link from 'next/link';
-import { ArrowLeft, Save, UploadCloud, X } from 'lucide-react';
+import { ArrowLeft, Save, UploadCloud, X, Sparkles } from 'lucide-react';
 import { LOCATIONS } from '@/lib/locations';
 import AmenitiesMultiSelect from '@/components/admin/AmenitiesMultiSelect';
 
@@ -55,6 +55,69 @@ export default function EditPropertyForm({ property }: { property: any }) {
     const [floorPlanUrls, setFloorPlanUrls] = useState<string[]>(property.floorPlans || []);
     const [uploadingFloorPlans, setUploadingFloorPlans] = useState(false);
     const floorPlanInputRef = useRef<HTMLInputElement>(null);
+
+    const [isTranslating, setIsTranslating] = useState(false);
+
+    const handleAutoTranslate = async () => {
+        const titleEn = (document.getElementById('title') as HTMLInputElement)?.value;
+        const descEn = (document.getElementById('description') as HTMLTextAreaElement)?.value;
+
+        if (!titleEn && !descEn) {
+            alert('Please enter English Title and/or Description first.');
+            return;
+        }
+
+        setIsTranslating(true);
+
+        try {
+            const targetLocales = LOCALES.filter(l => l.code !== 'en');
+
+            for (const locale of targetLocales) {
+                // Translate Title
+                if (titleEn) {
+                    try {
+                        const res = await fetch('/api/admin/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: titleEn, targetLang: locale.code })
+                        });
+                        const data = await res.json();
+                        if (data.success && data.translatedText) {
+                            const input = document.getElementById(`title_${locale.code}`) as HTMLInputElement;
+                            if (input) input.value = data.translatedText;
+                        }
+                    } catch (e) {
+                        console.error(`Failed to translate title to ${locale.code}:`, e);
+                    }
+                }
+
+                // Translate Description
+                if (descEn) {
+                    try {
+                        const res = await fetch('/api/admin/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: descEn, targetLang: locale.code })
+                        });
+                        const data = await res.json();
+                        if (data.success && data.translatedText) {
+                            const textarea = document.getElementById(`description_${locale.code}`) as HTMLTextAreaElement;
+                            if (textarea) textarea.value = data.translatedText;
+                        }
+                    } catch (e) {
+                        console.error(`Failed to translate description to ${locale.code}:`, e);
+                    }
+                }
+            }
+
+            alert('Auto-translation complete!');
+        } catch (error) {
+            console.error('Translation error:', error);
+            alert('An error occurred during translation.');
+        } finally {
+            setIsTranslating(false);
+        }
+    };
 
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
@@ -187,7 +250,27 @@ export default function EditPropertyForm({ property }: { property: any }) {
                     )}
 
                     <div className="space-y-6">
-                        <h3 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2">Basic Information</h3>
+                        <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+                            <h3 className="text-lg font-bold text-slate-900">Basic Information</h3>
+                            <button
+                                type="button"
+                                onClick={handleAutoTranslate}
+                                disabled={isTranslating}
+                                className="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 rounded-lg text-sm font-semibold transition-colors disabled:opacity-50"
+                            >
+                                {isTranslating ? (
+                                    <>
+                                        <span className="inline-block h-4 w-4 border-2 border-indigo-700/20 border-t-indigo-700 rounded-full animate-spin"></span>
+                                        Translating...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Sparkles className="w-4 h-4" />
+                                        Auto-Translate
+                                    </>
+                                )}
+                            </button>
+                        </div>
                         <div className="mb-6 border-b border-slate-200">
                             <div className="flex gap-4 overflow-x-auto pb-px">
                                 {LOCALES.map((l) => (
@@ -410,7 +493,17 @@ export default function EditPropertyForm({ property }: { property: any }) {
                                     <option value="rented">Rented</option>
                                 </select>
                             </div>
-                            <div className="flex items-center pt-8">
+                            <div>
+                                <label htmlFor="type" className="block text-sm font-medium text-slate-700 mb-1">Property Type</label>
+                                <select id="type" name="type" defaultValue={property.type || ''} className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-shadow bg-white">
+                                    <option value="">Select Type (Optional)</option>
+                                    <option value="villa">Villa / House</option>
+                                    <option value="condo">Condo / Apartment</option>
+                                    <option value="penthouse">Penthouse</option>
+                                    <option value="land">Lot / Land</option>
+                                </select>
+                            </div>
+                            <div className="flex items-center pt-8 md:col-span-2">
                                 <div className="flex items-center h-5">
                                     <input id="featured" name="featured" type="checkbox" defaultChecked={property.featured} className="w-5 h-5 text-amber-600 border-slate-300 rounded focus:ring-amber-500" />
                                 </div>
