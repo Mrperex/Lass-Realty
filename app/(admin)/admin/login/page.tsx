@@ -7,7 +7,7 @@ import { startAuthentication } from '@simplewebauthn/browser';
 
 export default function AdminLogin() {
     const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('admin@lassrealty.com');
+    const [email, setEmail] = useState('info@lasspuntacana.com');
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
@@ -36,8 +36,9 @@ export default function AdminLogin() {
                 const data = await res.json();
                 setError(data.error || 'Invalid password');
             }
-        } catch (err) {
-            setError('An error occurred during login');
+        } catch (err: any) {
+            console.error('Login error details:', err);
+            setError(`Connection error: ${err.message || 'Check your internet or server status'}`);
         } finally {
             setLoading(false);
         }

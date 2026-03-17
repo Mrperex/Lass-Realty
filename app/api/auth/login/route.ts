@@ -41,6 +41,11 @@ export async function POST(req: Request) {
             )
         }
 
+        if (!process.env.JWT_SECRET) {
+            console.error('CRITICAL: JWT_SECRET is missing from environment');
+            throw new Error('Server configuration error: JWT_SECRET missing');
+        }
+
         const token = signAdminToken()
 
         const res = NextResponse.json({
@@ -62,9 +67,16 @@ export async function POST(req: Request) {
 
         return res
     } catch (err: any) {
-        console.error('Login error:', err);
+        console.error('CRITICAL: Login route failure:', {
+            message: err.message,
+            stack: err.stack,
+            error: err
+        });
         return NextResponse.json(
-            { error: 'Login failed' },
+            { 
+                error: 'Login failed', 
+                details: process.env.NODE_ENV === 'development' ? err.message : 'Check server logs' 
+            },
             { status: 500 }
         )
     }
