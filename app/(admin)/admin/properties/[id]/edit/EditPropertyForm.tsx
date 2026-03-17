@@ -359,7 +359,7 @@ export default function EditPropertyForm({ property }: { property: any }) {
                                     name="virtualTourUrl"
                                     defaultValue={property.virtualTourUrl || ''}
                                     placeholder="https://my.matterport.com/show/?m=..."
-                                    className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-2 focus:ring-champagne-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400 font-outfit bg-white"
+                                    className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-2 focus:ring-champagne-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400 font-montserrat bg-white"
                                 />
                             </div>
 

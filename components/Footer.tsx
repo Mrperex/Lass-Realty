@@ -1,5 +1,6 @@
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 const Footer = () => {
     const t = useTranslations('Footer');
@@ -9,7 +10,15 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div>
-                        <h3 className="text-white text-lg font-bold mb-4">{t('title')}</h3>
+                        <Link href="/" className="inline-block mb-6 transition-opacity hover:opacity-80">
+                            <Image 
+                                src="/images/logos/lass-realty-logo-horizontal.svg" 
+                                alt="LASS Realty" 
+                                width={180} 
+                                height={40} 
+                                className="h-8 md:h-10 w-auto brightness-0 invert"
+                            />
+                        </Link>
                         <p className="text-sm">
                             {t('description')}
                         </p>

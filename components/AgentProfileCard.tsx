@@ -13,8 +13,8 @@ export default function AgentProfileCard({ agent }: AgentProfileCardProps) {
     const t = useTranslations('PropertyDetail');
 
     return (
-        <div className="mt-12 pt-12 border-t border-slate-100 font-outfit">
-            <h2 className="font-cormorant text-2xl md:text-3xl font-medium text-navy-900 mb-8">
+        <div className="mt-12 pt-12 border-t border-slate-100 font-montserrat">
+            <h2 className="font-playfair text-2xl md:text-3xl font-medium text-navy-900 mb-8">
                 {t('listedBy', { fallback: 'Listed By' })}
             </h2>
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Html, Head, Body, Container, Section, Text } from '@react-email/components';
+import { Html, Head, Body, Container, Section, Text, Img } from '@react-email/components';
 
 interface AdminNotificationProps {
     name: string;
@@ -21,7 +21,14 @@ export const AdminNotification: React.FC<Readonly<AdminNotificationProps>> = ({
         <Body style={main}>
             <Container style={container}>
                 <Section style={header}>
-                    <Text style={logo}>🚨 New Lead Captured</Text>
+                    <Img 
+                        src="https://lasspuntacana.com/images/logos/lass-realty-logo.png" 
+                        alt="LASS Realty" 
+                        width="120" 
+                        height="auto" 
+                        style={{ filter: 'brightness(0) invert(1)' }}
+                    />
+                    <Text style={{...logo, marginTop: '12px'}}>🚨 New Lead Captured</Text>
                 </Section>
                 <Section style={content}>
                     <Text style={heading}>Inquiry for {propertyTitle}</Text>

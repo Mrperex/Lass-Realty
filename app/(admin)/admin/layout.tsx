@@ -17,8 +17,8 @@ import {
 } from 'lucide-react';
 import '../../globals.css';
 
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-cormorant' });
-const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
+const outfit = Outfit({ subsets: ['latin'], variable: '--font-montserrat' });
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -29,7 +29,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     if (pathname === '/admin/login') {
         return (
             <html lang="en" className={`${playfair.variable} ${outfit.variable}`}>
-                <body className="font-outfit antialiased bg-slate-50">
+                <body className="font-montserrat antialiased bg-slate-50">
                     {children}
                 </body>
             </html>
@@ -53,7 +53,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     return (
         <html lang="en" className={`${playfair.variable} ${outfit.variable}`}>
-            <body className="font-outfit antialiased">
+            <body className="font-montserrat antialiased">
                 <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row">
                     {/* Mobile Top App Bar */}
                     <div className="md:hidden bg-slate-900 border-b border-slate-800 sticky top-0 z-50">

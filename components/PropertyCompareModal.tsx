@@ -12,7 +12,7 @@ export default function PropertyCompareModal() {
     if (compareList.length === 0) return null;
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 z-[100] pointer-events-none flex flex-col items-center justify-end font-outfit px-4 sm:px-6 pb-6 lg:pb-8">
+        <div className="fixed bottom-0 left-0 right-0 z-[100] pointer-events-none flex flex-col items-center justify-end font-montserrat px-4 sm:px-6 pb-6 lg:pb-8">
             {/* The Box */}
             <div className="bg-navy-900/95 backdrop-blur-xl border border-white/10 rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] p-6 md:p-8 w-full max-w-5xl pointer-events-auto transition-all duration-500 transform translate-y-0">
 
@@ -55,7 +55,7 @@ export default function PropertyCompareModal() {
                                 </div>
                             </div>
 
-                            <h3 className="text-xl font-cormorant font-bold text-white mb-1 truncate">{property.title}</h3>
+                            <h3 className="text-xl font-playfair font-bold text-white mb-1 truncate">{property.title}</h3>
                             <p className="text-sm font-bold tracking-widest text-champagne-500 uppercase mb-4">{property.city}</p>
 
                             {/* Stats */}

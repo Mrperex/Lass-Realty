@@ -15,7 +15,12 @@ export const LeadAutoReply: React.FC<Readonly<LeadAutoReplyProps>> = ({
         <Body style={main}>
             <Container style={container}>
                 <Section style={header}>
-                    <Text style={logo}>LASS Realty</Text>
+                    <Img 
+                        src="https://lasspuntacana.com/images/logos/lass-realty-logo.png" 
+                        alt="LASS Realty" 
+                        width="150" 
+                        height="auto" 
+                    />
                 </Section>
                 <Section style={content}>
                     <Text style={heading}>We received your inquiry.</Text>

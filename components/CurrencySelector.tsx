@@ -44,7 +44,7 @@ export default function CurrencySelector() {
     const currentDetails = CURRENCIES.find(c => c.code === currentCurrency) || CURRENCIES[0];
 
     return (
-        <div className="relative font-outfit" ref={dropdownRef}>
+        <div className="relative font-montserrat" ref={dropdownRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors border border-slate-200/60 shadow-sm"

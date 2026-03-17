@@ -23,18 +23,18 @@ export default async function PrivacyPolicyPage({
     return (
         <main className="min-h-screen bg-white pt-32 pb-24">
             <div className="max-w-3xl mx-auto px-6 lg:px-0">
-                <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-[#0a1128] mb-4">
+                <h1 className="text-4xl md:text-5xl font-playfair font-medium text-[#0a1128] mb-4">
                     {t('title')}
                 </h1>
-                <p className="text-sm text-gray-400 font-outfit mb-12">
+                <p className="text-sm text-gray-400 font-montserrat mb-12">
                     {t('lastUpdated')}
                 </p>
 
-                <div className="space-y-10 font-outfit text-gray-700 text-base leading-relaxed">
+                <div className="space-y-10 font-montserrat text-gray-700 text-base leading-relaxed">
 
                     {/* Section 1 */}
                     <section>
-                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
                             {t('s1_title')}
                         </h2>
                         <p>{t('s1_p')}</p>
@@ -48,7 +48,7 @@ export default async function PrivacyPolicyPage({
 
                     {/* Section 2 */}
                     <section>
-                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
                             {t('s2_title')}
                         </h2>
                         <p>{t('s2_p')}</p>
@@ -63,7 +63,7 @@ export default async function PrivacyPolicyPage({
 
                     {/* Section 3 */}
                     <section>
-                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
                             {t('s3_title')}
                         </h2>
                         <p>{t('s3_p')}</p>
@@ -71,7 +71,7 @@ export default async function PrivacyPolicyPage({
 
                     {/* Section 4 */}
                     <section>
-                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
                             {t('s4_title')}
                         </h2>
                         <p>{t('s4_p')}</p>
@@ -85,7 +85,7 @@ export default async function PrivacyPolicyPage({
 
                     {/* Section 5 */}
                     <section>
-                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
                             {t('s5_title')}
                         </h2>
                         <p>{t('s5_p')}</p>
@@ -99,7 +99,7 @@ export default async function PrivacyPolicyPage({
 
                     {/* Section 6 */}
                     <section>
-                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
                             {t('s6_title')}
                         </h2>
                         <p>{t('s6_p')}</p>
@@ -113,7 +113,7 @@ export default async function PrivacyPolicyPage({
 
                     {/* Section 7 */}
                     <section>
-                        <h2 className="text-xl font-cormorant font-medium text-[#0a1128] mb-3">
+                        <h2 className="text-xl font-playfair font-medium text-[#0a1128] mb-3">
                             {t('s7_title')}
                         </h2>
                         <p>{t('s7_p')}</p>

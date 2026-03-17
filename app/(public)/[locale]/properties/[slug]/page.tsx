@@ -123,12 +123,12 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                             <div>
                                 <div className="flex flex-col lg:flex-row items-start justify-between gap-6 mb-4">
                                     <div className="flex-1 w-full">
-                                        <h1 className="font-cormorant text-3xl md:text-5xl font-medium text-navy-900 tracking-tight leading-tight">
+                                        <h1 className="font-playfair text-3xl md:text-5xl font-medium text-navy-900 tracking-tight leading-tight">
                                             {title}
                                         </h1>
                                     </div>
                                     <div className="flex flex-col items-start lg:items-end gap-3 shrink-0 w-full lg:w-auto">
-                                        <div className="font-outfit text-3xl font-semibold text-champagne-500 bg-navy-900/5 px-5 py-2 rounded-2xl border border-navy-900/10 w-full lg:w-auto text-center lg:text-right">
+                                        <div className="font-montserrat text-3xl font-semibold text-champagne-500 bg-navy-900/5 px-5 py-2 rounded-2xl border border-navy-900/10 w-full lg:w-auto text-center lg:text-right">
                                             <DynamicPrice price={property.price} period={property.rentPeriod} />
                                         </div>
                                         <div className="flex flex-wrap items-stretch lg:items-center gap-2 lg:gap-3 mt-2 w-full lg:w-auto">
@@ -156,14 +156,14 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                 {property.createdAt && (() => {
                                     const daysOnMarket = Math.floor((Date.now() - new Date(property.createdAt).getTime()) / (1000 * 60 * 60 * 24));
                                     return (
-                                        <span className="inline-flex items-center bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full font-outfit">
+                                        <span className="inline-flex items-center bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full font-montserrat">
                                             <Calendar className="w-3.5 h-3.5 mr-1.5 text-slate-500" />
                                             {daysOnMarket} {params.locale === 'es' ? 'días en el mercado' : 'days on market'}
                                         </span>
                                     );
                                 })()}
                                 {property.photosVerifiedAt && (
-                                    <span className="inline-flex items-center bg-green-50 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full font-outfit border border-green-200">
+                                    <span className="inline-flex items-center bg-green-50 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full font-montserrat border border-green-200">
                                         <ShieldCheck className="w-3.5 h-3.5 mr-1.5" />
                                         {params.locale === 'es' ? 'Fotos Verificadas' : 'Photos Verified'}
                                         <span className="ml-1 text-green-500 font-normal">
@@ -265,7 +265,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <span className={`font-semibold font-outfit ${entry.event === 'reduced' ? 'text-green-600' : entry.event === 'increased' ? 'text-red-600' : 'text-slate-900'
+                                                    <span className={`font-semibold font-montserrat ${entry.event === 'reduced' ? 'text-green-600' : entry.event === 'increased' ? 'text-red-600' : 'text-slate-900'
                                                         }`}>
                                                         ${entry.price.toLocaleString()}
                                                     </span>

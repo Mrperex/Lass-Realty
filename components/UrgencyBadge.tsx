@@ -34,7 +34,7 @@ export default function UrgencyBadge({ slug }: { slug: string }) {
 
     if (urgencyData.type === 'hot') {
         return (
-            <div className="absolute top-4 left-4 z-20 bg-rose-500 text-white px-3 py-1.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-lg backdrop-blur-md border border-white/20 animate-in fade-in duration-500 font-outfit">
+            <div className="absolute top-4 left-4 z-20 bg-rose-500 text-white px-3 py-1.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-lg backdrop-blur-md border border-white/20 animate-in fade-in duration-500 font-montserrat">
                 <Flame className="w-3.5 h-3.5 fill-white" />
                 {t('hotProperty', { fallback: 'Hot Property' })}
             </div>
@@ -43,7 +43,7 @@ export default function UrgencyBadge({ slug }: { slug: string }) {
 
     if (urgencyData.type === 'viewers') {
         return (
-            <div className="absolute top-4 left-4 z-20 bg-navy-900/90 text-white px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-lg backdrop-blur-md border border-white/20 animate-in fade-in duration-500 font-outfit">
+            <div className="absolute top-4 left-4 z-20 bg-navy-900/90 text-white px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-lg backdrop-blur-md border border-white/20 animate-in fade-in duration-500 font-montserrat">
                 <Eye className="w-4 h-4 text-champagne-500" />
                 {t('viewingRightNow', { count: urgencyData.value || 3, fallback: `${urgencyData.value} viewing now` })}
             </div>
@@ -52,7 +52,7 @@ export default function UrgencyBadge({ slug }: { slug: string }) {
 
     if (urgencyData.type === 'rare') {
         return (
-            <div className="absolute top-4 left-4 z-20 bg-emerald-700 text-white px-3 py-1.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-lg backdrop-blur-md border border-white/20 animate-in fade-in duration-500 font-outfit">
+            <div className="absolute top-4 left-4 z-20 bg-emerald-700 text-white px-3 py-1.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-lg backdrop-blur-md border border-white/20 animate-in fade-in duration-500 font-montserrat">
                 <Clock className="w-3.5 h-3.5" />
                 {t('rareFind', { fallback: 'Rare Find' })}
             </div>

@@ -47,7 +47,7 @@ export default function LanguageSwitcher() {
     };
 
     return (
-        <div className="relative font-outfit z-[100]" ref={dropdownRef}>
+        <div className="relative font-montserrat z-[100]" ref={dropdownRef}>
             {/* Dropdown Trigger */}
             <button
                 onClick={() => setIsOpen(!isOpen)}

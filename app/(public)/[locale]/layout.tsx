@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, Outfit } from 'next/font/google';
+import { Playfair_Display, Montserrat } from 'next/font/google';
 import '../../globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
@@ -17,12 +17,12 @@ import MicrosoftClarity from '@/components/MicrosoftClarity';
 import MetaPixel from '@/components/MetaPixel';
 import PlausibleAnalytics from '@/components/PlausibleAnalytics';
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
     subsets: ['latin'],
-    weight: ['300', '400', '500', '600', '700'],
-    variable: '--font-cormorant'
+    weight: ['400', '500', '600', '700', '800', '900'],
+    variable: '--font-playfair'
 });
-const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
+const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
 
 export const metadata: Metadata = {
     metadataBase: new URL(process.env.SITE_URL || 'https://lasspuntacana.com'),
@@ -80,8 +80,8 @@ export default async function LocaleLayout({
     const messages = await getMessages();
 
     return (
-        <html lang={locale} className={`${cormorant.variable} ${outfit.variable}`}>
-            <body className={`font-outfit flex flex-col min-h-screen bg-navy-900 text-offwhite relative`}>
+        <html lang={locale} className={`${playfair.variable} ${montserrat.variable}`}>
+            <body className={`font-montserrat flex flex-col min-h-screen bg-navy-900 text-offwhite relative`}>
                 <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-champagne-500 text-navy-900 z-[9999] px-4 py-2 rounded-xl font-bold">
                     Skip to content
                 </a>

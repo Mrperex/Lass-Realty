@@ -38,21 +38,21 @@ export default function ReportCard({ report }: ReportProps) {
                 />
 
                 {/* Category Badge */}
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-navy-900 border border-white shadow-sm z-10 font-outfit">
+                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-navy-900 border border-white shadow-sm z-10 font-montserrat">
                     {category}
                 </div>
             </div>
 
             <div className="p-6 sm:p-8 flex flex-col flex-grow">
-                <h3 className="text-2xl font-cormorant font-bold text-navy-900 mb-3 leading-tight group-hover:text-champagne-500 transition-colors">
+                <h3 className="text-2xl font-playfair font-bold text-navy-900 mb-3 leading-tight group-hover:text-champagne-500 transition-colors">
                     {title}
                 </h3>
 
-                <p className="text-slate-600 font-outfit text-sm leading-relaxed mb-6 flex-grow">
+                <p className="text-slate-600 font-montserrat text-sm leading-relaxed mb-6 flex-grow">
                     {description}
                 </p>
 
-                <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 font-outfit">
+                <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 font-montserrat">
                     <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest">
                         {report.pages} {t('pages')}
                     </span>

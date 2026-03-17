@@ -38,10 +38,10 @@ export default async function NeighborhoodsIndexPage({
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 {/* Header */}
                 <div className="max-w-3xl mb-16">
-                    <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-navy-900 mb-6">
+                    <h1 className="text-4xl md:text-5xl font-playfair font-medium text-navy-900 mb-6">
                         {t('title')}
                     </h1>
-                    <p className="text-lg text-gray-600 font-outfit">
+                    <p className="text-lg text-gray-600 font-montserrat">
                         {t('description')}
                     </p>
                 </div>
@@ -49,7 +49,7 @@ export default async function NeighborhoodsIndexPage({
                 {/* Grid */}
                 {neighborhoods.length === 0 ? (
                     <div className="text-center py-20 bg-white shadow-sm border border-gray-100">
-                        <p className="text-gray-500 font-outfit">
+                        <p className="text-gray-500 font-montserrat">
                             {t('noGuides')}
                         </p>
                     </div>
@@ -84,7 +84,7 @@ export default async function NeighborhoodsIndexPage({
                                         )}
                                         {/* Overlay name */}
                                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                                            <h3 className="text-2xl font-cormorant font-medium text-white">
+                                            <h3 className="text-2xl font-playfair font-medium text-white">
                                                 {name}
                                             </h3>
                                         </div>
@@ -94,7 +94,7 @@ export default async function NeighborhoodsIndexPage({
                                     <div className="p-6 flex flex-col flex-1">
                                         {/* Average Price */}
                                         {n.averagePrice > 0 && (
-                                            <div className="flex items-center text-sm text-gray-500 font-outfit mb-3">
+                                            <div className="flex items-center text-sm text-gray-500 font-montserrat mb-3">
                                                 <DollarSign className="w-4 h-4 mr-1 text-gold-500" />
                                                 {t('avgPrice')}
                                                 <span className="font-semibold text-navy-900 ml-1">
@@ -103,7 +103,7 @@ export default async function NeighborhoodsIndexPage({
                                             </div>
                                         )}
 
-                                        <p className="text-gray-600 font-outfit text-sm line-clamp-3 mb-6 flex-1">
+                                        <p className="text-gray-600 font-montserrat text-sm line-clamp-3 mb-6 flex-1">
                                             {description?.substring(0, 160)}...
                                         </p>
 
@@ -111,14 +111,14 @@ export default async function NeighborhoodsIndexPage({
                                         {((locale === 'es' && n.highlights_es?.length > 0) ? n.highlights_es : n.highlights)?.length > 0 && (
                                             <div className="flex flex-wrap gap-2 mb-5">
                                                 {((locale === 'es' && n.highlights_es?.length > 0) ? n.highlights_es : n.highlights).slice(0, 3).map((h: string, i: number) => (
-                                                    <span key={i} className="bg-slate-100 text-navy-900 text-xs font-outfit font-medium px-3 py-1 border border-gray-200">
+                                                    <span key={i} className="bg-slate-100 text-navy-900 text-xs font-montserrat font-medium px-3 py-1 border border-gray-200">
                                                         {h}
                                                     </span>
                                                 ))}
                                             </div>
                                         )}
 
-                                        <div className="flex items-center text-sm font-semibold text-gold-500 font-outfit tracking-wide uppercase mt-auto group-hover:text-gold-600 transition-colors">
+                                        <div className="flex items-center text-sm font-semibold text-gold-500 font-montserrat tracking-wide uppercase mt-auto group-hover:text-gold-600 transition-colors">
                                             {t('exploreGuide')}
                                             <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
                                         </div>

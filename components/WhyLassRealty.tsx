@@ -38,7 +38,7 @@ export default function WhyLassRealty() {
                     variants={fadeUpVariants}
                     className="text-center max-w-3xl mx-auto mb-16"
                 >
-                    <h2 className="text-3xl md:text-5xl font-cormorant font-bold text-navy-900 mb-6 leading-tight">
+                    <h2 className="text-3xl md:text-5xl font-playfair font-bold text-navy-900 mb-6 leading-tight">
                         {t('title', { fallback: 'Why Choose LASS Realty?' })}
                     </h2>
                     <p className="text-lg md:text-xl text-slate-600 font-light leading-relaxed">
@@ -104,7 +104,7 @@ export default function WhyLassRealty() {
                             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-champagne-400 font-bold text-sm tracking-widest uppercase mb-6 backdrop-blur-md border border-white/5">
                                 <TrendingUp className="w-4 h-4" /> Case Studies
                             </div>
-                            <h3 className="text-4xl text-white font-cormorant font-bold mb-6 leading-tight">
+                            <h3 className="text-4xl text-white font-playfair font-bold mb-6 leading-tight">
                                 {t('caseStudies.title')}
                             </h3>
                             <div className="space-y-4 text-slate-300">
@@ -121,7 +121,7 @@ export default function WhyLassRealty() {
                                     </h4>
                                     <CheckCircle2 className="w-6 h-6 text-champagne-500 shrink-0" />
                                 </div>
-                                <div className="text-3xl font-bold text-champagne-400 mb-4 font-outfit">
+                                <div className="text-3xl font-bold text-champagne-400 mb-4 font-montserrat">
                                     {t('caseStudies.cs1.roi')}
                                 </div>
                                 <p className="text-slate-400 text-sm leading-relaxed">
@@ -137,7 +137,7 @@ export default function WhyLassRealty() {
                                     </h4>
                                     <CheckCircle2 className="w-6 h-6 text-champagne-500 shrink-0" />
                                 </div>
-                                <div className="text-3xl font-bold text-champagne-400 mb-4 font-outfit">
+                                <div className="text-3xl font-bold text-champagne-400 mb-4 font-montserrat">
                                     {t('caseStudies.cs2.roi')}
                                 </div>
                                 <p className="text-slate-400 text-sm leading-relaxed">

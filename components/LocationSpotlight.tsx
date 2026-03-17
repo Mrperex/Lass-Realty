@@ -46,7 +46,7 @@ export default function LocationSpotlight({ city }: LocationSpotlightProps) {
                     </div>
 
                     <div className="flex items-end gap-3 mb-2">
-                        <span className="text-6xl font-outfit font-bold text-white leading-none">{score}</span>
+                        <span className="text-6xl font-montserrat font-bold text-white leading-none">{score}</span>
                         <span className="text-slate-400 font-medium mb-1">/ 100</span>
                     </div>
 

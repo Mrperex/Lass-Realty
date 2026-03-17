@@ -26,8 +26,8 @@ const config: Config = {
         offwhite: '#FAFAFA',
       },
       fontFamily: {
-        playfair: ['var(--font-cormorant)', 'serif'], // Swapped Playfair for Cormorant Garamond for higher-end editorial feel
-        outfit: ['var(--font-outfit)', 'sans-serif'],
+        playfair: ['var(--font-playfair)', 'serif'],
+        montserrat: ['var(--font-montserrat)', 'sans-serif'],
       },
     },
   },

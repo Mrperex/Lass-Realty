@@ -9,7 +9,7 @@ export default function FeaturedSpotlight({ property }: { property: IProperty | 
     if (!property) return null;
 
     return (
-        <section className="py-24 bg-slate-50 border-t border-slate-200/60 overflow-hidden relative font-outfit">
+        <section className="py-24 bg-slate-50 border-t border-slate-200/60 overflow-hidden relative font-montserrat">
             {/* Editorial Background Elements */}
             <div className="absolute top-0 right-0 w-1/3 h-full bg-navy-900/5 hidden lg:block border-l border-slate-200/50" />
             <div className="absolute -top-[10%] -right-[5%] w-[40rem] h-[40rem] rounded-full bg-champagne-500/5 blur-[100px] pointer-events-none" />
@@ -64,11 +64,11 @@ export default function FeaturedSpotlight({ property }: { property: IProperty | 
                             {property.city}
                         </div>
 
-                        <h2 className="font-cormorant text-4xl md:text-5xl lg:text-6xl font-medium text-navy-900 tracking-tight leading-[1.1] mb-8">
+                        <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-medium text-navy-900 tracking-tight leading-[1.1] mb-8">
                             {property.title}
                         </h2>
 
-                        <div className="font-outfit text-3xl font-semibold text-champagne-600 mb-8">
+                        <div className="font-montserrat text-3xl font-semibold text-champagne-600 mb-8">
                             <DynamicPrice price={property.price} period={property.rentPeriod} />
                         </div>
 
@@ -82,15 +82,15 @@ export default function FeaturedSpotlight({ property }: { property: IProperty | 
                         <div className="grid grid-cols-3 gap-6 mb-12 py-8 border-y border-slate-200/60">
                             <div className="flex flex-col">
                                 <span className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-1.5"><Bed className="w-3.5 h-3.5" /> Beds</span>
-                                <span className="text-2xl font-cormorant font-semibold text-navy-900">{property.bedrooms}</span>
+                                <span className="text-2xl font-playfair font-semibold text-navy-900">{property.bedrooms}</span>
                             </div>
                             <div className="flex flex-col border-l border-slate-200/60 pl-6">
                                 <span className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-1.5"><Bath className="w-3.5 h-3.5" /> Baths</span>
-                                <span className="text-2xl font-cormorant font-semibold text-navy-900">{property.bathrooms}</span>
+                                <span className="text-2xl font-playfair font-semibold text-navy-900">{property.bathrooms}</span>
                             </div>
                             <div className="flex flex-col border-l border-slate-200/60 pl-6">
                                 <span className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-1.5"><Square className="w-3.5 h-3.5" /> Size</span>
-                                <span className="text-lg font-cormorant font-semibold text-navy-900 mt-1">{property.squareMeters ? `${property.squareMeters} m²` : '--'}</span>
+                                <span className="text-lg font-playfair font-semibold text-navy-900 mt-1">{property.squareMeters ? `${property.squareMeters} m²` : '--'}</span>
                             </div>
                         </div>
 

@@ -39,7 +39,7 @@ export default function Breadcrumbs({ customCrumbs }: { customCrumbs?: BreadCrum
     if (crumbs.length === 0) return null;
 
     return (
-        <nav aria-label="Breadcrumb" className="flex items-center text-sm font-outfit text-slate-500 mb-6 overflow-x-auto whitespace-nowrap pb-2 scrollbar-hide">
+        <nav aria-label="Breadcrumb" className="flex items-center text-sm font-montserrat text-slate-500 mb-6 overflow-x-auto whitespace-nowrap pb-2 scrollbar-hide">
             <Link href="/" className="hover:text-champagne-600 transition-colors flex items-center">
                 <Home className="w-4 h-4" />
                 <span className="sr-only">Home</span>

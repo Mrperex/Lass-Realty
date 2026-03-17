@@ -43,14 +43,14 @@ export default function Testimonials() {
     };
 
     return (
-        <section className="py-24 bg-slate-50 relative overflow-hidden font-outfit">
+        <section className="py-24 bg-slate-50 relative overflow-hidden font-montserrat">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
                     {/* Left Column: Context & Google Reviews */}
                     <div>
                         <span className="text-champagne-600 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Client Success Stories</span>
-                        <h2 className="text-4xl md:text-5xl font-cormorant font-medium text-navy-900 mb-6 leading-tight">Trusted By The World&apos;s <span className="italic">Elite</span></h2>
+                        <h2 className="text-4xl md:text-5xl font-playfair font-medium text-navy-900 mb-6 leading-tight">Trusted By The World&apos;s <span className="italic">Elite</span></h2>
                         <p className="text-slate-600 mb-10 text-lg leading-relaxed font-light">
                             Our reputation is built entirely on the success and absolute discretion we provide our clients. Read what international buyers have to say about their experience with LASS Realty.
                         </p>
@@ -87,7 +87,7 @@ export default function Testimonials() {
                                         <Star key={i} className="w-4 h-4 fill-current" />
                                     ))}
                                 </div>
-                                <p className="text-xl md:text-2xl font-cormorant text-navy-900 leading-snug mb-8">
+                                <p className="text-xl md:text-2xl font-playfair text-navy-900 leading-snug mb-8">
                                     &quot;{testimonials[currentIndex].quote}&quot;
                                 </p>
 

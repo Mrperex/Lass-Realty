@@ -47,10 +47,10 @@ export default async function MarketReportsPage({
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 {/* Header */}
                 <div className="max-w-3xl mb-16">
-                    <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-[#0a1128] mb-6">
+                    <h1 className="text-4xl md:text-5xl font-playfair font-medium text-[#0a1128] mb-6">
                         {t('pageTitle')}
                     </h1>
-                    <p className="text-lg text-gray-600 font-outfit">
+                    <p className="text-lg text-gray-600 font-montserrat">
                         {t('pageSubtitle')}
                     </p>
                 </div>
@@ -73,7 +73,7 @@ export default async function MarketReportsPage({
 
                 {/* Trust Badges */}
                 <div className="mt-16 text-center">
-                    <p className="text-sm text-gray-400 font-outfit">
+                    <p className="text-sm text-gray-400 font-montserrat">
                         {t('trustBadges')}
                     </p>
                 </div>

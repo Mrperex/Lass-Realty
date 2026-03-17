@@ -31,12 +31,12 @@ export default function PropertyCard({ property }: { property: IProperty }) {
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                     ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-outfit">
+                        <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-montserrat">
                             {t('noImage')}
                         </div>
                     )}
                     {/* Glassmorphism Price Overlay */}
-                    <div className="absolute bottom-4 left-4 bg-navy-900/40 backdrop-blur-md border border-white/20 px-4 py-2 rounded-xl text-champagne-400 font-bold tracking-wide shadow-lg z-10 font-outfit">
+                    <div className="absolute bottom-4 left-4 bg-navy-900/40 backdrop-blur-md border border-white/20 px-4 py-2 rounded-xl text-champagne-400 font-bold tracking-wide shadow-lg z-10 font-montserrat">
                         <DynamicPrice price={property.price} period={property.rentPeriod} />
                     </div>
 
@@ -50,14 +50,14 @@ export default function PropertyCard({ property }: { property: IProperty }) {
                 </div>
 
                 <div className="pt-8 px-4 sm:px-8 bg-gradient-to-t from-white via-white to-transparent">
-                    <h3 className="font-cormorant text-2xl md:text-3xl font-bold text-navy-900 mb-4 line-clamp-2 leading-snug group-hover:text-champagne-500 transition-colors duration-500 min-h-[64px] flex items-center">
+                    <h3 className="font-playfair text-2xl md:text-3xl font-bold text-navy-900 mb-4 line-clamp-2 leading-snug group-hover:text-champagne-500 transition-colors duration-500 min-h-[64px] flex items-center">
                         {title}
                     </h3>
-                    <div className="flex items-center text-slate-500 text-sm mb-5 font-outfit uppercase tracking-wider text-xs font-semibold">
+                    <div className="flex items-center text-slate-500 text-sm mb-5 font-montserrat uppercase tracking-wider text-xs font-semibold">
                         <MapPin className="w-3.5 h-3.5 mr-1.5 flex-shrink-0 text-champagne-500" />
                         <span className="truncate">{city}</span>
                     </div>
-                    <div className="flex items-center gap-6 border-t border-slate-100 pt-6 mt-6 font-outfit text-sm overflow-x-auto no-scrollbar whitespace-nowrap">
+                    <div className="flex items-center gap-6 border-t border-slate-100 pt-6 mt-6 font-montserrat text-sm overflow-x-auto no-scrollbar whitespace-nowrap">
                         {property.type === 'land' ? (
                             <AreaDisplay squareMeters={property.squareMeters} price={property.price} />
                         ) : (

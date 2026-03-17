@@ -58,13 +58,13 @@ export default function MortgageCalculator({ propertyPriceUsd }: MortgageCalcula
     };
 
     return (
-        <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-100 shadow-[0_20px_40px_-15px_rgba(10,17,40,0.05)] font-outfit">
+        <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-100 shadow-[0_20px_40px_-15px_rgba(10,17,40,0.05)] font-montserrat">
             <div className="flex items-center gap-3 mb-8 pb-6 border-b border-slate-100">
                 <div className="w-12 h-12 bg-champagne-500/10 rounded-2xl flex items-center justify-center text-champagne-600">
                     <Calculator className="w-6 h-6" />
                 </div>
                 <div>
-                    <h3 className="font-cormorant text-2xl font-medium text-navy-900">Investment Calculator</h3>
+                    <h3 className="font-playfair text-2xl font-medium text-navy-900">Investment Calculator</h3>
                     <p className="text-slate-500 text-sm">Estimate mortgage costs and ROI</p>
                 </div>
             </div>
@@ -143,10 +143,10 @@ export default function MortgageCalculator({ propertyPriceUsd }: MortgageCalcula
                     <div className="relative z-10 mb-8">
                         <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">Estimated Payment</div>
                         <div className="flex items-end gap-2 text-champagne-400">
-                            <span className="text-4xl md:text-5xl font-cormorant font-medium tracking-tight">
+                            <span className="text-4xl md:text-5xl font-playfair font-medium tracking-tight">
                                 {formatShortCurrency(monthlyPayment)}
                             </span>
-                            <span className="text-slate-400 font-outfit font-medium mb-1.5">/mo</span>
+                            <span className="text-slate-400 font-montserrat font-medium mb-1.5">/mo</span>
                         </div>
                         <div className="text-sm text-slate-500 mt-2">Principal & Interest only. Taxes/Insurance not included.</div>
                     </div>

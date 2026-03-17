@@ -60,21 +60,21 @@ export default function ShareButton({ title, slug }: ShareButtonProps) {
                     <div className="absolute right-0 top-12 z-50 bg-white border border-slate-100 shadow-xl rounded-xl py-2 w-52 animate-in fade-in duration-200">
                         <button
                             onClick={handleCopyLink}
-                            className="w-full px-4 py-2.5 text-left text-sm font-outfit text-slate-700 hover:bg-slate-50 flex items-center gap-3 transition-colors"
+                            className="w-full px-4 py-2.5 text-left text-sm font-montserrat text-slate-700 hover:bg-slate-50 flex items-center gap-3 transition-colors"
                         >
                             {copied ? <Check className="w-4 h-4 text-green-500" /> : <Link2 className="w-4 h-4 text-slate-400" />}
                             {copied ? (t('linkCopied', { fallback: 'Link Copied!' })) : (t('copyLink', { fallback: 'Copy Link' }))}
                         </button>
                         <button
                             onClick={handleWhatsApp}
-                            className="w-full px-4 py-2.5 text-left text-sm font-outfit text-slate-700 hover:bg-slate-50 flex items-center gap-3 transition-colors"
+                            className="w-full px-4 py-2.5 text-left text-sm font-montserrat text-slate-700 hover:bg-slate-50 flex items-center gap-3 transition-colors"
                         >
                             <MessageCircle className="w-4 h-4 text-green-500" />
                             WhatsApp
                         </button>
                         <button
                             onClick={handleEmail}
-                            className="w-full px-4 py-2.5 text-left text-sm font-outfit text-slate-700 hover:bg-slate-50 flex items-center gap-3 transition-colors"
+                            className="w-full px-4 py-2.5 text-left text-sm font-montserrat text-slate-700 hover:bg-slate-50 flex items-center gap-3 transition-colors"
                         >
                             <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                             Email

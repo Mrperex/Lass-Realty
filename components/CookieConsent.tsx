@@ -49,7 +49,7 @@ export default function CookieConsent() {
     if (!isVisible) return null;
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 p-4 md:p-6 z-[9990] pointer-events-none font-outfit">
+        <div className="fixed bottom-0 left-0 right-0 p-4 md:p-6 z-[9990] pointer-events-none font-montserrat">
             <div className="max-w-7xl mx-auto flex justify-end">
                 {/* 
                     Using fixed width & glassmorphism floating card instead of entire bottom bar 
@@ -59,7 +59,7 @@ export default function CookieConsent() {
 
                     <div className="flex flex-col gap-5">
                         <div className="flex items-start justify-between">
-                            <h3 className="font-cormorant text-xl font-bold text-white tracking-wide">
+                            <h3 className="font-playfair text-xl font-bold text-white tracking-wide">
                                 Your Privacy
                             </h3>
                         </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function LogoReveal() {
     const [isVisible, setIsVisible] = useState(true);
@@ -37,13 +38,14 @@ export default function LogoReveal() {
             className={`fixed inset-0 z-[9999] bg-navy-900 flex flex-col items-center justify-center transition-opacity duration-700 ease-in-out ${isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
                 }`}
         >
-            <div className="flex items-center gap-3 animate-in slide-in-from-bottom-8 fade-in duration-1000 ease-out">
-                <div className="text-5xl md:text-7xl font-cormorant font-bold text-champagne-400 tracking-tighter drop-shadow-2xl">
-                    LASS
-                </div>
-                <div className="text-xl md:text-3xl font-outfit font-light text-offwhite uppercase tracking-[0.3em] mt-3">
-                    Realty
-                </div>
+            <div className="flex flex-col items-center gap-6 animate-in slide-in-from-bottom-8 fade-in duration-1000 ease-out">
+                <Image 
+                    src="/images/logos/lass-realty-logo-Master.svg" 
+                    alt="LASS Realty"
+                    width={320}
+                    height={160}
+                    className="w-64 md:w-80 h-auto"
+                />
             </div>
 
             {/* Subtle loading pulse beneath the logo */}

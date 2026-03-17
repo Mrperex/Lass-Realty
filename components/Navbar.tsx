@@ -1,6 +1,7 @@
 'use client';
 
 import { Link } from '@/navigation';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useState, useRef, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -27,12 +28,19 @@ const Navbar = () => {
     }, []);
 
     return (
-        <header className="bg-white sticky top-0 z-50 shadow-sm relative font-outfit">
+        <header className="bg-white sticky top-0 z-50 shadow-sm relative font-montserrat">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     <div className="flex-shrink-0 flex items-center">
-                        <Link href="/" onClick={() => setIsOpen(false)} className="text-2xl font-cormorant font-bold tracking-tighter text-navy-900 flex items-center gap-2">
-                            LASS <span className="font-outfit font-light text-champagne-700 uppercase tracking-[0.2em] text-sm mt-1">Realty</span>
+                        <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center transition-opacity hover:opacity-80">
+                            <Image 
+                                src="/images/logos/lass-realty-logo-horizontal.svg" 
+                                alt="LASS Realty" 
+                                width={180} 
+                                height={40} 
+                                className="h-8 md:h-10 w-auto"
+                                priority
+                            />
                         </Link>
                     </div>
                     {/* Desktop Menu */}

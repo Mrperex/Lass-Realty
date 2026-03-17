@@ -28,10 +28,10 @@ export default async function BlogIndexPage({
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 {/* Header */}
                 <div className="max-w-3xl mb-16">
-                    <h1 className="text-4xl md:text-5xl font-cormorant font-medium text-navy-900 mb-6">
+                    <h1 className="text-4xl md:text-5xl font-playfair font-medium text-navy-900 mb-6">
                         {t('title')}
                     </h1>
-                    <p className="text-lg text-gray-600 font-outfit">
+                    <p className="text-lg text-gray-600 font-montserrat">
                         {t('description')}
                     </p>
                 </div>
@@ -39,7 +39,7 @@ export default async function BlogIndexPage({
                 {/* Grid */}
                 {posts.length === 0 ? (
                     <div className="text-center py-20 bg-white shadow-sm border border-gray-100">
-                        <p className="text-gray-500 font-outfit">
+                        <p className="text-gray-500 font-montserrat">
                             {t('noArticles')}
                         </p>
                     </div>
@@ -69,13 +69,13 @@ export default async function BlogIndexPage({
                                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             />
                                         ) : (
-                                            <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-outfit text-sm">
+                                            <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-montserrat text-sm">
                                                 No Image
                                             </div>
                                         )}
                                         {/* Category Badge */}
                                         <div className="absolute top-4 left-4">
-                                            <span className="bg-navy-900/90 backdrop-blur-sm text-white text-xs font-semibold tracking-wider uppercase px-3 py-1 font-outfit">
+                                            <span className="bg-navy-900/90 backdrop-blur-sm text-white text-xs font-semibold tracking-wider uppercase px-3 py-1 font-montserrat">
                                                 {post.category?.replace('-', ' ')}
                                             </span>
                                         </div>
@@ -83,7 +83,7 @@ export default async function BlogIndexPage({
 
                                     {/* Content */}
                                     <div className="p-6 flex flex-col flex-1">
-                                        <div className="flex items-center space-x-4 text-xs text-gray-500 font-outfit mb-4">
+                                        <div className="flex items-center space-x-4 text-xs text-gray-500 font-montserrat mb-4">
                                             <div className="flex items-center">
                                                 <Calendar className="w-3 h-3 mr-1" />
                                                 {new Date(post.publishedAt).toLocaleDateString(getDateLocale(locale), {
@@ -98,15 +98,15 @@ export default async function BlogIndexPage({
                                             </div>
                                         </div>
 
-                                        <h3 className="text-xl font-cormorant font-medium text-navy-900 mb-3 group-hover:text-gold-500 transition-colors line-clamp-2">
+                                        <h3 className="text-xl font-playfair font-medium text-navy-900 mb-3 group-hover:text-gold-500 transition-colors line-clamp-2">
                                             {title}
                                         </h3>
 
-                                        <p className="text-gray-600 font-outfit text-sm line-clamp-3 mb-6 flex-1">
+                                        <p className="text-gray-600 font-montserrat text-sm line-clamp-3 mb-6 flex-1">
                                             {excerpt}
                                         </p>
 
-                                        <div className="flex items-center text-sm font-semibold text-gold-500 font-outfit tracking-wide uppercase mt-auto group-hover:text-gold-600 transition-colors">
+                                        <div className="flex items-center text-sm font-semibold text-gold-500 font-montserrat tracking-wide uppercase mt-auto group-hover:text-gold-600 transition-colors">
                                             {t('readArticle')}
                                             <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
                                         </div>

@@ -67,7 +67,7 @@ export default function SearchFilters() {
     };
 
     return (
-        <div className="bg-navy-900/95 backdrop-blur-xl p-6 md:p-8 mb-12 rounded-3xl border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] font-outfit w-full">
+        <div className="bg-navy-900/95 backdrop-blur-xl p-6 md:p-8 mb-12 rounded-3xl border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] font-montserrat w-full">
             <form onSubmit={handleSearch}>
                 {/* Top Row - Primary Search */}
                 <div className="flex flex-col md:flex-row gap-5 items-end w-full">

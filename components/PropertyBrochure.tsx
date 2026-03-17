@@ -47,7 +47,7 @@ export const PropertyBrochure = ({ property }: { property: any }) => {
         <Document>
             <Page size="A4" style={styles.page}>
                 <View style={styles.header}>
-                    <Text style={styles.logo}>LASS REALTY</Text>
+                    <Image style={{ width: 140, height: 'auto' }} src="https://lasspuntacana.com/images/logos/lass-realty-logo.png" />
                     <Text style={styles.website}>www.lasspuntacana.com</Text>
                 </View>
 

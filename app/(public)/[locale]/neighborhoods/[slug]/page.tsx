@@ -104,16 +104,16 @@ export default async function NeighborhoodDetailPage({
                 <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 max-w-6xl mx-auto">
                     <Link
                         href={`/${locale}/neighborhoods`}
-                        className="text-white/70 hover:text-white text-sm font-outfit mb-4 inline-flex items-center transition-colors"
+                        className="text-white/70 hover:text-white text-sm font-montserrat mb-4 inline-flex items-center transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         {t('allNeighborhoods')}
                     </Link>
-                    <h1 className="text-4xl md:text-6xl font-cormorant font-medium text-white leading-tight mt-2">
+                    <h1 className="text-4xl md:text-6xl font-playfair font-medium text-white leading-tight mt-2">
                         {name}
                     </h1>
                     {n.averagePrice > 0 && (
-                        <div className="flex items-center mt-4 text-white/80 font-outfit text-lg">
+                        <div className="flex items-center mt-4 text-white/80 font-montserrat text-lg">
                             <DollarSign className="w-5 h-5 mr-2 text-gold-500" />
                             {t('avgPrice')}
                             <span className="font-semibold text-gold-500 ml-1">
@@ -130,10 +130,10 @@ export default async function NeighborhoodDetailPage({
 
                     {/* Main Description */}
                     <div className="lg:col-span-2">
-                        <h2 className="text-2xl font-cormorant font-medium text-navy-900 mb-6">
+                        <h2 className="text-2xl font-playfair font-medium text-navy-900 mb-6">
                             {t('aboutCommunity')}
                         </h2>
-                        <div className="space-y-4 font-outfit text-gray-700 leading-relaxed text-lg">
+                        <div className="space-y-4 font-montserrat text-gray-700 leading-relaxed text-lg">
                             {description?.split('\n\n').map((paragraph: string, index: number) => (
                                 <p key={index}>{paragraph}</p>
                             ))}
@@ -144,12 +144,12 @@ export default async function NeighborhoodDetailPage({
                     <div>
                         {highlights?.length > 0 && (
                             <div className="bg-slate-50 border border-gray-100 p-8 sticky top-32">
-                                <h3 className="text-lg font-cormorant font-medium text-navy-900 mb-6 pb-4 border-b border-gray-200">
+                                <h3 className="text-lg font-playfair font-medium text-navy-900 mb-6 pb-4 border-b border-gray-200">
                                     {t('keyHighlights')}
                                 </h3>
                                 <ul className="space-y-4">
                                     {highlights.map((highlight: string, index: number) => (
-                                        <li key={index} className="flex items-start text-sm font-outfit text-gray-700">
+                                        <li key={index} className="flex items-start text-sm font-montserrat text-gray-700">
                                             <CheckCircle2 className="w-5 h-5 text-gold-500 mr-3 flex-shrink-0 mt-0.5" />
                                             {highlight}
                                         </li>
@@ -167,12 +167,12 @@ export default async function NeighborhoodDetailPage({
                     <div className="max-w-7xl mx-auto px-6 lg:px-8">
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
                             <div>
-                                <h2 className="text-2xl md:text-3xl font-cormorant font-medium text-navy-900 mb-2">
+                                <h2 className="text-2xl md:text-3xl font-playfair font-medium text-navy-900 mb-2">
                                     {locale === 'es'
                                         ? `Propiedades en ${name}`
                                         : `Properties in ${name}`}
                                 </h2>
-                                <p className="text-gray-600 font-outfit">
+                                <p className="text-gray-600 font-montserrat">
                                     {locale === 'es'
                                         ? `${properties.length} listado(s) activo(s) disponible(s)`
                                         : `${properties.length} active listing(s) available`}
@@ -180,7 +180,7 @@ export default async function NeighborhoodDetailPage({
                             </div>
                             <Link
                                 href={`/${locale}/properties?location=${slug}`}
-                                className="mt-4 md:mt-0 bg-navy-900 hover:bg-navy-800 text-white px-6 py-3 text-sm font-outfit uppercase tracking-wider transition-colors"
+                                className="mt-4 md:mt-0 bg-navy-900 hover:bg-navy-800 text-white px-6 py-3 text-sm font-montserrat uppercase tracking-wider transition-colors"
                             >
                                 {t('viewAllProperties')}
                             </Link>
@@ -211,19 +211,19 @@ export default async function NeighborhoodDetailPage({
                                                     <Home className="w-8 h-8 text-gray-300" />
                                                 </div>
                                             )}
-                                            <div className="absolute top-4 right-4 bg-navy-900/90 backdrop-blur-sm text-white text-sm font-semibold px-3 py-1 font-outfit">
+                                            <div className="absolute top-4 right-4 bg-navy-900/90 backdrop-blur-sm text-white text-sm font-semibold px-3 py-1 font-montserrat">
                                                 ${property.price?.toLocaleString()}
                                             </div>
                                         </div>
                                         <div className="p-5">
-                                            <h3 className="text-lg font-cormorant font-medium text-navy-900 mb-1 group-hover:text-gold-500 transition-colors line-clamp-1">
+                                            <h3 className="text-lg font-playfair font-medium text-navy-900 mb-1 group-hover:text-gold-500 transition-colors line-clamp-1">
                                                 {pTitle}
                                             </h3>
-                                            <p className="text-sm text-gray-500 font-outfit flex items-center">
+                                            <p className="text-sm text-gray-500 font-montserrat flex items-center">
                                                 <MapPin className="w-3.5 h-3.5 mr-1" />
                                                 {propContext[`city_${locale}`] || property.city}
                                             </p>
-                                            <div className="flex items-center gap-4 mt-3 text-xs text-gray-500 font-outfit">
+                                            <div className="flex items-center gap-4 mt-3 text-xs text-gray-500 font-montserrat">
                                                 <span>{property.bedrooms} {t('beds')}</span>
                                                 <span>{property.bathrooms} {t('baths')}</span>
                                                 <span>{property.squareMeters} m²</span>
