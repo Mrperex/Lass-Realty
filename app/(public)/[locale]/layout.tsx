@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Playfair_Display, Montserrat } from 'next/font/google';
 import '../../globals.css';
 import { NextIntlClientProvider } from 'next-intl';
