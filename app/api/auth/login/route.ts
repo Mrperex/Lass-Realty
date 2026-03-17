@@ -4,13 +4,13 @@ import connectToDatabase from '@/lib/mongodb'
 import Admin from '@/models/Admin'
 import bcrypt from 'bcrypt'
 
-const DEFAULT_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin'
+const DEFAULT_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Laasrealty2026'
 const COOKIE_NAME = 'lass_admin_auth'
 
 export async function POST(req: Request) {
     try {
         await connectToDatabase();
-        const { password, email = 'admin@lassrealty.com' } = await req.json()
+        const { password, email = 'info@lasspuntacana.com' } = await req.json()
 
         if (!password) {
             return NextResponse.json({ error: 'Password required' }, { status: 400 })
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
             if (adminCount === 0) {
                 const hashedPassword = await bcrypt.hash(DEFAULT_ADMIN_PASSWORD, 10);
                 admin = await Admin.create({
-                    email: 'admin@lassrealty.com',
+                    email: 'info@lasspuntacana.com',
                     passwordHash: hashedPassword
                 });
             } else {

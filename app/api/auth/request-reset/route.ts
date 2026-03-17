@@ -34,7 +34,7 @@ export async function POST(req: Request) {
 
         if (process.env.RESEND_API_KEY) {
             await resend.emails.send({
-                from: 'LASS Realty <admin@lasspuntacana.com>',
+                from: 'LASS Realty <info@lasspuntacana.com>',
                 to: email,
                 subject: 'Password Reset Request',
                 html: `
