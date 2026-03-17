@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useCurrencyStore, CurrencyCode } from '@/store/currencyStore';
 import { ChevronDown, Globe } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 const CURRENCIES: { code: CurrencyCode; label: string; symbol: string }[] = [
     { code: 'USD', label: 'US Dollar', symbol: '$' },
@@ -37,6 +38,10 @@ export default function CurrencySelector() {
     }, [isOpen]);
 
     const handleSelect = (code: CurrencyCode) => {
+        trackEvent('currency_changed', { 
+            from_currency: currentCurrency, 
+            to_currency: code 
+        });
         setCurrency(code);
         setIsOpen(false);
     };

@@ -4,6 +4,7 @@ import { Heart } from 'lucide-react';
 import { useFavoritesStore } from '@/store/favoritesStore';
 import { IProperty } from '@/types/property';
 import { MouseEvent, useEffect, useState } from 'react';
+import { trackEvent } from '@/lib/analytics';
 
 export default function FavoriteButton({ property }: { property: IProperty }) {
     const { isFavorite, addFavorite, removeFavorite } = useFavoritesStore();
@@ -29,6 +30,11 @@ export default function FavoriteButton({ property }: { property: IProperty }) {
         if (isFav) {
             removeFavorite(property.slug);
         } else {
+            trackEvent('property_saved', {
+                property_name: property.title,
+                location: property.city || 'Unknown',
+                price: property.price
+            });
             addFavorite(property);
         }
     };

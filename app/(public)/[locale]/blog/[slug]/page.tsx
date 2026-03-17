@@ -18,9 +18,17 @@ export async function generateStaticParams() {
         await connectToDatabase();
         if (!mongoose.connection.readyState) return [];
         const posts = await Post.find().select('slug').lean();
-        return posts.map(post => ({
-            slug: post.slug,
-        }));
+        
+        const locales = ['en', 'es', 'fr', 'it', 'ru', 'de', 'ht'];
+        const params = [];
+
+        for (const post of posts) {
+            for (const locale of locales) {
+                params.push({ slug: post.slug, locale });
+            }
+        }
+
+        return params;
     } catch (error) {
         console.warn('Failed to pre-generate blog static params:', error);
         return [];
@@ -58,11 +66,8 @@ function markdownToHtml(text: string): string {
 }
 
 // Dynamic SEO metadata
-export async function generateMetadata({
-    params: { locale, slug }
-}: {
-    params: { locale: string; slug: string }
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
+    const { locale, slug } = await params;
     await connectToDatabase();
     const post = await Post.findOne({ slug }).lean();
     if (!post) return {};
@@ -90,11 +95,8 @@ export async function generateMetadata({
     };
 }
 
-export default async function BlogPostPage({
-    params: { locale, slug }
-}: {
-    params: { locale: string; slug: string }
-}) {
+export default async function BlogPostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+    const { locale, slug } = await params;
     const t = await getTranslations('Blog');
     await connectToDatabase();
     const rawPost = await Post.findOne({ slug }).lean();

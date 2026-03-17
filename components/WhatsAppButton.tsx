@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { MessageCircle } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { trackEvent } from '@/lib/analytics';
 
 export default function WhatsAppButton() {
     const t = useTranslations('GlobalUI');
@@ -30,6 +31,7 @@ export default function WhatsAppButton() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent('whatsapp_click', { source_page: currentUrl })}
             className="fixed bottom-24 right-5 z-[60] bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20bd5a] hover:scale-110 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center group"
             aria-label={t('whatsappAria')}
         >

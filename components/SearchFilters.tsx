@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Search, SlidersHorizontal, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { LOCATIONS } from '@/lib/locations';
+import { trackEvent } from '@/lib/analytics';
 
 export default function SearchFilters() {
     const router = useRouter();
@@ -49,6 +50,16 @@ export default function SearchFilters() {
         if (selectedAmenities.length > 0) {
             params.set('amenities', selectedAmenities.join(','));
         }
+
+        trackEvent('search_filter_applied', {
+            location: city || 'Any',
+            min_price: minPrice || '0',
+            max_price: maxPrice || 'Any',
+            property_type: propertyType || 'Any',
+            bedrooms: beds || 'Any',
+            bathrooms: baths || 'Any',
+            amenities: selectedAmenities.length > 0 ? selectedAmenities.join(',') : 'None'
+        });
 
         router.push(`/properties?${params.toString()}`);
     };

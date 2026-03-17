@@ -32,9 +32,17 @@ export async function generateStaticParams() {
         if (!mongoose.connection.readyState) return [];
         // Only pre-generate pages for properties that are currently for sale
         const properties = await Property.find({ status: 'for-sale' }).select('slug').lean();
-        return properties.map((p) => ({
-            slug: p.slug,
-        }));
+
+        const locales = ['en', 'es', 'fr', 'it', 'ru', 'de', 'ht'];
+        const params = [];
+
+        for (const p of properties) {
+            for (const locale of locales) {
+                params.push({ slug: p.slug, locale });
+            }
+        }
+
+        return params;
     } catch (error) {
         console.warn('Failed to pre-generate property static params:', error);
         return [];
@@ -54,15 +62,16 @@ const getProperty = cache(async (slug: string) => {
     }
 });
 
-export async function generateMetadata({ params }: { params: { slug: string, locale: string } }) {
-    const property = await getProperty(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string, locale: string }> }) {
+    const { slug, locale } = await params;
+    const property = await getProperty(slug);
     if (!property) return { title: 'Not Found' };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const propContext: any = property;
-    const title = propContext[`title_${params.locale}`] || property.title;
-    const description = propContext[`description_${params.locale}`] || property.description;
-    const city = propContext[`city_${params.locale}`] || property.city;
+    const title = propContext[`title_${locale}`] || property.title;
+    const description = propContext[`description_${locale}`] || property.description;
+    const city = propContext[`city_${locale}`] || property.city;
 
     const formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(property.price);
     
@@ -70,7 +79,7 @@ export async function generateMetadata({ params }: { params: { slug: string, loc
     const fullDesc = `${description} - Located in ${city}. ${formattedPrice}, ${property.bedrooms} Beds, ${property.bathrooms} Baths.`;
     const truncatedDesc = fullDesc.length > 160 ? fullDesc.substring(0, 157) + '...' : fullDesc;
 
-    const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://lasspuntacana.com'}/${params.locale}/properties/${property.slug}`;
+    const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://lasspuntacana.com'}/${locale}/properties/${property.slug}`;
     const imageUrl = property.images && property.images.length > 0 ? property.images[0] : '';
 
     return {
@@ -92,20 +101,21 @@ export async function generateMetadata({ params }: { params: { slug: string, loc
     };
 }
 
-export default async function PropertyDetailPage({ params }: { params: { slug: string, locale: string } }) {
-    const property = await getProperty(params.slug);
+export default async function PropertyDetailPage({ params }: { params: Promise<{ slug: string, locale: string }> }) {
+    const { slug, locale } = await params;
+    const property = await getProperty(slug);
 
     if (!property) {
         notFound();
     }
 
-    const t = await getTranslations({ locale: params.locale, namespace: 'PropertyDetail' });
+    const t = await getTranslations({ locale, namespace: 'PropertyDetail' });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const propContext: any = property;
-    const title = propContext[`title_${params.locale}`] || property.title;
-    const description = propContext[`description_${params.locale}`] || property.description;
-    const city = propContext[`city_${params.locale}`] || property.city;
+    const title = propContext[`title_${locale}`] || property.title;
+    const description = propContext[`description_${locale}`] || property.description;
+    const city = propContext[`city_${locale}`] || property.city;
 
     const jsonLd = {
         '@context': 'https://schema.org',
@@ -115,7 +125,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
         price: property.price,
         address: city,
         numberOfRooms: property.bedrooms,
-        url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://lasspuntacana.com'}/${params.locale}/properties/${property.slug}`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://lasspuntacana.com'}/${locale}/properties/${property.slug}`,
         image: property.images && property.images.length > 0 ? property.images[0] : ''
     };
 
@@ -176,16 +186,16 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                     return (
                                         <span className="inline-flex items-center bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full font-montserrat">
                                             <Calendar className="w-3.5 h-3.5 mr-1.5 text-slate-500" />
-                                            {daysOnMarket} {params.locale === 'es' ? 'días en el mercado' : 'days on market'}
+                                            {daysOnMarket} {locale === 'es' ? 'días en el mercado' : 'days on market'}
                                         </span>
                                     );
                                 })()}
                                 {property.photosVerifiedAt && (
                                     <span className="inline-flex items-center bg-green-50 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full font-montserrat border border-green-200">
                                         <ShieldCheck className="w-3.5 h-3.5 mr-1.5" />
-                                        {params.locale === 'es' ? 'Fotos Verificadas' : 'Photos Verified'}
+                                        {locale === 'es' ? 'Fotos Verificadas' : 'Photos Verified'}
                                         <span className="ml-1 text-green-500 font-normal">
-                                            {new Date(property.photosVerifiedAt).toLocaleDateString(getDateLocale(params.locale), { month: 'short', year: 'numeric' })}
+                                            {new Date(property.photosVerifiedAt).toLocaleDateString(getDateLocale(locale), { month: 'short', year: 'numeric' })}
                                         </span>
                                     </span>
                                 )}
@@ -205,7 +215,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                 <div className="space-y-4">
                                     <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
                                         <Play className="w-5 h-5 text-champagne-500" />
-                                        {params.locale === 'es' ? 'Recorrido en Video' : 'Video Tour'}
+                                        {locale === 'es' ? 'Recorrido en Video' : 'Video Tour'}
                                     </h2>
                                     <div className="relative aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-lg">
                                         <iframe
@@ -256,7 +266,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                             {property.priceHistory && property.priceHistory.length > 0 && (
                                 <div className="space-y-4 pt-4">
                                     <h2 className="text-xl font-bold text-slate-900">
-                                        {params.locale === 'es' ? 'Historial de Precios' : 'Price History'}
+                                        {locale === 'es' ? 'Historial de Precios' : 'Price History'}
                                     </h2>
                                     <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
                                         <div className="space-y-4">
@@ -272,12 +282,12 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
                                                         )}
                                                         <div>
                                                             <p className="text-sm font-semibold text-slate-900 capitalize">
-                                                                {params.locale === 'es'
+                                                                {locale === 'es'
                                                                     ? entry.event === 'listed' ? 'Listado' : entry.event === 'reduced' ? 'Reducido' : 'Aumentado'
                                                                     : entry.event === 'listed' ? 'Listed' : entry.event === 'reduced' ? 'Price Reduced' : 'Price Increased'}
                                                             </p>
                                                             <p className="text-xs text-slate-500">
-                                                                {new Date(entry.date).toLocaleDateString(getDateLocale(params.locale), {
+                                                                {new Date(entry.date).toLocaleDateString(getDateLocale(locale), {
                                                                     year: 'numeric', month: 'short', day: 'numeric'
                                                                 })}
                                                             </p>

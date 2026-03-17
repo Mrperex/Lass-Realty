@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/navigation';
 import { useTransition, useState, useRef, useEffect } from 'react';
 import { Globe, ChevronDown, Check } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 const LANGUAGE_MAP: Record<string, { label: string; full: string }> = {
     en: { label: 'EN', full: 'English' },
@@ -39,6 +40,11 @@ export default function LanguageSwitcher() {
             setIsOpen(false);
             return;
         }
+
+        trackEvent('language_changed', { 
+            from_lang: locale, 
+            to_lang: nextLocale 
+        });
 
         startTransition(() => {
             router.replace(pathname, { locale: nextLocale });

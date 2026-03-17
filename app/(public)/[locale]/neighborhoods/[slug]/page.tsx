@@ -26,22 +26,32 @@ export async function generateStaticParams() {
         
         const uniqueSlugs = Array.from(new Set([...dbSlugs, ...hardcodedSlugs]));
         
-        return uniqueSlugs.map(slug => ({
-            slug
-        }));
+        const locales = ['en', 'es', 'fr', 'it', 'ru', 'de', 'ht'];
+        const params = [];
+        
+        for (const slug of uniqueSlugs) {
+            for (const locale of locales) {
+                params.push({ slug, locale });
+            }
+        }
+        return params;
     } catch (error) {
         console.warn('Failed to pre-generate neighborhood static params:', error);
-        // Fallback to minimal hardcoded priority list
-        return LOCATIONS.filter(l => l.priority).map(l => ({ slug: l.slug }));
+        
+        const locales = ['en', 'es', 'fr', 'it', 'ru', 'de', 'ht'];
+        const params = [];
+        for (const l of LOCATIONS.filter(l => l.priority)) {
+            for (const locale of locales) {
+                params.push({ slug: l.slug, locale });
+            }
+        }
+        return params;
     }
 }
 
 // Dynamic SEO metadata
-export async function generateMetadata({
-    params: { locale, slug }
-}: {
-    params: { locale: string; slug: string }
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
+    const { locale, slug } = await params;
     await connectToDatabase();
     const neighborhood = await Neighborhood.findOne({ slug }).lean();
     if (!neighborhood) return {};
@@ -64,11 +74,8 @@ export async function generateMetadata({
     };
 }
 
-export default async function NeighborhoodDetailPage({
-    params: { locale, slug }
-}: {
-    params: { locale: string; slug: string }
-}) {
+export default async function NeighborhoodDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+    const { locale, slug } = await params;
     const t = await getTranslations('Neighborhoods');
 
     await connectToDatabase();

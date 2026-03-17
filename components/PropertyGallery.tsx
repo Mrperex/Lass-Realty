@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, X, Grid, Image as ImageIcon } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 export default function PropertyGallery({ images, title }: { images: string[]; title: string }) {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -83,7 +84,11 @@ export default function PropertyGallery({ images, title }: { images: string[]; t
                         <div
                             key={`mob-${idx}`}
                             className="w-full h-full shrink-0 snap-center relative cursor-pointer"
-                            onClick={() => { setCurrentIndex(idx); setIsFullScreen(true); }}
+                            onClick={() => { 
+                                trackEvent('gallery_open', { property_name: title, photo_index: idx });
+                                setCurrentIndex(idx); 
+                                setIsFullScreen(true); 
+                            }}
                         >
                             <Image
                                 src={img}
@@ -114,7 +119,11 @@ export default function PropertyGallery({ images, title }: { images: string[]; t
                 {images[0] && (
                     <div
                         className="col-span-2 row-span-2 relative overflow-hidden rounded-2xl cursor-pointer shadow-sm"
-                        onClick={() => { setCurrentIndex(0); setIsFullScreen(true); }}
+                        onClick={() => { 
+                            trackEvent('gallery_open', { property_name: title, photo_index: 0 });
+                            setCurrentIndex(0); 
+                            setIsFullScreen(true); 
+                        }}
                     >
                         {/* Ken burns effect: image is slightly scaled up (scale-105) and smoothly pulls back to scale-100 on group hover spanning 15 seconds */}
                         <Image
@@ -136,7 +145,11 @@ export default function PropertyGallery({ images, title }: { images: string[]; t
                         <div
                             key={`desk-${idx}`}
                             className="relative overflow-hidden rounded-2xl cursor-pointer col-span-1 row-span-1 shadow-sm"
-                            onClick={() => { setCurrentIndex(idx + 1); setIsFullScreen(true); }}
+                            onClick={() => { 
+                                trackEvent('gallery_open', { property_name: title, photo_index: idx + 1 });
+                                setCurrentIndex(idx + 1); 
+                                setIsFullScreen(true); 
+                            }}
                         >
                             <Image
                                 src={img}
@@ -161,7 +174,11 @@ export default function PropertyGallery({ images, title }: { images: string[]; t
                 {/* Desktop "View All" Pill */}
                 {images.length > 0 && (
                     <button
-                        onClick={() => { setCurrentIndex(0); setIsFullScreen(true); }}
+                        onClick={() => { 
+                            trackEvent('gallery_open', { property_name: title, photo_index: 0 });
+                            setCurrentIndex(0); 
+                            setIsFullScreen(true); 
+                        }}
                         className="absolute bottom-8 right-8 flex items-center gap-2 bg-white/95 backdrop-blur-md text-navy-900 px-5 py-3 rounded-full font-bold shadow-xl hover:bg-slate-50 transition-all hover:-translate-y-1 z-10 text-xs tracking-wider uppercase"
                     >
                         <Grid className="w-4 h-4" />

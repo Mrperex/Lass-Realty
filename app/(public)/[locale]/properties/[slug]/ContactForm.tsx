@@ -3,6 +3,7 @@
 import { FormEvent, useState } from 'react';
 import { sendGAEvent } from '@next/third-parties/google';
 import { useTranslations } from 'next-intl';
+import { trackEvent } from '@/lib/analytics';
 
 export default function ContactForm({ propertySlug }: { propertySlug: string }) {
     const t = useTranslations('PropertyContactForm');
@@ -28,6 +29,7 @@ export default function ContactForm({ propertySlug }: { propertySlug: string }) 
             if (res.ok) {
                 setSuccess(true);
                 sendGAEvent({ event: 'lead_submit', property_slug: propertySlug });
+                trackEvent('inquiry_submitted', { source_page: window.location.href, property_name: propertySlug });
                 form.reset();
             } else {
                 const result = await res.json();
