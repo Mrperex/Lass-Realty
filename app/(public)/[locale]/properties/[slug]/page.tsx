@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import { Link } from '@/navigation';
 import { notFound } from 'next/navigation';
 import mongoose from 'mongoose';
+import { cache } from 'react';
 import connectToDatabase from '@/lib/mongodb';
 import Property from '@/models/Property';
 import {
@@ -41,7 +41,7 @@ export async function generateStaticParams() {
     }
 }
 
-async function getProperty(slug: string) {
+const getProperty = cache(async (slug: string) => {
     try {
         await connectToDatabase();
         if (!mongoose.connection.readyState) return null;
@@ -52,7 +52,7 @@ async function getProperty(slug: string) {
         console.warn('Failed to fetch property:', error);
         return null;
     }
-}
+});
 
 export async function generateMetadata({ params }: { params: { slug: string, locale: string } }) {
     const property = await getProperty(params.slug);
@@ -62,12 +62,32 @@ export async function generateMetadata({ params }: { params: { slug: string, loc
     const propContext: any = property;
     const title = propContext[`title_${params.locale}`] || property.title;
     const description = propContext[`description_${params.locale}`] || property.description;
+    const city = propContext[`city_${params.locale}`] || property.city;
+
+    const formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(property.price);
+    
+    // Build combined description
+    const fullDesc = `${description} - Located in ${city}. ${formattedPrice}, ${property.bedrooms} Beds, ${property.bathrooms} Baths.`;
+    const truncatedDesc = fullDesc.length > 160 ? fullDesc.substring(0, 157) + '...' : fullDesc;
+
+    const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://lasspuntacana.com'}/${params.locale}/properties/${property.slug}`;
+    const imageUrl = property.images && property.images.length > 0 ? property.images[0] : '';
 
     return {
-        title: `${title} | LASS Realty`,
-        description: description.substring(0, 160),
+        title: `${title} | LASS Realty | Luxury Real Estate Punta Cana`,
+        description: truncatedDesc,
         openGraph: {
-            images: property.images && property.images.length > 0 ? [property.images[0]] : [],
+            title: title,
+            description: truncatedDesc,
+            url: canonicalUrl,
+            type: 'website',
+            images: imageUrl ? [imageUrl] : [],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: title,
+            description: truncatedDesc,
+            images: imageUrl ? [imageUrl] : [],
         }
     };
 }
@@ -92,27 +112,11 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
         '@type': 'RealEstateListing',
         name: title,
         description: description,
-        url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://lasspuntacana.com'}/properties/${property.slug}`,
-        image: property.images,
-        datePosted: property.createdAt ? new Date(property.createdAt).toISOString() : new Date().toISOString(),
-        offers: {
-            '@type': 'Offer',
-            price: property.price,
-            priceCurrency: 'USD',
-            availability: property.status === 'for-sale' ? 'https://schema.org/InStock' : 'https://schema.org/SoldOut',
-        },
-        address: {
-            '@type': 'PostalAddress',
-            addressLocality: city,
-            addressCountry: 'DO'
-        },
+        price: property.price,
+        address: city,
         numberOfRooms: property.bedrooms,
-        numberOfBathroomsTotal: property.bathrooms,
-        floorSize: {
-            '@type': 'QuantitativeValue',
-            value: property.squareMeters,
-            unitCode: 'MTK'
-        }
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://lasspuntacana.com'}/${params.locale}/properties/${property.slug}`,
+        image: property.images && property.images.length > 0 ? property.images[0] : ''
     };
 
     return (
