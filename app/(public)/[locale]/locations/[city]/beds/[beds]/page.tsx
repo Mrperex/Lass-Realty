@@ -10,6 +10,7 @@ import { ArrowLeft } from 'lucide-react';
 export const revalidate = 3600; // Cache for 1 hour
 
 function normalizeCityName(slug: string): string {
+    if (!slug) return '';
     return slug
         .split('-')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -21,8 +22,8 @@ export async function generateStaticParams() {
     await connectToDatabase();
     if (!mongoose.connection.readyState) return [];
 
-    const params: { city: string, beds: string }[] = [];
-
+    const params: { city: string, beds: string, locale: string }[] = [];
+    const locales = ['en', 'es', 'fr', 'it', 'ru', 'de', 'ht'];
     const priorityCities = LOCATIONS.filter(loc => loc.priority);
 
     for (const location of priorityCities) {
@@ -30,15 +31,18 @@ export async function generateStaticParams() {
 
         try {
             const distinctBeds = await Property.distinct('bedrooms', {
-                city: { $regex: new RegExp(`^${normalizedCity}$`, 'i') }
+                citySlug: location.slug
             });
 
             for (const beds of distinctBeds) {
                 if (beds !== null && beds !== undefined) {
-                    params.push({
-                        city: location.slug,
-                        beds: beds.toString()
-                    });
+                    for (const locale of locales) {
+                        params.push({
+                            city: location.slug,
+                            beds: beds.toString(),
+                            locale
+                        });
+                    }
                 }
             }
         } catch (error) {
@@ -49,9 +53,10 @@ export async function generateStaticParams() {
     return params;
 }
 
-export async function generateMetadata({ params }: { params: { city: string, beds: string } }) {
-    const cityName = normalizeCityName(params.city);
-    const bedCount = params.beds;
+export async function generateMetadata({ params }: { params: Promise<{ city: string, beds: string, locale: string }> | { city: string, beds: string, locale: string } }) {
+    const resolvedParams = await params;
+    const cityName = normalizeCityName(resolvedParams.city);
+    const bedCount = resolvedParams.beds;
 
     return {
         title: `${bedCount} Bedroom Properties for Sale in ${cityName} | LASS Realty`,
@@ -85,10 +90,12 @@ async function getProperties(city: string, beds: string): Promise<IProperty[]> {
     }
 }
 
-export default async function BedLocationPage({ params }: { params: { city: string, beds: string } }) {
-    const cityName = normalizeCityName(params.city);
-    const bedCount = params.beds;
-    const properties = await getProperties(params.city, params.beds);
+export default async function BedLocationPage({ params }: { params: Promise<{ city: string, beds: string, locale: string }> | { city: string, beds: string, locale: string } }) {
+    const resolvedParams = await params;
+    const { city, beds } = resolvedParams;
+    const cityName = normalizeCityName(city);
+    const bedCount = beds;
+    const properties = await getProperties(city, beds);
 
     return (
         <div className="py-16 bg-slate-50 min-h-screen">
@@ -139,7 +146,7 @@ export default async function BedLocationPage({ params }: { params: { city: stri
                             off-market opportunities matching your criteria.
                         </p>
                         <Link
-                            href={`/locations/${params.city}`}
+                            href={`/locations/${city}`}
                             className="inline-flex items-center justify-center px-6 py-3 bg-slate-900 text-white font-medium rounded-xl hover:bg-amber-600 transition-colors"
                         >
                             View all properties in {cityName}
