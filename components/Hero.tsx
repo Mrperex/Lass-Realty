@@ -81,7 +81,7 @@ export default function Hero() {
 
                 {/* Staggered Word Mask Reveal for Main Title */}
                 <motion.h1 variants={itemVariants} className="font-playfair text-5xl md:text-7xl lg:text-8xl xl:text-[7rem] font-medium text-white mb-8 tracking-tight drop-shadow-2xl leading-[1.1] max-w-4xl">
-                    Own The <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-champagne-300 via-champagne-500 to-champagne-400">Extraordinary</span>
+                    Own The <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-champagne-300 via-champagne-500 to-champagne-400 pr-2 pb-4">Extraordinary</span>
                 </motion.h1>
 
                 {/* Body Description */}
