@@ -45,6 +45,7 @@ export default function LogoReveal() {
                     width={320}
                     height={160}
                     className="w-64 md:w-80 h-auto"
+                    unoptimized
                 />
             </div>
 

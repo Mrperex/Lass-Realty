@@ -40,6 +40,7 @@ const Navbar = () => {
                                 height={52} 
                                 className="h-10 md:h-14 w-auto"
                                 priority
+                                unoptimized
                             />
                         </Link>
                     </div>

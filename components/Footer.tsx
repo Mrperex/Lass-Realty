@@ -17,6 +17,7 @@ const Footer = () => {
                                 width={240} 
                                 height={52} 
                                 className="h-10 md:h-14 w-auto brightness-0 invert"
+                                unoptimized
                             />
                         </Link>
                         <p className="text-sm">
