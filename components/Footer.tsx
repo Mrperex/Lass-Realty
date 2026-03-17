@@ -16,7 +16,7 @@ const Footer = () => {
                                 alt="LASS Realty" 
                                 width={240} 
                                 height={52} 
-                                className="h-9 md:h-12 w-auto brightness-0 invert"
+                                className="h-10 md:h-14 w-auto brightness-0 invert object-contain"
                                 unoptimized
                             />
                         </Link>
