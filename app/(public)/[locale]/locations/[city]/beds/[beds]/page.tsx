@@ -104,7 +104,7 @@ export default async function BedLocationPage({ params }: { params: Promise<{ ci
                 {/* Back Link */}
                 <div className="mb-8">
                     <Link
-                        href={`/locations/${params.city}`}
+                        href={`/locations/${city}`}
                         className="inline-flex items-center gap-2 text-slate-500 hover:text-amber-600 font-medium transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4" />
