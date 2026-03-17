@@ -10,9 +10,16 @@ export const revalidate = 3600; // Cache for 1 hour
 
 // Pre-render pages for priority cities at build time
 export async function generateStaticParams() {
-    return LOCATIONS.filter(loc => loc.priority).map((location) => ({
-        city: location.slug,
-    }));
+    const locales = ['en', 'es', 'fr', 'it', 'ru', 'de', 'ht'];
+    const params = [];
+
+    for (const location of LOCATIONS.filter(loc => loc.priority)) {
+        for (const locale of locales) {
+            params.push({ city: location.slug, locale });
+        }
+    }
+
+    return params;
 }
 
 // Helper to normalize URL slug to display friendly name
@@ -25,8 +32,9 @@ function normalizeCityName(slug: string): string {
 }
 
 // Generates dynamic SEO metadata based on the city
-export async function generateMetadata({ params }: { params: { city: string } }) {
-    const cityName = normalizeCityName(params.city);
+export async function generateMetadata({ params }: { params: Promise<{ city: string, locale: string }> | { city: string, locale: string } }) {
+    const resolvedParams = await params;
+    const cityName = normalizeCityName(resolvedParams.city);
 
     return {
         title: `Luxury Properties in ${cityName} | LASS Realty`,
@@ -58,10 +66,13 @@ async function getPropertiesByCity(city: string): Promise<IProperty[]> {
     }
 }
 
-export default async function LocationPage({ params }: { params: { city: string } }) {
-    console.log('🏗️ Rendering LocationPage for city:', params.city);
-    const cityName = normalizeCityName(params.city);
-    const properties = await getPropertiesByCity(params.city);
+export default async function LocationPage({ params }: { params: Promise<{ city: string, locale: string }> | { city: string, locale: string } }) {
+    const resolvedParams = await params;
+    const { city } = resolvedParams;
+
+    console.log('🏗️ Rendering LocationPage for city:', city);
+    const cityName = normalizeCityName(city);
+    const properties = await getPropertiesByCity(city);
 
     // Calculate distinct bedrooms for internal linking mesh
     const availableBeds = Array.from(new Set(properties.map(p => p.bedrooms))).sort((a, b) => a - b);
