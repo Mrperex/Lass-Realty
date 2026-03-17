@@ -36,9 +36,9 @@ const Navbar = () => {
                             <Image 
                                 src="/images/logos/lass-realty-logo-horizontal.svg" 
                                 alt="LASS Realty" 
-                                width={180} 
-                                height={40} 
-                                className="h-8 md:h-10 w-auto"
+                                width={240} 
+                                height={52} 
+                                className="h-10 md:h-14 w-auto"
                                 priority
                             />
                         </Link>
