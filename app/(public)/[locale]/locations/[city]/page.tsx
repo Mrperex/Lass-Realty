@@ -25,6 +25,7 @@ export async function generateStaticParams() {
 // Helper to normalize URL slug to display friendly name
 // e.g., 'punta-cana' -> 'Punta Cana'
 function normalizeCityName(slug: string): string {
+    if (!slug) return '';
     return slug
         .split('-')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -105,7 +106,7 @@ export default async function LocationPage({ params }: { params: Promise<{ city:
                             {availableBeds.map(beds => (
                                 <Link
                                     key={beds}
-                                    href={`/locations/${params.city}/beds/${beds}`}
+                                    href={`/locations/${city}/beds/${beds}`}
                                     className="px-5 py-2.5 bg-white text-slate-700 hover:text-amber-600 hover:border-amber-300 border border-slate-200 rounded-xl text-sm font-semibold shadow-sm transition-all duration-200"
                                 >
                                     {beds} Bedroom Properties

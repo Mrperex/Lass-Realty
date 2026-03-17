@@ -317,7 +317,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
                     {/* Internal Linking Mesh */}
                     <div className="mt-16 pt-8 border-t border-slate-100 flex items-center justify-center">
                         <Link
-                            href={`/locations/${property.city.toLowerCase().replace(/\s+/g, '-')}`}
+                            href={`/locations/${property.citySlug || property.city.toLowerCase().replace(/\s+/g, '-')}`}
                             className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 font-medium transition-colors"
                         >
                             <ArrowLeft className="w-4 h-4" />
