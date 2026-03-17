@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { signAdminToken } from '@/lib/auth'
 import connectToDatabase from '@/lib/mongodb'
 import Admin from '@/models/Admin'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 const DEFAULT_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Laasrealty2026'
 const COOKIE_NAME = 'lass_admin_auth'
