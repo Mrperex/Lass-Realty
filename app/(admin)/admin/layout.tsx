@@ -58,9 +58,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     {/* Mobile Top App Bar */}
                     <div className="md:hidden bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
                         <div className="flex items-center justify-between px-4 py-4">
-                            <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold text-white tracking-tight flex flex-col">
-                                LASS Realty
-                                <span className="text-[10px] font-normal text-amber-500 tracking-widest uppercase mt-0.5">Admin Portal</span>
+                            <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="flex flex-col">
+                                <img 
+                                    src="/images/logos/lass-realty-logo-horizontal.svg" 
+                                    alt="LASS Realty" 
+                                    className="h-8 w-auto brightness-0 invert object-contain"
+                                />
+                                <span className="text-[10px] font-normal text-amber-500 tracking-widest uppercase mt-1">Admin Portal</span>
                             </Link>
                             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-white p-2 focus:outline-none">
                                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -100,9 +104,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     {/* Desktop Sidebar */}
                     <div className="hidden md:flex w-64 bg-slate-900 text-slate-300 flex-shrink-0 border-r border-slate-800 flex-col">
                         <div className="p-6">
-                            <Link href="/" className="text-xl font-bold text-white tracking-tight hover:text-amber-500 transition-colors">
-                                LASS Realty
-                                <span className="block text-xs font-normal text-amber-500 tracking-widest uppercase mt-1">Admin Portal</span>
+                            <Link href="/" className="flex flex-col group">
+                                <img 
+                                    src="/images/logos/lass-realty-logo-horizontal.svg" 
+                                    alt="LASS Realty" 
+                                    className="h-10 w-auto brightness-0 invert object-contain transition-opacity group-hover:opacity-80"
+                                />
+                                <span className="block text-xs font-normal text-amber-500 tracking-widest uppercase mt-2">Admin Portal</span>
                             </Link>
                         </div>
 
