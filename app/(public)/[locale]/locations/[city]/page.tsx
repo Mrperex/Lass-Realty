@@ -43,21 +43,23 @@ async function getPropertiesByCity(city: string): Promise<IProperty[]> {
         await connectToDatabase();
         if (!mongoose.connection.readyState) return [];
 
-        const normalizedCity = normalizeCityName(city);
-
         // Case-insensitive regex match for city
         const properties = await Property.find({
             citySlug: city
         }).sort({ createdAt: -1 }).lean();
 
         return JSON.parse(JSON.stringify(properties));
-    } catch (error) {
-        console.warn(`Failed to fetch properties for city ${city}:`, error);
+    } catch (error: any) {
+        console.error(`Failed to fetch properties for city ${city}:`, {
+            message: error.message,
+            stack: error.stack
+        });
         return [];
     }
 }
 
 export default async function LocationPage({ params }: { params: { city: string } }) {
+    console.log('🏗️ Rendering LocationPage for city:', params.city);
     const cityName = normalizeCityName(params.city);
     const properties = await getPropertiesByCity(params.city);
 
