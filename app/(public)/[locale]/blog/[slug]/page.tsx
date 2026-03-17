@@ -1,4 +1,5 @@
 
+import mongoose from 'mongoose';
 import connectToDatabase from '@/lib/mongodb';
 import Post from '@/models/Post';
 import Image from 'next/image';
@@ -9,7 +10,22 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
-export const revalidate = 60;
+export const revalidate = 3600;
+
+// Dynamic Pre-Rendering with ISR Cache
+export async function generateStaticParams() {
+    try {
+        await connectToDatabase();
+        if (!mongoose.connection.readyState) return [];
+        const posts = await Post.find().select('slug').lean();
+        return posts.map(post => ({
+            slug: post.slug,
+        }));
+    } catch (error) {
+        console.warn('Failed to pre-generate blog static params:', error);
+        return [];
+    }
+}
 
 // Simple markdown-to-HTML converter for blog content
 function markdownToHtml(text: string): string {

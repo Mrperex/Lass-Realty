@@ -24,8 +24,22 @@ import ShareButton from '@/components/ShareButton';
 import AgentProfileCard from '@/components/AgentProfileCard';
 import DownloadBrochureButton from '@/components/DownloadBrochureButton';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
+export async function generateStaticParams() {
+    try {
+        await connectToDatabase();
+        if (!mongoose.connection.readyState) return [];
+        // Only pre-generate pages for properties that are currently for sale
+        const properties = await Property.find({ status: 'for-sale' }).select('slug').lean();
+        return properties.map((p) => ({
+            slug: p.slug,
+        }));
+    } catch (error) {
+        console.warn('Failed to pre-generate property static params:', error);
+        return [];
+    }
+}
 
 async function getProperty(slug: string) {
     try {

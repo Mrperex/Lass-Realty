@@ -4,7 +4,7 @@ import React from 'react';
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Playfair_Display, Outfit } from 'next/font/google';
+import { Playfair_Display, Montserrat } from 'next/font/google';
 import {
     LayoutDashboard, Building2,
     Users,
@@ -18,7 +18,7 @@ import {
 import '../../globals.css';
 
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
-const outfit = Outfit({ subsets: ['latin'], variable: '--font-montserrat' });
+const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -28,7 +28,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     // Don't show sidebar on login page
     if (pathname === '/admin/login') {
         return (
-            <html lang="en" className={`${playfair.variable} ${outfit.variable}`}>
+            <html lang="en" className={`${playfair.variable} ${montserrat.variable}`}>
                 <body className="font-montserrat antialiased bg-slate-50">
                     {children}
                 </body>
@@ -52,7 +52,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     ];
 
     return (
-        <html lang="en" className={`${playfair.variable} ${outfit.variable}`}>
+        <html lang="en" className={`${playfair.variable} ${montserrat.variable}`}>
             <body className="font-montserrat antialiased">
                 <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row">
                     {/* Mobile Top App Bar */}

@@ -1,4 +1,5 @@
 
+import mongoose from 'mongoose';
 import connectToDatabase from '@/lib/mongodb';
 import Neighborhood from '@/models/Neighborhood';
 import Property from '@/models/Property';
@@ -9,8 +10,31 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { LOCATIONS } from '@/lib/locations';
+export const revalidate = 3600;
 
-export const revalidate = 60;
+// Dynamic Pre-Rendering with ISR Cache
+export async function generateStaticParams() {
+    try {
+        await connectToDatabase();
+        if (!mongoose.connection.readyState) return LOCATIONS.filter(l => l.priority).map(l => ({ slug: l.slug }));
+        
+        const neighborhoods = await Neighborhood.find({}).select('slug').lean();
+        
+        // Combine DB explicitly saved locations with the hardcoded LOCATIONS list to be safe
+        const dbSlugs = neighborhoods.map(n => n.slug);
+        const hardcodedSlugs = LOCATIONS.filter(l => l.priority).map(l => l.slug);
+        
+        const uniqueSlugs = Array.from(new Set([...dbSlugs, ...hardcodedSlugs]));
+        
+        return uniqueSlugs.map(slug => ({
+            slug
+        }));
+    } catch (error) {
+        console.warn('Failed to pre-generate neighborhood static params:', error);
+        // Fallback to minimal hardcoded priority list
+        return LOCATIONS.filter(l => l.priority).map(l => ({ slug: l.slug }));
+    }
+}
 
 // Dynamic SEO metadata
 export async function generateMetadata({

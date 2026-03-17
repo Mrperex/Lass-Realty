@@ -14,13 +14,9 @@ export default function Loading() {
 
                     {/* Center dots */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-3 h-3 bg-amber-600 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce"></div>
                     </div>
                 </div>
-
-                <p className="text-slate-600 font-bold uppercase tracking-widest text-sm animate-pulse">
-                    Loading Experience...
-                </p>
             </div>
         </div>
     );

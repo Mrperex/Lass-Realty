@@ -8,6 +8,18 @@ import { getTranslations } from 'next-intl/server';
 
 export const revalidate = 60; // Revalidate every minute
 
+export async function generateMetadata({
+    params: { locale }
+}: {
+    params: { locale: string }
+}): Promise<import('next').Metadata> {
+    const t = await getTranslations({ locale, namespace: 'PropertiesList' });
+    return {
+        title: `${t('title')} | LASS Realty`,
+        description: t('description'),
+    };
+}
+
 async function getProperties(searchParams: { [key: string]: string | string[] | undefined }) {
     try {
         await connectToDatabase();

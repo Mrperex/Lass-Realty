@@ -9,6 +9,18 @@ import { notFound } from 'next/navigation';
 
 export const revalidate = 60; // Revalidate cache every 60 seconds
 
+export async function generateMetadata({
+    params: { locale }
+}: {
+    params: { locale: string }
+}): Promise<import('next').Metadata> {
+    const t = await getTranslations({ locale, namespace: 'Blog' });
+    return {
+        title: `${t('title')} | LASS Realty`,
+        description: t('description'),
+    };
+}
+
 export default async function BlogIndexPage({
     params: { locale }
 }: {

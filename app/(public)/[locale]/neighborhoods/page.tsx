@@ -9,6 +9,18 @@ import { LOCATIONS } from '@/lib/locations';
 
 export const revalidate = 60;
 
+export async function generateMetadata({
+    params: { locale }
+}: {
+    params: { locale: string }
+}): Promise<import('next').Metadata> {
+    const t = await getTranslations({ locale, namespace: 'Neighborhoods' });
+    return {
+        title: `${t('title')} | LASS Realty`,
+        description: t('description'),
+    };
+}
+
 export default async function NeighborhoodsIndexPage({
     params: { locale }
 }: {
