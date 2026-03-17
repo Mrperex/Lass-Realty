@@ -5,7 +5,7 @@ import crypto from 'crypto';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy');
-const APP_URL = process.env.SITE_URL || 'http://localhost:3000';
+const APP_URL = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'http://localhost:3000';
 
 export async function POST(req: Request) {
     try {
