@@ -188,7 +188,7 @@ export default function PostForm({ initialData }: PostFormProps) {
     return (
         <form onSubmit={handleSubmit} className="space-y-8 max-w-5xl mx-auto pb-24">
             {/* Header Actions */}
-            <div className="flex justify-between items-center bg-white p-6 shadow-sm sticky top-0 z-10 border-b border-gray-100">
+            <div className="flex justify-between items-center bg-white p-6 shadow-sm sticky top-0 z-[60] border-b border-gray-100">
                 <div>
                     <h1 className="text-2xl font-light text-navy-900">
                         {isEditMode ? 'Edit Blog Post' : 'Write New Post'}
@@ -422,6 +422,25 @@ export default function PostForm({ initialData }: PostFormProps) {
                     </div>
                 </div>
 
+            </div>
+
+            {/* Bottom Admin Bar (Visible on mobile or if sticky fails) */}
+            <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 z-[70] flex justify-end gap-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+                <button
+                    type="button"
+                    onClick={() => router.push('/admin/blog')}
+                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg"
+                >
+                    Cancel
+                </button>
+                <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="flex-1 sm:flex-none flex items-center justify-center bg-navy-900 text-white px-6 py-2 uppercase tracking-wider text-sm font-bold rounded-lg disabled:opacity-50"
+                >
+                    {isSubmitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
+                    {isSubmitting ? 'Saving...' : 'Publish Post'}
+                </button>
             </div>
         </form>
     );

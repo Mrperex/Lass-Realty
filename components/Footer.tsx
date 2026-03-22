@@ -44,7 +44,7 @@ const Footer = () => {
                         <h4 className="text-white text-md font-semibold mb-4">{t('contactUs')}</h4>
                         <ul className="space-y-2 text-sm">
                             <li>info@lassrealty.com</li>
-                            <li>+1 (829) 523-0782</li>
+                            <li>+1 (809) 370-9073</li>
                         </ul>
                     </div>
                 </div>
@@ -59,7 +59,7 @@ const Footer = () => {
                     <div className="flex items-center flex-wrap justify-center gap-1">
                         <span>&copy; {new Date().getFullYear()} Lass Realty. All Rights Reserved -</span>
                         <a
-                            href="https://wa.me/18295230782?text=Hi%20Pablo%20I%20saw%20the%20Lass%20Punta%20Cana%20website%20and%20I%20want%20something%20similar"
+                            href="https://wa.me/18093709073?text=Hi%20Pablo%20I%20saw%20the%20Lass%20Punta%20Cana%20website%20and%20I%20want%20something%20similar"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group inline-flex items-center hover:text-slate-300 transition-colors"
@@ -71,7 +71,7 @@ const Footer = () => {
                         </a>
                         <span className="mx-1">|</span>
                         <a
-                            href="https://wa.me/18295230782?text=Hi%20Pablo%20I%20saw%20the%20Lass%20Punta%20Cana%20website%20and%20I%20want%20something%20similar"
+                            href="https://wa.me/18093709073?text=Hi%20Pablo%20I%20saw%20the%20Lass%20Punta%20Cana%20website%20and%20I%20want%20something%20similar"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:text-slate-300 transition-colors"

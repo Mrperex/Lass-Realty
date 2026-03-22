@@ -17,7 +17,7 @@ export default function WhatsAppButton() {
         }
     }, [pathname]);
 
-    const phoneNumber = "18295230782";
+    const phoneNumber = "18093709073";
 
     let baseMessage = t('whatsappMessage');
     if (currentUrl && currentUrl.includes('/properties/')) {
