@@ -169,13 +169,17 @@ export default function PostForm({ initialData }: PostFormProps) {
                 body: formData,
             });
 
-            if (!res.ok) throw new Error('Cloudinary upload failed');
+            if (!res.ok) {
+                const errorData = await res.json();
+                console.error("Cloudinary error response:", errorData);
+                throw new Error(`Cloudinary upload failed: ${errorData.error?.message || res.statusText}`);
+            }
 
             const result = await res.json();
             setFormData((prev) => ({ ...prev, coverImage: result.secure_url }));
-        } catch (error) {
+        } catch (error: any) {
             console.error('Image upload failed:', error);
-            alert('Image upload failed to complete.');
+            alert(`Image upload failed: ${error.message}. Check that your environment variables are set in .env.local`);
         } finally {
             setUploadingImage(false);
         }
