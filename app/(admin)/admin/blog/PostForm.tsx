@@ -160,11 +160,35 @@ export default function PostForm({ initialData }: PostFormProps) {
 
         setUploadingImage(true);
         try {
+            const timestamp = Math.round((new Date()).getTime() / 1000);
+            
+            // Get signature from API
+            const sigRes = await fetch('/api/admin/cloudinary-sign', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    paramsToSign: { 
+                        timestamp,
+                        upload_preset: 'lass_realty_admin'
+                    } 
+                })
+            });
+
+            if (!sigRes.ok) {
+                const error = await sigRes.json();
+                throw new Error(`Failed to get signature: ${error.error || 'Unknown error'}`);
+            }
+
+            const { signature, apiKey, cloudName } = await sigRes.json();
+
             const formData = new FormData();
             formData.append('file', file);
+            formData.append('api_key', apiKey);
+            formData.append('timestamp', timestamp.toString());
+            formData.append('signature', signature);
             formData.append('upload_preset', 'lass_realty_admin');
 
-            const res = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`, {
+            const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
                 method: 'POST',
                 body: formData,
             });
@@ -179,6 +203,11 @@ export default function PostForm({ initialData }: PostFormProps) {
             setFormData((prev) => ({ ...prev, coverImage: result.secure_url }));
         } catch (error: any) {
             console.error('Image upload failed:', error);
+            console.error('Error details:', {
+                message: error.message,
+                stack: error.stack,
+                name: error.name
+            });
             alert(`Image upload failed: ${error.message}. Check that your environment variables are set in .env.local`);
         } finally {
             setUploadingImage(false);
