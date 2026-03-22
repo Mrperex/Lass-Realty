@@ -1,0 +1,6 @@
+{
+    "todo-tree.tree.groupedBySubTag": true,
+    "todo-tree.tree.groupedByTag": true,
+    "todo-tree.tree.showCountsInTree": true,
+    "todo-tree.tree.scanMode": "workspace"
+}
