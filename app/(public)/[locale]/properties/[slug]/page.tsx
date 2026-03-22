@@ -52,12 +52,21 @@ export async function generateStaticParams() {
 const getProperty = cache(async (slug: string) => {
     try {
         await connectToDatabase();
-        if (!mongoose.connection.readyState) return null;
-        const property = await Property.findOne({ slug }).populate('agentId').lean();
-        if (!property) return null;
+        if (!mongoose.connection.readyState) {
+            console.error('Database not connected for slug:', slug);
+            return null;
+        }
+        const property = await Property.findOne({ slug }).populate({
+            path: 'agentId',
+            strictPopulate: false
+        }).lean();
+        if (!property) {
+            console.warn('Property not found for slug:', slug);
+            return null;
+        }
         return JSON.parse(JSON.stringify(property));
     } catch (error) {
-        console.warn('Failed to fetch property:', error);
+        console.error('Failed to fetch property:', slug, error);
         return null;
     }
 });
