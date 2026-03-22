@@ -151,16 +151,20 @@ export default function NewPropertyPage() {
                     body: formData
                 });
 
-                if (!uploadRes.ok) throw new Error('Upload failed');
+                if (!uploadRes.ok) {
+                    const errorData = await uploadRes.json();
+                    console.error("Cloudinary error response:", errorData);
+                    throw new Error(`Cloudinary upload failed: ${errorData.error?.message || uploadRes.statusText}`);
+                }
                 const uploadData = await uploadRes.json();
                 uploadedUrls.push(uploadData.secure_url);
             }
 
             setImageUrls(prev => [...prev, ...uploadedUrls]);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("Image upload error:", error);
-            alert("Failed to upload images. Check that your environment variables are set in .env.local");
+            alert(`Failed to upload images: ${error.message}. Check that your environment variables are set correctly in .env.local`);
         } finally {
             setUploadingImages(false);
             if (fileInputRef.current) fileInputRef.current.value = '';
