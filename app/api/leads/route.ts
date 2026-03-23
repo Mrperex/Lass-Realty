@@ -9,6 +9,7 @@ import { syncLeadToHubspot } from '@/lib/hubspot';
 import * as React from 'react';
 import { LeadAutoReply } from '@/components/emails/LeadAutoReply';
 import { AdminNotification } from '@/components/emails/AdminNotification';
+import connectToDatabase from '@/lib/mongodb';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';

@@ -3,7 +3,6 @@ import { verifyAuth } from '@/lib/auth';
 import connectToDatabase from '@/lib/mongodb';
 import Lead from '@/models/Lead';
 import { Resend } from 'resend';
-import { LeadFollowUp } from '@/components/emails/LeadFollowUp';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
