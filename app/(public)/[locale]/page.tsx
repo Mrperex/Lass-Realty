@@ -6,15 +6,9 @@ import Property from '@/models/Property';
 import { LOCATIONS } from '@/lib/locations';
 import SearchFilters from '@/components/SearchFilters';
 import { getTranslations } from 'next-intl/server';
-import dynamic from 'next/dynamic';
+import WhyLassRealty from '@/components/WhyLassRealty';
 import Hero from '@/components/Hero';
 import { withDatabase } from '@/lib/dbUtils';
-
-// Lazy load non-critical components
-const WhyLassRealty = dynamic(() => import('@/components/WhyLassRealty'), {
-    loading: () => <div className="py-24 bg-slate-50 animate-pulse" />,
-    ssr: false
-});
 
 export const revalidate = 3600;
 

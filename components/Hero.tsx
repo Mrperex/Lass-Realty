@@ -1,35 +1,19 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import { Link } from '@/navigation';
 import { ArrowRight } from 'lucide-react';
-import dynamic from 'next/dynamic';
+import SearchFilters from '@/components/SearchFilters';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-
-// Lazy load SearchFilters to reduce initial bundle size
-const SearchFilters = dynamic(() => import('@/components/SearchFilters'), {
-    ssr: false,
-    loading: () => <div className="w-full h-20 bg-slate-100 rounded-xl animate-pulse" />
-});
 
 export default function Hero() {
     const t = useTranslations('Index');
     const containerRef = useRef<HTMLElement>(null);
-    const [showVideo, setShowVideo] = useState(false);
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ['start start', 'end start']
     });
-
-    // Load video after initial paint for better LCP
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowVideo(true);
-        }, 3000); // Load after 3 seconds
-        return () => clearTimeout(timer);
-    }, []);
 
     // Parallax effects
     const yVideo = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
@@ -59,40 +43,25 @@ export default function Hero() {
 
     // Use a high-end luxury drone loop 
     const VIDEO_URL = "https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-beautiful-mansion-with-a-pool-2253-large.mp4";
-    // Optimized poster image for LCP
-    const POSTER_URL = "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=1920&fm=webp";
 
     return (
         <section ref={containerRef} className="relative min-h-[90vh] flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden bg-navy-900">
             {/* Cinematic Overlay - Darken top for nav, darken bottom for transition */}
             <div className="absolute inset-0 bg-gradient-to-b from-navy-900/80 via-navy-900/30 to-navy-900/90 z-10" />
 
-            {/* Optimized Background Image for LCP */}
+            {/* Drone Background Video with Parallax */}
             <motion.div style={{ y: yVideo }} className="absolute inset-0 w-full h-full z-0 origin-top">
-                <Image
-                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=1920&fm=webp"
-                    alt="Luxury property in Punta Cana"
-                    priority
-                    fill
-                    sizes="100vw"
-                    quality={75}
-                    className="object-cover"
-                />
-                {/* Video loads after initial paint */}
-                {showVideo && (
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
-                        onCanPlay={(e) => {
-                            e.currentTarget.style.opacity = '1';
-                        }}
-                    >
-                        <source src={VIDEO_URL} type="video/mp4" />
-                    </video>
-                )}
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover scale-105"
+                    poster="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=1920"
+                    aria-hidden="true"
+                >
+                    <source src={VIDEO_URL} type="video/mp4" />
+                </video>
             </motion.div>
 
             {/* Hero Text Content (Fades out) */}

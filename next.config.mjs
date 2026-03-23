@@ -84,33 +84,6 @@ const nextConfig = {
     async headers() {
         return [
             {
-                source: '/_next/static/(.*)',
-                headers: [
-                    {
-                        key: 'Cache-Control',
-                        value: 'public, max-age=31536000, immutable'
-                    }
-                ]
-            },
-            {
-                source: '/images/(.*)',
-                headers: [
-                    {
-                        key: 'Cache-Control',
-                        value: 'public, max-age=31536000, immutable'
-                    }
-                ]
-            },
-            {
-                source: '/api/(.*)',
-                headers: [
-                    {
-                        key: 'Cache-Control',
-                        value: 'public, max-age=60, stale-while-revalidate=300'
-                    }
-                ]
-            },
-            {
                 source: '/(.*)',
                 headers: [
                     {
@@ -144,39 +117,7 @@ const nextConfig = {
                 ]
             }
         ];
-    },
-    compress: true,
-    poweredByHeader: false,
-    experimental: {
-        optimizePackageImports: ['lucide-react', '@headlessui/react'],
-        modularizeImports: {
-            'lucide-react': {
-                transform: 'lucide-react/dist/icons/{{kebabCase member}}',
-                skipDefaultConversion: true
-            }
-        }
-    },
-    webpack: (config, { isServer }) => {
-        if (!isServer) {
-            config.optimization.splitChunks = {
-                chunks: 'all',
-                cacheGroups: {
-                    default: {
-                        minChunks: 2,
-                        priority: -20,
-                        reuseExistingChunk: true,
-                    },
-                    vendor: {
-                        test: /[\\/]node_modules[\\/]/,
-                        name: 'vendors',
-                        priority: -10,
-                        chunks: 'all',
-                    },
-                },
-            };
-        }
-        return config;
-    },
+    }
 };
 
 export default withNextIntl(withPWA(nextConfig));

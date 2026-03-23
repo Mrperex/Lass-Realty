@@ -1,12 +1,7 @@
 import { IProperty } from '@/types/property';
 import PropertyCard from './PropertyCard';
-import { PropertyGridSkeleton } from './PropertyCardSkeleton';
 
-export default function PropertyGrid({ properties, loading = false }: { properties: IProperty[]; loading?: boolean }) {
-    if (loading) {
-        return <PropertyGridSkeleton count={6} />;
-    }
-
+export default function PropertyGrid({ properties }: { properties: IProperty[] }) {
     if (!properties || properties.length === 0) {
         return (
             <div className="text-center py-20 bg-slate-50 rounded-2xl border border-dashed border-slate-200">

@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyAuth } from '@/lib/auth';
 import connectToDatabase from '@/lib/mongodb';
 import Lead from '@/models/Lead';
-import { Resend } from 'resend';
 
-// Force dynamic rendering
 export const dynamic = 'force-dynamic';
+export const maxDuration = 30;
 
 /**
  * Automated Follow-Up for New Leads

@@ -8,9 +8,6 @@ const rpName = 'LASS Realty Admin';
 const rpID = process.env.NEXT_PUBLIC_SITE_DOMAIN || 'localhost';
 const origin = process.env.SITE_URL || `http://${rpID}:3000`;
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic';
-
 export async function GET(req: Request) {
     try {
         const authPayload = verifyAuth(req);

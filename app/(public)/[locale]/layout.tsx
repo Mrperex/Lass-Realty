@@ -17,17 +17,9 @@ import HreflangTags from '@/components/HreflangTags';
 const playfair = Playfair_Display({
     subsets: ['latin'],
     weight: ['400', '500', '600', '700', '800', '900'],
-    variable: '--font-playfair',
-    display: 'swap',
-    preload: true
+    variable: '--font-playfair'
 });
-
-const montserrat = Montserrat({ 
-    subsets: ['latin'], 
-    variable: '--font-montserrat',
-    display: 'swap',
-    preload: true
-});
+const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
 
 export const metadata: Metadata = {
     metadataBase: new URL(process.env.SITE_URL || 'https://lasspuntacana.com'),
@@ -73,31 +65,6 @@ export const metadata: Metadata = {
         google: 'UV_If9IeT1_f1wGw3TcD2xw3JcMxVNUseVf2q2mdNE8',
     },
     manifest: '/manifest.json',
-    icons: {
-        icon: [
-            { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-            { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-        ],
-        apple: [
-            { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-        ],
-    },
-    other: {
-        // DNS prefetch for external domains
-        'dns-prefetch': [
-            '//res.cloudinary.com',
-            '//fonts.googleapis.com',
-            '//www.googletagmanager.com',
-            '//www.clarity.ms',
-            '//images.unsplash.com',
-            '//assets.mixkit.co'
-        ],
-        // Preconnect for critical domains
-        'preconnect': [
-            'https://res.cloudinary.com',
-            'https://fonts.googleapis.com'
-        ]
-    }
 };
 
 export default async function LocaleLayout({
