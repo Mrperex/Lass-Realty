@@ -1,7 +1,6 @@
 import { Link } from '@/navigation';
 import Image from 'next/image';
 import { ArrowRight, MapPin } from 'lucide-react';
-import Head from 'next/head';
 import PropertyGrid from '@/components/PropertyGrid';
 import Property from '@/models/Property';
 import { LOCATIONS } from '@/lib/locations';
@@ -74,15 +73,6 @@ export default async function Home() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
             />
-            <Head>
-                <link
-                    rel="preload"
-                    as="image"
-                    href="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=1920&fm=webp"
-                    imageSrcSet="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=640&fm=webp 640w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=750&fm=webp 750w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=828&fm=webp 828w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=1080&fm=webp 1080w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=1200&fm=webp 1200w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=1920&fm=webp 1920w"
-                    imageSizes="100vw"
-                />
-            </Head>
             {/* Hero Section */}
             <Hero />
 
