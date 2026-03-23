@@ -19,8 +19,8 @@ export default function PropertyGallery({ images, videos, title }: {
 }) {
     // Combine images and videos into a single array
     const mediaItems: MediaItem[] = [
-        ...images.map(url => ({ url, type: 'image' as const })),
-        ...(videos || []).map(url => ({ url, type: 'video' as const }))
+        ...images.filter(url => url && url.trim() !== '').map(url => ({ url, type: 'image' as const })),
+        ...(videos || []).filter(url => url && url.trim() !== '').map(url => ({ url, type: 'video' as const }))
     ];
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isFullScreen, setIsFullScreen] = useState(false);
@@ -93,7 +93,9 @@ export default function PropertyGallery({ images, videos, title }: {
             <div className="md:hidden relative w-full h-[50vh] sm:h-[60vh] bg-slate-900 rounded-b-3xl overflow-hidden group">
                 {/* Mobile Carousel */}
                 <div ref={scrollContainerRef} className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide h-full">
-                    {mediaItems.map((item, idx) => (
+                    {mediaItems.map((item, idx) => {
+                        if (!item || !item.url) return null;
+                        return (
                         <div
                             key={`mob-${idx}`}
                             className="w-full h-full shrink-0 snap-center relative cursor-pointer"
@@ -187,13 +189,15 @@ export default function PropertyGallery({ images, videos, title }: {
                                 </div>
                             </>
                         )}
-                    </div>
-                )}
+                        </div>
+                        );
+                    })}
 
                 {/* Supporting Items */}
                 {mediaItems.slice(1, 5).map((item, idx) => {
                     const actualIndex = idx + 1;
                     const isLast = idx === 3 && mediaItems.length > 5;
+                    if (!item || !item.url) return null;
                     return (
                         <div
                             key={`desk-${idx}`}
@@ -334,7 +338,9 @@ export default function PropertyGallery({ images, videos, title }: {
                     {/* Bottom Thumbnail Navigation Strip */}
                     <div className="absolute bottom-0 left-0 right-0 h-[100px] md:h-[130px] bg-gradient-to-t from-black via-black/80 to-transparent flex items-end justify-start px-2 md:px-6 pb-4 md:pb-6 overflow-x-auto scrollbar-hide z-30">
                         <div className="flex items-center gap-2 px-2 pb-2">
-                            {mediaItems.map((item, idx) => (
+                            {mediaItems.map((item, idx) => {
+                                if (!item || !item.url) return null;
+                                return (
                                 <button
                                     key={`thumb-${idx}`}
                                     onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
@@ -374,7 +380,8 @@ export default function PropertyGallery({ images, videos, title }: {
                                         <div className="absolute inset-0 bg-black/20 mix-blend-multiply"></div>
                                     )}
                                 </button>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
 

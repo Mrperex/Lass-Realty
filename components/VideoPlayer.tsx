@@ -216,7 +216,7 @@ export default function VideoPlayer({
             {/* Controls */}
             {controls && (
                 <div
-                    className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-opacity z-10 ${
+                    className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-opacity z-50 ${
                         showControls ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
