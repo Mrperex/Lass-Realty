@@ -170,6 +170,7 @@ export default function VideoPlayer({
             className={`relative bg-black rounded-xl overflow-hidden ${className}`}
             onMouseMove={showControlsTemporarily}
             onMouseLeave={() => isPlaying && setShowControls(false)}
+            onClick={(e) => e.stopPropagation()}
         >
             <video
                 ref={videoRef}
@@ -195,10 +196,13 @@ export default function VideoPlayer({
                 preload="metadata"
             />
             
-            {/* Play/Pause button overlay */}
+            {/* Play/Pause button overlay - hide when playing and on mobile */}
             <button
                 onClick={togglePlay}
-                className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity"
+                className={`absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity ${
+                    isPlaying ? 'opacity-0 md:opacity-0' : 'opacity-0 hover:opacity-100'
+                } pointer-events-auto`}
+                style={{ pointerEvents: isPlaying ? 'none' : 'auto' }}
             >
                 <div className="bg-white/90 rounded-full p-4 transform hover:scale-110 transition-transform">
                     {isPlaying ? (
@@ -212,7 +216,7 @@ export default function VideoPlayer({
             {/* Controls */}
             {controls && (
                 <div
-                    className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-opacity ${
+                    className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-opacity z-10 ${
                         showControls ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
