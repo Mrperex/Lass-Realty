@@ -1,16 +1,21 @@
-import { NextResponse } from 'next/server';
-import connectToDatabase from '@/lib/mongodb';
+import { NextRequest, NextResponse } from 'next/server';
 import Lead from '@/models/Lead';
-import { checkRateLimit, leadsRatelimit } from '@/lib/ratelimit';
+import { checkRateLimit, publicApiRatelimit, leadsRatelimit } from '@/lib/ratelimit';
+import redis from '@/lib/redis';
+import { withDatabase } from '@/lib/dbUtils';
+import { z } from 'zod';
 import { Resend } from 'resend';
 import { syncLeadToHubspot } from '@/lib/hubspot';
 import * as React from 'react';
 import { LeadAutoReply } from '@/components/emails/LeadAutoReply';
 import { AdminNotification } from '@/components/emails/AdminNotification';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
     try {
         const ip = req.headers.get('x-forwarded-for') ?? '127.0.0.1';
         const isAllowed = await checkRateLimit(leadsRatelimit, ip);

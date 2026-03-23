@@ -147,9 +147,7 @@ const nextConfig = {
     },
     compress: true,
     poweredByHeader: false,
-    swcMinify: true,
     experimental: {
-        optimizeCss: true,
         optimizePackageImports: ['lucide-react', '@headlessui/react'],
         modularizeImports: {
             'lucide-react': {

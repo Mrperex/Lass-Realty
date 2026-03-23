@@ -6,6 +6,9 @@ import { withDatabase } from '@/lib/dbUtils';
 
 const CACHE_TTL = 60; // seconds
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: Request) {
     try {
         const ip = req.headers.get('x-forwarded-for') ?? '127.0.0.1';

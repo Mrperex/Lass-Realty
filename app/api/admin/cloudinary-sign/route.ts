@@ -1,8 +1,12 @@
-import { NextResponse } from 'next/server';
-import cloudinary from '@/lib/cloudinary';
+import { NextRequest, NextResponse } from 'next/server';
+import { verifyAuth } from '@/lib/auth';
+import { v2 as cloudinary } from 'cloudinary';
 import { checkRateLimit, cloudinarySignRatelimit } from '@/lib/ratelimit';
 
-export async function POST(req: Request) {
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+export async function POST(req: NextRequest) {
     try {
         const ip = req.headers.get('x-forwarded-for') ?? '127.0.0.1';
         const isAllowed = await checkRateLimit(cloudinarySignRatelimit, ip);

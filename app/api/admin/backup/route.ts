@@ -3,6 +3,8 @@ import { verifyAuth } from '@/lib/auth';
 import connectToDatabase from '@/lib/mongodb';
 import Property from '@/models/Property';
 import Lead from '@/models/Lead';
+import { writeFileSync } from 'fs';
+import { join } from 'path';
 import Post from '@/models/Post';
 import Neighborhood from '@/models/Neighborhood';
 import DocumentModel from '@/models/Document';
