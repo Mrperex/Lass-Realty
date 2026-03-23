@@ -71,15 +71,31 @@ export default function VideoPlayer({
         }
     }, [autoPlay]);
 
-    const togglePlay = () => {
+    const togglePlay = async () => {
         if (!videoRef.current) return;
         
-        if (isPlaying) {
-            videoRef.current.pause();
-        } else {
-            videoRef.current.play();
+        try {
+            if (isPlaying) {
+                videoRef.current.pause();
+            } else {
+                // Ensure the video is loaded before playing
+                if (videoRef.current.readyState < 2) {
+                    await new Promise((resolve, reject) => {
+                        videoRef.current!.addEventListener('canplay', resolve, { once: true });
+                        videoRef.current!.addEventListener('error', reject, { once: true });
+                    });
+                }
+                
+                await videoRef.current.play();
+            }
+        } catch (error) {
+            console.error('Video play error:', error);
+            // If autoplay is prevented, show user message
+            if (error instanceof Error && error.name === 'NotAllowedError') {
+                // User interaction required - the click should handle this
+                console.log('Autoplay prevented - user interaction required');
+            }
         }
-        setIsPlaying(!isPlaying);
     };
 
     const toggleMute = () => {
@@ -140,6 +156,11 @@ export default function VideoPlayer({
                 onClick={togglePlay}
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
+                onPlayCapture={() => console.log('Video playing')}
+                onErrorCapture={(e) => console.error('Video error:', e)}
+                playsInline
+                muted={muted || false}
+                controls={controls}
             />
             
             {/* Play/Pause button overlay */}

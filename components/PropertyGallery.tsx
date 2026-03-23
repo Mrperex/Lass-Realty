@@ -117,8 +117,8 @@ export default function PropertyGallery({ images, videos, title }: {
                                         src={item.url}
                                         poster={item.poster}
                                         className="w-full h-full"
-                                        muted={true}
-                                        controls={false}
+                                        muted={false}
+                                        controls={true}
                                     />
                                     {/* Video overlay indicator */}
                                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -177,8 +177,8 @@ export default function PropertyGallery({ images, videos, title }: {
                                     src={mediaItems[0].url}
                                     poster={mediaItems[0].poster}
                                     className="w-full h-full"
-                                    muted={true}
-                                    controls={false}
+                                    muted={false}
+                                    controls={true}
                                 />
                                 <div className="absolute inset-0 bg-navy-900/0 hover:bg-navy-900/10 transition-colors duration-300 flex items-center justify-center">
                                     <div className="bg-white/90 rounded-full p-4 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -218,8 +218,8 @@ export default function PropertyGallery({ images, videos, title }: {
                                         src={item.url}
                                         poster={item.poster}
                                         className="w-full h-full"
-                                        muted={true}
-                                        controls={false}
+                                        muted={false}
+                                        controls={true}
                                     />
                                     <div className="absolute inset-0 flex items-center justify-center">
                                         <div className="bg-black/50 rounded-full p-2">
