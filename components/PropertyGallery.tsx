@@ -68,12 +68,12 @@ export default function PropertyGallery({ images, videos, title }: {
 
     const nextImage = (e?: React.MouseEvent) => {
         if (e) e.stopPropagation();
-        setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+        setCurrentIndex((prev) => (prev === mediaItems.length - 1 ? 0 : prev + 1));
     };
 
     const prevImage = (e?: React.MouseEvent) => {
         if (e) e.stopPropagation();
-        setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+        setCurrentIndex((prev) => (prev === 0 ? mediaItems.length - 1 : prev - 1));
     };
 
     if (!mounted || !images || images.length === 0) {
