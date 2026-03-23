@@ -249,8 +249,7 @@ export default function EditPropertyForm({ property }: { property: any }) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                 paramsToSign: { 
-                    timestamp, 
-                    resource_type: 'video'
+                    timestamp
                 } 
             })
             });
@@ -267,7 +266,6 @@ export default function EditPropertyForm({ property }: { property: any }) {
                 formData.append('api_key', apiKey);
                 formData.append('timestamp', timestamp.toString());
                 formData.append('signature', signature);
-                formData.append('resource_type', 'video');
 
                 const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/video/upload`, {
                     method: 'POST',
