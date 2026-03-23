@@ -4,9 +4,15 @@ import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import { Link } from '@/navigation';
 import { ArrowRight } from 'lucide-react';
-import SearchFilters from '@/components/SearchFilters';
+import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+
+// Lazy load SearchFilters to reduce initial bundle size
+const SearchFilters = dynamic(() => import('@/components/SearchFilters'), {
+    ssr: false,
+    loading: () => <div className="w-full h-20 bg-slate-100 rounded-xl animate-pulse" />
+});
 
 export default function Hero() {
     const t = useTranslations('Index');
