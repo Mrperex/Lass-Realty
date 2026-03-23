@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { ArrowLeft, Save, UploadCloud, X, Sparkles, Loader2, Play } from 'lucide-react';
 import { LOCATIONS } from '@/lib/locations';
 import AmenitiesMultiSelect from '@/components/admin/AmenitiesMultiSelect';
+import { compressFile, formatFileSize } from '@/lib/fileCompression';
 
 const initialState = {
     error: '',
@@ -145,8 +146,19 @@ export default function NewPropertyPage() {
             // Upload each file
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
+                
+                // Compress the file before uploading
+                console.log(`Original file size: ${formatFileSize(file.size)}`);
+                const compressedFile = await compressFile(file, {
+                    maxWidth: 1920,
+                    maxHeight: 1080,
+                    quality: 0.8,
+                    maxSizeMB: 10
+                });
+                console.log(`Compressed file size: ${formatFileSize(compressedFile.size)}`);
+
                 const formData = new FormData();
-                formData.append('file', file);
+                formData.append('file', compressedFile);
                 formData.append('api_key', apiKey);
                 formData.append('timestamp', timestamp.toString());
                 formData.append('signature', signature);
@@ -169,7 +181,7 @@ export default function NewPropertyPage() {
 
         } catch (error: any) {
             console.error("Image upload error:", error);
-            alert(`Failed to upload images: ${error.message}. Check that your environment variables are set correctly in .env.local`);
+            alert(`Failed to upload images: ${error.message}`);
         } finally {
             setUploadingImages(false);
             if (fileInputRef.current) fileInputRef.current.value = '';
@@ -188,6 +200,8 @@ export default function NewPropertyPage() {
 
         try {
             const timestamp = Math.round((new Date()).getTime() / 1000);
+
+            // Get signature
             const sigRes = await fetch('/api/admin/cloudinary-sign', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -199,10 +213,22 @@ export default function NewPropertyPage() {
 
             const uploadedUrls: string[] = [];
 
+            // Upload each file
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
+                
+                // Compress the file before uploading
+                console.log(`Original floor plan size: ${formatFileSize(file.size)}`);
+                const compressedFile = await compressFile(file, {
+                    maxWidth: 1920,
+                    maxHeight: 1080,
+                    quality: 0.9,
+                    maxSizeMB: 10
+                });
+                console.log(`Compressed floor plan size: ${formatFileSize(compressedFile.size)}`);
+
                 const formData = new FormData();
-                formData.append('file', file);
+                formData.append('file', compressedFile);
                 formData.append('api_key', apiKey);
                 formData.append('timestamp', timestamp.toString());
                 formData.append('signature', signature);
@@ -212,16 +238,20 @@ export default function NewPropertyPage() {
                     body: formData
                 });
 
-                if (!uploadRes.ok) throw new Error('Upload failed');
+                if (!uploadRes.ok) {
+                    const errorData = await uploadRes.json();
+                    console.error("Cloudinary error response:", errorData);
+                    throw new Error(`Cloudinary upload failed: ${errorData.error?.message || uploadRes.statusText}`);
+                }
                 const uploadData = await uploadRes.json();
                 uploadedUrls.push(uploadData.secure_url);
             }
 
             setFloorPlanUrls(prev => [...prev, ...uploadedUrls]);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("Floor plan upload error:", error);
-            alert("Failed to upload floor plans.");
+            alert(`Failed to upload floor plans: ${error.message}`);
         } finally {
             setUploadingFloorPlans(false);
             if (floorPlanInputRef.current) floorPlanInputRef.current.value = '';
@@ -256,41 +286,56 @@ export default function NewPropertyPage() {
             const uploadedUrls: string[] = [];
 
             for (const file of Array.from(files)) {
-                const formData = new FormData();
-                formData.append('file', file);
-                formData.append('api_key', apiKey);
-                formData.append('timestamp', timestamp.toString());
-                formData.append('signature', signature);
+                // Check video file size before uploading
+                console.log(`Original video size: ${formatFileSize(file.size)}`);
+                
+                try {
+                    const compressedFile = await compressFile(file, {
+                        maxSizeMB: 10
+                    });
+                    console.log(`Video size after check: ${formatFileSize(compressedFile.size)}`);
 
-                console.log("Uploading video with params:", {
-                timestamp,
-                resource_type: 'video',
-                signature,
-                apiKey
-            });
+                    const formData = new FormData();
+                    formData.append('file', compressedFile);
+                    formData.append('api_key', apiKey);
+                    formData.append('timestamp', timestamp.toString());
+                    formData.append('signature', signature);
 
-            const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/video/upload`, {
-                    method: 'POST',
-                    body: formData
+                    console.log("Uploading video with params:", {
+                    timestamp,
+                    resource_type: 'video',
+                    signature,
+                    apiKey
                 });
 
-                if (!uploadRes.ok) {
-                    const errorText = await uploadRes.text();
-                    console.error("Cloudinary error status:", uploadRes.status);
-                    console.error("Cloudinary error response:", errorText);
-                    
-                    // Try to parse as JSON
-                    let errorData;
-                    try {
-                        errorData = JSON.parse(errorText);
-                    } catch {
-                        errorData = { error: { message: errorText } };
+                const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/video/upload`, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!uploadRes.ok) {
+                        const errorText = await uploadRes.text();
+                        console.error("Cloudinary error status:", uploadRes.status);
+                        console.error("Cloudinary error response:", errorText);
+                        
+                        // Try to parse as JSON
+                        let errorData;
+                        try {
+                            errorData = JSON.parse(errorText);
+                        } catch {
+                            errorData = { error: { message: errorText } };
+                        }
+                        
+                        throw new Error(`Cloudinary upload failed: ${errorData.error?.message || uploadRes.statusText} (Status: ${uploadRes.status})`);
                     }
-                    
-                    throw new Error(`Cloudinary upload failed: ${errorData.error?.message || uploadRes.statusText} (Status: ${uploadRes.status})`);
+                    const uploadData = await uploadRes.json();
+                    uploadedUrls.push(uploadData.secure_url);
+                } catch (error: any) {
+                    if (error.message.includes('exceeds maximum allowed size')) {
+                        throw error; // Re-throw size error with clearer message
+                    }
+                    throw error; // Re-throw other errors
                 }
-                const uploadData = await uploadRes.json();
-                uploadedUrls.push(uploadData.secure_url);
             }
 
             setVideoUrls(prev => [...prev, ...uploadedUrls]);
@@ -549,7 +594,7 @@ export default function NewPropertyPage() {
                                     onChange={handleImageUpload}
                                 />
                                 <span className="text-sm text-slate-500">
-                                    Select multiple high-quality photos.
+                                    Select images (JPG, PNG, WebP). Files will be automatically compressed. Max size: 10MB.
                                 </span>
                             </div>
 
@@ -617,7 +662,7 @@ export default function NewPropertyPage() {
                                     onChange={handleVideoUpload}
                                 />
                                 <span className="text-sm text-slate-500">
-                                    Select video files (MP4, WebM, MOV, AVI).
+                                    Select video files (MP4, WebM, MOV, AVI). Max size: 10MB.
                                 </span>
                             </div>
 
