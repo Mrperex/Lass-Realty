@@ -190,7 +190,7 @@ export default function PropertyGallery({ images, videos, title }: {
                             </>
                         )}
                         </div>
-                        );
+                    );
                     })}
 
                 {/* Supporting Items */}
