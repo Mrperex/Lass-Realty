@@ -96,15 +96,15 @@ export default function PropertyGallery({ images, videos, title }: {
                     {mediaItems.map((item, idx) => {
                         if (!item || !item.url) return null;
                         return (
-                        <div
-                            key={`mob-${idx}`}
-                            className="w-full h-full shrink-0 snap-center relative cursor-pointer"
-                            onClick={() => { 
-                                trackEvent('gallery_open', { property_name: title, media_index: idx, media_type: item.type });
-                                setCurrentIndex(idx); 
-                                setIsFullScreen(true); 
-                            }}
-                        >
+                            <div
+                                key={`mob-${idx}`}
+                                className="w-full h-full shrink-0 snap-center relative cursor-pointer"
+                                onClick={() => { 
+                                    trackEvent('gallery_open', { property_name: title, media_index: idx, media_type: item.type });
+                                    setCurrentIndex(idx); 
+                                    setIsFullScreen(true); 
+                                }}
+                            >
                             {item.type === 'image' ? (
                                 <Image
                                     src={item.url}
@@ -124,16 +124,14 @@ export default function PropertyGallery({ images, videos, title }: {
                                     />
                                     {/* Video overlay indicator */}
                                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                        <div className="bg-black/50 rounded-full p-3">
-                                            <Play className="w-6 h-6 text-white" />
                                         </div>
-                                    </div>
-                                </>
-                            )}
-                            {/* Gentle gradient to make the overlay text readable */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
-                        </div>
-                    ))}
+                                    </>
+                                )}
+                                {/* Gentle gradient to make the overlay text readable */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+                            </div>
+                        );
+                    })}
                 </div>
 
                 {/* Mobile Floating Indicator */}
@@ -189,9 +187,8 @@ export default function PropertyGallery({ images, videos, title }: {
                                 </div>
                             </>
                         )}
-                        </div>
-                    );
-                    })}
+                    </div>
+                )}
 
                 {/* Supporting Items */}
                 {mediaItems.slice(1, 5).map((item, idx) => {
@@ -288,52 +285,52 @@ export default function PropertyGallery({ images, videos, title }: {
                         </button>
                     </div>
 
-                {/* Main Media Viewport Area */}
-                <div
-                    className="flex-1 relative flex items-center justify-center w-full h-full pb-[100px] md:pb-[140px]"
-                    onClick={() => setIsFullScreen(false)}
-                >
-                    {mediaItems[currentIndex]?.type === 'image' ? (
-                        <Image
-                            src={mediaItems[currentIndex].url}
-                            alt={`${title} - Fullscreen ${currentIndex + 1}`}
-                            fill
-                            className="object-contain px-2 md:px-12 pb-4"
-                            sizes="100vw"
-                            priority
-                            quality={100}
-                            onClick={(e) => e.stopPropagation()}
-                        />
-                    ) : (
-                        <VideoPlayer
-                            src={mediaItems[currentIndex].url}
-                            poster={mediaItems[currentIndex].poster}
-                            className="w-full h-full max-w-7xl mx-auto px-2 md:px-12 pb-4"
-                            title={`${title} - Video ${currentIndex + 1}`}
-                            controls={true}
-                            autoPlay={false}
-                            muted={false}
-                        />
-                    )}
+                    {/* Main Media Viewport Area */}
+                    <div
+                        className="flex-1 relative flex items-center justify-center w-full h-full pb-[100px] md:pb-[140px]"
+                        onClick={() => setIsFullScreen(false)}
+                    >
+                        {mediaItems[currentIndex]?.type === 'image' ? (
+                            <Image
+                                src={mediaItems[currentIndex].url}
+                                alt={`${title} - Fullscreen ${currentIndex + 1}`}
+                                fill
+                                className="object-contain px-2 md:px-12 pb-4"
+                                sizes="100vw"
+                                priority
+                                quality={100}
+                                onClick={(e) => e.stopPropagation()}
+                            />
+                        ) : (
+                            <VideoPlayer
+                                src={mediaItems[currentIndex].url}
+                                poster={mediaItems[currentIndex].poster}
+                                className="w-full h-full max-w-7xl mx-auto px-2 md:px-12 pb-4"
+                                title={`${title} - Video ${currentIndex + 1}`}
+                                controls={true}
+                                autoPlay={false}
+                                muted={false}
+                            />
+                        )}
 
-                    {/* Navigation Chevrons (Centered) */}
-                    {mediaItems.length > 1 && (
-                        <>
-                            <button
-                                onClick={prevImage}
-                                className="absolute left-2 md:left-8 p-3 md:p-5 bg-white/5 hover:bg-white/10 text-white rounded-full transition-all backdrop-blur-md shadow-2xl -translate-y-1/2 top-1/2"
-                            >
-                                <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
-                            </button>
-                            <button
-                                onClick={nextImage}
-                                className="absolute right-2 md:right-8 p-3 md:p-5 bg-white/5 hover:bg-white/10 text-white rounded-full transition-all backdrop-blur-md shadow-2xl -translate-y-1/2 top-1/2"
-                            >
-                                <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
-                            </button>
-                        </>
-                    )}
-                </div>
+                        {/* Navigation Chevrons (Centered) */}
+                        {mediaItems.length > 1 && (
+                            <>
+                                <button
+                                    onClick={prevImage}
+                                    className="absolute left-2 md:left-8 p-3 md:p-5 bg-white/5 hover:bg-white/10 text-white rounded-full transition-all backdrop-blur-md shadow-2xl -translate-y-1/2 top-1/2"
+                                >
+                                    <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+                                </button>
+                                <button
+                                    onClick={nextImage}
+                                    className="absolute right-2 md:right-8 p-3 md:p-5 bg-white/5 hover:bg-white/10 text-white rounded-full transition-all backdrop-blur-md shadow-2xl -translate-y-1/2 top-1/2"
+                                >
+                                    <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+                                </button>
+                            </>
+                        )}
+                    </div>
 
                     {/* Bottom Thumbnail Navigation Strip */}
                     <div className="absolute bottom-0 left-0 right-0 h-[100px] md:h-[130px] bg-gradient-to-t from-black via-black/80 to-transparent flex items-end justify-start px-2 md:px-6 pb-4 md:pb-6 overflow-x-auto scrollbar-hide z-30">
@@ -341,45 +338,45 @@ export default function PropertyGallery({ images, videos, title }: {
                             {mediaItems.map((item, idx) => {
                                 if (!item || !item.url) return null;
                                 return (
-                                <button
-                                    key={`thumb-${idx}`}
-                                    onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
-                                    className={`relative h-14 md:h-20 shrink-0 rounded-lg overflow-hidden transition-all duration-300 ease-in-out ${currentIndex === idx
-                                            ? 'w-20 md:w-28 ring-2 ring-champagne-500 scale-105 opacity-100 z-10'
-                                            : 'w-14 md:w-20 opacity-40 hover:opacity-100 hover:w-16 md:hover:w-24'
-                                        }`}
-                                >
-                                    {item.type === 'image' ? (
-                                        <Image
-                                            src={item.url}
-                                            alt={`Thumbnail ${idx + 1}`}
-                                            fill
-                                            className="object-cover"
-                                            sizes="120px"
-                                        />
-                                    ) : (
-                                        <>
-                                            {item.poster ? (
-                                                <Image
-                                                    src={item.poster}
-                                                    alt={`Video Thumbnail ${idx + 1}`}
-                                                    fill
-                                                    className="object-cover"
-                                                    sizes="120px"
-                                                />
-                                            ) : (
-                                                <div className="w-full h-full bg-gray-800" />
-                                            )}
-                                            <div className="absolute inset-0 flex items-center justify-center">
-                                                <Play className="w-4 h-4 text-white drop-shadow-lg" />
-                                            </div>
-                                        </>
-                                    )}
-                                    {/* Dark overlay for unselected text */}
-                                    {currentIndex !== idx && (
-                                        <div className="absolute inset-0 bg-black/20 mix-blend-multiply"></div>
-                                    )}
-                                </button>
+                                    <button
+                                        key={`thumb-${idx}`}
+                                        onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
+                                        className={`relative h-14 md:h-20 shrink-0 rounded-lg overflow-hidden transition-all duration-300 ease-in-out ${currentIndex === idx
+                                                ? 'w-20 md:w-28 ring-2 ring-champagne-500 scale-105 opacity-100 z-10'
+                                                : 'w-14 md:w-20 opacity-40 hover:opacity-100 hover:w-16 md:hover:w-24'
+                                            }`}
+                                    >
+                                        {item.type === 'image' ? (
+                                            <Image
+                                                src={item.url}
+                                                alt={`Thumbnail ${idx + 1}`}
+                                                fill
+                                                className="object-cover"
+                                                sizes="120px"
+                                            />
+                                        ) : (
+                                            <>
+                                                {item.poster ? (
+                                                    <Image
+                                                        src={item.poster}
+                                                        alt={`Video Thumbnail ${idx + 1}`}
+                                                        fill
+                                                        className="object-cover"
+                                                        sizes="120px"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full bg-gray-800" />
+                                                )}
+                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                    <Play className="w-4 h-4 text-white drop-shadow-lg" />
+                                                </div>
+                                            </>
+                                        )}
+                                        {/* Dark overlay for unselected text */}
+                                        {currentIndex !== idx && (
+                                            <div className="absolute inset-0 bg-black/20 mix-blend-multiply"></div>
+                                        )}
+                                    </button>
                                 );
                             })}
                         </div>
