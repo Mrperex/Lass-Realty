@@ -71,29 +71,52 @@ export default function VideoPlayer({
         }
     }, [autoPlay]);
 
-    const togglePlay = async () => {
-        if (!videoRef.current) return;
+    const togglePlay = async (e?: React.MouseEvent) => {
+        if (e) {
+            e.stopPropagation();
+        }
+        
+        if (!videoRef.current) {
+            console.log('No video ref');
+            return;
+        }
+        
+        console.log('Toggle play called, isPlaying:', isPlaying);
+        console.log('Video readyState:', videoRef.current.readyState);
+        console.log('Video src:', optimizedSrc);
         
         try {
             if (isPlaying) {
+                console.log('Pausing video');
                 videoRef.current.pause();
+                setIsPlaying(false);
             } else {
-                // Ensure the video is loaded before playing
-                if (videoRef.current.readyState < 2) {
-                    await new Promise((resolve, reject) => {
-                        videoRef.current!.addEventListener('canplay', resolve, { once: true });
-                        videoRef.current!.addEventListener('error', reject, { once: true });
-                    });
-                }
+                console.log('Playing video');
+                // Try to play directly first
+                const playPromise = videoRef.current.play();
+                console.log('Play promise:', playPromise);
                 
-                await videoRef.current.play();
+                if (playPromise !== undefined) {
+                    await playPromise;
+                    console.log('Video played successfully');
+                    setIsPlaying(true);
+                }
             }
         } catch (error) {
             console.error('Video play error:', error);
-            // If autoplay is prevented, show user message
+            setIsPlaying(false);
+            
+            // If autoplay is prevented, try with muted
             if (error instanceof Error && error.name === 'NotAllowedError') {
-                // User interaction required - the click should handle this
-                console.log('Autoplay prevented - user interaction required');
+                console.log('Autoplay prevented, trying with muted');
+                try {
+                    videoRef.current!.muted = true;
+                    await videoRef.current!.play();
+                    setIsPlaying(true);
+                    setIsMuted(true);
+                } catch (mutedError) {
+                    console.error('Even muted play failed:', mutedError);
+                }
             }
         }
     };
@@ -154,13 +177,22 @@ export default function VideoPlayer({
                 poster={poster}
                 className="w-full h-full object-cover"
                 onClick={togglePlay}
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
+                onPlay={() => {
+                    console.log('Video onPlay event fired');
+                    setIsPlaying(true);
+                }}
+                onPause={() => {
+                    console.log('Video onPause event fired');
+                    setIsPlaying(false);
+                }}
                 onPlayCapture={() => console.log('Video playing')}
                 onErrorCapture={(e) => console.error('Video error:', e)}
+                onLoadedData={() => console.log('Video data loaded')}
+                onCanPlay={() => console.log('Video can play')}
                 playsInline
                 muted={muted || false}
                 controls={controls}
+                preload="metadata"
             />
             
             {/* Play/Pause button overlay */}
