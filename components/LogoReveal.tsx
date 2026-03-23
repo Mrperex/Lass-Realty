@@ -14,16 +14,16 @@ export default function LogoReveal() {
             return;
         }
 
-        // Keep it completely visible for 800ms, then start the 700ms crossfade
+        // Keep it completely visible for 500ms (reduced from 800ms), then start the 500ms crossfade (reduced from 700ms)
         const fadeTimer = setTimeout(() => {
             setIsFading(true);
-        }, 800);
+        }, 500);
 
-        // Completely unmount from DOM after 1500ms max
+        // Completely unmount from DOM after 1000ms max (reduced from 1500ms)
         const removeTimer = setTimeout(() => {
             setIsVisible(false);
             sessionStorage.setItem('logo_revealed', 'true');
-        }, 1500);
+        }, 1000);
 
         return () => {
             clearTimeout(fadeTimer);
@@ -35,10 +35,10 @@ export default function LogoReveal() {
 
     return (
         <div
-            className={`fixed inset-0 z-[9999] bg-navy-900 flex flex-col items-center justify-center transition-opacity duration-700 ease-in-out ${isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            className={`fixed inset-0 z-[9999] bg-navy-900 flex flex-col items-center justify-center transition-opacity duration-500 ease-in-out ${isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
                 }`}
         >
-            <div className="flex flex-col items-center gap-6 animate-in slide-in-from-bottom-8 fade-in duration-1000 ease-out">
+            <div className="flex flex-col items-center gap-6 animate-in slide-in-from-bottom-8 fade-in duration-700 ease-out">
                 <Image 
                     src="/images/logos/lass-realty-logo-Master.svg" 
                     alt="LASS Realty"

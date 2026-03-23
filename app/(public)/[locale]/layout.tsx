@@ -6,16 +6,13 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
-import ScrollToTopButton from '@/components/ScrollToTopButton';
-import ExitIntentPopup from '@/components/ExitIntentPopup';
 import LogoReveal from '@/components/LogoReveal';
-import CookieConsent from '@/components/CookieConsent';
-import CompareDock from '@/components/CompareDock';
-import MobileBottomNav from '@/components/MobileBottomNav';
+import LazyNonCriticalComponents from '@/components/LazyComponents';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import MetaPixel from '@/components/MetaPixel';
 import PlausibleAnalytics from '@/components/PlausibleAnalytics';
+import { LocalBusinessSchema } from '@/components/LocalBusinessSchema';
+import HreflangTags from '@/components/HreflangTags';
 
 const playfair = Playfair_Display({
     subsets: ['latin'],
@@ -86,18 +83,15 @@ export default async function LocaleLayout({
                     Skip to content
                 </a>
                 <NextIntlClientProvider locale={locale} messages={messages}>
+                    <LocalBusinessSchema />
+                    <HreflangTags locale={locale} />
                     <LogoReveal />
                     <Navbar />
                     <main id="main-content" className="flex-grow">
                         {children}
                     </main>
                     <Footer />
-                    <WhatsAppButton />
-                    <ScrollToTopButton />
-                    <ExitIntentPopup />
-                    <CookieConsent />
-                    <CompareDock />
-                    <MobileBottomNav />
+                    <LazyNonCriticalComponents />
                     {process.env.NEXT_PUBLIC_GA_ID && (
                         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
                     )}

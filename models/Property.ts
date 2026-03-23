@@ -67,7 +67,10 @@ const PropertySchema = new Schema<IProperty>(
 
 // Indexes for scalable queries
 PropertySchema.index({ citySlug: 1, bedrooms: 1, status: 1 });
-PropertySchema.index({ slug: 1 }, { unique: true });
+// Note: slug index is automatically created by unique: true in schema
+PropertySchema.index({ featured: 1, createdAt: -1 }); // For homepage featured properties
+PropertySchema.index({ createdAt: -1 }); // For default sorting
+PropertySchema.index({ status: 1, createdAt: -1 }); // For active properties listing
 
 const Property = models.Property || model<IProperty>('Property', PropertySchema);
 

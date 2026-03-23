@@ -24,24 +24,20 @@ async function connectToDatabase() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-      serverSelectionTimeoutMS: 15000,
-      socketTimeoutMS: 45000,
+      serverSelectionTimeoutMS: 10000, // Reduced from 15000
+      socketTimeoutMS: 30000, // Reduced from 45000
       maxPoolSize: 10,
+      connectTimeoutMS: 5000, // Added explicit connect timeout
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
       console.log('✅ Connected to MongoDB');
       return mongoose;
     }).catch(async (error) => {
-      console.warn('⚠️ MongoDB connection error (cold start?). Retrying once in 2s...', error.message);
-      await new Promise(res => setTimeout(res, 2000));
-      return mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-        console.log('✅ Connected to MongoDB on retry');
-        return mongoose;
-      }).catch(err => {
-        console.error('❌ MongoDB retry failed:', err);
-        throw err;
-      });
+      console.error('❌ MongoDB connection failed:', error.message);
+      // Don't block with retry - let the caller handle it
+      cached.promise = null;
+      throw error;
     });
   }
 

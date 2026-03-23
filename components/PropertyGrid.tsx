@@ -13,8 +13,12 @@ export default function PropertyGrid({ properties }: { properties: IProperty[] }
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {properties.map((property) => (
-                <PropertyCard key={property._id?.toString() || property.slug} property={property} />
+            {properties.map((property, index) => (
+                <PropertyCard 
+                    key={property._id?.toString() || property.slug} 
+                    property={property} 
+                    priority={index < 6} // First 6 images get priority loading
+                />
             ))}
         </div>
     );

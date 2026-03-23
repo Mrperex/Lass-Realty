@@ -2,35 +2,77 @@ import { Link } from '@/navigation';
 import Image from 'next/image';
 import { ArrowRight, MapPin } from 'lucide-react';
 import PropertyGrid from '@/components/PropertyGrid';
-import mongoose from 'mongoose';
-import connectToDatabase from '@/lib/mongodb';
 import Property from '@/models/Property';
 import { LOCATIONS } from '@/lib/locations';
 import SearchFilters from '@/components/SearchFilters';
 import { getTranslations } from 'next-intl/server';
 import WhyLassRealty from '@/components/WhyLassRealty';
 import Hero from '@/components/Hero';
+import { withDatabase } from '@/lib/dbUtils';
 
 export const revalidate = 3600;
 
 async function getFeaturedProperties() {
-    try {
-        await connectToDatabase();
-        if (!mongoose.connection.readyState) return [];
+    return withDatabase(async () => {
         const properties = await Property.find({ featured: true }).limit(3).lean();
         return JSON.parse(JSON.stringify(properties));
-    } catch (error) {
-        console.warn('Failed to fetch featured properties:', error);
-        return [];
-    }
+    }, []);
 }
 
 export default async function Home() {
     const featuredProperties = await getFeaturedProperties();
     const t = await getTranslations('Index');
 
+    // Organization structured data for SEO
+    const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "LASS Realty",
+        "alternateName": "LASS Realty Dominican Republic",
+        "url": "https://lasspuntacana.com",
+        "logo": "https://lasspuntacana.com/images/logos/lass-realty-logo-Master.svg",
+        "description": "Luxury real estate agency specializing in premium properties in Punta Cana, Cap Cana, and the Dominican Republic",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Punta Cana Village",
+            "addressLocality": "Punta Cana",
+            "addressRegion": "La Altagracia",
+            "addressCountry": "DO",
+            "postalCode": "23000"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-809-686-0484",
+            "contactType": "sales",
+            "availableLanguage": ["English", "Spanish", "French", "Italian", "German", "Russian", "Haitian Creole"]
+        },
+        "sameAs": [
+            "https://www.facebook.com/lassrealty",
+            "https://www.instagram.com/lassrealty",
+            "https://www.linkedin.com/company/lass-realty"
+        ],
+        "areaServed": [
+            {
+                "@type": "Place",
+                "name": "Punta Cana"
+            },
+            {
+                "@type": "Place", 
+                "name": "Cap Cana"
+            },
+            {
+                "@type": "Place",
+                "name": "La Altagracia"
+            }
+        ]
+    };
+
     return (
         <div className="flex flex-col min-h-screen">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+            />
             {/* Hero Section */}
             <Hero />
 

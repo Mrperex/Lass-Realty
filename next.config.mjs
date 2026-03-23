@@ -7,7 +7,51 @@ const withPWA = withPWAInit({
     dest: 'public',
     disable: process.env.NODE_ENV === 'development',
     register: true,
-    skipWaiting: true
+    skipWaiting: true,
+    runtimeCaching: [
+        {
+            urlPattern: /^https:\/\/lasspuntacana\.com\/(en|es|fr|it|ru|de|ht)\/properties(\?.*)?$/,
+            handler: 'NetworkFirst',
+            options: {
+                cacheName: 'properties-pages',
+                expiration: {
+                    maxEntries: 10,
+                    maxAgeSeconds: 60 * 5 // 5 minutes
+                },
+                cacheableResponse: {
+                    statuses: [0, 200]
+                }
+            }
+        },
+        {
+            urlPattern: /^https:\/\/lasspuntacana\.com\/(en|es|fr|it|ru|de|ht)\/$/,
+            handler: 'NetworkFirst',
+            options: {
+                cacheName: 'home-pages',
+                expiration: {
+                    maxEntries: 7,
+                    maxAgeSeconds: 60 * 10 // 10 minutes
+                },
+                cacheableResponse: {
+                    statuses: [0, 200]
+                }
+            }
+        },
+        {
+            urlPattern: /^https:\/\/lasspuntacana\.com\/api\/.*/,
+            handler: 'NetworkFirst',
+            options: {
+                cacheName: 'api-calls',
+                expiration: {
+                    maxEntries: 50,
+                    maxAgeSeconds: 60 * 2 // 2 minutes
+                },
+                cacheableResponse: {
+                    statuses: [0, 200]
+                }
+            }
+        }
+    ]
 });
 
 /** @type {import('next').NextConfig} */
@@ -21,6 +65,8 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'res.cloudinary.com',
+                port: '',
+                pathname: '/dsriyqmoy/image/upload/**',
             },
             {
                 protocol: 'https',
@@ -31,6 +77,9 @@ const nextConfig = {
                 hostname: 'images.pexels.com',
             },
         ],
+        deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+        minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year cache
     },
     async headers() {
         return [

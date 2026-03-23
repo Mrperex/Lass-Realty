@@ -268,8 +268,7 @@ export default function PostForm({ initialData }: PostFormProps) {
                                 key={code}
                                 type="button"
                                 className={`px-4 py-2 text-xs uppercase tracking-wide transition-colors ${activeLanguage === code ? 'bg-navy-900 text-white' : 'text-gray-500 hover:bg-gray-50'}`}
-                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                onClick={() => setActiveLanguage(code as any)}
+                                onClick={() => setActiveLanguage(code as 'en' | 'es' | 'fr' | 'it' | 'de' | 'ru' | 'ht')}
                             >
                                 {label}
                             </button>
@@ -305,9 +304,8 @@ export default function PostForm({ initialData }: PostFormProps) {
                             </label>
                             <input
                                 type="text"
-                                required={activeLanguage === 'en'} // Only EN is strict required
+                                required={activeLanguage === 'en'} 
                                 className="w-full border border-gray-300 px-4 py-3 text-lg focus:ring-1 focus:ring-gold-500 focus:border-gold-500 outline-none"
-                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                 value={activeLanguage === 'en' ? formData.title : ((formData as any)[`title_${activeLanguage}`] || '')}
                                 onChange={(e) => {
                                     if (activeLanguage === 'en') {
@@ -329,7 +327,6 @@ export default function PostForm({ initialData }: PostFormProps) {
                                 required={activeLanguage === 'en'}
                                 rows={2}
                                 className="w-full border border-gray-300 px-4 py-3 focus:ring-1 focus:ring-gold-500 focus:border-gold-500 outline-none resize-none"
-                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                 value={activeLanguage === 'en' ? formData.excerpt : ((formData as any)[`excerpt_${activeLanguage}`] || '')}
                                 onChange={(e) => {
                                     const key = activeLanguage === 'en' ? 'excerpt' : `excerpt_${activeLanguage}`;
@@ -348,7 +345,6 @@ export default function PostForm({ initialData }: PostFormProps) {
                                 required={activeLanguage === 'en'}
                                 rows={15}
                                 className="w-full border border-gray-300 px-4 py-3 focus:ring-1 focus:ring-gold-500 focus:border-gold-500 outline-none font-mono text-sm"
-                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                 value={activeLanguage === 'en' ? formData.content : ((formData as any)[`content_${activeLanguage}`] || '')}
                                 onChange={(e) => {
                                     const key = activeLanguage === 'en' ? 'content' : `content_${activeLanguage}`;
