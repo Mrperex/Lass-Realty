@@ -43,6 +43,8 @@ export default function Hero() {
 
     // Use a high-end luxury drone loop 
     const VIDEO_URL = "https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-beautiful-mansion-with-a-pool-2253-large.mp4";
+    // Optimized poster image for LCP
+    const POSTER_URL = "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=1920&fm=webp";
 
     return (
         <section ref={containerRef} className="relative min-h-[90vh] flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden bg-navy-900">
@@ -57,8 +59,9 @@ export default function Hero() {
                     muted
                     playsInline
                     className="w-full h-full object-cover scale-105"
-                    poster="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=1920"
+                    poster={POSTER_URL}
                     aria-hidden="true"
+                    preload="none"
                 >
                     <source src={VIDEO_URL} type="video/mp4" />
                 </video>
