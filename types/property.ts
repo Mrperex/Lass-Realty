@@ -28,6 +28,7 @@ export interface IProperty {
     bathrooms: number;
     squareMeters: number;
     images: string[];
+    videos: string[];
     featured: boolean;
     status: 'for-sale' | 'sold' | 'reserved' | 'for-rent' | 'rented';
     deposit?: number;

@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { createProperty } from '../actions';
 import { useFormState, useFormStatus } from 'react-dom';
 import Link from 'next/link';
-import { ArrowLeft, Save, UploadCloud, X, Sparkles } from 'lucide-react';
+import { ArrowLeft, Save, UploadCloud, X, Sparkles, Loader2, Play } from 'lucide-react';
 import { LOCATIONS } from '@/lib/locations';
 import AmenitiesMultiSelect from '@/components/admin/AmenitiesMultiSelect';
 
@@ -48,6 +48,10 @@ export default function NewPropertyPage() {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
     const [uploadingImages, setUploadingImages] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const [videoUrls, setVideoUrls] = useState<string[]>([]);
+    const [uploadingVideos, setUploadingVideos] = useState(false);
+    const videoInputRef = useRef<HTMLInputElement>(null);
 
     const [floorPlanUrls, setFloorPlanUrls] = useState<string[]>([]);
     const [uploadingFloorPlans, setUploadingFloorPlans] = useState(false);
@@ -225,6 +229,62 @@ export default function NewPropertyPage() {
 
     const removeFloorPlan = (indexToRemove: number) => {
         setFloorPlanUrls(prev => prev.filter((_, idx) => idx !== indexToRemove));
+    };
+
+    const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+
+        setUploadingVideos(true);
+
+        try {
+            const timestamp = Math.round((new Date()).getTime() / 1000);
+            const sigRes = await fetch('/api/admin/cloudinary-sign', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ paramsToSign: { timestamp, resource_type: 'video' } })
+            });
+
+            if (!sigRes.ok) throw new Error('Failed to get upload signature');
+            const { signature, apiKey, cloudName } = await sigRes.json();
+
+            const uploadedUrls: string[] = [];
+
+            for (const file of Array.from(files)) {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('api_key', apiKey);
+                formData.append('timestamp', timestamp.toString());
+                formData.append('signature', signature);
+                formData.append('resource_type', 'video');
+
+                const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/video/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!uploadRes.ok) {
+                    const errorData = await uploadRes.json();
+                    console.error("Cloudinary error response:", errorData);
+                    throw new Error(`Cloudinary upload failed: ${errorData.error?.message || uploadRes.statusText}`);
+                }
+                const uploadData = await uploadRes.json();
+                uploadedUrls.push(uploadData.secure_url);
+            }
+
+            setVideoUrls(prev => [...prev, ...uploadedUrls]);
+
+        } catch (error: any) {
+            console.error("Video upload error:", error);
+            alert(`Failed to upload videos: ${error.message}. Check that your environment variables are set correctly in .env.local`);
+        } finally {
+            setUploadingVideos(false);
+            if (videoInputRef.current) videoInputRef.current.value = '';
+        }
+    };
+
+    const removeVideo = (indexToRemove: number) => {
+        setVideoUrls(prev => prev.filter((_, idx) => idx !== indexToRemove));
     };
 
     return (
@@ -480,6 +540,77 @@ export default function NewPropertyPage() {
                                             <button
                                                 type="button"
                                                 onClick={() => removeImage(idx)}
+                                                className="absolute top-2 right-2 p-1.5 bg-black/50 text-white rounded-lg hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100"
+                                            >
+                                                <X className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Videos */}
+                    <div className="space-y-6">
+                        <h3 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2">Property Videos</h3>
+
+                        <div className="space-y-4">
+                            <div className="flex items-center gap-4">
+                                <button
+                                    type="button"
+                                    onClick={() => videoInputRef.current?.click()}
+                                    disabled={uploadingVideos}
+                                    className="flex items-center gap-2 px-4 py-2 bg-navy-900 hover:bg-navy-800 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl transition-colors"
+                                >
+                                    {uploadingVideos ? (
+                                        <>
+                                            <Loader2 className="w-4 h-4 animate-spin" />
+                                            Uploading Videos...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Play className="w-4 h-4" />
+                                            Add Videos
+                                        </>
+                                    )}
+                                </button>
+                                <input
+                                    type="file"
+                                    multiple
+                                    accept="video/mp4,video/webm,video/mov,video/avi"
+                                    className="hidden"
+                                    ref={videoInputRef}
+                                    onChange={handleVideoUpload}
+                                />
+                                <span className="text-sm text-slate-500">
+                                    Select video files (MP4, WebM, MOV, AVI).
+                                </span>
+                            </div>
+
+                            {/* Hidden inputs to pass URL strings to server action */}
+                            {videoUrls.map((url, idx) => (
+                                <input key={`video-hidden-${idx}`} type="hidden" name="videos" value={url} />
+                            ))}
+
+                            {/* Video Previews */}
+                            {videoUrls.length > 0 && (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+                                    {videoUrls.map((url, idx) => (
+                                        <div key={`video-${idx}`} className="relative aspect-[16/9] rounded-xl overflow-hidden group border border-slate-200 bg-slate-100">
+                                            <video 
+                                                src={url} 
+                                                className="w-full h-full object-cover"
+                                                muted
+                                                onMouseEnter={(e) => e.currentTarget.play()}
+                                                onMouseLeave={(e) => e.currentTarget.pause()}
+                                            />
+                                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                                <Play className="w-8 h-8 text-white drop-shadow-lg" />
+                                            </div>
+                                            <button
+                                                type="button"
+                                                onClick={() => removeVideo(idx)}
                                                 className="absolute top-2 right-2 p-1.5 bg-black/50 text-white rounded-lg hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100"
                                             >
                                                 <X className="w-4 h-4" />

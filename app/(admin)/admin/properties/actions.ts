@@ -70,6 +70,10 @@ export async function createProperty(prevState: any, formData: FormData) {
         const imageEntries = formData.getAll('images');
         const images: string[] = imageEntries.filter(entry => typeof entry === 'string' && entry.trim() !== '') as string[];
 
+        // Gather multiple video URLs from form data
+        const videoEntries = formData.getAll('videos');
+        const videos: string[] = videoEntries.filter(entry => typeof entry === 'string' && entry.trim() !== '') as string[];
+
         // Gather multiple floor plan URLs from form data
         const floorPlanEntries = formData.getAll('floorPlans');
         const floorPlans: string[] = floorPlanEntries.filter(entry => typeof entry === 'string' && entry.trim() !== '') as string[];
@@ -111,6 +115,7 @@ export async function createProperty(prevState: any, formData: FormData) {
             maintenanceFee,
             rentPeriod,
             images,
+            videos,
             floorPlans
         });
 
@@ -174,6 +179,9 @@ export async function updateProperty(id: string, prevState: any, formData: FormD
         const imageEntries = formData.getAll('images');
         const images: string[] = imageEntries.filter(entry => typeof entry === 'string' && entry.trim() !== '') as string[];
 
+        const videoEntries = formData.getAll('videos');
+        const videos: string[] = videoEntries.filter(entry => typeof entry === 'string' && entry.trim() !== '') as string[];
+
         const floorPlanEntries = formData.getAll('floorPlans');
         const floorPlans: string[] = floorPlanEntries.filter(entry => typeof entry === 'string' && entry.trim() !== '') as string[];
 
@@ -212,6 +220,7 @@ export async function updateProperty(id: string, prevState: any, formData: FormD
             maintenanceFee,
             rentPeriod: (rentPeriod && rentPeriod !== '') ? rentPeriod : undefined,
             images,
+            videos,
             floorPlans
         });
 

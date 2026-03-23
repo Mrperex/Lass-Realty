@@ -32,6 +32,7 @@ const PropertySchema = new Schema<IProperty>(
         bathrooms: { type: Number, required: true },
         squareMeters: { type: Number, required: true },
         images: { type: [String], required: true },
+        videos: { type: [String], default: [] },
         featured: { type: Boolean, default: false },
         status: { type: String, enum: ['for-sale', 'sold', 'reserved', 'for-rent', 'rented'], default: 'for-sale' },
         deposit: { type: Number },

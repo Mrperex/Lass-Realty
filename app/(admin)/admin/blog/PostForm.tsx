@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { createPost, updatePost } from './actions';
 import { IPost } from '@/types/post';
 import { Save, Loader2, ImagePlus, Trash2, Sparkles } from 'lucide-react';
@@ -367,7 +368,13 @@ export default function PostForm({ initialData }: PostFormProps) {
                         <h3 className="text-lg font-light text-navy-900 mb-4 border-b pb-2">Cover Image</h3>
                         {formData.coverImage ? (
                             <div className="relative group aspect-video bg-gray-100 overflow-hidden mb-4">
-                                <img src={formData.coverImage} alt="Cover Preview" className="w-full h-full object-cover" />
+                                <Image 
+                                    src={formData.coverImage} 
+                                    alt="Cover Preview" 
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                />
                                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                     <button
                                         type="button"

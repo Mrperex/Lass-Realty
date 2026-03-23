@@ -147,7 +147,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
             <TrackPropertyView property={property} />
             {/* Gallery Section */}
             <div className="w-full relative bg-slate-900">
-                <PropertyGallery images={property.images} title={title} />
+                <PropertyGallery images={property.images} videos={property.videos} title={title} />
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-10 transition-all duration-500">
