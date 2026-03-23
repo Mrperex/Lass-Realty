@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import { updateProperty } from '../../actions';
 import { useFormState, useFormStatus } from 'react-dom';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, Save, UploadCloud, X, Sparkles, Play } from 'lucide-react';
 import { LOCATIONS } from '@/lib/locations';
 import AmenitiesMultiSelect from '@/components/admin/AmenitiesMultiSelect';
@@ -246,7 +247,13 @@ export default function EditPropertyForm({ property }: { property: any }) {
             const sigRes = await fetch('/api/admin/cloudinary-sign', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ paramsToSign: { timestamp, resource_type: 'video' } })
+                body: JSON.stringify({ 
+                paramsToSign: { 
+                    timestamp, 
+                    resource_type: 'video',
+                    folder: 'lass-realty/videos'
+                } 
+            })
             });
 
             if (!sigRes.ok) throw new Error('Failed to get upload signature');
@@ -262,13 +269,28 @@ export default function EditPropertyForm({ property }: { property: any }) {
                 formData.append('timestamp', timestamp.toString());
                 formData.append('signature', signature);
                 formData.append('resource_type', 'video');
+                formData.append('folder', 'lass-realty/videos');
 
                 const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/video/upload`, {
                     method: 'POST',
                     body: formData
                 });
 
-                if (!uploadRes.ok) throw new Error('Upload failed');
+                if (!uploadRes.ok) {
+                    const errorText = await uploadRes.text();
+                    console.error("Cloudinary error status:", uploadRes.status);
+                    console.error("Cloudinary error response:", errorText);
+                    
+                    // Try to parse as JSON
+                    let errorData;
+                    try {
+                        errorData = JSON.parse(errorText);
+                    } catch {
+                        errorData = { error: { message: errorText } };
+                    }
+                    
+                    throw new Error(`Cloudinary upload failed: ${errorData.error?.message || uploadRes.statusText} (Status: ${uploadRes.status})`);
+                }
                 const uploadData = await uploadRes.json();
                 uploadedUrls.push(uploadData.secure_url);
             }
@@ -458,7 +480,13 @@ export default function EditPropertyForm({ property }: { property: any }) {
                                         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-6">
                                             {floorPlanUrls.map((url, idx) => (
                                                 <div key={`fp-${idx}`} className="relative aspect-[4/3] rounded-xl overflow-hidden group border border-slate-200 bg-white">
-                                                    <img src={url} alt="Floor Plan Preview" className="w-full h-full object-contain p-2" />
+                                                    <Image 
+                                                        src={url} 
+                                                        alt="Floor Plan Preview" 
+                                                        fill
+                                                        className="object-contain p-2"
+                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                    />
                                                     <button
                                                         type="button"
                                                         onClick={() => removeFloorPlan(idx)}
@@ -526,7 +554,13 @@ export default function EditPropertyForm({ property }: { property: any }) {
                                 <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-6">
                                     {imageUrls.map((url, idx) => (
                                         <div key={`img-${idx}`} className="relative aspect-[4/3] rounded-xl overflow-hidden group border border-slate-200">
-                                            <img src={url} alt="Preview" className="w-full h-full object-cover" />
+                                            <Image 
+                                                src={url} 
+                                                alt="Preview" 
+                                                fill
+                                                className="object-cover"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            />
                                             <button
                                                 type="button"
                                                 onClick={() => removeImage(idx)}
