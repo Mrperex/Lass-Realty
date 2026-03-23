@@ -250,8 +250,7 @@ export default function EditPropertyForm({ property }: { property: any }) {
                 body: JSON.stringify({ 
                 paramsToSign: { 
                     timestamp, 
-                    resource_type: 'video',
-                    folder: 'lass-realty/videos'
+                    resource_type: 'video'
                 } 
             })
             });
@@ -269,7 +268,6 @@ export default function EditPropertyForm({ property }: { property: any }) {
                 formData.append('timestamp', timestamp.toString());
                 formData.append('signature', signature);
                 formData.append('resource_type', 'video');
-                formData.append('folder', 'lass-realty/videos');
 
                 const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/video/upload`, {
                     method: 'POST',
