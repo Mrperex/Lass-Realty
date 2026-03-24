@@ -38,7 +38,7 @@ export default function LogoReveal() {
             className={`fixed inset-0 z-[9999] bg-navy-900 flex flex-col items-center justify-center transition-opacity duration-500 ease-in-out ${isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
                 }`}
         >
-            <div className="flex flex-col items-center gap-6 animate-in slide-in-from-bottom-8 fade-in duration-700 ease-out">
+            <div className="flex flex-col items-center gap-6 animate-in fade-in duration-700 ease-out">
                 <Image 
                     src="/images/logos/lass-realty-logo-Master.svg" 
                     alt="LASS Realty"

@@ -89,7 +89,14 @@ export default async function LocaleLayout({
             <head>
                 {/* Resource Hints — only origins actually used on first paint */}
                 <link rel="preconnect" href="https://res.cloudinary.com" />
-                <link rel="preconnect" href="https://images.unsplash.com" />
+                <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="" />
+                {/* Preload LCP hero image so browser fetches it before JS hydrates */}
+                <link
+                    rel="preload"
+                    as="image"
+                    href="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=50&w=1280&h=720"
+                    fetchPriority="high"
+                />
                 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
                 <link rel="dns-prefetch" href="https://www.clarity.ms" />
             </head>

@@ -29,25 +29,25 @@ export default function MobileBottomNav() {
             <div className="flex items-center justify-around h-16">
                 <Link
                     href="/"
-                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${pathname === '/' || pathname === '/es' ? 'text-champagne-500' : 'text-slate-400 hover:text-slate-600'
+                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${pathname === '/' || pathname === '/es' ? 'text-champagne-500' : 'text-slate-600 hover:text-slate-800'
                         }`}
                 >
                     <Home className="w-6 h-6" strokeWidth={pathname === '/' || pathname === '/es' ? 2.5 : 2} />
-                    <span className="text-[10px] font-bold uppercase tracking-wider">{t('home', { fallback: 'Home' })}</span>
+                    <span className="text-[11px] font-bold uppercase tracking-wider">{t('home', { fallback: 'Home' })}</span>
                 </Link>
 
                 <Link
                     href="/properties"
-                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${isActive('/properties') ? 'text-champagne-500' : 'text-slate-400 hover:text-slate-600'
+                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${isActive('/properties') ? 'text-champagne-500' : 'text-slate-600 hover:text-slate-800'
                         }`}
                 >
                     <Search className="w-6 h-6" strokeWidth={isActive('/properties') ? 2.5 : 2} />
-                    <span className="text-[10px] font-bold uppercase tracking-wider">{t('properties', { fallback: 'Search' })}</span>
+                    <span className="text-[11px] font-bold uppercase tracking-wider">{t('properties', { fallback: 'Search' })}</span>
                 </Link>
 
                 <button
                     onClick={openFavorites}
-                    className="relative flex flex-col items-center justify-center w-full h-full gap-1 transition-colors text-slate-400 hover:text-slate-600"
+                    className="relative flex flex-col items-center justify-center w-full h-full gap-1 transition-colors text-slate-600 hover:text-slate-800"
                 >
                     <div className="relative">
                         <Heart className="w-6 h-6" strokeWidth={2} />
@@ -57,16 +57,16 @@ export default function MobileBottomNav() {
                             </span>
                         )}
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider">Saved</span>
+                    <span className="text-[11px] font-bold uppercase tracking-wider">Saved</span>
                 </button>
 
                 <Link
                     href="/contact"
-                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${isActive('/contact') ? 'text-champagne-500' : 'text-slate-400 hover:text-slate-600'
+                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${isActive('/contact') ? 'text-champagne-500' : 'text-slate-600 hover:text-slate-800'
                         }`}
                 >
                     <MessageCircle className="w-6 h-6" strokeWidth={isActive('/contact') ? 2.5 : 2} />
-                    <span className="text-[10px] font-bold uppercase tracking-wider">{t('contact', { fallback: 'Contact' })}</span>
+                    <span className="text-[11px] font-bold uppercase tracking-wider">{t('contact', { fallback: 'Contact' })}</span>
                 </Link>
             </div>
         </div>
