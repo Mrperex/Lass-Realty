@@ -87,10 +87,9 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} className={`${playfair.variable} ${montserrat.variable}`}>
             <head>
-                {/* Resource Hints for Performance */}
+                {/* Resource Hints — only origins actually used on first paint */}
                 <link rel="preconnect" href="https://res.cloudinary.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-                <link rel="dns-prefetch" href="https://assets.mixkit.co" />
+                <link rel="preconnect" href="https://images.unsplash.com" />
                 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
                 <link rel="dns-prefetch" href="https://www.clarity.ms" />
             </head>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import { Link } from '@/navigation';
 import { ArrowRight } from 'lucide-react';
@@ -8,16 +8,12 @@ import SearchFilters from '@/components/SearchFilters';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
-// Poster rendered as a static <img> so the browser paints it BEFORE JS hydration.
-// The video loads lazily on top once the page is interactive.
-const POSTER_URL = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=60&w=1280';
-const VIDEO_URL  = 'https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-beautiful-mansion-with-a-pool-2253-large.mp4';
+// Hero background — static image for instant LCP, no video download needed
+const HERO_IMG = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=60&w=1280';
 
 export default function Hero() {
     const t = useTranslations('Index');
     const containerRef = useRef<HTMLElement>(null);
-    const [videoLoaded, setVideoLoaded] = useState(false);
-
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ['start start', 'end start']
@@ -41,33 +37,18 @@ export default function Hero() {
             {/* Cinematic Overlay */}
             <div className="absolute inset-0 bg-gradient-to-b from-navy-900/80 via-navy-900/30 to-navy-900/90 z-10" />
 
-            {/* ── LCP Background: static image renders instantly, video fades in ── */}
+            {/* ── LCP Background: priority Image for instant paint ── */}
             <motion.div style={{ y: yBg }} className="absolute inset-0 w-full h-full z-0 origin-top">
-                {/* Static poster image — this IS the LCP element, no JS needed */}
                 <Image
-                    src={POSTER_URL}
-                    alt=""
+                    src={HERO_IMG}
+                    alt="Luxury villa in Punta Cana"
                     fill
                     priority
                     fetchPriority="high"
                     sizes="100vw"
-                    quality={60}
-                    className={`object-cover scale-105 transition-opacity duration-700 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
-                    aria-hidden="true"
+                    quality={55}
+                    className="object-cover scale-105"
                 />
-                {/* Video loads lazily over the image */}
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="none"
-                    className={`absolute inset-0 w-full h-full object-cover scale-105 transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-                    onCanPlay={() => setVideoLoaded(true)}
-                    aria-hidden="true"
-                >
-                    <source src={VIDEO_URL} type="video/mp4" />
-                </video>
             </motion.div>
 
             {/* Hero Text Content */}

@@ -16,29 +16,18 @@ export function generateHreflangTags(pathname: string, currentLocale: string): H
     // Remove locale from pathname if present
     const cleanPath = pathname.replace(/^\/(en|es|fr|it|ru|de|ht)/, '');
     
-    const hreflangTags = locales.map(locale => {
-        const localePath = locale === 'en' ? '' : `/${locale}`;
-        const url = `${baseUrl}${localePath}${cleanPath}`;
-        
-        return {
-            rel: 'alternate',
-            hrefLang: locale,
-            href: url
-        };
-    });
+    // Every locale gets its own /locale prefix — including English
+    const hreflangTags = locales.map(locale => ({
+        rel: 'alternate',
+        hrefLang: locale,
+        href: `${baseUrl}/${locale}${cleanPath}`
+    }));
 
-    // Add x-default for international users
+    // x-default points to the English version
     hreflangTags.push({
         rel: 'alternate',
         hrefLang: 'x-default',
-        href: `${baseUrl}${cleanPath}`
-    });
-
-    // Add self-referencing canonical
-    hreflangTags.push({
-        rel: 'canonical',
-        hrefLang: currentLocale,
-        href: `${baseUrl}${currentLocale === 'en' ? '' : `/${currentLocale}`}${cleanPath}`
+        href: `${baseUrl}/en${cleanPath}`
     });
 
     return hreflangTags;
@@ -54,10 +43,10 @@ export default function HreflangTags({ locale }: HreflangTagsProps) {
     useEffect(() => {
         const tags = generateHreflangTags(pathname, locale);
         
-        // Remove existing hreflang and canonical links
-        document.querySelectorAll('link[rel="alternate"], link[rel="canonical"]').forEach(tag => tag.remove());
+        // Remove existing hreflang links only (don't touch canonical — let Next.js metadata handle it)
+        document.querySelectorAll('link[hreflang]').forEach(tag => tag.remove());
         
-        // Add new tags
+        // Add hreflang alternate tags
         tags.forEach(tag => {
             const link = document.createElement('link');
             link.rel = tag.rel;
@@ -66,9 +55,8 @@ export default function HreflangTags({ locale }: HreflangTagsProps) {
             document.head.appendChild(link);
         });
         
-        // Cleanup on unmount
         return () => {
-            document.querySelectorAll('link[rel="alternate"], link[rel="canonical"]').forEach(tag => tag.remove());
+            document.querySelectorAll('link[hreflang]').forEach(tag => tag.remove());
         };
     }, [pathname, locale]);
     

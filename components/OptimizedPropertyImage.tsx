@@ -23,7 +23,7 @@ const blurDataURL = `data:image/svg+xml;base64,${typeof window === 'undefined' ?
 const cloudinaryLoader = ({ src, width, quality }: { src: string; width: number; quality?: number }) => {
     if (!src.includes('cloudinary.com')) return src;
 
-    const q = quality || 75;
+    const q = quality || 60;
     const transforms = `c_fill,g_auto,w_${width},q_auto:${q > 85 ? 'best' : 'good'},f_auto,dpr_auto`;
 
     // Insert transforms between /upload/ and the version/public-id
@@ -80,7 +80,7 @@ export default function OptimizedPropertyImage({
                 onLoad={handleLoad}
                 onError={handleError}
                 style={{ objectFit: 'cover' }}
-                quality={75}
+                quality={60}
             />
         </>
     );

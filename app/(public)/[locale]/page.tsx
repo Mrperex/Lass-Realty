@@ -1,14 +1,24 @@
 import { Link } from '@/navigation';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 import { ArrowRight, MapPin } from 'lucide-react';
 import PropertyGrid from '@/components/PropertyGrid';
 import Property from '@/models/Property';
 import { LOCATIONS } from '@/lib/locations';
-import SearchFilters from '@/components/SearchFilters';
 import { getTranslations } from 'next-intl/server';
-import WhyLassRealty from '@/components/WhyLassRealty';
-import Hero from '@/components/Hero';
 import { withDatabase } from '@/lib/dbUtils';
+
+// Dynamic import Hero to defer framer-motion (~110KB) from blocking initial paint
+const Hero = dynamic(() => import('@/components/Hero'), {
+    loading: () => (
+        <section className="relative min-h-[90vh] flex items-center justify-center bg-navy-900">
+            <div className="absolute inset-0 bg-gradient-to-b from-navy-900/80 via-navy-900/30 to-navy-900/90 z-10" />
+        </section>
+    ),
+    ssr: true,
+});
+const WhyLassRealty = dynamic(() => import('@/components/WhyLassRealty'), { ssr: true });
 
 export const revalidate = 3600;
 
