@@ -23,7 +23,7 @@ const blurDataURL = `data:image/svg+xml;base64,${typeof window === 'undefined' ?
 const cloudinaryLoader = ({ src, width, quality }: { src: string; width: number; quality?: number }) => {
     if (!src.includes('cloudinary.com')) return src;
 
-    const transforms = `c_fill,g_auto,w_${width},q_auto:eco,f_auto`;
+    const transforms = `c_fill,g_auto,w_${width},q_auto:eco,f_webp`;
 
     // Insert transforms between /upload/ and the version/public-id
     return src.replace('/upload/', `/upload/${transforms}/`);

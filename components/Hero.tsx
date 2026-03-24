@@ -43,6 +43,8 @@ export default function Hero() {
                 <img
                     src={HERO_IMG}
                     alt="Luxury villa in Punta Cana"
+                    width={1280}
+                    height={720}
                     fetchPriority="high"
                     decoding="async"
                     className="absolute inset-0 w-full h-full object-cover scale-105"

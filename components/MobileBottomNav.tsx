@@ -29,7 +29,7 @@ export default function MobileBottomNav() {
             <div className="flex items-center justify-around h-16">
                 <Link
                     href="/"
-                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${pathname === '/' || pathname === '/es' ? 'text-champagne-500' : 'text-slate-600 hover:text-slate-800'
+                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${pathname === '/' || pathname === '/es' ? 'text-champagne-700' : 'text-slate-600 hover:text-slate-800'
                         }`}
                 >
                     <Home className="w-6 h-6" strokeWidth={pathname === '/' || pathname === '/es' ? 2.5 : 2} />
@@ -38,7 +38,7 @@ export default function MobileBottomNav() {
 
                 <Link
                     href="/properties"
-                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${isActive('/properties') ? 'text-champagne-500' : 'text-slate-600 hover:text-slate-800'
+                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${isActive('/properties') ? 'text-champagne-700' : 'text-slate-600 hover:text-slate-800'
                         }`}
                 >
                     <Search className="w-6 h-6" strokeWidth={isActive('/properties') ? 2.5 : 2} />
@@ -62,7 +62,7 @@ export default function MobileBottomNav() {
 
                 <Link
                     href="/contact"
-                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${isActive('/contact') ? 'text-champagne-500' : 'text-slate-600 hover:text-slate-800'
+                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${isActive('/contact') ? 'text-champagne-700' : 'text-slate-600 hover:text-slate-800'
                         }`}
                 >
                     <MessageCircle className="w-6 h-6" strokeWidth={isActive('/contact') ? 2.5 : 2} />

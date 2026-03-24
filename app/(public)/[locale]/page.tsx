@@ -1,25 +1,13 @@
 import { Link } from '@/navigation';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
 import { ArrowRight, MapPin } from 'lucide-react';
 import PropertyGrid from '@/components/PropertyGrid';
 import Property from '@/models/Property';
 import { LOCATIONS } from '@/lib/locations';
 import { getTranslations } from 'next-intl/server';
 import { withDatabase } from '@/lib/dbUtils';
-
-// Dynamic import Hero — ssr:false avoids hydration mismatch CLS from framer-motion
-// Skeleton reserves identical space (min-h-[90vh] + padding) to prevent footer shift
-const Hero = dynamic(() => import('@/components/Hero'), {
-    loading: () => (
-        <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden bg-navy-900">
-            <div className="absolute inset-0 bg-gradient-to-b from-navy-900/80 via-navy-900/30 to-navy-900/90 z-10" />
-        </section>
-    ),
-    ssr: false,
-});
-const WhyLassRealty = dynamic(() => import('@/components/WhyLassRealty'));
+import Hero from '@/components/Hero';
+import WhyLassRealty from '@/components/WhyLassRealty';
 
 export const revalidate = 3600;
 
