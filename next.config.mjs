@@ -59,6 +59,13 @@ const nextConfig = {
     eslint: {
         ignoreDuringBuilds: true,
     },
+    compiler: {
+        removeConsole: process.env.NODE_ENV === 'production',
+    },
+    swcMinify: true,
+    experimental: {
+        optimizePackageImports: ['lucide-react'],
+    },
     images: {
         formats: ['image/avif', 'image/webp'],
         remotePatterns: [

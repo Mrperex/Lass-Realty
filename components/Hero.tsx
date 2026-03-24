@@ -44,8 +44,14 @@ export default function Hero() {
     // Use a high-end luxury drone loop 
     const VIDEO_URL = "https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-beautiful-mansion-with-a-pool-2253-large.mp4";
 
+    // Use optimized Cloudinary image for poster
+    const POSTER_URL = "https://res.cloudinary.com/dsriyqmoy/image/upload/c_fill,w_1920,h_1080,q_auto:best,f_auto/lass-puntacana-hero";
+
     return (
         <section ref={containerRef} className="relative min-h-[90vh] flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden bg-navy-900">
+            {/* Preload critical image */}
+            <link rel="preload" as="image" href={POSTER_URL} />
+            
             {/* Cinematic Overlay - Darken top for nav, darken bottom for transition */}
             <div className="absolute inset-0 bg-gradient-to-b from-navy-900/80 via-navy-900/30 to-navy-900/90 z-10" />
 
@@ -57,7 +63,7 @@ export default function Hero() {
                     muted
                     playsInline
                     className="w-full h-full object-cover scale-105"
-                    poster="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=75&w=1920"
+                    poster={POSTER_URL}
                     aria-hidden="true"
                 >
                     <source src={VIDEO_URL} type="video/mp4" />

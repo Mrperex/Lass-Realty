@@ -78,6 +78,14 @@ export default async function LocaleLayout({
 
     return (
         <html lang={locale} className={`${playfair.variable} ${montserrat.variable}`}>
+            <head>
+                {/* Resource Hints for Performance */}
+                <link rel="preconnect" href="https://res.cloudinary.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+                <link rel="dns-prefetch" href="https://assets.mixkit.co" />
+                <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+                <link rel="dns-prefetch" href="https://www.clarity.ms" />
+            </head>
             <body className={`font-montserrat flex flex-col min-h-screen bg-navy-900 text-offwhite relative`}>
                 <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-champagne-500 text-navy-900 z-[9999] px-4 py-2 rounded-xl font-bold">
                     Skip to content
@@ -99,7 +107,7 @@ export default async function LocaleLayout({
                     {process.env.NEXT_PUBLIC_CLARITY_ID && (
                         <Script
                             id="clarity-script"
-                            strategy="afterInteractive"
+                            strategy="lazyOnload"
                         >
                             {`
                                 (function(c,l,a,r,i,t,y){
