@@ -40,8 +40,7 @@ const PostSchema = new Schema<IPost>(
     }
 );
 
-// Indexes
-PostSchema.index({ slug: 1 }, { unique: true });
+// Indexes (slug index already created by unique:true on field definition)
 PostSchema.index({ publishedAt: -1 }); // Fast sorting for latest posts
 
 const Post = models.Post || model<IPost>('Post', PostSchema);

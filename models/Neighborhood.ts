@@ -38,8 +38,7 @@ const NeighborhoodSchema = new Schema<INeighborhood>(
     }
 );
 
-// Indexes
-NeighborhoodSchema.index({ slug: 1 }, { unique: true });
+// Indexes (slug index already created by unique:true on field definition)
 
 const Neighborhood = models.Neighborhood || model<INeighborhood>('Neighborhood', NeighborhoodSchema);
 
