@@ -1,5 +1,7 @@
+'use client';
+
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 interface OptimizedPropertyImageProps {
     src: string;
@@ -12,81 +14,74 @@ interface OptimizedPropertyImageProps {
     fill?: boolean;
 }
 
-// Optimized blur placeholder for property images
-const blurDataURL = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=";
+// Tiny SVG blur placeholder — no network request, instant render
+const shimmerSvg = `<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#e2e8f0"/><rect width="400" height="300" fill="url(#g)"/><defs><linearGradient id="g"><stop offset="20%" stop-color="#e2e8f0"/><stop offset="50%" stop-color="#f1f5f9"/><stop offset="80%" stop-color="#e2e8f0"/></linearGradient></defs></svg>`;
+const blurDataURL = `data:image/svg+xml;base64,${typeof window === 'undefined' ? Buffer.from(shimmerSvg).toString('base64') : btoa(shimmerSvg)}`;
+
+// Cloudinary loader — inserts transformations into existing URL
+// Keeps version number + public ID intact so URLs never break
+const cloudinaryLoader = ({ src, width, quality }: { src: string; width: number; quality?: number }) => {
+    if (!src.includes('cloudinary.com')) return src;
+
+    const q = quality || 75;
+    const transforms = `c_fill,g_auto,w_${width},q_auto:${q > 85 ? 'best' : 'good'},f_auto,dpr_auto`;
+
+    // Insert transforms between /upload/ and the version/public-id
+    return src.replace('/upload/', `/upload/${transforms}/`);
+};
 
 export default function OptimizedPropertyImage({
     src,
     alt,
     priority = false,
-    className = "",
-    sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+    className = '',
+    sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw',
     width,
     height,
-    fill = false
+    fill = true,
 }: OptimizedPropertyImageProps) {
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(false);
+    const [hasError, setHasError] = useState(false);
 
-    // Generate Cloudinary optimized URL if it's a Cloudinary image
-    const getOptimizedUrl = (url: string, w?: number, h?: number) => {
-        if (!url.includes('cloudinary.com')) return url;
-        
-        const transformations = [
-            'c_fill',
-            'g_auto',
-            'q_auto:best',
-            'f_auto',
-            w && `w_${w}`,
-            h && `h_${h}`
-        ].filter(Boolean).join(',');
-        
-        const publicId = url.split('/').pop()?.split('.')[0];
-        return `https://res.cloudinary.com/dsriyqmoy/image/upload/${transformations}/${publicId}`;
-    };
-
-    const handleError = () => {
-        setError(true);
+    const handleLoad = useCallback(() => setIsLoading(false), []);
+    const handleError = useCallback(() => {
+        setHasError(true);
         setIsLoading(false);
-    };
+    }, []);
 
-    const handleLoad = () => {
-        setIsLoading(false);
-    };
-
-    if (error) {
+    if (hasError) {
         return (
-            <div className={`bg-slate-200 flex items-center justify-center ${className}`}>
-                <span className="text-slate-500 text-sm">Image not available</span>
+            <div className="absolute inset-0 bg-slate-200 flex items-center justify-center">
+                <span className="text-slate-400 text-xs">Image not available</span>
             </div>
         );
     }
 
+    // Use the raw Cloudinary URL directly — let the loader handle optimization
+    const imageSrc = src;
+
     return (
-        <div className={`relative ${className}`}>
+        <>
             {isLoading && (
-                <div className="absolute inset-0 bg-slate-200 animate-pulse">
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-100 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]" />
-                </div>
+                <div className="absolute inset-0 bg-slate-200 animate-pulse z-[1]" />
             )}
-            
             <Image
-                src={getOptimizedUrl(src, width, height)}
+                loader={src.includes('cloudinary.com') ? cloudinaryLoader : undefined}
+                src={imageSrc}
                 alt={alt}
                 fill={fill}
-                width={fill ? undefined : width}
-                height={fill ? undefined : height}
+                width={fill ? undefined : (width || 800)}
+                height={fill ? undefined : (height || 600)}
                 className={`transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'} ${className}`}
                 priority={priority}
                 sizes={sizes}
                 placeholder="blur"
                 blurDataURL={blurDataURL}
-                onError={handleError}
                 onLoad={handleLoad}
-                style={{
-                    objectFit: 'cover'
-                }}
+                onError={handleError}
+                style={{ objectFit: 'cover' }}
+                quality={75}
             />
-        </div>
+        </>
     );
 }

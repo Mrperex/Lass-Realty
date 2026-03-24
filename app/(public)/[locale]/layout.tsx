@@ -16,10 +16,18 @@ import HreflangTags from '@/components/HreflangTags';
 
 const playfair = Playfair_Display({
     subsets: ['latin'],
-    weight: ['400', '500', '600', '700', '800', '900'],
-    variable: '--font-playfair'
+    weight: ['400', '500', '700'],
+    display: 'swap',
+    variable: '--font-playfair',
+    preload: true,
 });
-const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
+const montserrat = Montserrat({
+    subsets: ['latin'],
+    weight: ['400', '500', '600', '700'],
+    display: 'swap',
+    variable: '--font-montserrat',
+    preload: true,
+});
 
 export const metadata: Metadata = {
     metadataBase: new URL(process.env.SITE_URL || 'https://lasspuntacana.com'),
