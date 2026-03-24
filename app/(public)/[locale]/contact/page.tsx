@@ -29,16 +29,12 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
                             <h3 className="text-2xl font-bold mb-6">{t('headquarters')}</h3>
                             <div className="space-y-6">
                                 <div>
-                                    <p className="text-slate-400 text-sm font-semibold uppercase tracking-wider mb-1">{t('addressLabel')}</p>
-                                    <p className="text-lg" dangerouslySetInnerHTML={{ __html: t('addressValue') }} />
-                                </div>
-                                <div>
                                     <p className="text-slate-400 text-sm font-semibold uppercase tracking-wider mb-1">{t('emailLabel')}</p>
-                                    <a href="mailto:info@lassrealty.com" className="text-lg hover:text-amber-400 transition-colors">info@lassrealty.com</a>
+                                    <a href="mailto:info@lasspuntacana.com" className="text-lg hover:text-amber-400 transition-colors">info@lasspuntacana.com</a>
                                 </div>
                                 <div>
                                     <p className="text-slate-400 text-sm font-semibold uppercase tracking-wider mb-1">{t('phoneLabel')}</p>
-                                    <a href="tel:+15551234567" className="text-lg hover:text-amber-400 transition-colors">+1 (555) 123-4567</a>
+                                    <a href="tel:+18093709073" className="text-lg hover:text-amber-400 transition-colors">+1 (809) 370-9073</a>
                                 </div>
                             </div>
                         </div>

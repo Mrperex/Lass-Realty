@@ -43,7 +43,7 @@ const Footer = () => {
                     <div>
                         <h4 className="text-white text-md font-semibold mb-4">{t('contactUs')}</h4>
                         <ul className="space-y-2 text-sm">
-                            <li>info@lassrealty.com</li>
+                            <li>info@lasspuntacana.com</li>
                             <li>+1 (809) 370-9073</li>
                         </ul>
                     </div>

@@ -40,7 +40,7 @@ export const LeadAutoReply: React.FC<Readonly<LeadAutoReplyProps>> = ({
                 <Section style={footer}>
                     <Text style={footerText}>
                         LASS Realty | Punta Cana, Dominican Republic <br />
-                        info@lassrealty.com
+                        info@lasspuntacana.com
                     </Text>
                 </Section>
             </Container>
