@@ -17,14 +17,14 @@ import HreflangTags from '@/components/HreflangTags';
 const playfair = Playfair_Display({
     subsets: ['latin'],
     weight: ['400', '500', '700'],
-    display: 'swap',
+    display: 'optional',
     variable: '--font-playfair',
     preload: true,
 });
 const montserrat = Montserrat({
     subsets: ['latin'],
     weight: ['400', '500', '600', '700'],
-    display: 'swap',
+    display: 'optional',
     variable: '--font-montserrat',
     preload: true,
 });
