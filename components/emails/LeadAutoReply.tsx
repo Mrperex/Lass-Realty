@@ -30,7 +30,7 @@ export const LeadAutoReply: React.FC<Readonly<LeadAutoReplyProps>> = ({
                         Our team of luxury real estate specialists has received your message and will be in touch shortly to assist you.
                     </Text>
                     <Text style={paragraph}>
-                        If you need immediate assistance, please feel free to message us directly on WhatsApp at +1 (829) 523-0782.
+                        If you need immediate assistance, please feel free to message us directly on WhatsApp at +1 (809) 370-9073.
                     </Text>
                     <Text style={paragraph}>
                         Best regards,<br />

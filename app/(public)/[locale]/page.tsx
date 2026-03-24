@@ -14,7 +14,19 @@ export const revalidate = 3600;
 
 async function getFeaturedProperties() {
     return withDatabase(async () => {
-        const properties = await Property.find({ featured: true }).limit(3).lean();
+        // Try featured listings first
+        let properties = await Property.find({ 
+            featured: true, 
+            published: true 
+        }).limit(3).sort({ createdAt: -1 }).lean();
+        
+        // If no featured listings exist, fall back to most recent
+        if (properties.length === 0) {
+            properties = await Property.find({ 
+                published: true 
+            }).limit(3).sort({ createdAt: -1 }).lean();
+        }
+        
         return JSON.parse(JSON.stringify(properties));
     }, []);
 }

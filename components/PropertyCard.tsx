@@ -32,12 +32,13 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
     return (
         <div className="group relative">
             <Link href={`/properties/${property.slug}`} className="block overflow-hidden rounded-none bg-white border-b border-r border-slate-100 hover:shadow-[-20px_20px_40px_-15px_rgba(17,17,17,0.08)] transition-all duration-700 hover:-translate-y-2 pb-6 mb-4">
-                <div className="relative aspect-[4/5] sm:aspect-[4/3] overflow-hidden bg-navy-900/5">
+                <div className="relative aspect-[3/4] sm:aspect-[4/3] overflow-hidden bg-navy-900/5">
                     {property.images && property.images.length > 0 ? (
                         <OptimizedPropertyImage
                             src={property.images[0]}
                             alt={title}
                             priority={priority}
+                            fill={true}
                             className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />

@@ -30,8 +30,8 @@ export async function generateStaticParams() {
     try {
         await connectToDatabase();
         if (!mongoose.connection.readyState) return [];
-        // Only pre-generate pages for properties that are currently for sale
-        const properties = await Property.find({ status: 'for-sale' }).select('slug').lean();
+        // Only pre-generate pages for properties that are currently published
+        const properties = await Property.find({ published: true }).select('slug').lean();
 
         const locales = ['en', 'es', 'fr', 'it', 'ru', 'de', 'ht'];
         const params = [];
